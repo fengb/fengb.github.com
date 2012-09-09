@@ -1,0 +1,25 @@
+/* #f8b800 - gold
+ * #ba8a00 - gold-1
+ * #7c5c00 - gold-2
+ * #3e2e00 - gold-3
+ * #faca40 - gold+1
+ * #fcdc80 - gold+2
+ * #fdedbf - gold+3
+ *
+ * #e40058 - red
+ * #ab0042 - red-1
+ * #72002c - red-2
+ * #390016 - red-3
+ * #eb4082 - red+1
+ * #f280ac - red+2
+ * #f8bfd5 - red+3
+ */
+
+* { margin:0; padding:0; font-size:inherit; }
+body { width:960px; color:#72002c; background:#fcdc80; margin:0 auto; padding:0; font:14px Helvetica; }
+
+nav#primary { background:#fff -webkit-gradient(linear, left top, left bottom, from(#ab0042), to(#390016)); padding:0 20px; margin:0 -20px; overflow:hidden; position:relative; }
+nav#primary ul { float:right; }
+nav#primary li { float:left; list-style:none; }
+nav#primary li.title { position:absolute; left:20px; }
+nav#primary a { color:#f8b800; }
