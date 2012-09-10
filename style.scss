@@ -1,29 +1,28 @@
-/* #f8b800 - (248, 184,   0) - gold
- * #faca40 - (250, 202,  64) - gold+1
- * #fcdc80 - (252, 220, 128) - gold+2
- * #fdedbf - (253, 237, 191) - gold+3
- *
- * #ab0042 - (171,   0,  66) - red
- * #800031 - (128,   0,  49) - red-1
- * #550021 - ( 85,   0,  33) - red-2
- * #2b0011 - ( 43,   0,  17) - red-3
- */
+$dark0: #ab0042;
+$dark1: #800031;
+$dark2: #550021;
+$dark3: #2b0011;
+
+$lite0: #f8b800;
+$lite1: #faca40;
+$lite2: #fcdc80;
+$lite3: #fdedbf;
 
 * { margin:0; padding:0; font-size:inherit; }
-body { max-width:960px; color:#800031; background:#fdedbf; padding:0 8px; margin:0 auto; font:14px Helvetica, Arial, sans-serif; overflow:hidden; }
+body { max-width:960px; color:$dark1; background:$lite3; padding:0 8px; margin:0 auto; font:14px Helvetica, Arial, sans-serif; overflow:hidden; }
 
-nav#primary { background:#800031 -webkit-gradient(linear, left top, left bottom, from(#ab0042), to(#550021)); padding:8px 24px 12px; margin:0 -24px; overflow:hidden; position:relative; height:30px; border-radius:0 0 16px 16px; }
+nav#primary { background:$dark1 -webkit-gradient(linear, left top, left bottom, from($dark0), to($dark2)); padding:8px 24px 12px; margin:0 -24px; overflow:hidden; position:relative; height:30px; border-radius:0 0 16px 16px; }
 nav#primary h1 { position:absolute; left:24px; margin:0; font-size:200%; }
-nav#primary a { display:block; color:#f8b800; text-decoration:none; }
-nav#primary a:hover { color:#fdedbf; }
+nav#primary a { display:block; color:$lite0; text-decoration:none; }
+nav#primary a:hover { color:$lite3; }
 nav#primary ul { float:right; margin-top:3px; }
-nav#primary li { float:left; list-style:none; background:#f8b800 -webkit-gradient(linear, left top, left bottom, from(#fcdc80), to(#f8b800)); }
+nav#primary li { float:left; list-style:none; background:$lite0 -webkit-gradient(linear, left top, left bottom, from($lite2), to($lite0)); }
 nav#primary ul li:first-child { border-radius:8px 0 0 8px; }
 nav#primary ul li:last-child { border-radius:0 8px 8px 0; }
-nav#primary ul li:hover { background: -webkit-gradient(linear, left top, left bottom, from(#fdedbf), to(#faca40)); }
-nav#primary ul a { display:block; padding:4px 12px; color:#800031; font-size:120%; border-left:2px solid #800031; }
+nav#primary ul li:hover { background: -webkit-gradient(linear, left top, left bottom, from($lite3), to($lite1)); }
+nav#primary ul a { display:block; padding:4px 12px; color:$dark1; font-size:120%; border-left:2px solid $dark1; }
 nav#primary ul li:first-child a { border-left:none; }
-nav#primary ul a:hover { color:#ab0042; }
+nav#primary ul a:hover { color:$dark0; }
 
 article { padding:8px 0; }
 
