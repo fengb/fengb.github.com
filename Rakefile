@@ -12,32 +12,19 @@ end
 
 desc 'Stage assets to a fresh branch for publication'
 task :stage => :compile do
-  require 'tmpdir'
-  branch = `git branch | sed -e '/^[^*]/d' -e 's/[*] //'`
-  begin
-    Dir.mktmpdir do |dir|
-      mv WORK, dir
-      sh "git branch -D #{WORK}" rescue nil
-      sh "git checkout --orphan #{WORK}"
-      sh 'git rm -rf .'
-      sh 'git clean -f'
-      Dir[File.join(dir, WORK, '*')].each do |file|
-        mv file, pwd
-      end
-      sh 'git add .'
-      sh 'git commit -m "AUTO PUBLISH"'
-    end
-  ensure
-    sh "git checkout #{branch}"
+  cd WORK do
+    sh 'git init'
+    sh 'git add .'
+    sh 'git commit -m "AUTO PUBLISH"'
   end
 end
 
 desc 'Publish changes'
 task :publish => :stage do
-  if `git diff #{WORK} origin/master`.empty?
-    $stderr.puts "Files not changed.  Not publishing."
-  else
-    sh "git push -f origin #{WORK}:master"
+  url = `git remote show -n origin | sed -e '/Fetch URL/!d' -e 's/ *Fetch URL: //'`
+  cd WORK do
+    sh "git remote add origin #{url}"
+    sh "git push -f origin master"
   end
 end
 
