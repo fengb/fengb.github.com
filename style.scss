@@ -1,16 +1,16 @@
 @import "css3";
 
 $dark4: #ab0042;
-$dark3: #800031;
-$dark2: #550021;
-$dark1: #2b0011;
 $dark0: #000000;
+$dark3: mix($dark4, $dark0, 75%);
+$dark2: mix($dark4, $dark0, 50%);
+$dark1: mix($dark4, $dark0, 25%);
 
 $lite5: #f8b800;
-$lite6: #faca40;
-$lite7: #fcdc80;
-$lite8: #fdedbf;
 $lite9: #ffffff;
+$lite6: mix($lite5, $lite9, 75%);
+$lite7: mix($lite5, $lite9, 50%);
+$lite8: mix($lite5, $lite9, 25%);
 
 * { margin:0; padding:0; font-size:inherit; text-decoration:none; }
 body { max-width:960px; color:$dark2; background:$lite8; padding:0 8px; margin:0 auto; font:14px Helvetica, Arial, sans-serif; overflow:hidden; }
