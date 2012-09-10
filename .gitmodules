@@ -1,0 +1,3 @@
+[submodule "submodule-css3-sass-mixins"]
+	path = submodule-css3-sass-mixins
+	url = https://github.com/madr/css3-sass-mixins.git

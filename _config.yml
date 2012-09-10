@@ -1,1 +1,1 @@
-exclude: [Gemfile, Gemfile.lock, Rakefile]
+exclude: [Gemfile, Gemfile.lock, Rakefile, submodule-css3-sass-mixins]
