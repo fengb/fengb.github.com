@@ -14,11 +14,15 @@ GEM
       kramdown (~> 0.13)
       liquid (~> 2.3)
       maruku (~> 0.5)
+    jekyll-sass (1.0.0)
+      jekyll (>= 0.10.0)
+      sass (>= 3.0.0)
     kramdown (0.13.8)
     liquid (2.4.1)
     maruku (0.6.0)
       syntax (>= 1.0.0)
     posix-spawn (0.3.6)
+    sass (3.2.1)
     syntax (1.0.0)
 
 PLATFORMS
@@ -26,3 +30,5 @@ PLATFORMS
 
 DEPENDENCIES
   jekyll
+  jekyll-sass
+  sass
