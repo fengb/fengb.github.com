@@ -43,7 +43,7 @@ end
 
 desc 'Run the local web server'
 task :server do
-  sh 'jekyll --server'
+  sh 'jekyll --server --auto'
 end
 
 task :default => :compile
