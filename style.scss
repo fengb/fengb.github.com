@@ -8,21 +8,23 @@ $lite1: #faca40;
 $lite2: #fcdc80;
 $lite3: #fdedbf;
 
-* { margin:0; padding:0; font-size:inherit; }
+* { margin:0; padding:0; font-size:inherit; text-decoration:none; }
 body { max-width:960px; color:$dark1; background:$lite3; padding:0 8px; margin:0 auto; font:14px Helvetica, Arial, sans-serif; overflow:hidden; }
 
-nav#primary { background:$dark1 -webkit-gradient(linear, left top, left bottom, from($dark0), to($dark2)); padding:8px 24px 12px; margin:0 -24px; overflow:hidden; position:relative; height:30px; border-radius:0 0 16px 16px; }
-nav#primary h1 { position:absolute; left:24px; margin:0; font-size:200%; }
-nav#primary a { display:block; color:$lite0; text-decoration:none; }
-nav#primary a:hover { color:$lite3; }
-nav#primary ul { float:right; margin-top:3px; }
-nav#primary li { float:left; list-style:none; background:$lite0 -webkit-gradient(linear, left top, left bottom, from($lite2), to($lite0)); }
-nav#primary ul li:first-child { border-radius:8px 0 0 8px; }
-nav#primary ul li:last-child { border-radius:0 8px 8px 0; }
-nav#primary ul li:hover { background: -webkit-gradient(linear, left top, left bottom, from($lite3), to($lite1)); }
-nav#primary ul a { display:block; padding:4px 12px; color:$dark1; font-size:120%; border-left:2px solid $dark1; }
-nav#primary ul li:first-child a { border-left:none; }
-nav#primary ul a:hover { color:$dark0; }
+nav#primary { background:$dark1 -webkit-gradient(linear, left top, left bottom, from($dark0), to($dark2)); padding:8px 24px 12px; margin:0 -24px; overflow:hidden; position:relative; height:30px; border-radius:0 0 16px 16px;
+  h1 a { position:absolute; left:24px; margin:0; font-size:28px; color:$lite0;
+    &:hover { color:$lite3; }
+  }
+  ul { float:right; margin-top:3px; border-radius:8px; overflow:hidden;
+    li { float:left; list-style:none; background:$lite0 -webkit-gradient(linear, left top, left bottom, from($lite2), to($lite0));
+      &:hover { background: -webkit-gradient(linear, left top, left bottom, from($lite3), to($lite1)); }
+      a { display:block; padding:4px 12px; color:$dark1; font-size:17px; border-left:2px solid $dark1;
+        &:hover { color:$dark0; }
+      }
+      &:first-child a { border:none; }
+    }
+  }
+}
 
 article { padding:8px 0; }
 
