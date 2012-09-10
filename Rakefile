@@ -32,6 +32,15 @@ task :stage => :compile do
   end
 end
 
+desc 'Publish changes'
+task :publish => :stage do
+  if `git diff #{WORK} origin/master`.empty?
+    $stderr.puts "Files not changed.  Not publishing."
+  else
+    sh "git push -f origin #{WORK}:master"
+  end
+end
+
 desc 'Run the local web server'
 task :server do
   sh 'jekyll --server'
