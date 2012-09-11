@@ -7,21 +7,22 @@ $dark1: darken($dark3, 25%);
 $dark0: darken($dark3, 45%);
 
 $lite6: #f7ad19;
+$lite0: darken($lite6, 52%);
 $lite5: darken($lite6, 10%);
 $lite7: lighten($lite6, 16%);
 $lite8: lighten($lite6, 32%);
 $lite9: lighten($lite6, 45%);
 
-* { margin:0; padding:0; font-size:inherit; text-decoration:none; }
+* { margin:0; padding:0; font:inherit; text-decoration:none; }
 body { max-width:960px; color:$dark1; background:$lite9; padding:0 8px; margin:0 auto; font:14px Helvetica, Arial, sans-serif; overflow:hidden; }
 
-nav#primary { background:$lite7; @include linear-gradient($lite8, $lite6); padding:8px 24px 12px; margin:0 -24px; overflow:hidden; position:relative; height:30px; @include border-radius(0 0 16px 16px);
-  h1 a { position:absolute; left:24px; margin:0; font-size:28px; color:$dark2;
+nav#primary { background:$lite7; @include linear-gradient($lite8, $lite6); @include box-shadow(0, 1px, 3px, $lite0); padding:8px 24px 12px; margin:0 -24px; overflow:hidden; position:relative; height:30px; @include border-radius(0 0 16px 16px);
+  h1 a { position:absolute; left:24px; margin:0; font-size:28px; font-weight:bold; color:$dark2; text-shadow:0 1px 1px $lite8;
     &:hover { color:$dark3; }
   }
-  ul { float:right; margin-top:3px; overflow:hidden; background:$dark2; @include border-radius(8px);
+  ul { float:right; margin-top:3px; overflow:hidden; background:$lite7; border-bottom:1px solid $lite8; @include box-shadow(0, -1px, 1px, $lite0); @include border-radius(8px);
     li { float:left; list-style:none;
-      a { display:block; padding:4px 12px; color:$lite8; font-size:17px;
+      a { display:block; padding:0 12px; height:26px; line-height:26px; color:$lite8; font:17px; font-weight:bold; text-shadow:0 0 3px $lite0, 0 1px 1px $lite0;
         &:hover { color:$lite9; }
       }
     }
