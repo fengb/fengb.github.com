@@ -14,10 +14,10 @@ $lite0: darken($lite6, 52%);
 $lite5: darken($lite6, 10%);
 $lite7: lighten($lite6, 16%);
 $lite8: lighten($lite6, 32%);
-$lite9: lighten($lite6, 45%);
+$lite9: lighten($lite6, 46%);
 
 * { margin:0; padding:0; font:inherit; text-decoration:none; }
-body { max-width:960px; color:$dark1; background:$lite9; padding:0 8px; margin:0 auto; font:14px Helvetica, Arial, sans-serif; overflow:hidden; }
+body { max-width:940px; color:$dark1; background:$lite9; padding:0 8px; margin:0 auto; font:14px Helvetica, Arial, sans-serif; overflow:hidden; }
 
 nav#primary { background:$lite7; @include linear-gradient($lite8, $lite6); @include box-shadow(0, 1px, 3px, $lite0); padding:8px 24px 12px; margin:0 -24px; overflow:hidden; position:relative; height:30px; @include border-radius(0 0 16px 16px);
   h1 a { position:absolute; left:24px; margin:0; font-size:28px; font-weight:bold; color:$dark2; text-shadow:0 1px 1px $lite8;
