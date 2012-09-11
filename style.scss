@@ -1,31 +1,29 @@
 @import "css3";
 
-$dark4: #ab0042;
-$dark0: #000000;
-$dark3: mix($dark4, $dark0, 75%);
-$dark2: mix($dark4, $dark0, 50%);
-$dark1: mix($dark4, $dark0, 25%);
+$dark3: #279dc4;
+$dark4: lighten($dark3, 15%);
+$dark2: darken($dark3, 12%);
+$dark1: darken($dark3, 25%);
+$dark0: darken($dark3, 45%);
 
-$lite5: #f8b800;
-$lite9: #ffffff;
-$lite6: mix($lite5, $lite9, 75%);
-$lite7: mix($lite5, $lite9, 50%);
-$lite8: mix($lite5, $lite9, 25%);
+$lite6: #f7ad19;
+$lite5: darken($lite6, 10%);
+$lite7: lighten($lite6, 16%);
+$lite8: lighten($lite6, 32%);
+$lite9: lighten($lite6, 45%);
 
 * { margin:0; padding:0; font-size:inherit; text-decoration:none; }
-body { max-width:960px; color:$dark2; background:$lite9; padding:0 8px; margin:0 auto; font:14px Helvetica, Arial, sans-serif; overflow:hidden; }
+body { max-width:960px; color:$dark1; background:$lite9; padding:0 8px; margin:0 auto; font:14px Helvetica, Arial, sans-serif; overflow:hidden; }
 
-nav#primary { background:$lite7; @include linear-gradient($lite8, $lite5); padding:8px 24px 12px; margin:0 -24px; overflow:hidden; position:relative; height:30px; @include border-radius(0 0 16px 16px);
+nav#primary { background:$lite7; @include linear-gradient($lite8, $lite6); padding:8px 24px 12px; margin:0 -24px; overflow:hidden; position:relative; height:30px; @include border-radius(0 0 16px 16px);
   h1 a { position:absolute; left:24px; margin:0; font-size:28px; color:$dark2;
-    &:hover { color:$dark4; }
+    &:hover { color:$dark3; }
   }
-  ul { float:right; margin-top:3px; overflow:hidden;
+  ul { float:right; margin-top:3px; overflow:hidden; background:$dark2; @include border-radius(8px);
     li { float:left; list-style:none;
-      a { display:block; padding:4px 12px; color:$lite7; font-size:17px; border-left:2px solid $lite7; background:$dark3; @include linear-gradient($dark4, $dark2);
-        &:hover { opacity:0.8; color:$lite9; }
+      a { display:block; padding:4px 12px; color:$lite8; font-size:17px;
+        &:hover { color:$lite9; }
       }
-      &:first-child a { border-left:none; @include border-radius(8px 0 0 8px) }
-      &:last-child a { @include border-radius(0 8px 8px 0) }
     }
   }
 }
