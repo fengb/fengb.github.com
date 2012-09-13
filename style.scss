@@ -71,7 +71,7 @@ article { margin:0 8px; padding:12px 15px; background:$lite9;
   }
 }
 
-footer { font:11px Andale Mono, monospace; }
+footer { font:11px Andale Mono, monospace; margin:8px; color:$lite8; text-align:center; }
 
 @media (max-width:790px) {
   nav#primary { margin:0; @include border-radius(0); }
