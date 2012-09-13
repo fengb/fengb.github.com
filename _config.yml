@@ -1,3 +1,4 @@
 exclude: [Gemfile, Gemfile.lock, Rakefile, submodule-css3-sass-mixins]
 sass:
   style: :expanded
+menu: [resume, portfolio]

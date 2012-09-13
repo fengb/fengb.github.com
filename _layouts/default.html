@@ -1,32 +1,36 @@
 <!DOCTYPE HTML>
 <!--[if lt IE 7]>
-<html class="no-js ie6" lang="en">
+<html class='no-js ie6' lang='en'>
 <![endif]-->
 <!--[if IE 7]>
-<html class="no-js ie7" lang="en">
+<html class='no-js ie7' lang='en'>
 <![endif]-->
 <!--[if IE 8]>
-<html class="no-js ie8" lang="en">
+<html class='no-js ie8' lang='en'>
 <![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js" lang="en">
+<html class='no-js' lang='en'>
 <!--<![endif]-->
   <head>
-    <title>TITLE</title>
+    <title>TITLE{% if page.title %} ~ {{ page.title }}{% endif %}</title>
     <link rel='stylesheet' type='text/css' media='all' href='style.css' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
   </head>
   <body>
-    <script>document.documentElement.className=document.documentElement.className.replace('no-js', 'js')</script>
+    <script>document.documentElement.className=document.documentElement.className.replace('no-js','js')</script>
     <nav id='primary'>
       <h1><a href='/'>TITLE</a></h1>
       <ul>
-        <li class='resume'><a href='/resume.html'>RESUME</a></li>
-        <li class='portfolio'><a href='/resume.html'>PORTFOLIO</a></li>
+        {% for item in site.pages %}
+          {% if item.title %}
+            <li class='{{ item.title }}'><a {% if item == page %}class='selected'{% endif %} href='{{ item.url }}'>{{ item.title }}</a></li>
+          {% endif %}
+        {% endfor %}
       </ul>
     </nav>
 
     <article id='body'>
+      <h2>{{ page.title }}</h2>
       {{ content }}
     </article>
 
