@@ -20,13 +20,13 @@ $lite9: lighten($lite6, 46%);
 html { background:$dark1; }
 body { max-width:960px; color:$dark1; margin:0 auto; font:16px Helvetica, Arial, sans-serif; }
 
-nav#primary { background:$lite7; @include linear-gradient($lite8, $lite6); @include box-shadow(0, 1px, 3px, $lite0); padding:12px 16px; margin-top:12px; position:relative; height:30px; @include border-radius(16px 16px 0 0);
-  h1 a { position:absolute; left:16px; margin:0; font-size:28px; font-weight:bold; color:$dark2; text-shadow:0 1px 1px $lite8;
+nav#primary { background:$lite7; @include linear-gradient($lite8, $lite6); @include box-shadow(0, 1px, 3px, $lite0); padding:8px 16px; margin:12px 7px 0; position:relative; height:34px; @include border-radius(16px 16px 0 0);
+  h1 a { position:absolute; left:16px; margin:0; font-size:32px; font-weight:bold; color:$dark2; text-shadow:0 1px 1px $lite8;
     &:hover { color:$dark3; }
   }
   ul { float:right; margin-top:3px; overflow:hidden; background:$lite7; border-bottom:1px solid $lite8; @include box-shadow(0, -1px, 1px, $lite0); @include border-radius(8px);
     li { float:left; list-style:none;
-      a { display:block; padding:0 12px; height:26px; line-height:26px; color:$lite8; font:17px; font-weight:bold; text-shadow:0 0 3px $lite0, 0 1px 1px $lite0;
+      a { display:block; padding:0 12px; height:28px; line-height:28px; color:$lite8; font:17px; font-weight:bold; text-shadow:0 0 3px $lite0, 0 1px 1px $lite0;
         &.selected { color:$lite9; }
         &:hover { color:$lite9; }
       }
@@ -34,11 +34,14 @@ nav#primary { background:$lite7; @include linear-gradient($lite8, $lite6); @incl
   }
 }
 
-article { margin:0 1px; padding:12px 16px; background:$lite9; }
+article { margin:0 8px; padding:12px 15px; background:$lite9;
+  h2 { font-size:1px; font-weight:bold; }
+}
 
 footer { font:11px Andale Mono, monospace; }
 
-@media (max-width:960px) {
+@media (max-width:790px) {
+  nav#primary { margin:0; @include border-radius(0); }
   article { margin:0; }
 }
 
