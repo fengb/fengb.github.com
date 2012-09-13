@@ -38,17 +38,35 @@ article { margin:0 8px; padding:12px 15px; background:$lite9;
   h2 { font-size:24px; font-weight:bold; }
 
   $content-offset:12px;
-  section { margin-top:12px; padding-left:$content-offset;
-    h3 { margin-left:-$content-offset; font-size:20px; font-weight:bold; }
+  section { margin:16px 0; padding-left:$content-offset;
+    h3 { margin:0 0 8px 0-$content-offset; font-size:20px; font-weight:bold; }
     dl {
-      dt { float:left; width:100px; clear:left; }
-      dd { float:left;
-        li { display:inline;
+      $skills-width:100px;
+      dt { float:left; width:$skills-width; clear:left; }
+      dd { margin-left:$skills-width;
+        li { display:inline; font-style:italic;
           &:after { content:','; }
           &:last-child:after { content:''; }
         }
       }
       &:after { content:' '; display:block; clear:both; }
+    }
+
+    > div { margin-top:8px; position:relative;
+      h4 { font-size:18px; font-weight:bold; display:inline-block; margin-bottom:20px; }
+      .duration { font-size:14px;
+        &:before { content:'\2014  '; }
+      }
+      h5 { position:absolute; top:20px; font-style:italic;
+        .weak { display:block; font-size:12px; }
+      }
+      ul {
+        &.roles li { margin:0 0 4px 19px; list-style:disc; }
+        &.skills li { font-size:14px; font-style:italic; display:inline;
+          &:after { content:','; }
+          &:last-child:after { content:''; }
+        }
+      }
     }
   }
 }
