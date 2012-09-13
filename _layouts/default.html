@@ -24,7 +24,7 @@
       <ul>
         {% for item in site.pages %}
           {% if item.title %}
-            <li class='{{ item.title | downcase }}'><a {% if item == page %}class='selected'{% endif %} href='{{ item.url }}'>{{ item.title }}</a></li>
+            <li class='{{ item.title | downcase }}'><a {% if item.title == page.title %}class='selected'{% endif %} href='{{ item.url }}'>{{ item.title }}</a></li>
           {% endif %}
         {% endfor %}
       </ul>
