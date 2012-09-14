@@ -17,7 +17,7 @@ $lite8: lighten($lite6, 32%);
 $lite9: lighten($lite6, 46%);
 
 * { margin:0; padding:0; font:inherit; color:inherit; text-decoration:none; list-style:none; }
-html { background:$dark1; color:$lite8; font:16px 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width:940px; margin:0 auto; padding:12px 8px; }
+html { background:$dark1; color:$lite8; font:16px 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width:790px; margin:0 auto; padding:12px 8px; }
 body { position:relative; }
 
 header#branding { background:$lite7; @include linear-gradient($lite8, $lite6); @include box-shadow(0, 1px, 3px, $lite0); padding:8px 16px; @include border-radius(16px 16px 0 0); position:relative;
@@ -81,9 +81,16 @@ article#main { border:1px solid $dark0; padding:11px 15px; background:$lite9; co
   }
 }
 
+aside#contact { display:none; position:absolute; white-space:nowrap; }
+
 footer#copy { font:11px Andale Mono, monospace; color:$lite8; text-align:center; margin-top:8px; }
 
-@media (max-width:790px) {
+@media (min-width:1000px) {
+  aside#contact { display:block; top:15px; left:100%; background:$dark2; padding:8px;
+  }
+}
+
+@media (max-width:750px) {
   html { margin:0; padding:0; }
   header#branding { @include border-radius(0); }
   article#main { border:none; padding:12px 16px; }
