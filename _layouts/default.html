@@ -20,11 +20,12 @@
     <title>fengb{% if page.title %} &rarr; {{ page.title }}{% endif %}</title>
   </head>
   <body>
-    <header>
+    <header id='branding'>
       <h1><a href='/'>fengb</a></h1>
       {% if page.title %}<h2>{{ page.title }}</h2>{% endif %}
     </header>
-    <nav id='primary'>
+
+    <nav id='site'>
       <ul>
         {% for item in site.pages %}
           {% if item.title %}
@@ -34,11 +35,11 @@
       </ul>
     </nav>
 
-    <article {% if page.title %}class='{{ page.title | downcase }}'{% endif %}>
+    <article id='main' {% if page.title %}class='{{ page.title | downcase }}'{% endif %}>
       {{ content }}
     </article>
 
-    <footer>&copy;{{ site.time | date:'%Y' }} Benjamin Feng</footer>
+    <footer id='copy'>&copy;{{ site.time | date:'%Y' }} Benjamin Feng</footer>
 
     <script src='//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js'></script>
     <script src='/script.js'></script>
