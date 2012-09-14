@@ -56,15 +56,15 @@ article { margin:0 8px; padding:12px 15px; background:$lite9;
     }
 
     > div { margin-top:8px; position:relative;
-      h4 { font-size:18px; font-weight:bold; display:inline-block; margin-bottom:20px; }
+      h4 { font-size:18px; font-weight:bold; display:inline; }
       .duration { font-size:14px;
         &:before { content:'\2014  '; }
       }
-      h5 { position:absolute; top:20px; font-style:italic;
-        .weak { display:block; font-size:12px; }
+      h5 { font-style:italic;
+        .weak { display:block; margin-top:4px; font-size:12px; }
       }
-      ul {
-        &.roles li { margin:0 0 4px 19px; list-style:disc; }
+      ul { margin:4px 0;
+        &.roles li { margin-left:19px; list-style:disc; }
         &.skills li { font-size:14px; font-style:italic; display:inline;
           &:after { content:','; }
           &:last-child:after { content:''; }
