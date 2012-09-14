@@ -34,7 +34,7 @@
       </ul>
     </nav>
 
-    <article class='{{ page.title | downcase }}'>
+    <article {% if page.title %}class='{{ page.title | downcase }}'{% endif %}>
       {{ content }}
     </article>
 
