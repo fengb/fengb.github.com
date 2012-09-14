@@ -60,8 +60,8 @@ article { margin:0 8px; padding:12px 15px; background:$lite9;
       .duration { font-size:14px;
         &:before { content:'\2014  '; }
       }
-      h5 { font-style:italic;
-        .weak { display:block; margin-top:4px; font-size:12px; }
+      h5 { font-variant:small-caps;
+        .weak { display:block; font-size:12px; }
       }
       ul { margin:4px 0;
         &.roles li { margin-left:19px; list-style:disc; }
