@@ -91,7 +91,7 @@ aside#contact { display:none; position:absolute; white-space:nowrap; padding:8px
 footer#copy { font:11px Andale Mono, monospace; color:$lite8; text-align:center; margin-top:8px; }
 
 @media (min-width:1000px) {
-  aside#contact { display:block; top:15px; left:100%; }
+  aside#contact { display:block; top:15px; left:100%; z-index:-1}
 }
 
 @media (max-width:750px) {
