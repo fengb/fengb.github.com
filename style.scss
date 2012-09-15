@@ -29,13 +29,15 @@ header#branding { background:$lite7; @include linear-gradient($lite8, $lite6); @
   }
   h1 { font-size:30px; padding-right:4px; }
   h2 { font-size:24px;
-    @media (max-width:480px) { display:none; }
     &:before { content:'\2192  '; font-family:'Lucida Grande', sans-serif; }
   }
 }
 
+@mixin header-pit {
+  float:left; overflow:hidden; background:$lite7; border-bottom:1px solid $lite8; @include box-shadow(0, -1px, 1px, $lite0); @include border-radius(8px);
+}
 nav#site { position:absolute; top:15px; right:16px; z-index:1;
-  > * { float:left; overflow:hidden; background:$lite7; border-bottom:1px solid $lite8; @include box-shadow(0, -1px, 1px, $lite0); @include border-radius(8px); }
+  ul { @include header-pit; }
   a { display:block; padding:0 12px; height:26px; line-height:26px; color:$lite8; font-weight:bold; text-shadow:0 0 3px $lite0, 0 1px 1px $lite0;
     &.active { text-shadow:0 0 7px $lite0, 0 1px 5px $lite0, 0 1px 3px $lite0; }
     &:hover { color:$lite9; }
@@ -82,16 +84,20 @@ article#main { border:1px solid $dark0; padding:11px 15px; background:$lite9; co
   }
 }
 
-.js nav#site ul li.contact,
-.no-js nav#site a.toggle-contact { display:none; }
-nav#site a.toggle-contact { margin-left:8px;
-  &:after { content:'\25bc'; position:absolute; font-size:12px; margin:4px 0 0 0; }
-  &.active:after,
-  &:hover:after { margin-top:6px; }
-  @media (min-width:950px) {
-    &:after { content:'\25b6'; margin-top:3px; }
-    &.active:after,
-    &:hover:after { margin:3px 0 0 2px; }
+.js nav#site {
+  ul { margin-right:40px; }
+  .contact { position:absolute; right:0; width:32px; @include header-pit;
+    a { padding:0 6px; visibility:hidden;
+      &:first-letter { visibility:visible; }
+      &:after { content:'\25bc'; visibility:visible; position:absolute; font-size:12px; top:3px; right:2px; }
+      &.active:after,
+      &:hover:after { margin-top:2px; }
+      @media (min-width:950px) {
+        &:after { content:'\25b6'; }
+        &.active:after,
+        &:hover:after { margin:0 -2px 0 0; }
+      }
+    }
   }
 }
 
@@ -120,5 +126,5 @@ footer#copy { font:11px Andale Mono, monospace; color:$lite8; text-align:center;
 }
 
 @media (max-width:480px) {
-  nav#primary ul a { width:10px; }
+  header#branding h2 { display:none; }
 }
