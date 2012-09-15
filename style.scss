@@ -33,14 +33,12 @@ header#branding { background:$lite7; @include linear-gradient($lite8, $lite6); @
 }
 
 nav#site { position:absolute; top:15px; right:23px;
-  ul { float:right; overflow:hidden; background:$lite7; border-bottom:1px solid $lite8; @include box-shadow(0, -1px, 1px, $lite0); @include border-radius(8px);
-    li { float:left;
-      a { display:block; padding:0 12px; height:28px; line-height:28px; color:$lite8; font:17px; font-weight:bold; text-shadow:0 0 3px $lite0, 0 1px 1px $lite0;
-        &.selected { color:$lite9; }
-        &:hover { color:$lite9; }
-      }
-    }
+  > * { float:left; overflow:hidden; background:$lite7; border-bottom:1px solid $lite8; @include box-shadow(0, -1px, 1px, $lite0); @include border-radius(8px); }
+  a { display:block; padding:0 12px; height:28px; line-height:28px; color:$lite8; font:17px; font-weight:bold; text-shadow:0 0 3px $lite0, 0 1px 1px $lite0;
+    &.selected { color:$lite9; }
+    &:hover { color:$lite9; }
   }
+  ul li { float:left; }
 }
 
 article#main { border:1px solid $dark0; padding:11px 15px; background:$lite9; color:$dark1;
@@ -83,6 +81,7 @@ article#main { border:1px solid $dark0; padding:11px 15px; background:$lite9; co
 }
 
 aside#contact { display:none; position:absolute; white-space:nowrap; padding:8px 12px 8px 8px; @include border-radius(0 12px 12px 0); background:rgba($lite5, 1);
+  &.active { display:block; }
   a { color:$dark1; font-weight:bold;
     &:hover { text-decoration:underline; }
   }
@@ -91,7 +90,7 @@ aside#contact { display:none; position:absolute; white-space:nowrap; padding:8px
 footer#copy { font:11px Andale Mono, monospace; color:$lite8; text-align:center; margin-top:8px; }
 
 @media (min-width:1000px) {
-  aside#contact { display:block; top:15px; left:100%; z-index:-1}
+  aside#contact { top:15px; left:100%; z-index:-1}
 }
 
 @media (max-width:750px) {
