@@ -83,11 +83,11 @@ article#main { border:1px solid $dark0; padding:11px 15px; background:$lite9; co
 }
 
 nav#site a.toggle-contact {
-  &:after { content:'\25be'; position:absolute; font-size:12px; margin:4px 0 0 1px; }
+  &:after { content:'\25bc'; position:absolute; font-size:12px; margin:4px 0 0 0; }
   &.active:after,
   &:hover:after { margin-top:6px; }
   @media (min-width:950px) {
-    &:after { content:'\25b8'; margin-top:3px; }
+    &:after { content:'\25b6'; margin-top:3px; }
     &.active:after,
     &:hover:after { margin:3px 0 0 3px; }
   }
