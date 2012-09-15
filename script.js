@@ -8,8 +8,8 @@
       }
     });
     $('nav#site .contact').remove();
-    $('<a href="#">C</span>').appendTo('nav#site').click(function(evt) {
-      var $toggle = $(evt.target);
+    var $toggle = $('<a class="toggle-contact" href="#">C</span>').appendTo('nav#site');
+    $toggle.click(function(evt) {
       if($toggle.hasClass('active')) {
         $toggle.removeClass('active');
         $contact.removeClass('active');

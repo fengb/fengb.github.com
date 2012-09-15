@@ -21,7 +21,7 @@ h1, h2, h3, h4, h5, h6 { font-weight:bold; }
 html { background:$dark1; color:$lite8; font:16px 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width:790px; margin:0 auto; padding:12px 8px; }
 body { position:relative; }
 
-header#branding { background:$lite7; @include linear-gradient($lite8, $lite6); @include box-shadow(0, 1px, 3px, $lite0); padding:8px 16px; @include border-radius(16px 16px 0 0); position:relative;
+header#branding { background:$lite7; @include linear-gradient($lite8, $lite6); @include box-shadow(0, 1px, 3px, $lite0); padding:8px 16px; height:38px; @include border-radius(16px 16px 0 0); position:relative; z-index:1;
   * { display:inline; color:$dark1; text-shadow:0 1px 1px $lite8; }
   a { color:$dark2;
     &:hover { color:$dark3; }
@@ -32,10 +32,10 @@ header#branding { background:$lite7; @include linear-gradient($lite8, $lite6); @
   }
 }
 
-nav#site { position:absolute; top:15px; right:23px;
-  > * { float:left; overflow:hidden; background:$lite7; border-bottom:1px solid $lite8; @include box-shadow(0, -1px, 1px, $lite0); @include border-radius(8px); }
+nav#site { position:absolute; top:15px; right:0; z-index:1;
+  > * { margin-right:16px; float:left; overflow:hidden; background:$lite7; border-bottom:1px solid $lite8; @include box-shadow(0, -1px, 1px, $lite0); @include border-radius(8px); }
   a { display:block; padding:0 12px; height:28px; line-height:28px; color:$lite8; font:17px; font-weight:bold; text-shadow:0 0 3px $lite0, 0 1px 1px $lite0;
-    &.selected { color:$lite9; }
+    &.active { color:$lite9; }
     &:hover { color:$lite9; }
   }
   ul li { float:left; }
@@ -80,18 +80,15 @@ article#main { border:1px solid $dark0; padding:11px 15px; background:$lite9; co
   }
 }
 
-aside#contact { display:none; position:absolute; white-space:nowrap; padding:8px 12px 8px 8px; @include border-radius(0 12px 12px 0); background:rgba($lite5, 1);
+aside#contact { display:none; position:absolute; white-space:nowrap; padding:8px 12px 8px 8px; background:rgba($lite5, 1); top:54px; right:0; @include border-radius(0 0 12px 12px);
   &.active { display:block; }
   a { color:$dark1; font-weight:bold;
     &:hover { text-decoration:underline; }
   }
+  @media (min-width:950px) { top:15px; left:100%; right:auto; @include border-radius(0 12px 12px 0); }
 }
 
 footer#copy { font:11px Andale Mono, monospace; color:$lite8; text-align:center; margin-top:8px; }
-
-@media (min-width:1000px) {
-  aside#contact { top:15px; left:100%; z-index:-1}
-}
 
 @media (max-width:750px) {
   html { margin:0; padding:0; }
