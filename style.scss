@@ -18,7 +18,8 @@ $lite9: lighten($lite6, 46%);
 
 * { margin:0; padding:0; font:inherit; color:inherit; text-decoration:none; list-style:none; }
 h1, h2, h3, h4, h5, h6 { font-weight:bold; }
-html { background:$dark1; color:$lite8; font:16px 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width:790px; margin:0 auto; padding:12px 8px; position:relative; }
+$html-padding-vert:12px;
+html { background:$dark1; color:$lite8; font:16px 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width:790px; margin:0 auto; padding:$html-padding-vert 8px; position:relative; }
 body { position:relative; }
 
 header#branding { background:$lite7; @include linear-gradient($lite8, $lite6); @include box-shadow(0, 1px, 3px, $lite0); padding:8px 16px; height:38px; @include border-radius(16px 16px 0 0); position:relative; z-index:1;
@@ -80,7 +81,20 @@ article#main { border:1px solid $dark0; padding:11px 15px; background:$lite9; co
   }
 }
 
-header#branding:before { content:' '; display:block; height:12px; width:100%; top:-12px; position:absolute; background:$dark1; }
+nav#site a.toggle-contact {
+  &:after { content:'\25be'; position:absolute; font-size:12px; margin:4px 0 0 1px; }
+  &.active:after,
+  &:hover:after { margin-top:6px; }
+  @media (min-width:950px) {
+    &:after { content:'\25b8'; margin-top:3px; }
+    &.active:after,
+    &:hover:after { margin:3px 0 0 3px; }
+  }
+}
+
+/* Hack to hide hanging top element */
+header#branding:before { content:' '; display:block; height:$html-padding-vert; width:100%; top:-$html-padding-vert; position:absolute; background:$dark1; }
+
 $contact-height:60px;
 aside#contact { position:absolute; background:$lite6; top:54px-$contact-height; right:16px; @include border-radius(0 0 12px 12px); @include transition(margin-top 0.5s ease); height:$contact-height;
   &.active { margin-top:$contact-height; }
