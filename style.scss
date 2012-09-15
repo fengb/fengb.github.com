@@ -93,7 +93,7 @@ nav#site a.toggle-contact {
 }
 
 /* Hack to hide hanging top element */
-header#branding:before { content:' '; display:block; height:$html-padding-vert; width:100%; top:-$html-padding-vert; position:absolute; background:$dark1; }
+header#branding:before { content:' '; display:block; height:$html-padding-vert; width:100%; left:0; top:-$html-padding-vert; position:absolute; background:$dark1; }
 
 $contact-height:60px;
 aside#contact { position:absolute; background:$lite6; top:54px-$contact-height; right:16px; @include border-radius(0 0 12px 12px); @include transition(margin-top 0.5s ease); height:$contact-height;
