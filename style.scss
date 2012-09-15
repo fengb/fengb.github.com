@@ -29,6 +29,7 @@ header#branding { background:$lite7; @include linear-gradient($lite8, $lite6); @
   }
   h1 { font-size:32px; padding-right:4px; }
   h2 { font-size:24px;
+    @media (max-width:480px) { display:none; }
     &:before { content:'\2192  '; font-family:'Lucida Grande', sans-serif; }
   }
 }
@@ -64,11 +65,11 @@ article#main { border:1px solid $dark0; padding:11px 15px; background:$lite9; co
 
     > div { margin-top:8px; position:relative;
       h4 { font-size:18px; display:inline; }
-      .duration { font-size:14px;
+      .duration { font-size:14px; display:inline-block; white-space:nowrap;
         &:before { content:'\2014  '; }
       }
       h5 { font-variant:small-caps;
-        .weak { display:block; font-size:12px; }
+        .weak { display:block; font-size:12px; font-weight:normal; }
       }
       ul { margin:4px 0;
         &.roles li { margin-left:19px; list-style:disc; }
