@@ -82,6 +82,8 @@ article#main { border:1px solid $dark0; padding:11px 15px; background:$lite9; co
   }
 }
 
+.js nav#site ul li.contact,
+.no-js nav#site a.toggle-contact { display:none; }
 nav#site a.toggle-contact { margin-left:8px;
   &:after { content:'\25bc'; position:absolute; font-size:12px; margin:4px 0 0 0; }
   &.active:after,
