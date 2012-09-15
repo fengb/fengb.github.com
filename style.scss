@@ -53,25 +53,22 @@ article#main { border:1px solid $dark0; padding:11px 15px; background:$lite9; co
   $content-offset:12px;
   section { margin:16px 0; padding-left:$content-offset;
     h3 { margin:0 0 8px 0-$content-offset; font-size:20px; }
-    dl {
-      $skills-width:100px;
-      dt { float:left; width:$skills-width; clear:left; }
-      dd { margin-left:$skills-width;
-        li { display:inline; font-style:italic;
-          &:after { content:','; }
-          &:last-child:after { content:''; }
-        }
+
+    &#skills dl { padding-left:100px; position:relative;
+      dt { position:absolute; left:0; }
+      dd { display:inline;
+        &:after { content:','; }
+        &:last-child:after { content:''; }
       }
-      &:after { content:' '; display:block; clear:both; }
     }
 
-    > div { margin-top:8px; position:relative;
+    div { margin-top:8px; position:relative;
       h4 { font-size:18px; display:inline; }
       .duration { font-size:14px; display:inline-block; white-space:nowrap;
         &:before { content:'\2014  '; }
       }
       h5 { font-variant:small-caps;
-        .weak { display:block; font-size:12px; font-weight:normal; }
+        .weak { display:block; margin-top:2px; font-size:12px; font-weight:normal; }
       }
       ul { margin:2px 0;
         &.roles li { margin-left:20px; list-style:disc; }
@@ -84,40 +81,46 @@ article#main { border:1px solid $dark0; padding:11px 15px; background:$lite9; co
   }
 }
 
-.js nav#site {
-  ul { margin-right:40px; }
-  .contact { position:absolute; right:0; width:32px; @include header-pit;
-    a { padding:0; visibility:hidden;
-      &:first-letter { padding:0 12px 12px 6px; visibility:visible; height:26px; }
-      &:after { content:'\25bc'; visibility:visible; position:absolute; font-size:12px; top:3px; right:2px; }
-      &.active:after,
-      &:hover:after { margin-top:2px; }
-      @media (min-width:950px) {
-        &:after { content:'\25b6'; }
+footer#copy { font:11px Andale Mono, monospace; color:$lite8; text-align:center; margin-top:8px; }
+
+/*= On page contact */
+
+.js {
+  nav#site {
+    ul { margin-right:40px; }
+    .contact { position:absolute; right:0; width:32px; @include header-pit;
+      a { padding:0; visibility:hidden;
+        &:first-letter { padding:0 12px 12px 6px; visibility:visible; height:26px; }
+        &:after { content:'\25bc'; visibility:visible; position:absolute; font-size:12px; top:3px; right:2px; }
         &.active:after,
-        &:hover:after { margin:0 -2px 0 0; }
+        &:hover:after { margin-top:2px; }
+        @media (min-width:950px) {
+          &:after { content:'\25b6'; }
+          &.active:after,
+          &:hover:after { margin:0 -2px 0 0; }
+        }
       }
+    }
+  }
+
+  /* Hack to hide hanging top element */
+  header#branding:before { content:' '; display:block; height:$html-padding-vert; width:100%; left:0; top:-$html-padding-vert; position:absolute; background:$dark1; }
+
+  $contact-height:60px;
+  nav#contact { position:absolute; background:$lite6; top:52px-$contact-height; right:16px; @include border-radius(0 0 12px 12px); @include transition(margin-top 0.3s ease-out); height:$contact-height;
+    &.active { margin-top:$contact-height; }
+    ul { padding:8px; }
+    a { color:$dark1; font-weight:bold;
+      &:hover { text-decoration:underline; }
+    }
+    $contact-width:70px;
+    @media (min-width:950px) { height:auto; width:$contact-width; top:15px; right:0; @include border-radius(0 12px 12px 0); @include transition(margin-right 0.3s ease-out); z-index:-1;
+      &.active { margin:0 0-$contact-width 0 0; }
     }
   }
 }
 
-/* Hack to hide hanging top element */
-header#branding:before { content:' '; display:block; height:$html-padding-vert; width:100%; left:0; top:-$html-padding-vert; position:absolute; background:$dark1; }
-
-$contact-height:60px;
-nav#contact { position:absolute; background:$lite6; top:52px-$contact-height; right:16px; @include border-radius(0 0 12px 12px); @include transition(margin-top 0.3s ease-out); height:$contact-height;
-  &.active { margin-top:$contact-height; }
-  ul { padding:8px; }
-  a { color:$dark1; font-weight:bold;
-    &:hover { text-decoration:underline; }
-  }
-  $contact-width:70px;
-  @media (min-width:950px) { height:auto; width:$contact-width; top:15px; right:0; @include border-radius(0 12px 12px 0); @include transition(margin-right 0.3s ease-out); z-index:-1;
-    &.active { margin:0 0-$contact-width 0 0; }
-  }
-}
-
-footer#copy { font:11px Andale Mono, monospace; color:$lite8; text-align:center; margin-top:8px; }
+/*= Responsive web */
 
 @media (max-width:750px) {
   html { margin:0; padding:0; }
