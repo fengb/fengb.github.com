@@ -1,6 +1,6 @@
 (function($) {
-  if($('article#main.contact').length == 0) {
-    var $contact = $('aside#contact');
+  if($('article#main.contact').length === 0) {
+    var $contact = $('<aside id="contact"></aside>').insertAfter('article#main');
     $.ajax('/contact.html', {
       'success':function(data) {
         /* FIXME: regex should not parse HTML! */
