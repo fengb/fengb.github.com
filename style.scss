@@ -52,9 +52,13 @@ article#main { border:1px solid $dark0; padding:11px 15px; background:$lite9; co
     &:hover { text-decoration:underline; }
   }
 
+  address { text-align:center;
+    .name { font-weight:bold; display:block; }
+  }
+
   $content-offset:12px;
   section { margin:16px 0; padding-left:$content-offset;
-    h3 { margin:0 0 8px 0-$content-offset; font-size:20px; }
+    h2 { margin:0 0 8px 0-$content-offset; font-size:24px; }
 
     dl { padding-left:100px; position:relative;
       dt { position:absolute; left:0; }
@@ -65,11 +69,11 @@ article#main { border:1px solid $dark0; padding:11px 15px; background:$lite9; co
     }
 
     div { margin-top:8px; position:relative;
-      h4 { font-size:18px; display:inline; }
+      h3 { font-size:18px; display:inline; }
       .duration { font-size:14px; display:inline-block; white-space:nowrap;
         &:before { content:'\2014  '; }
       }
-      h5 { font-variant:small-caps;
+      h4 { font-variant:small-caps;
         .weak { display:block; margin-top:2px; font-size:12px; font-weight:normal; }
       }
       ul { margin:2px 0;
