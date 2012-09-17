@@ -87,7 +87,12 @@ article#main { border:1px solid $dark0; padding:11px 15px; background:$lite9; co
   }
 }
 
-footer#copy { font:11px Andale Mono, monospace; color:$lite8; text-align:center; margin-top:8px; }
+footer#legal { font:11px Andale Mono, monospace; color:$lite8; text-align:center;
+  > * { display:block; margin-top:8px; }
+  a { text-decoration:underline;
+    &:hover { color:$lite9; }
+  }
+}
 
 /*= On page contact */
 
