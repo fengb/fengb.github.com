@@ -4,9 +4,7 @@
     $.ajax('/contact.html', {
       'success':function(data) {
         /* FIXME: regex should not parse HTML! */
-        data = data.replace(/^[\s\S]*?<article[^>]*>([\s\S]*)<\/article>[\s\S]*?$/, '$1');
-        data = data.replace(/\s*<script[^>]*>[\s\S]*?<\/script>\s*/g, '')
-        $contact.html(data);
+        $contact.html(data.replace(/^[\s\S]*?<article[^>]*>\s*([\s\S]*)\s*<\/article>[\s\S]*?$/, '$1'));
       }
     });
     var $toggle = $('nav#site .contact a');
