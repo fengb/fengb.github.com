@@ -97,15 +97,16 @@ footer#legal { font:11px Andale Mono, monospace; color:$lite8; text-align:center
 /*= On page contact */
 
 .js {
+  $contact-orientation-width:1100px;
   nav#site {
     ul { margin-right:40px; }
-    .contact { position:absolute; right:0; width:32px; @include header-pit;
+    .contact { position:absolute; right:0; width:32px; overflow:hidden; @include header-pit;
       a { padding:0; visibility:hidden;
         &:first-letter { padding:0 12px 12px 6px; visibility:visible; height:26px; }
         &:after { content:'\25bc'; visibility:visible; position:absolute; font-size:12px; top:3px; right:2px; }
         &.active:after,
         &:hover:after { margin-top:2px; }
-        @media (min-width:950px) {
+        @media (min-width:$contact-orientation-width) {
           &:after { content:'\25b6'; }
           &.active:after,
           &:hover:after { margin:0 -2px 0 0; }
@@ -115,7 +116,7 @@ footer#legal { font:11px Andale Mono, monospace; color:$lite8; text-align:center
   }
 
   /* Hack to hide hanging top element */
-  header#branding:before { content:' '; display:block; height:$html-padding-vert; width:100%; left:0; top:-$html-padding-vert; position:absolute; background:$dark1; }
+  header#branding:before { content:' '; display:block; height:$html-padding-vert; left:0; right:0; top:-$html-padding-vert; position:absolute; background:$dark1; }
 
   $contact-height:76px;
   nav#contact { position:absolute; background:$lite6; top:52px-$contact-height; right:16px; @include border-radius(0 0 12px 12px); @include transition(margin-top 0.3s ease-out); height:$contact-height; white-space:nowrap;
@@ -125,7 +126,7 @@ footer#legal { font:11px Andale Mono, monospace; color:$lite8; text-align:center
       &:hover { text-decoration:underline; }
     }
     $contact-width:140px;
-    @media (min-width:1100px) { height:auto; width:$contact-width; top:15px; right:0; @include border-radius(0 12px 12px 0); @include transition(margin-right 0.3s ease-out); z-index:-1;
+    @media (min-width:$contact-orientation-width) { height:auto; width:$contact-width; top:15px; right:0; @include border-radius(0 12px 12px 0); @include transition(margin-right 0.3s ease-out); z-index:-1;
       &.active { margin:0 0-$contact-width 0 0; }
     }
   }
