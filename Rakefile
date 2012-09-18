@@ -11,13 +11,22 @@ task :process_images do
   require 'oily_png'
   require 'chunky_png'
 
+  force = ENV['force'] || false
+
+  processed = []
   Dir['*.png'].each do |f|
     img = ChunkyPNG::Image.from_file(f)
-    img.metadata = {'license' => 'http://creativecommons.org/licenses/by-nc-nd/3.0/',
-                    'attributionURL' => 'http://fengb.github.com/',
-                    'attributionName' => 'Benjamin Feng'}
-    img.save(f)
-    sh "pngcrush -ow #{f}"
+    if force or img.metadata['attributionName'] != 'Benjamin Feng'
+      img.metadata = {'license' => 'http://creativecommons.org/licenses/by-nc-nd/3.0/',
+                      'attributionURL' => 'http://fengb.github.com/',
+                      'attributionName' => 'Benjamin Feng'}
+      img.save(f)
+      processed << f
+    end
+  end
+
+  unless processed.empty?
+    sh "pngcrush -ow #{processed.join(' ')}"
   end
 end
 
