@@ -5,6 +5,22 @@ task :clean do
   rm_r WORK
 end
 
+desc 'Add metadata and compress images'
+task :process_images do
+  require 'rubygems'
+  require 'oily_png'
+  require 'chunky_png'
+
+  Dir['*.png'].each do |f|
+    img = ChunkyPNG::Image.from_file(f)
+    img.metadata = {'license' => 'http://creativecommons.org/licenses/by-nc-nd/3.0/',
+                    'attributionURL' => 'http://fengb.github.com/',
+                    'attributionName' => 'Benjamin Feng'}
+    img.save(f)
+    sh "pngcrush -ow #{f}"
+  end
+end
+
 desc 'Compile all assets for deployment'
 task :compile do
   sh 'jekyll'
