@@ -20,6 +20,7 @@
 
 
 WORK = '_site'
+DEFAULT_DPI = 110
 
 desc 'Remove generated files'
 task :clean do
@@ -34,7 +35,6 @@ task :process_images do
 
   force = ENV['force'] || false
 
-  processed = []
   Dir['*.png'].each do |f|
     img = ChunkyPNG::Image.from_file(f)
     if force or img.metadata['attributionName'] != 'Benjamin Feng'
@@ -42,12 +42,9 @@ task :process_images do
                       'attributionURL' => 'http://fengb.github.com/',
                       'attributionName' => 'Benjamin Feng'}
       img.save(f)
-      processed << f
+      dpi = [DEFAULT_DPI, (DEFAULT_DPI.to_f * img.height / 750).round].max
+      sh "pngcrush -res #{dpi} -ow #{f}"
     end
-  end
-
-  unless processed.empty?
-    sh "pngcrush -ow #{processed.join(' ')}"
   end
 end
 
