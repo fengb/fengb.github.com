@@ -1,0 +1,19 @@
+---
+layout: default
+title: Portfolio
+samples:
+- title: Websites
+  images: [cashnetusa.com]
+- title: Images
+  images: [red-dev]
+---
+{% for sample in page.samples %}
+  <section>
+    <h2>{{ sample.title }}</h2>
+    <ul>
+      {% for image in sample.images %}
+        <li><a href='{{ image }}.png'><img class='thumb' src='{{ image }}.png' /></a></li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endfor %}

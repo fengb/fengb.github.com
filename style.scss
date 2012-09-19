@@ -85,6 +85,9 @@ article#main { border:1px solid $dark0; padding:11px 15px; background:$lite9; co
       }
     }
   }
+  &.portfolio {
+    img.thumb { width:auto; height:100px; }
+  }
 }
 
 footer#legal { font:11px Andale Mono, monospace; color:$lite8; text-align:center;
