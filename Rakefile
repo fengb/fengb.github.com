@@ -39,8 +39,9 @@ task :process_images do
     img = ChunkyPNG::Image.from_file(f)
     if force or img.metadata['attributionName'] != 'Benjamin Feng'
       img.metadata = {'license' => 'http://creativecommons.org/licenses/by-nc-nd/3.0/',
-                      'attributionURL' => 'http://fengb.github.com/',
-                      'attributionName' => 'Benjamin Feng'}
+                      'url' => 'http://fengb.github.com/',
+                      'author' => 'Benjamin Feng'}
+
       img.save(f)
       dpi = [DEFAULT_DPI, (DEFAULT_DPI.to_f * img.height / 750).round].max
       sh "pngcrush -res #{dpi} -ow #{f}"
