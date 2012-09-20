@@ -19,39 +19,42 @@
 # SOFTWARE.
 
 
-module Jekyll
-  module HtmlPretty
-    # Really bad assumption heavy tidy...
-    # Self rolled because other versions have weird errors
-    def self.fake_tidy(html)
-      html = html.gsub(/(^ *\n|^ +)/, '') # kill blank lines
-      html = html.gsub(/^ +/, '')         # kill opening whitespace
-      html = html.gsub(/ +/, ' ')         # collapse all whitespace
-      html = html.gsub(/ +>/, '>')        # remove whitespace between brackets
+module HtmlPretty
+  # Not a real parser.  Only detects start/end tags maybe correctly...
+  # Requires XML syntax (close all tags)
+  # Self rolled because other prettifiers have weird problems
+  def self.fake_tidy(html)
+    html = html.gsub(/(^ *\n|^ +)/, '') # kill blank lines
+    html = html.gsub(/^ +/, '')         # kill opening whitespace
+    html = html.gsub(/ +/, ' ')         # collapse all whitespace
+    html = html.gsub(/ +>/, '>')        # remove whitespace between brackets
 
-      indent = 0
-      html.map do |line|
-        if line.start_with?('<!') || line =~ /<html.*ie/
-          line                            # Comments should have no alignment
-        elsif line.start_with?('</')
-          indent -= 1
-          "  " * indent + line
-        elsif line.end_with?("/>\n") ||   # <self-close />
-              line =~ /<\/[^>]*>/ ||      # <tail>end</tail>
-              line !~ /</                 # simple line
-          "  " * indent + line
-        else
-          indent += 1
-          val = "  " * (indent - 1) + line
-        end
+    indent = 0
+    html.map do |line|
+      if line.start_with?('<!') || line =~ /<html.*ie/
+        line                            # Comments should have no alignment
+      elsif line.start_with?('</')
+        indent -= 1
+        "  " * indent + line
+      elsif line.end_with?("/>\n") ||   # <self-close />
+            line =~ /<\/[^>]*>/ ||      # <tail>end</tail>
+            line !~ /</                 # simple line
+        "  " * indent + line
+      else
+        indent += 1
+        val = "  " * (indent - 1) + line
       end
-    end
+    end.join
   end
+end
 
-  class Page
-    alias_method :old_output, :output
-    def output
-      HtmlPretty.fake_tidy(old_output)
+if defined?(Jekyll)
+  module Jekyll
+    class Page
+      alias_method :old_output, :output
+      def output
+        ::HtmlPretty.fake_tidy(old_output)
+      end
     end
   end
 end
