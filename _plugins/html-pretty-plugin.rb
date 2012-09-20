@@ -25,9 +25,11 @@ module HtmlPretty
   # Self rolled because other prettifiers have weird problems
   def self.fake_tidy(html)
     html = html.gsub(/(^ *\n|^ +)/, '') # kill blank lines
-    html = html.gsub(/^ +/, '')         # kill opening whitespace
-    html = html.gsub(/ +/, ' ')         # collapse all whitespace
-    html = html.gsub(/ +>/, '>')        # remove whitespace between brackets
+    html = html.gsub(/^\s+/, '')        # kill opening whitespace
+    html = html.gsub(/\s+$/, '')        # kill closing whitespace
+    html = html.gsub(/[ \t]+/, ' ')     # collapse all whitespace
+    html = html.gsub(/< +/, '<')        # remove whitespace from start bracket
+    html = html.gsub(/ +>/, '>')        # remove whitespace from end bracket
 
     indent = 0
     html.map do |line|
