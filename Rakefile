@@ -27,27 +27,56 @@ task :clean do
   rm_r WORK
 end
 
-desc 'Add metadata and compress images'
-task :process_images do
+namespace :image do
   require 'rubygems'
-  require 'oily_png'
-  require 'chunky_png'
+  begin
+    require 'oily_png'
+  rescue LoadError
+    require 'chunky_png'
+  end
 
-  force = ENV['force'] || false
+  desc 'Add metadata and compress images'
+  task :process do
+    force = ENV['force'] || false
 
-  Dir['*.png'].each do |f|
-    img = ChunkyPNG::Image.from_file(f)
-    if force or img.metadata['author'] != 'Benjamin Feng'
-      img.metadata = {'license' => 'http://creativecommons.org/licenses/by-nc-nd/3.0/',
-                      'url' => 'http://fengb.github.com/',
-                      'author' => 'Benjamin Feng'}
+    Dir['*.png'].each do |f|
+      next if f =~ /thumb.png$/
 
-      img.save(f)
-      dpi = [DEFAULT_DPI, (DEFAULT_DPI.to_f * img.height / 750).round].max
-      sh "pngcrush -res #{dpi} -ow #{f}"
+      img = ChunkyPNG::Image.from_file(f)
+      if img.metadata['Author'] != 'Benjamin Feng' or force
+        img.metadata = {'License' => 'http://creativecommons.org/licenses/by-nc-nd/3.0/',
+                        'Url' => 'http://fengb.github.com/',
+                        'Author' => 'Benjamin Feng'}
+
+        img.save(f)
+        dpi = [DEFAULT_DPI, (DEFAULT_DPI.to_f * img.height / 750).round].max
+        sh "pngcrush -res #{dpi} -ow #{f}"
+      end
+    end
+  end
+
+  desc 'Generate thumbnails'
+  task :thumb do
+    force = ENV['force'] || false
+
+    Dir['*.png'].each do |f|
+      next if f =~ /thumb.png$/
+
+      target = f.sub('.png', '-thumb.png')
+      if not File.exist?(target) or force
+        img = ChunkyPNG::Image.from_file(f)
+
+        height = 100
+        width = (img.width.to_f / img.height * height).round
+        img = img.resample_nearest_neighbor(width, height)
+
+        img.save(target)
+        sh "pngcrush -res #{DEFAULT_DPI} -ow #{target}"
+      end
     end
   end
 end
+task :image => %w[image:process image:thumb]
 
 desc 'Compile all assets for deployment'
 task :compile do
