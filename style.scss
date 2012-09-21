@@ -86,7 +86,10 @@ article#main { border:1px solid $dark0; padding:11px 15px; background:$lite9; co
     }
   }
   &.portfolio {
-    img.thumb { width:auto; height:100px; }
+    li { display:inline; margin-right:4px; }
+    img.thumb { width:auto; height:100px; padding:4px; @include box-shadow(0, 2px, 10px, $dark0);
+      &:hover { border:1px solid $dark1; margin:-1px; }
+    }
   }
 }
 
