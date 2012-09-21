@@ -66,12 +66,20 @@ namespace :image do
       if not File.exist?(target) or force
         img = ChunkyPNG::Image.from_file(f)
 
-        height = 100
+        height = 150
         width = (img.width.to_f / img.height * height).round
-        img = img.resample_nearest_neighbor(width, height)
+        img.resample_bilinear!(width, height)
 
         img.save(target)
-        sh "pngcrush -res #{DEFAULT_DPI} -ow #{target}"
+        sh "pngquant --force --ext .png #{target}"
+
+        # pngquant kills meta
+        img = ChunkyPNG::Image.from_file(target)
+        img.metadata = {'License' => 'http://creativecommons.org/licenses/by-nc-nd/3.0/',
+                        'Url' => 'http://fengb.github.com/',
+                        'Author' => 'Benjamin Feng'}
+        img.save(target)
+        sh "pngcrush -res #{DEFAULT_DPI * 2} -ow #{target}"
       end
     end
   end
