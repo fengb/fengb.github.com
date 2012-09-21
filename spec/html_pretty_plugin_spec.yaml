@@ -1,0 +1,97 @@
+single tags:
+  parses simplest html block:
+    in:  <html></html>
+    out: <html></html>
+
+  quashes beginning whitespace:
+    in: |
+      <html>
+      	  </html>
+    out: |
+      <html>
+      </html>
+
+  quashes trailing whitespace:
+    in: |
+      <html>      
+      </html>	
+    out: |
+      <html>
+      </html>
+
+  collapses whitespace within tags:
+    in:  <html  foo='bar'	tony='hawk'></html>
+    out: <html foo='bar' tony='hawk'></html>
+
+  quashes whitespace at the tag extremes:
+    in:  <    html	></html   >
+    out: <html></html>
+
+  quashes blank lines:
+    in: |
+      <html>
+          
+      	
+
+      </html>
+    out: |
+      <html>
+      </html>
+
+  collapses spaces between tags:
+    # HTML text nodes have meanings so we can't just quash them.
+    in:  <html> 	  </html>
+    out: <html> </html>
+
+nested tags:
+  indent with outstanding opening tag:
+    in: |
+      <html>
+      <hi>
+      </hi>
+      </html>
+    out: |
+      <html>
+        <hi>
+        </hi>
+      </html>
+
+  indent with multiple opening tags:
+    in: |
+      <html>
+      <hi>
+      <bye>
+      </bye>
+      </hi>
+      </html>
+
+    out: |
+      <html>
+        <hi>
+          <bye>
+          </bye>
+        </hi>
+      </html>
+
+  do not indent further with self closing tags:
+    in: |
+      <html>
+      <hi />
+      <bye />
+      </html>
+    out: |
+      <html>
+        <hi />
+        <bye />
+      </html>
+
+special tags:
+  do not indent from DOCTYPE:
+    in: |
+      <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'
+        'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+          <html></html>
+    out: |
+      <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'
+      'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+      <html></html>

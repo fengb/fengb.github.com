@@ -24,9 +24,9 @@ module HtmlPretty
   # Requires XML syntax (close all tags)
   # Self rolled because other prettifiers have weird problems
   def self.fake_tidy(html)
-    html = html.gsub(/(^ *\n|^ +)/, '') # kill blank lines
-    html = html.gsub(/^\s+/, '')        # kill opening whitespace
-    html = html.gsub(/\s+$/, '')        # kill closing whitespace
+    html = html.gsub(/^\s+/, '')        # quash opening whitespace
+    html = html.gsub(/\s+$/, '')        # quash closing whitespace
+    html = html.gsub(/\n+/, "\n")       # quash blank lines
     html = html.gsub(/[ \t]+/, ' ')     # collapse all whitespace
     html = html.gsub(/< +/, '<')        # remove whitespace from start bracket
     html = html.gsub(/ +>/, '>')        # remove whitespace from end bracket
