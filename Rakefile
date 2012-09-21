@@ -39,7 +39,7 @@ namespace :image do
   task :process do
     force = ENV['force'] || false
 
-    Dir['*.png'].each do |f|
+    Dir['samples/*.png'].each do |f|
       next if f =~ /thumb.png$/
 
       img = ChunkyPNG::Image.from_file(f)
@@ -59,7 +59,7 @@ namespace :image do
   task :thumb do
     force = ENV['force'] || false
 
-    Dir['*.png'].each do |f|
+    Dir['samples/*.png'].each do |f|
       next if f =~ /thumb.png$/
 
       target = f.sub('.png', '-thumb.png')

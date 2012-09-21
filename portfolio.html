@@ -3,7 +3,7 @@ layout: default
 title: Portfolio
 samples:
 - title: Websites
-  images: [cashnetusa.com, poundstopocket.co.uk]
+  images: [cashnetusa, poundstopocket]
 - title: Photoshopping
   images: [red-dev]
 ---
@@ -12,7 +12,7 @@ samples:
     <h2>{{ sample.title }}</h2>
     <ul>
       {% for image in sample.images %}
-        <li><a href='{{ image }}.png'><img class='thumb' src='{{ image }}.png' /></a></li>
+        <li><a href='/samples/{{ image }}.png'><img class='thumb' src='/samples/{{ image }}.png' /></a></li>
       {% endfor %}
     </ul>
   </section>
