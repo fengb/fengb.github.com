@@ -55,7 +55,7 @@ if defined?(Jekyll)
     class Page
       alias_method :old_output, :output
       def output
-        ::HtmlPretty.fake_tidy(old_output)
+        ext =~ /.html$/ ? ::HtmlPretty.fake_tidy(old_output) : old_output
       end
     end
   end
