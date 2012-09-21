@@ -37,7 +37,7 @@ task :process_images do
 
   Dir['*.png'].each do |f|
     img = ChunkyPNG::Image.from_file(f)
-    if force or img.metadata['attributionName'] != 'Benjamin Feng'
+    if force or img.metadata['author'] != 'Benjamin Feng'
       img.metadata = {'license' => 'http://creativecommons.org/licenses/by-nc-nd/3.0/',
                       'url' => 'http://fengb.github.com/',
                       'author' => 'Benjamin Feng'}
