@@ -1,7 +1,10 @@
 ---
 Comment: "Please note that Jekyll will only convert files that also have a YAML header at the top."
 ---
+@import "css3";
+
 header, nav, footer { display:none; }
-article#main { color:#000; padding:none; border:none;
+html { padding:0; }
+article#main { color:#000; padding:0; @include box-shadow(0, 0, 0, 0);
   a { color:#444; text-decoration:underline; }
 }

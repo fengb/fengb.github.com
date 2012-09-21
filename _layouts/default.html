@@ -15,7 +15,7 @@
     <link rel='stylesheet' media='all' href='style.css' />
     <link rel='stylesheet' media='print' href='print.css' />
     <meta charset='utf-8' />
-    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1' />
+    <meta name='viewport' content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no' />
     <title>fengb{% if page.title %} &rarr; {{ page.title }}{% endif %}</title>
     <script>{% if page.script_inject %}{{ page.script_inject }}{% endif %}document.documentElement.className='js'</script>
   </head>
@@ -40,8 +40,8 @@
     </article>
 
     <footer id='legal'>
-      <span id='copy'>Copyright &copy; 2012 Benjamin Feng</span>
-      <span id='license'>This work is licensed under the <a rel='license' href='http://creativecommons.org/licenses/by-nc-nd/3.0/' title='Creative Commons Attribution-NonCommercial-NoDerivs 3.0 license'>Creative Commons <abbr>BY-NC-ND</abbr> 3.0 license</a></span>
+      <div id='copy'>Copyright &copy; 2012 Benjamin Feng</div>
+      <div id='license'>This work is licensed under the <a rel='license' href='http://creativecommons.org/licenses/by-nc-nd/3.0/' title='Creative Commons Attribution-NonCommercial-NoDerivs 3.0 license'>Creative Commons <abbr>BY-NC-ND</abbr> 3.0 license</a></div>
     </footer>
 
     {% if site %}

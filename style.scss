@@ -21,7 +21,7 @@ h1, h2, h3, h4, h5, h6 { font-weight:bold; }
 article, nav, section { display:block; }
 
 $html-padding-vert:12px;
-html { background:$dark1; color:$lite8; font:16px 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width:790px; margin:0 auto; padding:$html-padding-vert 8px; position:relative; }
+html { background:$dark1; color:$lite8; font:16px 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width:790px; margin:0 auto; padding:$html-padding-vert 8px 0; position:relative; }
 body { position:relative; }
 
 header#branding { background:$lite7; @include linear-gradient($lite8, $lite6); @include box-shadow(0, 1px, 3px, $lite0); padding:8px 16px; height:36px; @include border-radius(16px 16px 0 0); position:relative; z-index:1;
@@ -47,7 +47,7 @@ nav#site { position:absolute; top:15px; right:16px; z-index:1;
   ul li { float:left; }
 }
 
-article#main { border:1px solid $dark0; padding:11px 15px; background:$lite9; color:$dark1;
+article#main { margin:0 1px; padding:12px 15px; background:$lite9; color:$dark1; @include box-shadow(0, 1px, 2px, $dark0);
   a { color:$dark3;
     &:hover { text-decoration:underline; }
   }
@@ -93,8 +93,8 @@ article#main { border:1px solid $dark0; padding:11px 15px; background:$lite9; co
   }
 }
 
-footer#legal { font:11px Andale Mono, monospace; color:$lite8; text-align:center;
-  > * { display:block; margin-top:8px; }
+footer#legal { font:12px Andale Mono, monospace; text-transform: small-caps; padding:16px 16px; color:$lite8; text-align:center;
+  #license { margin-top:8px; }
   a { white-space:nowrap; text-decoration:underline;
     &:hover { color:$lite9; }
   }
@@ -143,7 +143,6 @@ footer#legal { font:11px Andale Mono, monospace; color:$lite8; text-align:center
 @media (max-width:750px) {
   html { margin:0; padding:0; }
   header#branding { @include border-radius(0); }
-  article#main { border:none; padding:12px 16px; }
 }
 
 @media (max-width:480px) {
