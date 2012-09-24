@@ -5,5 +5,10 @@
       $contact.html(data.replace(/^[\s\S]*?<article[^>]*>\s*([\s\S]*)\s*<\/article>[\s\S]*?$/, '$1'));
   });
 
+  $('.portfolio [href$=png]').each(function(i, e) {
+    var img = new Image();
+    img.src = e.href;
+  });
+
   $('*').mutiny();
 })(jQuery)
