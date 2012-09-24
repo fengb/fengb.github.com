@@ -92,7 +92,7 @@ article#main { margin:0 1px; padding:12px 15px; background:$lite9; color:$dark1;
     li { float:left }
     a { display:table-cell; height:120px; width:110px; text-align:center; vertical-align:middle;
       img.thumb { height:75px; padding:4px; @include box-shadow(0, 2px, 10px, $dark0); @include transition(all 0.2s);}
-      &:hover img.thumb { height:90px; }
+      &:hover img.thumb { height:90px; @include box-shadow(0, 2px, 15px, $dark0); }
     }
   }
 }
