@@ -5,5 +5,5 @@
       $contact.html(data.replace(/^[\s\S]*?<article[^>]*>\s*([\s\S]*)\s*<\/article>[\s\S]*?$/, '$1'));
   });
 
-  Mutiny.init();
+  $('*').mutiny();
 })(jQuery)
