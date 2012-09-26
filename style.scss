@@ -18,7 +18,7 @@ $lite9: lighten($lite6, 46%);
 
 * { margin:0; padding:0; font:inherit; color:inherit; text-decoration:none; list-style:none; }
 h1, h2, h3, h4, h5, h6 { font-weight:bold; }
-article, nav, section { display:block; }
+article, nav, aside, section { display:block; }
 
 $html-padding-vert:12px;
 html { background:$dark1; color:$lite8; font:16px 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width:790px; margin:0 auto; padding:$html-padding-vert 8px 0; }
@@ -129,7 +129,7 @@ footer#legal { font:12px Andale Mono, monospace; text-transform: small-caps; pad
   header#branding:before { content:' '; display:block; height:$html-padding-vert; left:0; right:0; top:-$html-padding-vert; position:absolute; background:$dark1; }
 
   $contact-height:100px;
-  nav#contact { position:absolute; background:$lite6; top:52px-$contact-height; right:16px; @include border-radius(0 0 12px 12px); @include transition(margin-top 0.3s ease-out); height:$contact-height; white-space:nowrap;
+  aside#contact { position:absolute; background:$lite6; top:52px-$contact-height; right:16px; @include border-radius(0 0 12px 12px); @include transition(margin-top 0.3s ease-out); height:$contact-height; white-space:nowrap;
     &.active { margin-top:$contact-height; }
     ul { padding:8px; }
     a { display:block; color:$dark1; font-weight:bold; padding:4px;
