@@ -88,7 +88,7 @@ task :image => %w[image:process image:thumb]
 
 desc 'Compile all assets for deployment'
 task :compile do
-  sh 'jekyll'
+  sh 'jekyll --url http://fengb.github.com'
 end
 
 desc 'Stage assets to a fresh branch for publication'
