@@ -3,13 +3,13 @@ Comment: "Please note that Jekyll will only convert files that also have a YAML 
 ---
 @import "css3";
 
-$dark3: #279dc4;
+$dark3: #4f5c96;
 $dark4: lighten($dark3, 15%);
 $dark2: darken($dark3, 12%);
 $dark1: darken($dark3, 25%);
-$dark0: darken($dark3, 45%);
+$dark0: darken($dark3, 44%);
 
-$lite6: #f7ad19;
+$lite6: #f7b81a;
 $lite0: darken($lite6, 52%);
 $lite5: darken($lite6, 10%);
 $lite7: lighten($lite6, 16%);
@@ -21,7 +21,7 @@ h1, h2, h3, h4, h5, h6 { font-weight:bold; }
 article, nav, aside, section { display:block; }
 
 $html-padding-vert:12px;
-html { background:$dark1; color:$lite8; font:16px 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width:790px; margin:0 auto; padding:$html-padding-vert 8px 0; }
+html { background:$dark2; color:$lite8; font:16px 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width:790px; margin:0 auto; padding:$html-padding-vert 8px 0; }
 body { position:relative; }
 
 header#branding { background:$lite7; @include linear-gradient($lite8, $lite6); @include box-shadow(0, 1px, 3px, $lite0); padding:8px 16px; height:36px; @include border-radius(16px 16px 0 0); position:relative; z-index:1;
@@ -126,7 +126,7 @@ footer#legal { font:12px Andale Mono, monospace; padding:16px 16px; color:$lite8
   }
 
   /* Hack to hide hanging top element */
-  header#branding:before { content:' '; display:block; height:$html-padding-vert; left:0; right:0; top:-$html-padding-vert; position:absolute; background:$dark1; }
+  header#branding:before { content:' '; display:block; height:$html-padding-vert; left:0; right:0; top:-$html-padding-vert; position:absolute; background:$dark2; }
 
   $contact-height:100px;
   aside#contact { position:absolute; background:$lite6; top:52px-$contact-height; right:16px; @include border-radius(0 0 12px 12px); @include transition(margin-top 0.3s ease-out); height:$contact-height; white-space:nowrap;
