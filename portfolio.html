@@ -8,8 +8,8 @@ samples:
   images: [chain-contingency, red-dev]
 ---
 {% for sample in page.samples %}
-  <section>
-    <h2>{{ sample.title }}</h2>
+  <section id='{{ sample.title | downcase }}' class='block'>
+    <h1>{{ sample.title }}</h1>
     <ul>
       {% for image in sample.images %}
         <li><a href='/samples/{{ image }}.png'><img class='thumb' src='/samples/{{ image }}-thumb.png' /></a></li>

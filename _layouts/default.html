@@ -20,10 +20,10 @@
     <script>{% if page.script_inject %}{{ page.script_inject }}{% endif %}document.documentElement.className='js'</script>
   </head>
   <body {% if page.title %}id='{{ page.title | downcase }}'{% endif %}>
-    <header id='branding'>
+    <hgroup id='branding'>
       <h1><a href='/'>fengb</a></h1>
       {% if page.title %}<h2>{{ page.title }}</h2>{% endif %}
-    </header>
+    </hgroup>
 
     <nav id='site'>
       <ul>
