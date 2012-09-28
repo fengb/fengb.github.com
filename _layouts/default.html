@@ -19,7 +19,7 @@
     <title>fengb{% if page.title %} &rarr; {{ page.title }}{% endif %}</title>
     <script>{% if page.script_inject %}{{ page.script_inject }}{% endif %}document.documentElement.className='js'</script>
   </head>
-  <body>
+  <body {% if page.title %}id='{{ page.title | downcase }}'{% endif %}>
     <header id='branding'>
       <h1><a href='/'>fengb</a></h1>
       {% if page.title %}<h2>{{ page.title }}</h2>{% endif %}
@@ -35,7 +35,7 @@
       </ul>
     </nav>
 
-    <article id='main' {% if page.title %}class='{{ page.title | downcase }}'{% endif %}>
+    <article id='main'>
       {{ content }}
     </article>
 

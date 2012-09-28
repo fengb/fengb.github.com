@@ -47,7 +47,7 @@ nav#site { position:absolute; top:15px; right:16px; z-index:1;
   ul li { float:left; }
 }
 
-article#main { border:1px solid $dark0; border-bottom:none; padding:12px 15px; background:$lite9; color:$dark1; @include box-shadow(0, -1px, 3px, $dark0);
+article#main { margin:0 1px; border-bottom:none; padding:12px 15px; background:$lite9; color:$dark1; @include box-shadow(0, -1px, 3px, $dark0);
   a { color:$dark3;
     &:hover { text-decoration:underline; }
   }
@@ -58,7 +58,7 @@ article#main { border:1px solid $dark0; border-bottom:none; padding:12px 15px; b
 
   $content-offset:12px;
   section { margin:16px 0; padding-left:$content-offset;
-    h2 { margin:0 0 8px 0-$content-offset; font-size:24px; }
+    h2 { margin:0 0 4px 0-$content-offset; font-size:24px; }
 
     dl { padding-left:100px; position:relative;
       dt { position:absolute; left:0; }
@@ -68,7 +68,7 @@ article#main { border:1px solid $dark0; border-bottom:none; padding:12px 15px; b
       }
     }
 
-    div { margin-top:8px; position:relative;
+    div { margin-bottom:8px; position:relative;
       h3 { font-size:18px; display:inline; }
       .duration { font-size:14px; display:inline-block; white-space:nowrap;
         &:before { content:'\2014  '; }
@@ -85,9 +85,7 @@ article#main { border:1px solid $dark0; border-bottom:none; padding:12px 15px; b
       }
     }
   }
-  &.portfolio {
-    h2 { margin-bottom:0; }
-    section { margin:8px 0; }
+  body#portfolio & {
     ul:after { content:' '; display:block; clear:both; }
     li { float:left }
     a { display:block; padding:8px;
@@ -142,7 +140,6 @@ footer#legal { font:12px Andale Mono, monospace; margin:0 1px; padding:16px 15px
   }
 }
 
-/*= Responsive web */
 
 @media (max-width:750px) {
   html { margin:0; padding:0; }
