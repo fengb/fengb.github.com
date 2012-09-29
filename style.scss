@@ -20,14 +20,16 @@ $lite9: lighten($lite6, 46%);
 h1, h2, h3, h4, h5, h6 { font-weight:bold; }
 article, hgroup, nav, aside, section { display:block; }
 
+a:hover { text-decoration:underline; }
+
 $html-padding-vert:12px;
 html { background:$dark1; color:$lite8; font:16px 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width:790px; margin:0 auto; padding:$html-padding-vert 8px 0; }
 body { position:relative; }
 
 hgroup#branding { background:$lite7; @include linear-gradient($lite8, $lite6); @include box-shadow(0, 1px, 3px, $lite0); padding:8px 16px; height:36px; @include border-radius(16px 16px 0 0); position:relative; z-index:1;
   * { display:inline; color:$dark1; text-shadow:0 1px 1px $lite8; }
-  a { color:$dark2;
-    &:hover { color:$dark3; text-shadow:0 1px 1px $lite7, 0 0 9px $lite9; }
+  a { color:$dark3;
+    &:hover { text-shadow:0 1px 1px $lite7, 0 0 9px $lite9; }
   }
   h1 { font-size:30px; }
   h2 { font-size:24px;
@@ -42,15 +44,13 @@ nav#site { position:absolute; top:15px; right:16px; z-index:1;
   ul { overflow:hidden; @include header-pit; }
   a { display:block; padding:0 12px; height:26px; line-height:26px; color:$lite8; font-weight:bold; text-shadow:0 0 3px $lite0, 0 1px 1px $lite0;
     &.active { text-shadow:0 0 7px $lite0, 0 1px 5px $lite0, 0 1px 3px $lite0; }
-    &:hover { color:$lite9; }
+    &:hover { text-decoration:none; color:$lite9; }
   }
   ul li { float:left; }
 }
 
 article#main { margin:0 1px; border-bottom:none; padding:12px 15px; background:$lite9; color:$dark1; @include box-shadow(0, -1px, 3px, $dark0);
-  a { color:$dark3;
-    &:hover { text-decoration:underline; }
-  }
+  a { color:$dark4; }
 
   header { text-align:center;
     .name { font-weight:bold; display:block; }
@@ -130,11 +130,9 @@ footer#legal { font:12px Andale Mono, monospace; margin:0 1px; padding:16px 15px
   aside#contact { position:absolute; background:$lite6; top:50px-$contact-height; right:16px; @include border-radius(0 0 12px 12px); @include transition(margin-top 0.3s ease-out); height:$contact-height; white-space:nowrap; @include box-shadow(0, 1px, 3px, $lite0);
     &.active { margin-top:$contact-height; }
     ul { padding:8px; }
-    a { display:block; color:$dark1; font-weight:bold; padding:4px;
-      &:hover { text-decoration:underline; }
-    }
+    a { display:block; color:$dark1; font-weight:bold; padding:4px; }
     $contact-width:140px;
-    @media (min-width:$contact-orientation-width) { height:auto; width:$contact-width; top:15px; right:0; @include border-radius(0 12px 12px 0); @include transition(margin-right 0.3s ease-out); z-index:-1;
+    @media (min-width:$contact-orientation-width) { height:auto; width:$contact-width; top:15px; right:1px; @include border-radius(0 12px 12px 0); @include transition(margin-right 0.3s ease-out); z-index:-1;
       &.active { margin:0 0-$contact-width 0 0; }
     }
   }
