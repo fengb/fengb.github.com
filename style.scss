@@ -124,7 +124,7 @@ footer#legal { font:12px Andale Mono, monospace; margin:0 1px; padding:16px 15px
   }
 
   /* Hack to hide hanging top element */
-  header#branding:before { content:' '; display:block; height:$html-padding-vert; left:0; right:0; top:-$html-padding-vert; position:absolute; background:$dark1; }
+  hgroup#branding:before { content:' '; display:block; height:$html-padding-vert; left:0; right:0; top:-$html-padding-vert; position:absolute; background:$dark1; }
 
   $contact-height:100px;
   aside#contact { position:absolute; background:$lite6; top:50px-$contact-height; right:16px; @include border-radius(0 0 12px 12px); @include transition(margin-top 0.3s ease-out); height:$contact-height; white-space:nowrap; @include box-shadow(0, 1px, 3px, $lite0);
@@ -143,9 +143,9 @@ footer#legal { font:12px Andale Mono, monospace; margin:0 1px; padding:16px 15px
 
 @media (max-width:750px) {
   html { margin:0; padding:0; }
-  header#branding { @include border-radius(0); }
+  hgroup#branding { @include border-radius(0); }
 }
 
 @media (max-width:480px) {
-  header#branding h2 { display:none; }
+  hgroup#branding h2 { display:none; }
 }
