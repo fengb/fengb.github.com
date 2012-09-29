@@ -12,7 +12,7 @@ samples:
     <h1>{{ sample.title }}</h1>
     <ul>
       {% for image in sample.images %}
-        <li><a href='/samples/{{ image }}.png'><img class='thumb' src='/samples/{{ image }}-thumb.png' /></a></li>
+        <li><a href='/samples/{{ image }}.png'><img class='thumb' src='/samples/{{ image }}-thumb.png' alt='{{ image }}' /></a></li>
       {% endfor %}
     </ul>
   </section>
