@@ -16,6 +16,9 @@ $lite7: lighten($lite6, 16%);
 $lite8: lighten($lite6, 32%);
 $lite9: lighten($lite6, 46%);
 
+$width-hori-contact:1080px;
+$width-mobile:750px;
+
 * { margin:0; padding:0; font:inherit; color:inherit; text-decoration:none; list-style:none; }
 h1, h2, h3, h4, h5, h6 { font-weight:bold; }
 article, hgroup, nav, aside, section { display:block; }
@@ -23,16 +26,20 @@ article, hgroup, nav, aside, section { display:block; }
 a:hover { text-decoration:underline; }
 
 $html-padding-vert:12px;
-html { color:$lite8; font:16px 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width:790px; margin:0 auto; padding:$html-padding-vert 8px 0; height:100%; @include linear-gradient($dark1, $dark2); background-repeat:repeat-x; height:100%; @include box-sizing(border-box); }
+html { color:$lite8; font:16px 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width:790px; margin:0 auto; padding:$html-padding-vert 8px 0; height:100%; @include linear-gradient($dark1, $dark2); background-repeat:repeat-x; height:100%; @include box-sizing(border-box);
+  @media (max-width:$width-mobile) { margin:0; padding:0; }
+}
 body { position:relative; }
 
 hgroup#branding { background:$lite7; @include linear-gradient($lite8, $lite6); @include box-shadow(0, 1px, 3px, $lite0); padding:8px 16px; height:36px; @include border-radius(16px 16px 0 0); position:relative; z-index:1;
+  @media (max-width:$width-mobile) { padding:6px 12px; @include border-radius(0); }
   * { display:inline; color:$dark1; text-shadow:0 1px 1px $lite8; }
   a { color:$dark3;
     &:hover { text-shadow:0 1px 1px $lite7, 0 0 9px $lite9; }
   }
   h1 { font-size:30px; }
   h2 { font-size:24px;
+    @media (max-width:480px) { display:none; }
     &:before { content:'\2192  '; padding-left:4px; font-family:'Lucida Grande', sans-serif; }
   }
 }
@@ -41,6 +48,7 @@ hgroup#branding { background:$lite7; @include linear-gradient($lite8, $lite6); @
   background:$lite7; border-bottom:1px solid $lite8; @include box-shadow(0, -1px, 1px, $lite0); @include border-radius(8px);
 }
 nav#site { position:absolute; top:15px; right:16px; z-index:1;
+  @media (max-width:$width-mobile) { top:12px; right:12px; }
   ul { overflow:hidden; @include header-pit; padding:0 4px; }
   a { display:block; padding:0 5px; height:26px; line-height:26px; color:$lite8; font-weight:bold; text-shadow:0 0 3px $lite0, 0 1px 1px $lite0;
     &.active { text-shadow:0 0 7px $lite0, 0 1px 5px $lite0, 0 1px 3px $lite0; }
@@ -50,6 +58,7 @@ nav#site { position:absolute; top:15px; right:16px; z-index:1;
 }
 
 article#main { margin:0 1px; border-bottom:none; padding:12px 15px; background:$lite9; color:$dark1; @include box-shadow(0, -1px, 3px, $dark0);
+  @media (max-width:$width-mobile) { padding:12px 11px; }
   a { color:$dark4; }
 
   header { text-align:center;
@@ -88,6 +97,7 @@ article#main { margin:0 1px; border-bottom:none; padding:12px 15px; background:$
       }
     }
   }
+
   body#portfolio & {
     ul:after { content:' '; display:block; clear:both; }
     li { float:left }
@@ -108,7 +118,6 @@ footer#legal { font:12px Andale Mono, monospace; margin:0 1px; padding:16px 15px
 /*= On page contact */
 
 .js {
-  $contact-orientation-width:1080px;
   nav#site {
     ul { margin-right:44px; }
     .contact { position:absolute; right:0; width:34px; overflow:hidden; @include header-pit;
@@ -117,7 +126,7 @@ footer#legal { font:12px Andale Mono, monospace; margin:0 1px; padding:16px 15px
         &:after { content:'\25bc'; visibility:visible; position:absolute; font-size:12px; top:3px; right:3px; }
         &.active:after,
         &:hover:after { margin-top:2px; }
-        @media (min-width:$contact-orientation-width) {
+        @media (min-width:$width-hori-contact) {
           &:after { content:'\25b6'; }
           &.active:after,
           &:hover:after { margin:0 -2px 0 0; }
@@ -135,21 +144,9 @@ footer#legal { font:12px Andale Mono, monospace; margin:0 1px; padding:16px 15px
     ul { padding:8px; }
     a { display:block; color:$dark1; font-weight:bold; padding:4px; }
     $contact-width:140px;
-    @media (min-width:$contact-orientation-width) { height:auto; width:$contact-width; top:7px; right:3px; @include border-radius(0 12px 12px 0); @include transition(margin-right 0.3s ease-out); z-index:-1;
+    @media (min-width:$width-hori-contact) { height:auto; width:$contact-width; top:7px; right:3px; @include border-radius(0 12px 12px 0); @include transition(margin-right 0.3s ease-out); z-index:-1;
       &.active { margin:0 0-$contact-width 0 0; }
     }
+    @media (max-width:$width-mobile) { top:-54px; right:8px; }
   }
-}
-
-
-@media (max-width:750px) {
-  html { margin:0; padding:0; }
-  hgroup#branding { padding:6px 12px; @include border-radius(0); }
-  nav#site { top:12px; right:12px; }
-  article#main { padding:12px 11px; }
-  .js aside#contact { top:-54px; right:8px; }
-}
-
-@media (max-width:480px) {
-  hgroup#branding h2 { display:none; }
 }
