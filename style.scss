@@ -41,8 +41,8 @@ hgroup#branding { background:$lite7; @include linear-gradient($lite8, $lite6); @
   background:$lite7; border-bottom:1px solid $lite8; @include box-shadow(0, -1px, 1px, $lite0); @include border-radius(8px);
 }
 nav#site { position:absolute; top:15px; right:16px; z-index:1;
-  ul { overflow:hidden; @include header-pit; }
-  a { display:block; padding:0 12px; height:26px; line-height:26px; color:$lite8; font-weight:bold; text-shadow:0 0 3px $lite0, 0 1px 1px $lite0;
+  ul { overflow:hidden; @include header-pit; padding:0 4px; }
+  a { display:block; padding:0 5px; height:26px; line-height:26px; color:$lite8; font-weight:bold; text-shadow:0 0 3px $lite0, 0 1px 1px $lite0;
     &.active { text-shadow:0 0 7px $lite0, 0 1px 5px $lite0, 0 1px 3px $lite0; }
     &:hover { text-decoration:none; color:$lite9; }
   }
@@ -108,10 +108,10 @@ footer#legal { font:12px Andale Mono, monospace; margin:0 1px; padding:16px 15px
   $contact-orientation-width:1080px;
   nav#site {
     ul { margin-right:40px; }
-    .contact { position:absolute; right:0; width:32px; overflow:hidden; @include header-pit;
+    .contact { position:absolute; right:0; width:34px; overflow:hidden; @include header-pit;
       a { padding:0; visibility:hidden;
-        &:first-letter { padding:0 12px 12px 6px; visibility:visible; height:26px; }
-        &:after { content:'\25bc'; visibility:visible; position:absolute; font-size:12px; top:3px; right:2px; }
+        &:first-letter { padding:0 12px 12px 8px; visibility:visible; height:26px; }
+        &:after { content:'\25bc'; visibility:visible; position:absolute; font-size:12px; top:3px; right:3px; }
         &.active:after,
         &:hover:after { margin-top:2px; }
         @media (min-width:$contact-orientation-width) {
