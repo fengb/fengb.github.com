@@ -141,7 +141,10 @@ footer#legal { font:12px Andale Mono, monospace; margin:0 1px; padding:16px 15px
 
 @media (max-width:750px) {
   html { margin:0; padding:0; }
-  hgroup#branding { @include border-radius(0); }
+  hgroup#branding { padding:6px 12px; @include border-radius(0); }
+  nav#site { top:12px; right:12px; }
+  article#main { padding:12px 11px; }
+  .js aside#contact { top:-54px; right:8px; }
 }
 
 @media (max-width:480px) {
