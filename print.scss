@@ -7,4 +7,6 @@ Comment: "Please note that Jekyll will only convert files that also have a YAML 
 
 nav, aside, footer, #branding { display:none; }
 
+html { font-size:14px; }
 html, article#main { padding:0; }
+article#main > section > h1 { line-height:9px; }
