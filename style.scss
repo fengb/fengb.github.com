@@ -107,7 +107,7 @@ footer#legal { font:12px Andale Mono, monospace; margin:0 1px; padding:16px 15px
 .js {
   $contact-orientation-width:1080px;
   nav#site {
-    ul { margin-right:40px; }
+    ul { margin-right:44px; }
     .contact { position:absolute; right:0; width:34px; overflow:hidden; @include header-pit;
       a { padding:0; visibility:hidden;
         &:first-letter { padding:0 12px 12px 8px; visibility:visible; height:26px; }
@@ -127,12 +127,12 @@ footer#legal { font:12px Andale Mono, monospace; margin:0 1px; padding:16px 15px
   hgroup#branding:before { content:' '; display:block; height:$html-padding-vert; left:0; right:0; top:-$html-padding-vert; position:absolute; background:$dark1; }
 
   $contact-height:100px;
-  aside#contact { position:absolute; background:$lite6; top:50px-$contact-height; right:16px; @include border-radius(0 0 12px 12px); @include transition(margin-top 0.3s ease-out); height:$contact-height; white-space:nowrap; @include box-shadow(0, 1px, 3px, $lite0);
+  aside#contact { position:absolute; background:$lite6; top:50px-$contact-height; right:10px; @include border-radius(0 0 12px 12px); @include transition(margin-top 0.3s ease-out); height:$contact-height; white-space:nowrap; @include box-shadow(0, 1px, 3px, $lite0);
     &.active { margin-top:$contact-height; }
     ul { padding:8px; }
     a { display:block; color:$dark1; font-weight:bold; padding:4px; }
     $contact-width:140px;
-    @media (min-width:$contact-orientation-width) { height:auto; width:$contact-width; top:15px; right:1px; @include border-radius(0 12px 12px 0); @include transition(margin-right 0.3s ease-out); z-index:-1;
+    @media (min-width:$contact-orientation-width) { height:auto; width:$contact-width; top:7px; right:3px; @include border-radius(0 12px 12px 0); @include transition(margin-right 0.3s ease-out); z-index:-1;
       &.active { margin:0 0-$contact-width 0 0; }
     }
   }
