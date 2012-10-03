@@ -80,7 +80,7 @@ article#main { margin:0 1px; border-bottom:none; padding:12px 15px; background:$
     }
 
     section.company { margin-bottom:8px; position:relative;
-      h1 { font-size:18px; display:inline; }
+      h1 { font-size:18px; display:inline; line-height:16px; }
       .duration { display:inline; white-space:nowrap;
         &:before { content:'\2014  '; }
       }
