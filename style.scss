@@ -66,8 +66,8 @@ article#main { margin:0 1px; border-bottom:none; padding:12px 15px; background:$
   }
 
   > section { margin:16px 24px 0 158px; padding-left:12px; border-left:1px solid $dark1;
-    > h1 { position:absolute; margin:4px 0 0 -170px; width:146px; text-align:right; font-size:24px; font-variant:small-caps; }
-    @media screen and (max-width:750px) { margin:0; padding:0 12px; border:none;
+    > h1 { position:absolute; margin:4px 0 8px -170px; width:146px; text-align:right; font-size:24px; font-variant:small-caps; }
+    @media screen and (max-width:750px) { margin:16px 0 0 0; padding:0 12px; border:none;
       > h1 { position:static; margin-left:-12px; width:auto; text-align:left; }
     }
 
