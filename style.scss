@@ -61,8 +61,8 @@ article#main { margin:0 1px; border-bottom:none; padding:12px 15px; background:$
   @media (max-width:$width-mobile) { padding:12px 11px; }
   a { color:$dark4; }
 
-  header { text-align:center;
-    .name { font-weight:bold; display:block; }
+  header { margin:8px 0 24px; text-align:center;
+    h1 { font-size:24px; }
   }
 
   > section { margin:16px 24px 0 158px; padding-left:12px; border-left:1px solid $dark1;
@@ -73,7 +73,7 @@ article#main { margin:0 1px; border-bottom:none; padding:12px 15px; background:$
 
     dl { padding-left:100px; position:relative;
       dt { position:absolute; left:0; }
-      dd { display:inline;
+      dd { display:inline; white-space:nowrap;
         &:after { content:','; }
         &:last-child:after { content:''; }
       }
@@ -81,12 +81,11 @@ article#main { margin:0 1px; border-bottom:none; padding:12px 15px; background:$
 
     section.company { margin-bottom:8px; position:relative;
       h1 { font-size:18px; display:inline; }
-      .duration { font-size:14px; display:inline-block; white-space:nowrap;
+      .duration { display:inline; white-space:nowrap;
         &:before { content:'\2014  '; }
       }
-      h2 { font-style:italic;
-        .weak { display:block; margin-top:2px; font-size:12px; font-weight:normal; }
-      }
+      h2 { font-style:italic; }
+      h3 { font-size:14px; font-weight:normal; }
       ul { margin:2px 0;
         &.roles li { margin-left:20px; list-style:disc; }
       }
