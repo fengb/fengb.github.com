@@ -3,7 +3,7 @@ Comment: "Please note that Jekyll will only convert files that also have a YAML 
 ---
 @import "css3";
 
-* { color:#000 !important; text-shadow:none !important; }
+* { color:#000 !important; text-shadow:none !important; border-color:#000; }
 
 nav, aside, footer, #branding { display:none; }
 
