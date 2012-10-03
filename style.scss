@@ -72,10 +72,13 @@ article#main { margin:0 1px; border-bottom:none; padding:12px 15px; background:$
     }
 
     dl { padding-left:100px; position:relative;
-      dt { position:absolute; left:0; }
-      dd { display:inline; white-space:nowrap;
+      * { height:18px; }
+      dt { margin:4px 0 -18px -100px; clear:both;
+        &:after { content:':'; }
+      }
+      dd { display:inline-block;
         &:after { content:','; }
-        &:last-child:after { content:''; }
+        &.last:after { content:none; }
       }
     }
 
