@@ -78,7 +78,7 @@ article#main { margin:0 1px; border-bottom:none; padding:12px 15px; background:$
       }
       dd { display:inline-block;
         &:after { content:','; }
-        &.last:after { content:none; }
+        &.last:after { content:''; }
       }
     }
 
@@ -94,7 +94,7 @@ article#main { margin:0 1px; border-bottom:none; padding:12px 15px; background:$
   }
 
   body#portfolio & {
-    ul:after { content:' '; display:block; clear:both; }
+    ul:after { content:''; display:block; clear:both; }
     li { float:left }
     a { display:block; padding:0 6px;
       img.thumb { min-width:45px; height:75px; padding:4px; @include box-shadow(0, 2px, 10px, $lite0); @include transition(all 0.2s);}
@@ -131,7 +131,7 @@ footer#legal { font:12px Andale Mono, monospace; margin:0 1px; padding:16px 15px
   }
 
   /* Hack to hide hanging top element */
-  hgroup#branding:before { content:' '; display:block; height:$html-padding-vert; left:0; right:0; top:-$html-padding-vert; position:absolute; background:$dark1; }
+  hgroup#branding:before { content:''; display:block; height:$html-padding-vert; left:0; right:0; top:-$html-padding-vert; position:absolute; background:$dark1; }
 
   $contact-height:100px;
   aside#contact { position:absolute; background:$lite6; top:50px-$contact-height; right:10px; @include border-radius(0 0 12px 12px); @include transition(margin-top 0.3s ease-out); height:$contact-height; white-space:nowrap; @include box-shadow(0, 1px, 3px, $lite0);
