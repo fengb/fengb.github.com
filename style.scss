@@ -66,14 +66,14 @@ article#main { margin:0 1px; border-bottom:none; padding:12px 15px; background:$
   }
 
   > section { margin:16px 24px 0 158px; padding-left:12px; border-left:1px solid $dark1;
-    > h1 { position:absolute; margin:4px 0 8px -170px; width:146px; text-align:right; font-size:24px; font-variant:small-caps; }
+    > h1 { float:left; margin:4px 0 8px -170px; width:146px; text-align:right; font-size:24px; font-variant:small-caps; }
     @media screen and (max-width:750px) { margin:16px 0 0 0; padding:0 12px; border:none;
-      > h1 { position:static; margin-left:-12px; width:auto; text-align:left; }
+      > h1 { float:none; margin-left:-12px; width:auto; text-align:left; }
     }
 
-    dl { padding-left:100px; position:relative;
+    dl { padding-left:100px;
       * { height:18px; }
-      dt { margin:4px 0 -18px -100px; clear:both;
+      dt { margin:4px 0 -18px -100px;
         &:after { content:':'; }
       }
       dd { display:inline-block;
@@ -82,16 +82,14 @@ article#main { margin:0 1px; border-bottom:none; padding:12px 15px; background:$
       }
     }
 
-    section.company { margin-bottom:8px; position:relative;
-      h1 { font-size:18px; display:inline; line-height:16px; }
+    section.company { margin-bottom:8px;
+      h1 { font-size:18px; display:inline; }
       .duration { display:inline; white-space:nowrap;
         &:before { content:'\2014  '; }
       }
-      h2 { font-style:italic; }
+      h2 { font-style:italic; margin-bottom:4px; }
       h3 { font-size:14px; font-weight:normal; }
-      ul { margin:2px 0;
-        &.roles li { margin-left:20px; list-style:disc; }
-      }
+      ul li { margin:0 0 4px 20px; list-style:disc; }
     }
   }
 
