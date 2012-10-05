@@ -8,7 +8,7 @@ samples:
   images: [chaincontingency, reddev]
 ---
 {% for sample in page.samples %}
-  <section id='{{ sample.title | downcase }}' class='block'>
+  <section id='{{ sample.title | downcase }}'>
     <h1>{{ sample.title }}</h1>
     <ul>
       {% for image in sample.images %}
