@@ -57,7 +57,7 @@ nav#site { position:absolute; top:15px; right:16px; z-index:1;
   ul li { float:left; }
 }
 
-article#main { margin:0 1px; border-bottom:none; padding:12px 15px; background:$lite9; color:$dark1; @include box-shadow(0, -1px, 3px, $dark0);
+article#main { margin:0 1px; border-bottom:none; padding:12px 15px; background:$lite9; color:$dark1; @include box-shadow(0, -1px, 3px, $dark0); overflow:hidden;
   @media (max-width:$width-mobile) { padding:12px 11px; }
   a { color:$dark4; }
 
@@ -65,9 +65,9 @@ article#main { margin:0 1px; border-bottom:none; padding:12px 15px; background:$
     h1 { font-size:24px; }
   }
 
-  > section { margin:16px 24px 0 158px; padding-left:12px; border-left:1px solid $dark1;
+  > section { margin:0 24px 16px 158px; padding-left:12px; border-left:1px solid $dark1;
     > h1 { float:left; margin:4px 0 4px -170px; width:146px; text-align:right; font-size:24px; font-variant:small-caps; }
-    @media screen and (max-width:750px) { margin:16px 0 0 0; padding:0 12px; border:none;
+    @media screen and (max-width:750px) { margin:16px 0; padding:0 12px; border:none;
       > h1 { float:none; margin-left:-12px; width:auto; text-align:left; }
     }
 
@@ -94,8 +94,7 @@ article#main { margin:0 1px; border-bottom:none; padding:12px 15px; background:$
   }
 
   body#portfolio & {
-    ul { margin-bottom:-6px; }
-    ul:after { content:''; display:block; clear:both; }
+    section { clear:both; float:left; }
     li { float:left; }
     a { display:block; padding:3px 6px;
       img.thumb { min-width:45px; height:75px; padding:3px; @include box-shadow(0, 2px, 7px, $lite0); @include transition(all 0.2s);}
