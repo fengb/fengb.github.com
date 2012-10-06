@@ -119,12 +119,10 @@ footer#legal { font:12px Andale Mono, monospace; margin:0 1px; padding:16px 15px
       a { padding:0; visibility:hidden;
         &:first-letter { padding:0 12px 12px 8px; visibility:visible; height:26px; }
         &:after { content:'\25bc'; visibility:visible; position:absolute; font-size:12px; top:3px; right:3px; }
-        &.active:after,
-        &:hover:after { margin-top:2px; }
+        &.active:after { margin-top:2px; }
         @media (min-width:$width-hori-contact) {
           &:after { content:'\25b6'; }
-          &.active:after,
-          &:hover:after { margin:0 -2px 0 0; }
+          &.active:after { margin:0 -2px 0 0; }
         }
       }
     }
