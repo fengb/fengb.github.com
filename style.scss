@@ -1,7 +1,7 @@
 ---
 Comment: "Please note that Jekyll will only convert files that also have a YAML header at the top."
 ---
-@import "css3";
+@import 'css3';
 
 $dark3: #435c96;
 $dark4: lighten($dark3, 15%);
@@ -19,14 +19,6 @@ $lite9: lighten($lite6, 46%);
 $width-hori-contact:1080px;
 $width-mobile:750px;
 
-@mixin css3($attr, $vals...) {
-  -webkit-#{$attr}:$vals;
-  -moz-#{$attr}:$vals;
-  -ms-#{$attr}:$vals;
-  -o-#{$attr}:$vals;
-  $attr:$vals;
-}
-
 * { margin:0; padding:0; font:inherit; color:inherit; text-decoration:none; list-style:none; }
 h1, h2, h3, h4, h5, h6 { font-weight:bold; }
 article, hgroup, nav, aside, section { display:block; }
@@ -34,12 +26,12 @@ article, hgroup, nav, aside, section { display:block; }
 a:hover { text-decoration:underline; }
 
 $html-padding-vert:12px;
-html { color:$lite8; font:16px 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width:790px; margin:0 auto; padding:$html-padding-vert 8px 0; height:100%; @include linear-gradient($dark1, $dark2); background-repeat:repeat-x; height:100%; @include css3(box-sizing, border-box);
+html { color:$lite8; font:16px 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width:790px; margin:0 auto; padding:$html-padding-vert 8px 0; height:100%; background:$dark2 repeat-x; @include background-gradient($dark1, $dark2); height:100%; @include css3(box-sizing, border-box);
   @media (max-width:$width-mobile) { margin:0; padding:0; }
 }
 body { position:relative; }
 
-hgroup#branding { background:$lite7; @include linear-gradient($lite8, $lite6); @include css3(box-shadow, 0 1px 3px $lite0); padding:8px 16px; height:36px; @include css3(border-radius, 16px 16px 0 0); position:relative; z-index:1;
+hgroup#branding { background:$lite7; @include background-gradient($lite8, $lite6); @include css3(box-shadow, 0 1px 3px $lite0); padding:8px 16px; height:36px; @include css3(border-radius, 16px 16px 0 0); position:relative; z-index:1;
   @media (max-width:$width-mobile) { padding:6px 12px; @include css3(border-radius, 0); }
   * { display:inline; color:$dark1; text-shadow:0 1px 1px $lite8; }
   a { color:$dark3;
@@ -111,7 +103,7 @@ article#main { margin:0 1px; border-bottom:none; padding:12px 15px; background:$
   }
 }
 
-footer#legal { font:12px Andale Mono, monospace; margin:0 1px; padding:16px 15px 48px; color:$lite8; text-align:center; @include linear-gradient(rgba($lite9, 0.1), rgba($lite9, 0));
+footer#legal { font:12px Andale Mono, monospace; margin:0 1px; padding:16px 15px 48px; color:$lite8; text-align:center; @include background-gradient(rgba($lite9, 0.1), rgba($lite9, 0));
   #license { margin-top:8px; }
   a { white-space:nowrap; text-decoration:underline;
     &:hover { color:$lite9; }

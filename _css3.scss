@@ -1,1 +1,15 @@
-_submodules/css3-sass-mixins/_all.scss
+@mixin css3($attr, $vals...) {
+  -webkit-#{$attr}:$vals;
+  -moz-#{$attr}:$vals;
+  -ms-#{$attr}:$vals;
+  -o-#{$attr}:$vals;
+  $attr:$vals;
+}
+
+@mixin background-gradient($from, $to) {
+  background-image:-webkit-linear-gradient(top, $from, $to);
+  background-image:-moz-linear-gradient(top, $from, $to);
+  background-image:-ms-linear-gradient(top, $from, $to);
+  background-image:-o-linear-gradient(top, $from, $to);
+  background-image:linear-gradient(top, bottom, $from, $to);
+}
