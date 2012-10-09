@@ -1,7 +1,7 @@
 ---
 Comment: "Please note that Jekyll will only convert files that also have a YAML header at the top."
 ---
-@import "css3";
+@import 'css3';
 
 $dark3: #435c96;
 $dark4: lighten($dark3, 15%);
@@ -26,13 +26,13 @@ article, hgroup, nav, aside, section { display:block; }
 a:hover { text-decoration:underline; }
 
 $html-padding-vert:12px;
-html { color:desaturate($lite8, 50%); font:16px 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width:790px; margin:0 auto; padding:$html-padding-vert 8px 0; height:100%; @include linear-gradient($dark1, $dark2); background-repeat:repeat-x; height:100%; @include box-sizing(border-box);
+html { color:desaturate($lite8, 50%); font:16px 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width:790px; margin:0 auto; padding:$html-padding-vert 8px 0; height:100%; background:$dark2 repeat-x; @include background-gradient($dark1, $dark2); height:100%; @include css3(box-sizing, border-box);
   @media (max-width:$width-mobile) { margin:0; padding:0; }
 }
 body { position:relative; }
 
-hgroup#branding { background:$lite7; @include linear-gradient($lite8, $lite6); @include box-shadow(0, 1px, 3px, $lite0); padding:8px 16px; height:36px; @include border-radius(16px 16px 0 0); position:relative; z-index:1;
-  @media (max-width:$width-mobile) { padding:6px 12px; @include border-radius(0); }
+hgroup#branding { background:$lite7; @include background-gradient($lite8, $lite6); @include css3(box-shadow, 0 1px 3px $lite0); padding:8px 16px; height:36px; @include css3(border-radius, 16px 16px 0 0); position:relative; z-index:1;
+  @media (max-width:$width-mobile) { padding:6px 12px; @include css3(border-radius, 0); }
   * { display:inline; color:$dark1; text-shadow:0 1px 1px $lite8; }
   a { color:$dark3;
     &:hover { text-shadow:0 1px 1px $lite7, 0 0 9px $lite9; }
@@ -45,7 +45,7 @@ hgroup#branding { background:$lite7; @include linear-gradient($lite8, $lite6); @
 }
 
 @mixin header-pit {
-  background:$lite7; border-bottom:1px solid $lite8; @include box-shadow(0, -1px, 1px, $lite0); @include border-radius(8px);
+  background:$lite7; border-bottom:1px solid $lite8; @include css3(box-shadow, inset 0 1px 1px $lite0); @include css3(border-radius, 8px);
 }
 nav#site { position:absolute; top:15px; right:16px; z-index:1;
   @media (max-width:$width-mobile) { top:12px; right:12px; }
@@ -57,7 +57,7 @@ nav#site { position:absolute; top:15px; right:16px; z-index:1;
   ul li { float:left; }
 }
 
-article#main { margin:0 1px; border-bottom:none; padding:12px 15px; background:$lite9; color:$dark1; @include box-shadow(0, -1px, 3px, $dark0); overflow:hidden;
+article#main { margin:0 1px; border-bottom:none; padding:12px 15px; background:$lite9; color:$dark1; @include css3(box-shadow, 0 -1px 3px $dark0); overflow:hidden;
   @media (max-width:$width-mobile) { padding:12px 11px; }
   a { color:$dark4; }
 
@@ -97,13 +97,13 @@ article#main { margin:0 1px; border-bottom:none; padding:12px 15px; background:$
     section { clear:both; float:left; }
     li { float:left; }
     a { display:block; padding:3px 6px;
-      img.thumb { min-width:45px; height:75px; padding:3px; @include box-shadow(0, 2px, 7px, $lite0); @include transition(all 0.2s);}
-      &:hover img.thumb { @include transform(scale(1.15)); }
+      img.thumb { min-width:45px; height:75px; padding:3px; @include css3(box-shadow, 0 2px 7px $lite0); @include css3(transition, all 0.2s);}
+      &:hover img.thumb { @include css3(transform, scale(1.15)); }
     }
   }
 }
 
-footer#legal { font:12px Andale Mono, monospace; margin:0 1px; padding:16px 15px 48px; text-align:center; @include linear-gradient(rgba($lite9, 0.1), rgba($lite9, 0));
+footer#legal { font:12px Andale Mono, monospace; margin:0 1px; padding:16px 15px 48px; text-align:center; @include background-gradient(rgba($lite9, 0.1), rgba($lite9, 0));
   #license { margin-top:8px; }
   a { white-space:nowrap; text-decoration:underline;
     &:hover { color:$lite9; }
@@ -134,10 +134,10 @@ footer#legal { font:12px Andale Mono, monospace; margin:0 1px; padding:16px 15px
   aside#contact { position:absolute; bottom:100%; margin-bottom:-46px; right:10px; white-space:nowrap;
     a { display:block; color:$dark1; font-weight:bold; padding:4px; }
 
-    ul { position:relative; padding:8px; background:$lite6; @include border-radius(0 0 12px 12px); @include box-shadow(0, 1px, 3px, $lite0); @include transition(margin-bottom 0.3s); }
+    ul { position:relative; padding:8px; background:$lite6; @include css3(border-radius, 0 0 12px 12px); @include css3(box-shadow, 0 1px 3px $lite0); @include css3(transition, margin-bottom 0.3s); }
     &.active ul { margin-bottom:-100%; }
     @media (min-width:$width-hori-contact) { top:7px; bottom:auto; right:3px; z-index:-1;
-      ul { @include border-radius(0 12px 12px 0); @include transition(left 0.3s); }
+      ul { @include css3(border-radius, 0 12px 12px 0); @include css3(transition, left 0.3s); }
       &.active ul { left:100%; margin:0; }
     }
     @media (max-width:$width-mobile) { margin-bottom:-42px; right:8px; }
