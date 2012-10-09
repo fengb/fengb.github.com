@@ -26,7 +26,7 @@ article, hgroup, nav, aside, section { display:block; }
 a:hover { text-decoration:underline; }
 
 $html-padding-vert:12px;
-html { color:$lite8; font:16px 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width:790px; margin:0 auto; padding:$html-padding-vert 8px 0; height:100%; @include linear-gradient($dark1, $dark2); background-repeat:repeat-x; height:100%; @include box-sizing(border-box);
+html { color:desaturate($lite8, 50%); font:16px 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width:790px; margin:0 auto; padding:$html-padding-vert 8px 0; height:100%; @include linear-gradient($dark1, $dark2); background-repeat:repeat-x; height:100%; @include box-sizing(border-box);
   @media (max-width:$width-mobile) { margin:0; padding:0; }
 }
 body { position:relative; }
@@ -103,7 +103,7 @@ article#main { margin:0 1px; border-bottom:none; padding:12px 15px; background:$
   }
 }
 
-footer#legal { font:12px Andale Mono, monospace; margin:0 1px; padding:16px 15px 48px; color:$lite8; text-align:center; @include linear-gradient(rgba($lite9, 0.1), rgba($lite9, 0));
+footer#legal { font:12px Andale Mono, monospace; margin:0 1px; padding:16px 15px 48px; text-align:center; @include linear-gradient(rgba($lite9, 0.1), rgba($lite9, 0));
   #license { margin-top:8px; }
   a { white-space:nowrap; text-decoration:underline;
     &:hover { color:$lite9; }
