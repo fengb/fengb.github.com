@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/fengb/html_pretty.git
+  revision: af9b990e3c53e420c564eb829de5998565e89023
+  specs:
+    html_pretty (0.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -28,5 +34,6 @@ PLATFORMS
 
 DEPENDENCIES
   chunky_png
+  html_pretty!
   jekyll
   sass

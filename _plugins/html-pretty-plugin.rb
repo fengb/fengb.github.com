@@ -19,44 +19,14 @@
 # SOFTWARE.
 
 
-module HtmlPretty
-  # Not a real parser.  Only detects start/end tags maybe correctly...
-  # Requires XML syntax (close all tags)
-  # Self rolled because other prettifiers have weird problems
-  def self.fake_tidy(html)
-    html = html.gsub(/^\s+/, '')        # quash opening whitespace
-    html = html.gsub(/\s+$/, '')        # quash closing whitespace
-    html = html.gsub(/\n+/, "\n")       # quash blank lines
-    html = html.gsub(/[ \t]+/, ' ')     # collapse all whitespace
-    html = html.gsub(/< +/, '<')        # remove whitespace from start bracket
-    html = html.gsub(/ +>/, '>')        # remove whitespace from end bracket
+require 'html_pretty'
 
-    indent = 0
-    html.map do |line|
-      if line.start_with?('<!') || line =~ /<html.*ie/
-        line                            # Comments should have no alignment
-      elsif line.start_with?('</')
-        indent -= 1
-        "  " * indent + line
-      elsif line.end_with?("/>\n") ||   # <self-close />
-            line =~ /<\/[^>]*>/ ||      # <tail>end</tail>
-            line !~ /</                 # simple line
-        "  " * indent + line
-      else
-        indent += 1
-        val = "  " * (indent - 1) + line
-      end
-    end.join
-  end
-end
 
-if defined?(Jekyll)
-  module Jekyll
-    class Page
-      alias_method :old_output, :output
-      def output
-        ext =~ /.html$/ ? ::HtmlPretty.fake_tidy(old_output) : old_output
-      end
+module Jekyll
+  class Page
+    alias_method :old_output, :output
+    def output
+      ext =~ /.html$/ ? ::HtmlPretty.run(old_output) : old_output
     end
   end
 end
