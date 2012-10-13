@@ -57,7 +57,7 @@ nav#site { position:absolute; top:15px; right:16px; z-index:1;
   ul li { float:left; }
 }
 
-article#main { margin:0 1px; border-bottom:none; padding:12px 15px; background:$lite9; color:$dark1; @include css3(box-shadow, 0 -1px 3px $dark0); overflow:hidden;
+article#main { margin:0 1px; min-height:100px; padding:12px 15px; background:$lite9; color:$dark1; @include css3(box-shadow, 0 -1px 3px $dark0); overflow:hidden; position:relative;
   @media (max-width:$width-mobile) { padding:12px 11px; }
   a { color:$dark4; }
 
@@ -99,6 +99,13 @@ article#main { margin:0 1px; border-bottom:none; padding:12px 15px; background:$
     a { display:block; padding:3px 6px;
       img.thumb { min-width:45px; height:75px; padding:3px; @include css3(box-shadow, 0 2px 7px $lite0); @include css3(transition, all 0.2s);}
       &:hover img.thumb { @include css3(transform, scale(1.15)); }
+    }
+  }
+
+  body#e404 & { text-align:center;
+    p { display:inline-block; margin-top:40px; font:24px Arial,sans-serif; cursor:default;
+      span { position:relative; @include css3(transition, all 0.5s); }
+      &:hover span { top:-5px; }
     }
   }
 }
