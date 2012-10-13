@@ -31,7 +31,7 @@
     <nav id='site'>
       <ul>
         {% for item in site.pages %}
-          {% if item.title %}
+          {% if item.link_attrs %}
             <li class='{{ item.title | downcase }}'><a {% if item.title == page.title %}class='active'{% endif %} href='{{ item.url }}' {{ item.link_attrs }}>{{ item.title }}</a></li>
           {% endif %}
         {% endfor %}
