@@ -22,7 +22,7 @@
     <title>fengb{% if page.title %} &rarr; {{ page.title }}{% endif %}</title>
     <script>{% if page.script_inject %}{{ page.script_inject }}{% endif %}document.documentElement.className='js'</script>
   </head>
-  <body {% if page.title %}id='{{ page.title | downcase }}'{% endif %}>
+  <body {% if page.class %}id='{{ page.class }}'{% elsif page.title %}id='{{ page.title | downcase }}'{% endif %}>
     <hgroup id='branding'>
       <h1><a href='/'>fengb</a></h1>
       {% if page.title %}<h2>{{ page.title }}</h2>{% endif %}
