@@ -3,7 +3,7 @@
   -moz-#{$attr}:$vals;
   -ms-#{$attr}:$vals;
   -o-#{$attr}:$vals;
-  $attr:$vals;
+  #{$attr}:$vals;
 }
 
 @mixin background-gradient($from, $to) {
