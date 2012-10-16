@@ -140,7 +140,7 @@ footer#legal { font:12px Andale Mono, monospace; margin:0 2px; padding:16px 15px
   }
 
   /* Hack to hide hanging top element */
-  hgroup#branding:before { content:''; display:block; height:$html-padding-vert; left:0; right:0; top:-$html-padding-vert; position:absolute; background:$dark1; }
+  body:before { content:''; position:absolute; display:block; top:-$html-padding-vert; left:0; right:0; bottom:100%; background:$dark1; z-index:2; }
 
   aside#contact { position:absolute; bottom:100%; margin-bottom:-46px; right:10px; white-space:nowrap;
     a { display:block; color:$dark1; font-weight:bold; padding:4px; }
