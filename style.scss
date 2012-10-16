@@ -35,7 +35,7 @@ hgroup#branding { padding:8px 16px; height:36px; border:1px solid $lite0; backgr
   @media (max-width:$width-mobile) { padding:6px 12px; @include css3(border-radius, 0); }
   * { display:inline; color:$dark1; text-shadow:0 1px 1px $lite8; }
   a { color:$dark3;
-    &:hover { text-shadow:0 1px 1px $lite7, 0 0 9px $lite9; }
+    &:hover { color:$dark2; }
   }
   h1 { font-size:30px; }
   h2 { font-size:24px;
@@ -59,7 +59,9 @@ nav#site { position:absolute; top:15px; right:16px; z-index:1;
 
 article#main { margin:0 1px; min-height:100px; padding:12px 15px; border-left:1px solid $lite0; border-right:1px solid $lite0; background:$lite9; color:$dark1; @include css3(box-shadow, 0 -3px 5px rgba($lite0,0.8)); overflow:hidden; position:relative;
   @media (max-width:$width-mobile) { padding:12px 11px; }
-  a { color:$dark4; }
+  a { color:$dark4;
+    &:hover { color:$dark3; }
+  }
 
   header { margin:8px 0 24px; text-align:center;
     h1 { font-size:24px; }
@@ -97,8 +99,8 @@ article#main { margin:0 1px; min-height:100px; padding:12px 15px; border-left:1p
     section { clear:both; float:left; }
     li { float:left; }
     a { display:block; padding:3px 6px;
-      img.thumb { min-width:45px; height:75px; padding:3px; @include css3(box-shadow, 0 2px 7px $lite0); @include css3(transition, all 0.2s);}
-      &:hover img.thumb { @include css3(transform, scale(1.15)); }
+      img.thumb { display:block; min-width:45px; height:75px; padding:3px; border:2px solid $dark4; @include css3(transition, all 0.2s);}
+      &:hover img.thumb { margin:-1px; border:3px solid $dark3; @include css3(box-shadow, 0 2px 7px $lite0); @include css3(transform, scale(1.15)); }
     }
   }
 
@@ -143,7 +145,9 @@ footer#legal { font:12px Andale Mono, monospace; margin:0 2px; padding:16px 15px
   body:before { content:''; position:absolute; display:block; top:-$html-padding-vert; left:0; right:0; bottom:100%; background:$dark1; z-index:2; }
 
   aside#contact { position:absolute; bottom:100%; margin-bottom:-46px; right:10px; white-space:nowrap;
-    a { display:block; color:$dark1; font-weight:bold; padding:4px; }
+    a { display:block; color:$dark1; font-weight:bold; padding:4px;
+      &:hover { color:$dark2; }
+    }
 
     ul { position:relative; padding:8px; background:$lite6; border:1px solid $lite0; @include css3(border-radius, 0 0 12px 12px); @include css3(box-shadow, 0 1px 2px rgba($lite0, 0.8)); @include css3(transition, margin-bottom 0.3s); }
     &.active ul { margin-bottom:-100%; }
