@@ -26,12 +26,12 @@ article, hgroup, nav, aside, section { display:block; }
 a:hover { text-decoration:underline; }
 
 $html-padding-vert:12px;
-html { color:desaturate($lite8, 50%); font:16px 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width:790px; margin:0 auto; padding:$html-padding-vert 8px 0; height:100%; background:$dark2 repeat-x; @include background-gradient($dark1, $dark2); height:100%; @include css3(box-sizing, border-box);
+html { color:desaturate($lite8, 50%); font:16px 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width:790px; margin:0 auto; padding:$html-padding-vert 8px 0; min-height:100%; background:$dark1 repeat-x; @include background-gradient($dark1, $dark2); @include css3(box-sizing, border-box);
   @media (max-width:$width-mobile) { margin:0; padding:0; }
 }
 body { position:relative; }
 
-hgroup#branding { padding:8px 16px; height:36px; border:1px solid $lite0; background:$lite7; @include background-gradient($lite8, $lite6); @include css3(box-shadow, 0 0 5px $lite0); @include css3(border-radius, 16px 16px 0 0); position:relative; z-index:1;
+hgroup#branding { padding:8px 16px; height:36px; border:1px solid $lite0; background:$lite6; @include background-gradient($lite8, $lite6); @include css3(box-shadow, 0 0 5px $lite0); @include css3(border-radius, 16px 16px 0 0); position:relative; z-index:1;
   @media (max-width:$width-mobile) { padding:6px 12px; @include css3(border-radius, 0); }
   * { display:inline; color:$dark1; text-shadow:0 1px 1px $lite8; }
   a { color:$dark3;
