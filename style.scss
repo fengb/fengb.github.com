@@ -26,16 +26,16 @@ article, hgroup, nav, aside, section { display:block; }
 a:hover { text-decoration:underline; }
 
 $html-padding-vert:12px;
-html { color:desaturate($lite8, 50%); font:16px 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width:790px; margin:0 auto; padding:$html-padding-vert 8px 0; height:100%; background:$dark2 repeat-x; @include background-gradient($dark1, $dark2); height:100%; @include css3(box-sizing, border-box);
+html { color:desaturate($lite8, 50%); font:16px 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width:790px; margin:0 auto; padding:$html-padding-vert 8px 0; min-height:100%; background:$dark1 repeat-x; @include background-gradient($dark1, $dark2); @include vendor(box-sizing, border-box);
   @media (max-width:$width-mobile) { margin:0; padding:0; }
 }
 body { position:relative; }
 
-hgroup#branding { background:$lite7; @include background-gradient($lite8, $lite6); @include css3(box-shadow, 0 1px 3px $lite0); padding:8px 16px; height:36px; @include css3(border-radius, 16px 16px 0 0); position:relative; z-index:1;
-  @media (max-width:$width-mobile) { padding:6px 12px; @include css3(border-radius, 0); }
-  * { display:inline; color:$dark1; @include css3(text-shadow, 0 1px 1px $lite8); }
+hgroup#branding { padding:8px 16px; height:36px; border:1px solid $lite0; background:$lite6; @include background-gradient($lite8, $lite6); @include vendor(box-shadow, 0 0 5px rgba($lite0,0.8)); @include vendor(border-radius, 16px 16px 0 0); position:relative; z-index:1;
+  @media (max-width:$width-mobile) { padding:6px 12px; @include vendor(border-radius, 0); }
+  * { display:inline; color:$dark1; @include vendor(text-shadow, 0 1px 1px $lite8); }
   a { color:$dark3;
-    &:hover { @include css3(text-shadow, 0 1px 1px $lite7, 0 0 9px $lite9); }
+    &:hover { color:$dark2; }
   }
   h1 { font-size:30px; }
   h2 { font-size:24px;
@@ -45,21 +45,23 @@ hgroup#branding { background:$lite7; @include background-gradient($lite8, $lite6
 }
 
 @mixin header-pit {
-  background:$lite7; border-bottom:1px solid $lite8; @include css3(box-shadow, inset 0 1px 1px $lite0); @include css3(border-radius, 8px);
+  background:$lite7; border-bottom:1px solid $lite8; @include vendor(box-shadow, inset 0 1px 1px $lite0); @include vendor(border-radius, 8px);
 }
 nav#site { position:absolute; top:15px; right:16px; z-index:1;
   @media (max-width:$width-mobile) { top:12px; right:12px; }
   ul { overflow:hidden; @include header-pit; padding:0 4px; }
-  a { display:block; padding:0 5px; height:26px; line-height:26px; color:$lite8; font-weight:bold; @include css3(text-shadow, 0 0 3px $lite0, 0 1px 1px $lite0);
-    &.active { @include css3(text-shadow, 0 0 7px $lite0, 0 1px 5px $lite0, 0 1px 3px $lite0); }
+  a { display:block; padding:0 5px; height:26px; line-height:26px; color:$lite8; font-weight:bold; @include vendor(text-shadow, 0 0 3px $lite0, 0 1px 1px $lite0);
+    &.active { @include vendor(text-shadow, 0 0 7px $lite0, 0 1px 5px $lite0, 0 1px 3px $lite0); }
     &:hover { text-decoration:none; color:$lite9; }
   }
   ul li { float:left; }
 }
 
-article#main { margin:0 1px; min-height:100px; padding:12px 15px; background:$lite9; color:$dark1; @include css3(box-shadow, 0 -1px 3px $dark0); overflow:hidden; position:relative;
+article#main { margin:0 1px; min-height:100px; padding:12px 15px; border-left:1px solid $lite0; border-right:1px solid $lite0; background:$lite9; color:$dark1; @include vendor(box-shadow, 0 -3px 5px rgba($lite0,0.8)); overflow:hidden; position:relative;
   @media (max-width:$width-mobile) { padding:12px 11px; }
-  a { color:$dark4; }
+  a { color:$dark4;
+    &:hover { color:$dark3; }
+  }
 
   header { margin:8px 0 24px; text-align:center;
     h1 { font-size:24px; }
@@ -97,25 +99,25 @@ article#main { margin:0 1px; min-height:100px; padding:12px 15px; background:$li
     section { clear:both; float:left; }
     li { float:left; }
     a { display:block; padding:3px 6px;
-      img.thumb { min-width:45px; height:75px; padding:3px; @include css3(box-shadow, 0 2px 7px $lite0); @include css3(transition, all 0.2s);}
-      &:hover img.thumb { @include css3(transform, scale(1.15)); }
+      img.thumb { display:block; min-width:45px; height:75px; padding:3px; border:2px solid $dark4; @include vendor-vals(transition, transform 0.2s);}
+      &:hover img.thumb { margin:-1px; border:3px solid $dark3; @include vendor(box-shadow, 0 2px 7px $lite0); @include vendor(transform, scale(1.15)); }
     }
   }
 
   body#e404 & { text-align:center;
     p { display:inline-block; margin-top:40px; font:24px Arial,sans-serif; cursor:default; position:relative;
-      span.arm { position:absolute; top:6px; white-space:nowrap; @include css3(transition, all 0.3s);
-        &.left { right:100%; margin-right:-1px; @include css3(transform-origin, 100% 100%); }
-        &.right { left:100%; @include css3(transform-origin, 0% 100%); }
+      span.arm { position:absolute; top:6px; white-space:nowrap; @include vendor(transition, all 0.3s);
+        &.left { right:100%; margin-right:-1px; @include vendor(transform-origin, 100% 100%); }
+        &.right { left:100%; @include vendor(transform-origin, 0% 100%); }
       }
       span.left.eye { vertical-align:4px; font-size:90%; }
-      &:hover span.left.arm { @include css3(transform, rotate(-20deg)); }
-      &:hover span.right.arm { @include css3(transform, rotate(20deg)); }
+      &:hover span.left.arm { @include vendor(transform, rotate(-20deg)); }
+      &:hover span.right.arm { @include vendor(transform, rotate(20deg)); }
     }
   }
 }
 
-footer#legal { font:12px Andale Mono, monospace; margin:0 1px; padding:16px 15px 48px; text-align:center; @include background-gradient(rgba($lite9, 0.1), rgba($lite9, 0));
+footer#legal { font:12px Andale Mono, monospace; margin:0 2px; padding:16px 15px 48px; text-align:center; @include background-gradient(rgba($lite9, 0.1), rgba($lite9, 0));
   #license { margin-top:8px; }
   a { white-space:nowrap; text-decoration:underline;
     &:hover { color:$lite9; }
@@ -141,15 +143,17 @@ footer#legal { font:12px Andale Mono, monospace; margin:0 1px; padding:16px 15px
   }
 
   /* Hack to hide hanging top element */
-  hgroup#branding:before { content:''; display:block; height:$html-padding-vert; left:0; right:0; top:-$html-padding-vert; position:absolute; background:$dark1; }
+  body:before { content:''; position:absolute; display:block; top:-$html-padding-vert; left:0; right:0; bottom:100%; background:$dark1; z-index:2; }
 
   aside#contact { position:absolute; bottom:100%; margin-bottom:-46px; right:10px; white-space:nowrap;
-    a { display:block; color:$dark1; font-weight:bold; padding:4px; }
+    a { display:block; color:$dark1; font-weight:bold; padding:4px;
+      &:hover { color:$dark2; }
+    }
 
-    ul { position:relative; padding:8px; background:$lite6; @include css3(border-radius, 0 0 12px 12px); @include css3(box-shadow, 0 1px 3px $lite0); @include css3(transition, margin-bottom 0.3s); }
+    ul { position:relative; padding:8px; background:$lite6; border:1px solid $lite0; @include vendor(border-radius, 0 0 12px 12px); @include vendor(box-shadow, 0 1px 2px rgba($lite0, 0.8)); @include vendor(transition, margin-bottom 0.3s); }
     &.active ul { margin-bottom:-100%; }
     @media (min-width:$width-hori-contact) { top:7px; bottom:auto; right:3px; z-index:-1;
-      ul { @include css3(border-radius, 0 12px 12px 0); @include css3(transition, left 0.3s); }
+      ul { @include vendor(border-radius, 0 12px 12px 0); @include vendor(transition, left 0.3s); }
       &.active ul { left:100%; margin:0; }
     }
     @media (max-width:$width-mobile) { margin-bottom:-42px; right:8px; }
