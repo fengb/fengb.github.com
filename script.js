@@ -9,7 +9,7 @@
 
   /* On document.ready to let browsers report load completion */
   $(document).ready(function() {
-    $('.portfolio [href$=png]').each(function(i, e) {
+    $('body#portfolio [href$=png]').each(function(i, e) {
       var img = new Image();
       img.src = e.href;
     });
