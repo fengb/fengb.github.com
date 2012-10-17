@@ -39,7 +39,7 @@ html {
   padding: 0 8px;
   min-height: 100%;
   font: 16px 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background: $dark1 repeat-x;
+  background: $dark1;
   @include background-gradient($dark1, $dark2);
 
   @media (max-width: $width-mobile) { padding: 0; }
@@ -68,6 +68,7 @@ hgroup#branding {
 
   @media (max-width: $width-mobile) {
     padding: 6px 12px;
+    border-width: 0 0 1px;
     @include vendor(border-radius, 0);
   }
 
@@ -144,7 +145,10 @@ article#main {
   color: $dark1;
   @include vendor(box-shadow, 0 -3px 5px rgba($lite0, 0.8));
 
-  @media (max-width: $width-mobile) { padding: 12px 11px; }
+  @media (max-width: $width-mobile) {
+    padding: 12px 11px;
+    border: none;
+  }
 
   a {
     color: $dark4;
