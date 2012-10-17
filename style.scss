@@ -244,7 +244,7 @@ article#main {
         height: 75px;
         padding: 3px;
         border: 2px solid $dark4;
-        @include vendor-vals(transition, transform 0.2s);
+        @include vendor-vals(transition, transform 0.2s, box-shadow 0.2s);
       }
 
       &:hover img.thumb {
