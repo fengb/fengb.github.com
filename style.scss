@@ -171,6 +171,7 @@ article#main {
       text-align: right;
       font-size: 24px;
       font-variant: small-caps;
+
       @media screen and (max-width: 750px) {
         float: none;
         margin-left: -12px;
@@ -226,17 +227,21 @@ article#main {
   }
 
   body#portfolio & {
-    ul:after {
-      content: '';
-      display: block;
-      clear: both;
+    ul {
+      margin: 0 -5px;
+
+      &:after {
+        content: '';
+        display: block;
+        clear: both;
+      }
     }
 
     li { float: left; }
 
     a {
       display: block;
-      padding: 3px 6px;
+      padding: 4px 5px;
 
       img.thumb {
         display: block;
