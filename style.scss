@@ -16,7 +16,7 @@ $lite7: lighten($lite6, 16%);
 $lite8: lighten($lite6, 32%);
 $lite9: lighten($lite6, 46%);
 
-$width-hori-contact: 1080px;
+$width-hori-contact: 1270px;
 $width-mobile: 750px;
 
 article, hgroup, nav, aside, section { display: block; }
@@ -34,7 +34,7 @@ h1, h2, h3, h4, h5, h6 { font-weight: bold; }
 a:hover { text-decoration: underline; }
 
 html {
-  max-width: 770px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 0 8px;
   min-height: 100%;
