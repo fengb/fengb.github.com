@@ -18,6 +18,8 @@
 }
 
 @mixin background-gradient($from, $to) {
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, $from), color-stop(1, $to));
+
   @each $vendor in webkit, moz, ms, o {
     background-image:-#{$vendor}-linear-gradient(top, $from, $to);
   }
