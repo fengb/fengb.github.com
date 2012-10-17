@@ -23,3 +23,8 @@
   }
   background-image:linear-gradient(top, bottom, $from, $to);
 }
+
+@mixin fake-element {
+  content: '';
+  display: block;
+}

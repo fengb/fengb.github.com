@@ -1,7 +1,7 @@
 ---
 Comment: "Please note that Jekyll will only convert files that also have a YAML header at the top."
 ---
-@import 'css3';
+@import 'util';
 
 $dark3: #435c96;
 $dark4: lighten($dark3, 15%);
@@ -33,20 +33,25 @@ h1, h2, h3, h4, h5, h6 { font-weight: bold; }
 
 a:hover { text-decoration: underline; }
 
-$html-padding-vert: 12px;
 html {
-  max-width: 790px;
+  max-width: 770px;
   margin: 0 auto;
-  padding: $html-padding-vert 8px 0;
+  padding: 0 8px;
   min-height: 100%;
   font: 16px 'Helvetica Neue', Helvetica, Arial, sans-serif;
   background: $dark1 repeat-x;
   @include background-gradient($dark1, $dark2);
-  @include vendor(box-sizing, border-box);
 
-  @media (max-width: $width-mobile) { margin: 0; padding: 0; }
+  @media (max-width: $width-mobile) { padding: 0; }
 }
-body { position: relative; }
+
+$body-margin-vert: 12px;
+body {
+  position: relative;
+  margin-top: $body-margin-vert;
+
+  @media (max-width: $width-mobile) { margin: 0; }
+}
 
 hgroup#branding {
   position: relative;
@@ -227,8 +232,7 @@ article#main {
 
   body#portfolio & {
     ul:after {
-      content: '';
-      display: block;
+      @include fake-element;
       clear: both;
     }
 
@@ -355,10 +359,9 @@ footer#legal {
 
   /* Hack to hide hanging top element */
   body:before {
-    content: '';
+    @include fake-element;
     position: absolute;
-    display: block;
-    top: -$html-padding-vert;
+    top: -$body-margin-vert;
     left: 0;
     right: 0;
     bottom: 100%;
