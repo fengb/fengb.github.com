@@ -373,7 +373,7 @@ footer#legal {
 
   aside#contact {
     position: absolute;
-    top: 46px;
+    top: 54px;
     right: 7px;
     overflow: hidden;
     white-space: nowrap;
@@ -391,14 +391,14 @@ footer#legal {
     ul {
       float: left;
       padding: 8px;
-      background: $lite6;
       border: 1px solid $lite0;
       margin-top: -100%;
+      background: $lite6;
       @include vendor(border-radius, 0 0 12px 12px);
       @include vendor(box-shadow, 0 1px 2px rgba($lite0, 0.8));
-      @include vendor(transition, margin-top 0.3s);
+      @include vendor(transition, padding-top 0.3s);
     }
-    &.active ul { margin: 0; }
+    &.active ul { padding-top: 100%; }
 
     @media (min-width: $width-hori-contact) {
       top: 7px;
@@ -408,10 +408,12 @@ footer#legal {
       z-index: -1;
 
       ul {
+        position: relative;
         margin: 0 0 0 -100%;
         @include vendor(border-radius, 0 12px 12px 0);
-        @include vendor(transition, margin-left 0.3s);
+        @include vendor(transition, left 0.3s);
       }
+      &.active ul { padding-top: 8px; left: 100%; }
     }
 
     @media (max-width: $width-mobile) { right: 4px; }
