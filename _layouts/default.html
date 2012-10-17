@@ -13,6 +13,11 @@
 <!--<![endif]-->
   <head>
     <meta charset='utf-8' />
+    <link rel='stylesheet' media='all' href='style.css' />
+    <link rel='stylesheet' media='print' href='print.css' />
+    <meta name='viewport' content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <title>fengb{% if page.title %} &rarr; {{ page.title }}{% endif %}</title>
+    <script>{% if page.script_inject %}{{ page.script_inject }}{% endif %}document.documentElement.className='js'</script>
     <!--[if lt IE 9]>
       {% if site.url %}
         <script src='//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6/html5shiv.min.js'></script>
@@ -20,11 +25,6 @@
         <script src='html5shiv-printshiv.js'></script>
       {% endif %}
     <![endif]-->
-    <link rel='stylesheet' media='all' href='style.css' />
-    <link rel='stylesheet' media='print' href='print.css' />
-    <meta name='viewport' content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <title>fengb{% if page.title %} &rarr; {{ page.title }}{% endif %}</title>
-    <script>{% if page.script_inject %}{{ page.script_inject }}{% endif %}document.documentElement.className='js'</script>
   </head>
   <body {% if page.class %}id='{{ page.class }}'{% elsif page.title %}id='{{ page.title | downcase }}'{% endif %}>
     <hgroup id='branding'>
