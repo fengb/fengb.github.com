@@ -99,7 +99,7 @@ article#main { margin:0 1px; min-height:100px; padding:12px 15px; border-left:1p
     section { clear:both; float:left; }
     li { float:left; }
     a { display:block; padding:3px 6px;
-      img.thumb { display:block; min-width:45px; height:75px; padding:3px; border:2px solid $dark4; @include vendor(transition, all 0.2s);}
+      img.thumb { display:block; min-width:45px; height:75px; padding:3px; border:2px solid $dark4; @include vendor-vals(transition, transform 0.2s);}
       &:hover img.thumb { margin:-1px; border:3px solid $dark3; @include vendor(box-shadow, 0 2px 7px $lite0); @include vendor(transform, scale(1.15)); }
     }
   }
