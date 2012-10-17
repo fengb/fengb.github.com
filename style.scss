@@ -21,7 +21,7 @@ $width-mobile: 750px;
 
 article, hgroup, nav, aside, section { display: block; }
 
-h1, h2, h3, h4, h5, h6 { font-weight: bold; }
+h1, h2 { font-weight: bold; }
 * {
   margin: 0;
   padding: 0;
@@ -151,6 +151,7 @@ article#main {
   }
 
   a {
+    font-weight: bold;
     color: $dark4;
     &:hover { color: $dark3; }
   }
@@ -219,7 +220,6 @@ article#main {
 
       h3 {
         font-size: 14px;
-        font-weight: normal;
       }
 
       .duration {
