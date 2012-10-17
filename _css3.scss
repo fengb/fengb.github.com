@@ -1,15 +1,13 @@
-@mixin css3($attr, $vals...) {
-  -webkit-#{$attr}:$vals;
-  -moz-#{$attr}:$vals;
-  -ms-#{$attr}:$vals;
-  -o-#{$attr}:$vals;
+@mixin vendor($attr, $vals...) {
+  @each $vendor in webkit, moz, ms, o {
+    -#{$vendor}-#{$attr}:$vals;
+  }
   $attr:$vals;
 }
 
 @mixin background-gradient($from, $to) {
-  background-image:-webkit-linear-gradient(top, $from, $to);
-  background-image:-moz-linear-gradient(top, $from, $to);
-  background-image:-ms-linear-gradient(top, $from, $to);
-  background-image:-o-linear-gradient(top, $from, $to);
+  @each $vendor in webkit, moz, ms, o {
+    background-image:-#{$vendor}-linear-gradient(top, $from, $to);
+  }
   background-image:linear-gradient(top, bottom, $from, $to);
 }
