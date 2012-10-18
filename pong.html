@@ -4,14 +4,26 @@ title: Pong
 tail: |
   <script>
     (function() {
+      function complex(real, imag) {
+        return {
+          real: real,
+          imag: imag,
+          mag: Math.sqrt(real*real + imag*imag),
+          dir: Math.atan(imag / real)
+        };
+      }
+
       var $ball = $('<div class="ball" />').appendTo('#field');
-      var pos = [0, 0];
-      $ball.css({left: 0, top: 0});
+      $ball.move = function(c) {
+        $ball.css({left: c.real, top: c.imag});
+      }
+      var pos = complex(0, 0);
+      $ball.move(pos);
 
       setInterval(function() {
-        pos[0] += 1;
-        pos[1] += 1;
-        $ball.css({left: pos[0], top: pos[1]});
+        pos.real += 1;
+        pos.imag += 1;
+        $ball.move(pos);
       }, 100);
     })();
   </script>
