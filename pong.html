@@ -60,13 +60,13 @@ tail: |
         return this;
       },
 
-      addSelf: function(c) {
+      sAdd: function(c) {
         this.real += c.real;
         this.imag += c.imag;
         return this.recalcPolar();
       },
 
-      multSelf: function(c) {
+      sMult: function(c) {
         if(c.dir) {
           this.mag *= c.mag;
           this.dir += c.dir;
@@ -80,8 +80,18 @@ tail: |
         }
       },
 
+      sReflectReal: function(c) {
+        this.real = -this.real;
+        return this;
+      },
+
+      sReflectImag: function(c) {
+        this.imag = -this.imag;
+        return this;
+      },
+
       mult: function(c) {
-        return this.clone().multSelf(c);
+        return this.clone().sMult(c);
       }
     });
 
@@ -92,21 +102,24 @@ tail: |
 
       var $ball = $('<div class="ball" />').appendTo($field);
       $ball.pos = Complex.rect(0, 0);
-      $ball.vel = Complex.polar(20, -Math.PI/3);
+      $ball.vel = Complex.polar(200, -Math.PI/3);
 
-      $ball.css({width:      ballsize,     height: ballsize,
-                 marginLeft: ballsize/2,   marginTop: ballsize/2,
-                 left:       fieldwidth/2, top: fieldheight/2});
+      $ball.css({width:      ballsize,      height: ballsize,
+                 marginLeft: -ballsize/2,   marginTop: -ballsize/2,
+                 left:       fieldwidth/2,  top: fieldheight/2});
 
       var prev = +new Date();
       function step() {
+        if(Math.abs($ball.pos.real) > fieldwidth/2 - ballsize/2) { $ball.vel.sReflectReal(); }
+        if(Math.abs($ball.pos.imag) > fieldheight/2 - ballsize/2) { $ball.vel.sReflectImag(); }
+
         var curr = +new Date();
-        $ball.pos.addSelf($ball.vel.mult((curr - prev)/1000));
+        $ball.pos.sAdd($ball.vel.mult((curr - prev)/1000));
         $ball.css({left: fieldwidth/2 + $ball.pos.real, top: fieldheight/2 - $ball.pos.imag});
         prev = curr;
       }
 
-      setInterval(step, 100);
+      setInterval(step, 10);
     }
 
     pong('#field', 400, 400, 10);
