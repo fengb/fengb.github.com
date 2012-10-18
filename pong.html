@@ -4,7 +4,7 @@ title: Pong
 tail: |
   <script>
     (function() {
-      var $ball = $('<div class="ball" />').appendTo('#main');
+      var $ball = $('<div class="ball" />').appendTo('#field');
       var pos = [0, 0];
       $ball.css({left: 0, top: 0});
 
@@ -17,3 +17,4 @@ tail: |
   </script>
 ---
 <noscript>NO PONG 4U</noscript>
+<div id='field'></div>
