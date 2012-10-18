@@ -26,18 +26,17 @@ tail: |
 
       var $ball = $('<div class="ball" />').appendTo($field);
       $ball.pos = complex(0, 0);
+      $ball.vel = complex.fromMagDir(1, -Math.PI/3);
       $ball.draw = function() {
         $ball.css({left: $field.width/2.0 + this.pos.real, top: $field.height/2.0 - this.pos.imag});
       }
-      $ball.translate = function(c) {
-        $ball.pos = $ball.pos.add(c);
+      $ball.step = function() {
+        $ball.pos = $ball.pos.add($ball.vel);
         $ball.draw();
       }
       $ball.draw();
 
-      setInterval(function() {
-        $ball.translate(complex.fromMagDir(1, -Math.PI/3));
-      }, 100);
+      setInterval($ball.step, 100);
     })();
   </script>
 ---
