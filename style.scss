@@ -45,10 +45,9 @@ html {
   @media (max-width: $width-mobile) { padding: 0; }
 }
 
-$body-margin-vert: 12px;
 body {
   position: relative;
-  margin-top: $body-margin-vert;
+  margin-top: 12px;
 
   @media (max-width: $width-mobile) { margin: 0; }
 }
