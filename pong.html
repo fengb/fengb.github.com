@@ -1,0 +1,19 @@
+---
+layout: default
+title: Pong
+tail: |
+  <script>
+    (function() {
+      var $ball = $('<div class="ball" />').appendTo('#main');
+      var pos = [0, 0];
+      $ball.css({left: 0, top: 0});
+
+      setInterval(function() {
+        pos[0] += 1;
+        pos[1] += 1;
+        $ball.css({left: pos[0], top: pos[1]});
+      }, 100);
+    })();
+  </script>
+---
+<noscript>NO PONG 4U</noscript>
