@@ -13,9 +13,12 @@ tail: |
         };
       }
 
-      var $ball = $('<div class="ball" />').appendTo('#field');
+      var $field = $('#field');
+      var $ball = $('<div class="ball" />').appendTo($field);
+      $field.width = $field.css('width').replace('px', '');
+      $field.height = $field.css('height').replace('px', '');
       $ball.move = function(c) {
-        $ball.css({left: c.real, top: c.imag});
+        $ball.css({left: $field.width/2.0 + c.real, top: $field.height/2.0 - c.imag});
       }
       var pos = complex(0, 0);
       $ball.move(pos);
