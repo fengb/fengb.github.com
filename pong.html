@@ -25,27 +25,26 @@ tail: |
   <script>
     (function() {
       /* Yet another complex number implementation. */
-      var complex = {
-        create: function(real, imag, mag, dir) {
-          return {
-            real: real,
-            imag: imag,
-            mag: mag,
-            dir: dir,
-
-            add: function(o) {
-              return complex.create(real + o.real, imag + o.imag);
-            }
-          };
-        },
-
-        rect: function(real, imag) {
-          return this.create(real, imag, Math.sqrt(real*real + imag*imag), Math.atan(imag / real));
-        },
-
-        polar: function(mag, dir) {
-          return this.create(mag*Math.cos(dir), mag*Math.sin(dir), mag, dir);
+      function Complex(real, imag, mag, dir) {
+        if(!(this instanceof Complex)) {
+          return new Complex(real, imag, mag, dir);
         }
+
+        this.real = real;
+        this.imag = imag;
+        this.mag = mag;
+        this.dir = dir;
+      }
+      Complex.prototype.add = function(o) {
+        return new Complex(this.real + o.real, this.imag + o.imag);
+      };
+
+      Complex.rect = function(real, imag) {
+        return new Complex(real, imag, Math.sqrt(real*real + imag*imag), Math.atan(imag / real));
+      };
+
+      Complex.polar = function(mag, dir) {
+        return new Complex(mag*Math.cos(dir), mag*Math.sin(dir), mag, dir);
       };
 
       var $field = $('#field');
@@ -53,8 +52,8 @@ tail: |
       $field.height = $field.css('height').replace('px', '');
 
       var $ball = $('<div class="ball" />').appendTo($field);
-      $ball.pos = complex.rect(0, 0);
-      $ball.vel = complex.polar(1, -Math.PI/3);
+      $ball.pos = Complex.rect(0, 0);
+      $ball.vel = Complex.polar(1, -Math.PI/3);
       $ball.draw = function() {
         $ball.css({left: $field.width/2.0 + this.pos.real, top: $field.height/2.0 - this.pos.imag});
       }
