@@ -23,6 +23,8 @@ layout: default
 title: Pong
 tail: |
   <script>
+    var TAU = 2*Math.PI;
+
     /* Yet another complex number implementation. */
     function Complex(real, imag, mag, dir) {
       if(!(this instanceof Complex)) { return new Complex(real, imag, mag, dir); }
@@ -102,7 +104,7 @@ tail: |
 
       var $ball = $('<div class="ball" />').appendTo($field);
       $ball.pos = Complex.rect(0, 0);
-      $ball.vel = Complex.polar(200, -Math.PI/3);
+      $ball.vel = Complex.polar(200, TAU * (-4/9 + 3/9*Math.random()));
 
       $ball.css({width:      ballsize,      height: ballsize,
                  marginLeft: -ballsize/2,   marginTop: -ballsize/2,
