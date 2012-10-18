@@ -9,24 +9,31 @@ tail: |
           real: real,
           imag: imag,
           mag: Math.sqrt(real*real + imag*imag),
-          dir: Math.atan(imag / real)
+          dir: Math.atan(imag / real),
+
+          add: function(o) {
+            return complex(real + o.real, imag + o.imag);
+          }
         };
       }
 
       var $field = $('#field');
-      var $ball = $('<div class="ball" />').appendTo($field);
       $field.width = $field.css('width').replace('px', '');
       $field.height = $field.css('height').replace('px', '');
-      $ball.move = function(c) {
-        $ball.css({left: $field.width/2.0 + c.real, top: $field.height/2.0 - c.imag});
+
+      var $ball = $('<div class="ball" />').appendTo($field);
+      $ball.pos = complex(0, 0);
+      $ball.draw = function() {
+        $ball.css({left: $field.width/2.0 + this.pos.real, top: $field.height/2.0 - this.pos.imag});
       }
-      var pos = complex(0, 0);
-      $ball.move(pos);
+      $ball.translate = function(c) {
+        $ball.pos = $ball.pos.add(c);
+        $ball.draw();
+      }
+      $ball.draw();
 
       setInterval(function() {
-        pos.real += 1;
-        pos.imag += 1;
-        $ball.move(pos);
+        $ball.translate(complex(1, 1));
       }, 100);
     })();
   </script>
