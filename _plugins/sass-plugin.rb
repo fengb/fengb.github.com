@@ -41,7 +41,7 @@ module Jekyll
 
     def sass_config
       if @sass_config.nil?
-        @sass_config = {:syntax => :scss, :load_paths => ["."]}
+        @sass_config = {:syntax => :scss}
         (@config['sass'] || {}).each do |key, value|
           @sass_config[key.to_sym] = value
         end
