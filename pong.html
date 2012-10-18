@@ -45,6 +45,10 @@ tail: |
       });
 
       $.extend(Complex.prototype, {
+        clone: function() {
+          return new Complex(this.real, this.imag, this.mag, this.dir);
+        },
+
         recalcRect: function() {
           this.real = this.mag*Math.cos(this.dir);
           this.imag = this.mag*Math.sin(this.dir);
@@ -57,10 +61,28 @@ tail: |
           return this;
         },
 
-        addSelf: function(o) {
-          this.real += o.real;
-          this.imag += o.imag;
+        addSelf: function(c) {
+          this.real += c.real;
+          this.imag += c.imag;
           return this.recalcPolar();
+        },
+
+        multSelf: function(c) {
+          if(c.dir) {
+            this.mag *= c.mag;
+            this.dir += c.dir;
+            return this.recalcRect();
+          } else {
+            var mag = c.mag || c;
+            this.real *= mag;
+            this.imag *= mag;
+            this.mag *= mag;
+            return this;
+          }
+        },
+
+        mult: function(c) {
+          return this.clone().multSelf(c);
         }
       });
 
@@ -70,15 +92,19 @@ tail: |
 
       var $ball = $('<div class="ball" />').appendTo($field);
       $ball.pos = Complex.rect(0, 0);
-      $ball.vel = Complex.polar(1, -Math.PI/3);
+      $ball.vel = Complex.polar(20, -Math.PI/3);
       $ball.draw = function() {
         $ball.css({left: $field.width/2.0 + this.pos.real, top: $field.height/2.0 - this.pos.imag});
       }
-      $ball.step = function() {
-        $ball.pos.addSelf($ball.vel);
-        $ball.draw();
-      }
+
       $ball.draw();
+      var prev = +new Date();
+      $ball.step = function() {
+        var curr = +new Date();
+        $ball.pos.addSelf($ball.vel.mult((curr - prev)/1000));
+        $ball.draw();
+        prev = curr;
+      }
 
       setInterval($ball.step, 100);
     })();
