@@ -34,31 +34,35 @@ tail: |
         this.dir = dir;
       }
 
-      Complex.prototype.recalcRect = function() {
-        this.real = this.mag*Math.cos(this.dir);
-        this.imag = this.mag*Math.sin(this.dir);
-        return this;
-      };
+      $.extend(Complex, {
+        rect: function(real, imag) {
+          return new this(real, imag).recalcPolar();
+        },
 
-      Complex.prototype.recalcPolar = function() {
-        this.mag = Math.sqrt(this.real*this.real + this.imag*this.imag)
-        this.dir = Math.atan(this.imag / this.real);
-        return this;
-      };
+        polar: function(mag, dir) {
+          return new this(0, 0, mag, dir).recalcRect();
+        }
+      });
 
-      Complex.prototype.addSelf = function(o) {
-        this.real += o.real;
-        this.imag += o.imag;
-        return this.recalcPolar();
-      };
+      $.extend(Complex.prototype, {
+        recalcRect: function() {
+          this.real = this.mag*Math.cos(this.dir);
+          this.imag = this.mag*Math.sin(this.dir);
+          return this;
+        },
 
-      Complex.rect = function(real, imag) {
-        return new Complex(real, imag).recalcPolar();
-      };
+        recalcPolar: function() {
+          this.mag = Math.sqrt(this.real*this.real + this.imag*this.imag)
+          this.dir = Math.atan(this.imag / this.real);
+          return this;
+        },
 
-      Complex.polar = function(mag, dir) {
-        return new Complex(0, 0, mag, dir).recalcRect();
-      };
+        addSelf: function(o) {
+          this.real += o.real;
+          this.imag += o.imag;
+          return this.recalcPolar();
+        }
+      });
 
       var $field = $('#field');
       $field.width = $field.css('width').replace('px', '');
