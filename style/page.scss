@@ -234,83 +234,6 @@ article#main {
       }
     }
   }
-
-  body#portfolio & {
-    ul {
-      margin: 0 -5px;
-
-      &:after {
-        @include fake-element;
-        clear: both;
-      }
-    }
-
-    li { float: left; }
-
-    a {
-      display: block;
-      padding: 4px 5px;
-
-      img.thumb {
-        display: block;
-        min-width: 45px;
-        height: 75px;
-        padding: 3px;
-        border: 2px solid $dark4;
-        @include vendor-vals(transition, transform 0.2s, box-shadow 0.2s);
-      }
-
-      &:hover img.thumb {
-        margin: -1px;
-        border: 3px solid $dark3;
-        @include vendor(box-shadow, 0 2px 7px $lite0);
-        @include vendor(transform, scale(1.15));
-      }
-    }
-  }
-
-  body#e404 & {
-    text-align: center;
-
-    p {
-      position: relative;
-      display: inline-block;
-      margin-top: 40px;
-      font: 24px Arial,sans-serif;
-      cursor: default;
-
-      span.left.eye {
-        vertical-align: 4px;
-        line-height: 0;
-        font-size: 90%;
-      }
-
-      span.arm {
-        position: absolute;
-        top: 3px;
-        white-space: nowrap;
-        @include vendor(transition, all 0.3s);
-
-        &.left {
-          right: 100%;
-          margin-right: 3px;
-          @include vendor(transform-origin, 100% 100%);
-          @include vendor(transform, rotate(20deg));
-        }
-
-        &.right {
-          left: 100%;
-          margin-left: 4px;
-          @include vendor(transform-origin, 0% 100%);
-          @include vendor(transform, rotate(-20deg));
-        }
-      }
-
-      &:hover span.arm { top:0; }
-      &:hover span.left.arm { @include vendor(transform, rotate(0)); }
-      &:hover span.right.arm { @include vendor(transform, rotate(0)); }
-    }
-  }
 }
 
 footer#legal {
@@ -419,3 +342,5 @@ footer#legal {
     @media (max-width: $width-mobile) { right: 4px; }
   }
 }
+
+@import 'page_portfolio', 'page_404';
