@@ -13,8 +13,8 @@
 <!--<![endif]-->
   <head>
     <meta charset='utf-8' />
-    <link rel='stylesheet' media='all' href='style.css' />
-    <link rel='stylesheet' media='print' href='print.css' />
+    <link rel='stylesheet' media='all' href='/style/page.css' />
+    <link rel='stylesheet' media='print' href='/style/print.css' />
     <meta name='viewport' content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no' />
     <title>fengb{% if page.title %} &rarr; {{ page.title }}{% endif %}</title>
     <script>{% if page.script_inject %}{{ page.script_inject }}{% endif %}document.documentElement.className='js'</script>
@@ -54,9 +54,9 @@
     {% if site.url %}
       <script src='//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js'></script>
     {% else %}
-      <script src='jquery.js'></script>
+      <script src='/script/jquery.js'></script>
     {% endif %}
-    <script src='mutiny.js'></script>
-    <script src='script.js'></script>
+    <script src='/script/mutiny.js'></script>
+    <script src='/script/page.js'></script>
   </body>
 </html>
