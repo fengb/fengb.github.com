@@ -24,20 +24,28 @@ title: Pong
 tail: |
   <script>
     (function() {
-      function complex(real, imag) {
-        return {
-          real: real,
-          imag: imag,
-          mag: Math.sqrt(real*real + imag*imag),
-          dir: Math.atan(imag / real),
+      /* Yet another complex number implementation. */
+      var complex = {
+        create: function(real, imag, mag, dir) {
+          return {
+            real: real,
+            imag: imag,
+            mag: mag,
+            dir: dir,
 
-          add: function(o) {
-            return complex(real + o.real, imag + o.imag);
-          }
-        };
-      }
-      complex.fromMagDir = function(mag, dir) {
-        return complex(mag*Math.cos(dir), mag*Math.sin(dir));
+            add: function(o) {
+              return complex.create(real + o.real, imag + o.imag);
+            }
+          };
+        },
+
+        rect: function(real, imag) {
+          return this.create(real, imag, Math.sqrt(real*real + imag*imag), Math.atan(imag / real));
+        },
+
+        polar: function(mag, dir) {
+          return this.create(mag*Math.cos(dir), mag*Math.sin(dir), mag, dir);
+        }
       };
 
       var $field = $('#field');
@@ -45,8 +53,8 @@ tail: |
       $field.height = $field.css('height').replace('px', '');
 
       var $ball = $('<div class="ball" />').appendTo($field);
-      $ball.pos = complex(0, 0);
-      $ball.vel = complex.fromMagDir(1, -Math.PI/3);
+      $ball.pos = complex.rect(0, 0);
+      $ball.vel = complex.polar(1, -Math.PI/3);
       $ball.draw = function() {
         $ball.css({left: $field.width/2.0 + this.pos.real, top: $field.height/2.0 - this.pos.imag});
       }
