@@ -23,91 +23,93 @@ layout: default
 title: Pong
 tail: |
   <script>
-    (function() {
-      /* Yet another complex number implementation. */
-      function Complex(real, imag, mag, dir) {
-        if(!(this instanceof Complex)) { return new Complex(real, imag, mag, dir); }
+    /* Yet another complex number implementation. */
+    function Complex(real, imag, mag, dir) {
+      if(!(this instanceof Complex)) { return new Complex(real, imag, mag, dir); }
 
-        this.real = real;
-        this.imag = imag;
-        this.mag = mag;
-        this.dir = dir;
+      this.real = real;
+      this.imag = imag;
+      this.mag = mag;
+      this.dir = dir;
+    }
+
+    $.extend(Complex, {
+      rect: function(real, imag) {
+        return new this(real, imag).recalcPolar();
+      },
+
+      polar: function(mag, dir) {
+        return new this(0, 0, mag, dir).recalcRect();
       }
+    });
 
-      $.extend(Complex, {
-        rect: function(real, imag) {
-          return new this(real, imag).recalcPolar();
-        },
+    $.extend(Complex.prototype, {
+      clone: function() {
+        return new Complex(this.real, this.imag, this.mag, this.dir);
+      },
 
-        polar: function(mag, dir) {
-          return new this(0, 0, mag, dir).recalcRect();
-        }
-      });
+      recalcRect: function() {
+        this.real = this.mag*Math.cos(this.dir);
+        this.imag = this.mag*Math.sin(this.dir);
+        return this;
+      },
 
-      $.extend(Complex.prototype, {
-        clone: function() {
-          return new Complex(this.real, this.imag, this.mag, this.dir);
-        },
+      recalcPolar: function() {
+        this.mag = Math.sqrt(this.real*this.real + this.imag*this.imag)
+        this.dir = Math.atan(this.imag / this.real);
+        return this;
+      },
 
-        recalcRect: function() {
-          this.real = this.mag*Math.cos(this.dir);
-          this.imag = this.mag*Math.sin(this.dir);
+      addSelf: function(c) {
+        this.real += c.real;
+        this.imag += c.imag;
+        return this.recalcPolar();
+      },
+
+      multSelf: function(c) {
+        if(c.dir) {
+          this.mag *= c.mag;
+          this.dir += c.dir;
+          return this.recalcRect();
+        } else {
+          var mag = c.mag || c;
+          this.real *= mag;
+          this.imag *= mag;
+          this.mag *= mag;
           return this;
-        },
-
-        recalcPolar: function() {
-          this.mag = Math.sqrt(this.real*this.real + this.imag*this.imag)
-          this.dir = Math.atan(this.imag / this.real);
-          return this;
-        },
-
-        addSelf: function(c) {
-          this.real += c.real;
-          this.imag += c.imag;
-          return this.recalcPolar();
-        },
-
-        multSelf: function(c) {
-          if(c.dir) {
-            this.mag *= c.mag;
-            this.dir += c.dir;
-            return this.recalcRect();
-          } else {
-            var mag = c.mag || c;
-            this.real *= mag;
-            this.imag *= mag;
-            this.mag *= mag;
-            return this;
-          }
-        },
-
-        mult: function(c) {
-          return this.clone().multSelf(c);
         }
-      });
+      },
 
-      var $field = $('#field');
-      $field.width = $field.css('width').replace('px', '');
-      $field.height = $field.css('height').replace('px', '');
+      mult: function(c) {
+        return this.clone().multSelf(c);
+      }
+    });
+
+    function pong(field, fieldwidth, fieldheight, ballsize) {
+      var $field = $(field);
+      $field.css('width', fieldwidth);
+      $field.css('height', fieldheight);
 
       var $ball = $('<div class="ball" />').appendTo($field);
       $ball.pos = Complex.rect(0, 0);
       $ball.vel = Complex.polar(20, -Math.PI/3);
-      $ball.draw = function() {
-        $ball.css({left: $field.width/2.0 + this.pos.real, top: $field.height/2.0 - this.pos.imag});
-      }
 
-      $ball.draw();
+      $ball.css({width:      ballsize,     height: ballsize,
+                 marginLeft: ballsize/2,   marginTop: ballsize/2,
+                 left:       fieldwidth/2, top: fieldheight/2});
+
       var prev = +new Date();
-      $ball.step = function() {
+      function step() {
         var curr = +new Date();
         $ball.pos.addSelf($ball.vel.mult((curr - prev)/1000));
-        $ball.draw();
+        $ball.css({left: fieldwidth/2 + $ball.pos.real, top: fieldheight/2 - $ball.pos.imag});
         prev = curr;
       }
 
-      setInterval($ball.step, 100);
-    })();
+      setInterval(step, 100);
+    }
+
+    pong('#field', 400, 400, 10);
   </script>
 ---
 <noscript>NO PONG 4U</noscript>

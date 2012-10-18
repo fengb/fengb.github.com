@@ -1,18 +1,12 @@
 body#pong article#main {
   #field {
     position: relative;
-    width: 400px;
-    height: 400px;
     margin: 0 auto;
     border: 2px solid $dark1;
   }
 
   .ball {
-    $size: 10px;
     position: absolute;
     background: $dark1;
-    width: $size;
-    height: $size;
-    margin: (-$size/2) 0 0 (-$size/2);
   }
 }
