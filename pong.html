@@ -16,6 +16,9 @@ tail: |
           }
         };
       }
+      complex.fromMagDir = function(mag, dir) {
+        return complex(mag*Math.cos(dir), mag*Math.sin(dir));
+      };
 
       var $field = $('#field');
       $field.width = $field.css('width').replace('px', '');
@@ -33,7 +36,7 @@ tail: |
       $ball.draw();
 
       setInterval(function() {
-        $ball.translate(complex(1, 1));
+        $ball.translate(complex.fromMagDir(1, -Math.PI/3));
       }, 100);
     })();
   </script>
