@@ -110,6 +110,18 @@ tail: |
                  marginLeft: -ballsize/2,   marginTop: -ballsize/2,
                  left:       fieldwidth/2,  top: fieldheight/2});
 
+      var cssTransition = (function(undefined) {
+        var style = (document.body || document.documentElement).style;
+        return (style.WebkitTransition !== undefined ? '-webkit-transition' :
+                style.MozTransition !== undefined ? '-moz-transition' :
+                style.OTransition !== undefined ? '-o-transition' :
+                style.transition !== undefined ? 'transition' :
+                null);
+      })();
+      if(cssTransition) {
+        $ball.css(cssTransition, 'all 1s linear');
+      }
+
       function projection() {
         var horiWall = ($ball.vel.real > 0 ? 1 : -1) * (fieldwidth/2 - ballsize/2);
         var vertWall = ($ball.vel.imag > 0 ? 1 : -1) * (fieldwidth/2 - ballsize/2);
@@ -129,7 +141,15 @@ tail: |
           $ball.vel.imag = -$ball.vel.imag;
           $ball.vel.recalcPolar();
         }
-        $ball.animate({left: fieldwidth/2 + $ball.pos.real, top: fieldheight/2 - $ball.pos.imag}, secTarget*1000, 'linear', projection);
+
+        var cssPos = {left: fieldwidth/2 + $ball.pos.real, top: fieldheight/2 - $ball.pos.imag};
+        if(cssTransition) {
+          $ball.css(cssTransition+'-duration', secTarget+'s');
+          $ball.css(cssPos);
+        } else {
+          $ball.animate(cssPos, secTarget*1000, 'linear');
+        }
+        setTimeout(projection, secTarget*1000);
       }
 
       projection();
