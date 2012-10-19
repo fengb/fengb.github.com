@@ -123,7 +123,7 @@ tail: |
 
       function projection() {
         var horiWall = ($ball.vel.real > 0 ? 1 : -1) * (fieldwidth/2 - ballsize/2);
-        var vertWall = ($ball.vel.imag > 0 ? 1 : -1) * (fieldwidth/2 - ballsize/2);
+        var vertWall = ($ball.vel.imag > 0 ? 1 : -1) * (fieldheight/2 - ballsize/2);
 
         var horiSecTarget = (horiWall - $ball.pos.real) / $ball.vel.real;
         var vertSecTarget = (vertWall - $ball.pos.imag) / $ball.vel.imag;
@@ -155,7 +155,7 @@ tail: |
       setTimeout(projection, 1);
     }
 
-    pong('#field', 400, 400, 10);
+    pong('#field', 250, 300, 10);
   </script>
 ---
 <noscript>NO PONG 4U</noscript>
