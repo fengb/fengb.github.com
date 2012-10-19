@@ -97,8 +97,8 @@ tail: |
       }
     });
 
-    function pong(field, fieldwidth, fieldheight, ballsize) {
-      var $field = $(field);
+    function pong(container, fieldwidth, fieldheight, ballsize) {
+      var $field = $('<div id="field" />').appendTo(container);
       $field.css('width', fieldwidth);
       $field.css('height', fieldheight);
 
@@ -151,12 +151,13 @@ tail: |
         setTimeout(projection, secTarget*1000);
       }
 
-      /* Immediate invocation will skip the first CSS transition.  It's like the DOM hasn't caught up yet... */
-      setTimeout(projection, 1);
+      return {start: projection};
     }
 
-    pong('#field', 250, 300, 10);
+    var game = pong('#main', 250, 300, 10);
+    $(document).ready(function() {
+      game.start();
+    });
   </script>
 ---
 <noscript>NO PONG 4U</noscript>
-<div id='field'></div>
