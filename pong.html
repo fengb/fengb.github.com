@@ -106,10 +106,6 @@ tail: |
       $ball.pos = Complex.rect(0, 0);
       $ball.vel = Complex.polar(200, TAU * (-4/9 + 3/9*Math.random()));
 
-      $ball.css({width:      ballsize,      height: ballsize,
-                 marginLeft: -ballsize/2,   marginTop: -ballsize/2,
-                 left:       fieldwidth/2,  top: fieldheight/2});
-
       var cssTransition = (function(undefined) {
         var style = (document.body || document.documentElement).style;
         return (style.WebkitTransition !== undefined ? '-webkit-transition' :
@@ -118,9 +114,12 @@ tail: |
                 style.transition !== undefined ? 'transition' :
                 null);
       })();
-      if(cssTransition) {
-        $ball.css(cssTransition, 'all 1s linear');
-      }
+
+      var startCss = {width:      ballsize,      height: ballsize,
+                      marginLeft: -ballsize/2,   marginTop: -ballsize/2,
+                      left:       fieldwidth/2,  top: fieldheight/2};
+      if(cssTransition) { startCss[cssTransition] = 'all 1s linear'; }
+      $ball.css(startCss);
 
       function projection() {
         var horiWall = ($ball.vel.real > 0 ? 1 : -1) * (fieldwidth/2 - ballsize/2);
@@ -144,7 +143,7 @@ tail: |
 
         var cssPos = {left: fieldwidth/2 + $ball.pos.real, top: fieldheight/2 - $ball.pos.imag};
         if(cssTransition) {
-          $ball.css(cssTransition+'-duration', secTarget+'s');
+          cssPos[cssTransition+'-duration'] = secTarget+'s';
           $ball.css(cssPos);
         } else {
           $ball.animate(cssPos, secTarget*1000, 'linear');
@@ -152,7 +151,8 @@ tail: |
         setTimeout(projection, secTarget*1000);
       }
 
-      projection();
+      /* Immediate invocation will skip the first CSS transition.  It's like the DOM hasn't caught up yet... */
+      setTimeout(projection, 1);
     }
 
     pong('#field', 400, 400, 10);
