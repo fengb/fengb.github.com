@@ -110,18 +110,29 @@ tail: |
                  marginLeft: -ballsize/2,   marginTop: -ballsize/2,
                  left:       fieldwidth/2,  top: fieldheight/2});
 
-      var prev = +new Date();
-      function step() {
-        if(Math.abs($ball.pos.real) > fieldwidth/2 - ballsize/2) { $ball.vel.sReflectReal(); }
-        if(Math.abs($ball.pos.imag) > fieldheight/2 - ballsize/2) { $ball.vel.sReflectImag(); }
+      function projection() {
+        var horiWall = ($ball.vel.real > 0 ? 1 : -1) * (fieldwidth/2 - ballsize/2);
+        var vertWall = ($ball.vel.imag > 0 ? 1 : -1) * (fieldwidth/2 - ballsize/2);
 
-        var curr = +new Date();
-        $ball.pos.sAdd($ball.vel.mult((curr - prev)/1000));
-        $ball.css({left: fieldwidth/2 + $ball.pos.real, top: fieldheight/2 - $ball.pos.imag});
-        prev = curr;
+        var horiSecTarget = (horiWall - $ball.pos.real) / $ball.vel.real;
+        var vertSecTarget = (vertWall - $ball.pos.imag) / $ball.vel.imag;
+
+        var secTarget;
+        if(horiSecTarget < vertSecTarget) {
+          secTarget = horiSecTarget;
+          $ball.pos.sAdd($ball.vel.mult(horiSecTarget));
+          $ball.vel.real = -$ball.vel.real;
+          $ball.vel.recalcPolar();
+        } else {
+          secTarget = vertSecTarget;
+          $ball.pos.sAdd($ball.vel.mult(vertSecTarget));
+          $ball.vel.imag = -$ball.vel.imag;
+          $ball.vel.recalcPolar();
+        }
+        $ball.animate({left: fieldwidth/2 + $ball.pos.real, top: fieldheight/2 - $ball.pos.imag}, secTarget*1000, 'linear', projection);
       }
 
-      setInterval(step, 10);
+      projection();
     }
 
     pong('#field', 400, 400, 10);
