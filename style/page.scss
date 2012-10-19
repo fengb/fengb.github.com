@@ -293,7 +293,10 @@ footer#legal {
       &.active ul { padding-top: 8px; left: 100%; }
     }
 
-    @media (max-width: $width-mobile) { right: 4px; }
+    @media (max-width: $width-mobile) {
+      top: 48px;
+      right: 4px;
+    }
   }
 }
 
