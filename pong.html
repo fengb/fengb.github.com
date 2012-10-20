@@ -58,7 +58,7 @@ tail: |
 
       recalcPolar: function() {
         this.mag = Math.sqrt(this.real*this.real + this.imag*this.imag)
-        this.dir = Math.atan(this.imag / this.real);
+        this.dir = Math.atan2(this.imag, this.real);
         return this;
       },
 
