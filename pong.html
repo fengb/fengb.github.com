@@ -103,8 +103,6 @@ tail: |
       $field.css('height', fieldheight);
 
       var $ball = $('<div class="ball" />').appendTo($field);
-      $ball.pos = Complex.rect(0, -fieldheight/2);
-      $ball.vel = Complex.polar(200, TAU * (4/9 - 3/9*Math.random()));
 
       var cssTransition = (function(undefined) {
         var style = (document.body || document.documentElement).style;
@@ -115,17 +113,14 @@ tail: |
                 null);
       })();
 
+      $ball.css({width:      ballsize,    height: ballsize,
+                 marginLeft: -ballsize/2, marginTop: -ballsize/2});
+
       function cssPos() {
         return {left: fieldwidth/2 + $ball.pos.real, top: fieldheight/2 - $ball.pos.imag};
       }
 
-      var startCss = $.extend(cssPos(), {
-                       width:      ballsize,      height: ballsize,
-                       marginLeft: -ballsize/2,   marginTop: -ballsize/2
-                     });
-      if(cssTransition) { startCss[cssTransition] = 'all linear'; }
-      $ball.css(startCss);
-
+      var projectionId;
       function projection() {
         var horiWall = ($ball.vel.real > 0 ? 1 : -1) * (fieldwidth/2 - ballsize/2);
         var vertWall = ($ball.vel.imag > 0 ? 1 : -1) * (fieldheight/2 - ballsize/2);
@@ -151,10 +146,21 @@ tail: |
         } else {
           $ball.animate(cssPos(), drawSecTarget*1000, 'linear');
         }
-        setTimeout(projection, secTarget*1000);
+        projectionId = setTimeout(projection, secTarget*1000);
       }
 
-      return {start: projection};
+      return {
+        start: function() {
+          clearTimeout(projectionId);
+
+          $ball.pos = Complex.rect(0, -fieldheight/2);
+          $ball.vel = Complex.polar(200, TAU * (4/9 - 3/9*Math.random()));
+          $ball.css(cssPos());
+
+          if(cssTransition) { $ball.css(cssTransition, 'all linear'); }
+          projectionId = setTimeout(projection, 100);
+        }
+      };
     }
 
     var game = pong('#main', 250, 300, 10);
