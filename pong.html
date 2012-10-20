@@ -84,12 +84,12 @@ tail: |
 
       sReflectReal: function(c) {
         this.real = -this.real;
-        return this;
+        return this.sRecalcPolar();
       },
 
       sReflectImag: function(c) {
         this.imag = -this.imag;
-        return this;
+        return this.sRecalcPolar();
       },
 
       mult: function(c) {
@@ -131,11 +131,11 @@ tail: |
         var secTarget;
         if(horiSecTarget < vertSecTarget) {
           secTarget = horiSecTarget;
-          $ball.pos.sAdd($ball.vel.mult(horiSecTarget));
+          $ball.pos.sAdd($ball.vel.mult(secTarget));
           $ball.vel.sReflectReal();
         } else {
           secTarget = vertSecTarget;
-          $ball.pos.sAdd($ball.vel.mult(vertSecTarget));
+          $ball.pos.sAdd($ball.vel.mult(secTarget));
           $ball.vel.sReflectImag();
         }
         var drawSecTarget = secTarget - 0.01;
