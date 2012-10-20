@@ -100,10 +100,6 @@ function pong(container, fieldwidth, fieldheight, ballsize) {
   $field.css('width', fieldwidth);
   $field.css('height', fieldheight);
 
-  var $ball = $('<div class="ball" />').appendTo($field);
-  $ball.css({width:      ballsize,    height: ballsize,
-             marginLeft: -ballsize/2, marginTop: -ballsize/2});
-
   var cssTransition = (function(undefined) {
     var style = (document.body || document.documentElement).style;
     return (style.WebkitTransition !== undefined ? '-webkit-transition' :
@@ -113,59 +109,69 @@ function pong(container, fieldwidth, fieldheight, ballsize) {
             null);
   })();
 
-  $ball.moveTo = function(c) {
-    $ball.pos = c;
-    $ball.css($ball.cssPos());
-    if(cssTransition) { $ball.css(cssTransition, 'all linear'); }
-  };
+  function actor(classes, width, height) {
+    var $e = $('<div class="' + classes + '" />').appendTo($field).
+               css({width:      width,    height: height,
+                    marginLeft: -width/2, marginTop: -height/2});
 
-  $ball.cssPos = function() {
-    return {left: fieldwidth/2 + $ball.pos.real, top: fieldheight/2 - $ball.pos.imag};
-  };
+    var self = {
+      cssPos: function() {
+        return {left: fieldwidth/2 + self.pos.real, top: fieldheight/2 - self.pos.imag};
+      },
 
-  $ball.move = function(duration) {
-    var animDuration = duration - 0.01;
-    $ball.pos.sAdd($ball.vel.mult(duration));
-    if(cssTransition) {
-      $ball.css(cssTransition+'-duration', animDuration+'s');
-      $ball.css($ball.cssPos());
-    } else {
-      $ball.animate($ball.cssPos(), animDuration*1000, 'linear');
-    }
-  };
+      moveTo: function(c) {
+        self.pos = c;
+        $e.css(self.cssPos());
+        if(cssTransition) { $e.css(cssTransition, 'all linear'); }
+      },
 
-  $ball.projection = function() {
-    var horiWall = ($ball.vel.real > 0 ? 1 : -1) * (fieldwidth/2 - ballsize/2);
-    var vertWall = ($ball.vel.imag > 0 ? 1 : -1) * (fieldheight/2 - ballsize/2);
+      move: function(duration) {
+        var animDuration = duration - 0.01;
+        self.pos.sAdd(self.vel.mult(duration));
+        if(cssTransition) {
+          $e.css(cssTransition+'-duration', animDuration+'s');
+          $e.css(self.cssPos());
+        } else {
+          $e.animate(self.cssPos(), animDuration*1000, 'linear');
+        }
+      },
 
-    var horiSecTarget = (horiWall - $ball.pos.real) / $ball.vel.real;
-    var vertSecTarget = (vertWall - $ball.pos.imag) / $ball.vel.imag;
+      projection: function() {
+        var horiWall = (self.vel.real > 0 ? 1 : -1) * (fieldwidth/2 - ballsize/2);
+        var vertWall = (self.vel.imag > 0 ? 1 : -1) * (fieldheight/2 - ballsize/2);
 
-    var secTarget;
-    if(horiSecTarget < vertSecTarget) {
-      secTarget = horiSecTarget;
-      $ball.move(secTarget);
-      $ball.vel.sReflectReal();
-    } else {
-      secTarget = vertSecTarget;
-      $ball.move(secTarget);
-      $ball.vel.sReflectImag();
-    }
-    $ball.projectionId = setTimeout($ball.projection, secTarget*1000);
-  };
+        var horiSecTarget = (horiWall - self.pos.real) / self.vel.real;
+        var vertSecTarget = (vertWall - self.pos.imag) / self.vel.imag;
 
-  $ball.reset = function() {
-    clearTimeout($ball.projectionId);
+        var secTarget;
+        if(horiSecTarget < vertSecTarget) {
+          secTarget = horiSecTarget;
+          self.move(secTarget);
+          self.vel.sReflectReal();
+        } else {
+          secTarget = vertSecTarget;
+          self.move(secTarget);
+          self.vel.sReflectImag();
+        }
+        self.projectionId = setTimeout(self.projection, secTarget*1000);
+      },
 
-    $ball.vel = Complex.polar(200, TAU * (4/9 - 3/9*Math.random()));
-    $ball.moveTo(Complex.rect(0, -fieldheight/2));
+      reset: function(pos, vel) {
+        clearTimeout(self.projectionId);
 
-    $ball.projectionId = setTimeout($ball.projection, 100);
-  };
+        self.moveTo(pos);
+        self.vel = vel;
+
+        self.projectionId = setTimeout(self.projection, 100);
+      }
+    };
+    return self;
+  }
 
   return {
+    ball: actor('ball', ballsize, ballsize),
     start: function() {
-      $ball.reset();
+      this.ball.reset(Complex.rect(0, -fieldheight/2), Complex.polar(200, TAU * (4/9 - 3/9*Math.random())));
     }
   };
 }
