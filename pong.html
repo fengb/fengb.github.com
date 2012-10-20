@@ -118,7 +118,7 @@ tail: |
       var startCss = {width:      ballsize,      height: ballsize,
                       marginLeft: -ballsize/2,   marginTop: -ballsize/2,
                       left:       fieldwidth/2,  top: fieldheight/2};
-      if(cssTransition) { startCss[cssTransition] = 'all 1s linear'; }
+      if(cssTransition) { startCss[cssTransition] = 'all linear'; }
       $ball.css(startCss);
 
       function projection() {
@@ -138,13 +138,14 @@ tail: |
           $ball.pos.sAdd($ball.vel.mult(vertSecTarget));
           $ball.vel.sReflectImag();
         }
+        var drawSecTarget = secTarget - 0.01;
 
         var cssPos = {left: fieldwidth/2 + $ball.pos.real, top: fieldheight/2 - $ball.pos.imag};
         if(cssTransition) {
-          cssPos[cssTransition+'-duration'] = secTarget+'s';
+          cssPos[cssTransition+'-duration'] = drawSecTarget+'s';
           $ball.css(cssPos);
         } else {
-          $ball.animate(cssPos, secTarget*1000, 'linear');
+          $ball.animate(cssPos, drawSecTarget*1000, 'linear');
         }
         setTimeout(projection, secTarget*1000);
       }
