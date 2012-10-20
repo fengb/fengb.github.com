@@ -40,6 +40,10 @@ $.extend(Complex, {
 
   polar: function(mag, dir) {
     return new this(0, 0, mag, dir).sRecalcRect();
+  },
+
+  zero: function() {
+    return new this(0, 0, 0, 0);
   }
 });
 
@@ -95,10 +99,9 @@ $.extend(Complex.prototype, {
   }
 });
 
-function pong(container, fieldwidth, fieldheight, ballsize) {
+function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleheight) {
   var $field = $('<div id="field" />').appendTo(container);
-  $field.css('width', fieldwidth);
-  $field.css('height', fieldheight);
+  $field.css({width: fieldwidth, height: fieldheight});
 
   var cssTransition = (function(undefined) {
     var style = (document.body || document.documentElement).style;
@@ -110,7 +113,7 @@ function pong(container, fieldwidth, fieldheight, ballsize) {
   })();
 
   function actor(classes, width, height) {
-    var $e = $('<div class="' + classes + '" />').appendTo($field).
+    var $e = $('<div class="actor ' + classes + '" />').appendTo($field).
                css({width:      width,    height: height,
                     marginLeft: -width/2, marginTop: -height/2});
 
@@ -137,6 +140,8 @@ function pong(container, fieldwidth, fieldheight, ballsize) {
       },
 
       projection: function() {
+        if(self.vel.mag == 0) { return; }
+
         var horiWall = (self.vel.real > 0 ? 1 : -1) * (fieldwidth/2 - ballsize/2);
         var vertWall = (self.vel.imag > 0 ? 1 : -1) * (fieldheight/2 - ballsize/2);
 
@@ -160,7 +165,7 @@ function pong(container, fieldwidth, fieldheight, ballsize) {
         clearTimeout(self.projectionId);
 
         self.moveTo(pos);
-        self.vel = vel;
+        self.vel = vel || Complex.zero();
 
         self.projectionId = setTimeout(self.projection, 100);
       }
@@ -170,8 +175,10 @@ function pong(container, fieldwidth, fieldheight, ballsize) {
 
   return {
     ball: actor('ball', ballsize, ballsize),
+    paddle: actor('paddle', paddlewidth, paddleheight),
     start: function() {
-      this.ball.reset(Complex.rect(0, -fieldheight/2), Complex.polar(200, TAU * (4/9 - 3/9*Math.random())));
+      this.ball.reset(Complex.rect(0, -fieldheight/2 + ballsize/2), Complex.polar(200, TAU * (4/9 - 3/9*Math.random())));
+      this.paddle.reset(Complex.rect(0, -fieldheight/2 - paddleheight/2), Complex.zero());
     }
   };
 }
