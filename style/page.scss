@@ -198,6 +198,11 @@ footer#legal {
   text-align: center;
   @include background-gradient(rgba($lite9, 0.1), rgba($lite9, 0));
 
+  @media (max-width: $width-mobile) {
+    background: none;
+    padding-bottom: 16px;
+  }
+
   #license { margin-top: 8px; }
 
   a {
