@@ -19,11 +19,7 @@
     <title>fengb{% if page.title %} &rarr; {{ page.title }}{% endif %}</title>
     <script>{% if page.script_inject %}{{ page.script_inject }}{% endif %}document.documentElement.className='js'</script>
     <!--[if lt IE 9]>
-      {% if site.url %}
-        <script src='//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6/html5shiv.min.js'></script>
-      {% else %}
-        <script src='html5shiv-printshiv.js'></script>
-      {% endif %}
+      <script src='/style/html5shiv-printshiv.js'></script>
     <![endif]-->
   </head>
   <body {% if page.class %}id='{{ page.class }}'{% elsif page.title %}id='{{ page.title | downcase }}'{% endif %}>
