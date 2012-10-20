@@ -101,6 +101,8 @@ function pong(container, fieldwidth, fieldheight, ballsize) {
   $field.css('height', fieldheight);
 
   var $ball = $('<div class="ball" />').appendTo($field);
+  $ball.css({width:      ballsize,    height: ballsize,
+             marginLeft: -ballsize/2, marginTop: -ballsize/2});
 
   var cssTransition = (function(undefined) {
     var style = (document.body || document.documentElement).style;
@@ -111,15 +113,28 @@ function pong(container, fieldwidth, fieldheight, ballsize) {
             null);
   })();
 
-  $ball.css({width:      ballsize,    height: ballsize,
-             marginLeft: -ballsize/2, marginTop: -ballsize/2});
+  $ball.moveTo = function(c) {
+    $ball.pos = c;
+    $ball.css($ball.cssPos());
+    if(cssTransition) { $ball.css(cssTransition, 'all linear'); }
+  };
 
-  function cssPos() {
+  $ball.cssPos = function() {
     return {left: fieldwidth/2 + $ball.pos.real, top: fieldheight/2 - $ball.pos.imag};
-  }
+  };
 
-  var projectionId;
-  function projection() {
+  $ball.move = function(duration) {
+    var animDuration = duration - 0.01;
+    $ball.pos.sAdd($ball.vel.mult(duration));
+    if(cssTransition) {
+      $ball.css(cssTransition+'-duration', animDuration+'s');
+      $ball.css($ball.cssPos());
+    } else {
+      $ball.animate($ball.cssPos(), animDuration*1000, 'linear');
+    }
+  };
+
+  $ball.projection = function() {
     var horiWall = ($ball.vel.real > 0 ? 1 : -1) * (fieldwidth/2 - ballsize/2);
     var vertWall = ($ball.vel.imag > 0 ? 1 : -1) * (fieldheight/2 - ballsize/2);
 
@@ -129,34 +144,28 @@ function pong(container, fieldwidth, fieldheight, ballsize) {
     var secTarget;
     if(horiSecTarget < vertSecTarget) {
       secTarget = horiSecTarget;
-      $ball.pos.sAdd($ball.vel.mult(secTarget));
+      $ball.move(secTarget);
       $ball.vel.sReflectReal();
     } else {
       secTarget = vertSecTarget;
-      $ball.pos.sAdd($ball.vel.mult(secTarget));
+      $ball.move(secTarget);
       $ball.vel.sReflectImag();
     }
-    var drawSecTarget = secTarget - 0.01;
+    $ball.projectionId = setTimeout($ball.projection, secTarget*1000);
+  };
 
-    if(cssTransition) {
-      $ball.css(cssTransition+'-duration', drawSecTarget+'s');
-      $ball.css(cssPos());
-    } else {
-      $ball.animate(cssPos(), drawSecTarget*1000, 'linear');
-    }
-    projectionId = setTimeout(projection, secTarget*1000);
-  }
+  $ball.reset = function() {
+    clearTimeout($ball.projectionId);
+
+    $ball.vel = Complex.polar(200, TAU * (4/9 - 3/9*Math.random()));
+    $ball.moveTo(Complex.rect(0, -fieldheight/2));
+
+    $ball.projectionId = setTimeout($ball.projection, 100);
+  };
 
   return {
     start: function() {
-      clearTimeout(projectionId);
-
-      $ball.pos = Complex.rect(0, -fieldheight/2);
-      $ball.vel = Complex.polar(200, TAU * (4/9 - 3/9*Math.random()));
-      $ball.css(cssPos());
-
-      if(cssTransition) { $ball.css(cssTransition, 'all linear'); }
-      projectionId = setTimeout(projection, 100);
+      $ball.reset();
     }
   };
 }
