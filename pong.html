@@ -37,11 +37,11 @@ tail: |
 
     $.extend(Complex, {
       rect: function(real, imag) {
-        return new this(real, imag).recalcPolar();
+        return new this(real, imag).sRecalcPolar();
       },
 
       polar: function(mag, dir) {
-        return new this(0, 0, mag, dir).recalcRect();
+        return new this(0, 0, mag, dir).sRecalcRect();
       }
     });
 
@@ -50,13 +50,13 @@ tail: |
         return new Complex(this.real, this.imag, this.mag, this.dir);
       },
 
-      recalcRect: function() {
+      sRecalcRect: function() {
         this.real = this.mag*Math.cos(this.dir);
         this.imag = this.mag*Math.sin(this.dir);
         return this;
       },
 
-      recalcPolar: function() {
+      sRecalcPolar: function() {
         this.mag = Math.sqrt(this.real*this.real + this.imag*this.imag)
         this.dir = Math.atan2(this.imag, this.real);
         return this;
@@ -65,14 +65,14 @@ tail: |
       sAdd: function(c) {
         this.real += c.real;
         this.imag += c.imag;
-        return this.recalcPolar();
+        return this.sRecalcPolar();
       },
 
       sMult: function(c) {
         if(c.dir) {
           this.mag *= c.mag;
           this.dir += c.dir;
-          return this.recalcRect();
+          return this.sRecalcRect();
         } else {
           var mag = c.mag || c;
           this.real *= mag;
@@ -132,13 +132,11 @@ tail: |
         if(horiSecTarget < vertSecTarget) {
           secTarget = horiSecTarget;
           $ball.pos.sAdd($ball.vel.mult(horiSecTarget));
-          $ball.vel.real = -$ball.vel.real;
-          $ball.vel.recalcPolar();
+          $ball.vel.sReflectReal();
         } else {
           secTarget = vertSecTarget;
           $ball.pos.sAdd($ball.vel.mult(vertSecTarget));
-          $ball.vel.imag = -$ball.vel.imag;
-          $ball.vel.recalcPolar();
+          $ball.vel.sReflectImag();
         }
 
         var cssPos = {left: fieldwidth/2 + $ball.pos.real, top: fieldheight/2 - $ball.pos.imag};
