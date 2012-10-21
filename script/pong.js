@@ -139,26 +139,29 @@ function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleh
         }
       },
 
-      projection: function() {
-        if(self.vel.mag == 0) { return; }
-
+      hitData: function() {
         var horiWall = (self.vel.real > 0 ? 1 : -1) * (fieldwidth/2 - ballsize/2);
         var vertWall = (self.vel.imag > 0 ? 1 : -1) * (fieldheight/2 - ballsize/2);
 
         var horiSecTarget = (horiWall - self.pos.real) / self.vel.real;
         var vertSecTarget = (vertWall - self.pos.imag) / self.vel.imag;
 
-        var secTarget;
         if(horiSecTarget < vertSecTarget) {
-          secTarget = horiSecTarget;
-          self.move(secTarget);
-          self.vel.sReflectReal();
+          return {duration: horiSecTarget,
+                  isHori: true};
         } else {
-          secTarget = vertSecTarget;
-          self.move(secTarget);
-          self.vel.sReflectImag();
+          return {duration: vertSecTarget,
+                  isHori: false};
         }
-        self.projectionId = setTimeout(self.projection, secTarget*1000);
+      },
+
+      projection: function() {
+        if(self.vel.mag == 0) { return; }
+
+        var hitData = self.hitData();
+        self.move(hitData.duration);
+        hitData.isHori ? self.vel.sReflectReal() : self.vel.sReflectImag();
+        self.projectionId = setTimeout(self.projection, hitData.duration*1000);
       },
 
       reset: function(pos, vel) {
