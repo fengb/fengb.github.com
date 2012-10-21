@@ -100,6 +100,7 @@ $.extend(Complex.prototype, {
 });
 
 function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleheight) {
+  var paddlevel = 200;
   var $field = $('<div id="field" />').appendTo(container);
   $field.css({width: fieldwidth, height: fieldheight});
 
@@ -140,8 +141,8 @@ function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleh
       },
 
       hitData: function() {
-        var horiWall = (self.vel.real > 0 ? 1 : -1) * (fieldwidth/2 - ballsize/2);
-        var vertWall = (self.vel.imag > 0 ? 1 : -1) * (fieldheight/2 - ballsize/2);
+        var horiWall = (self.vel.real > 0 ? 1 : -1) * (fieldwidth/2 - width/2);
+        var vertWall = (self.vel.imag > 0 ? 1 : -1) * (fieldheight/2 - height/2);
 
         var horiSecTarget = (horiWall - self.pos.real) / self.vel.real;
         var vertSecTarget = (vertWall - self.pos.imag) / self.vel.imag;
@@ -176,12 +177,37 @@ function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleh
     return self;
   }
 
+  var ball = actor('ball', ballsize, ballsize);
+  var paddle = actor('paddle', paddlewidth, paddleheight);
+  paddle.reset(Complex.rect(0, -fieldheight/2 - paddleheight/2), Complex.zero());
+  paddle.moveLeft = function() {
+    this.vel = Complex(-paddlevel, 0);
+    this.move(this.hitData().duration);
+  };
+  paddle.moveRight = function() {
+    this.vel = Complex(paddlevel, 0);
+    this.move(this.hitData().duration);
+  };
+
+  $(document).keydown(function(event) {
+    switch(event.which) {
+      case 37:
+        paddle.moveLeft();
+        break;
+      case 39:
+        paddle.moveRight();
+        break;
+      default:
+        console.log(event.which);
+        break;
+    }
+  });
+
   return {
-    ball: actor('ball', ballsize, ballsize),
-    paddle: actor('paddle', paddlewidth, paddleheight),
+    ball: ball,
+    paddle: paddle,
     start: function() {
       this.ball.reset(Complex.rect(0, -fieldheight/2 + ballsize/2), Complex.polar(200, TAU * (4/9 - 3/9*Math.random())));
-      this.paddle.reset(Complex.rect(0, -fieldheight/2 - paddleheight/2), Complex.zero());
     }
   };
 }
