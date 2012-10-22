@@ -103,7 +103,7 @@ $.extend(Complex.prototype, {
   }
 });
 
-function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleheight) {
+function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth) {
   var paddlespeed = 200;
   var $field = $('<div id="field" />').appendTo(container);
   $field.css({width: fieldwidth, height: fieldheight});
@@ -231,6 +231,7 @@ function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleh
     setTimeout(function() {ball.moveUntilWall(onHit)}, 10);
   };
 
+  var paddleheight = ballsize/2; // TODO: move to CSS only, doesn't affect logic
   var paddle = actor('paddle', paddlewidth, paddleheight);
   paddle.jumpTo(Complex.rect(0, -fieldheight/2 - paddleheight/2));
   paddle.moveLeft = function() {
