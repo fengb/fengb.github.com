@@ -129,6 +129,11 @@ function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleh
         if(cssTransition) { $e.css(cssTransition, 'all linear'); }
       },
 
+      stopMove: function() {
+        clearTimeout(this.moveUntilWallId);
+        if(this.pos) { this.jumpTo(this.pos); }
+      },
+
       moveUntilWall: function(onBounce) {
         if(this.vel.mag == 0) { return; }
 
@@ -170,7 +175,7 @@ function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleh
 
   var ball = actor('ball', ballsize, ballsize);
   ball.reset = function(pos, vel) {
-    clearTimeout(ball.moveUntilWallId);
+    ball.stopMove();
 
     ball.jumpTo(pos);
     ball.vel = vel || Complex.zero();
