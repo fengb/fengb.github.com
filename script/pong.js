@@ -116,6 +116,8 @@ function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleh
             style.transition !== undefined ? 'transition' :
             null);
   })();
+  var score = 0;
+  var $score = $('<span class="score">0</span>').appendTo(container);
 
   function actor(classes, width, height) {
     var $e = $('<div class="actor ' + classes + '" />').appendTo($field).
@@ -210,14 +212,18 @@ function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleh
     ball.vel = Complex.polar(200, TAU * (4/9 - 3/9*Math.random()));
 
     function onHit(whichWall) {
-      if(whichWall == 'B' && (ball.posLeftest() > paddle.posRightest() ||
-                              ball.posRightest() < paddle.posLeftest())) {
-        return false;
-      }
-
       if(whichWall == 'L' || whichWall == 'R') {
         ball.vel.sReflectReal();
       } else {
+        if(whichWall == 'B') {
+          if(ball.posLeftest() > paddle.posRightest() ||
+             ball.posRightest() < paddle.posLeftest()) {
+            return false;
+          } else {
+            score += 1;
+            $score.text(score);
+          }
+        }
         ball.vel.sReflectImag();
       }
       return true;
