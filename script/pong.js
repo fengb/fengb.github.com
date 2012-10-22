@@ -131,12 +131,16 @@ function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleh
         if(!pos) { return; }
 
         this.posStart = pos;
+        this.moveBeginTime = null;
         $e.css(this.cssPos(pos));
         if(cssTransition) { $e.css(cssTransition, 'all linear'); }
       },
 
       actualPos: function() {
         if(!this.moveBeginTime) { return this.posStart; }
+
+        var duration = (+new Date() - this.moveBeginTime)/1000;
+        return this.posStart.add(this.vel.mult(duration));
       },
 
       stopMove: function() {
@@ -146,6 +150,8 @@ function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleh
 
       moveUntilWall: function(onBounce) {
         if(this.vel.mag == 0) { return; }
+
+        this.moveBeginTime = +new Date();
 
         var horiWall = (this.vel.real > 0 ? 1 : -1) * (fieldwidth/2 - width/2);
         var vertWall = (this.vel.imag > 0 ? 1 : -1) * (fieldheight/2 - height/2);
@@ -175,6 +181,7 @@ function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleh
         var self = this;
         this.moveUntilWallId = setTimeout(function() {
           self.posStart = posTarget;
+          self.moveBeginTime = null;
           if(onBounce) {
             onBounce(isHorizontal);
             self.moveUntilWall(onBounce);
@@ -200,10 +207,12 @@ function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleh
   var paddle = actor('paddle', paddlewidth, paddleheight);
   paddle.jumpTo(Complex.rect(0, -fieldheight/2 - paddleheight/2));
   paddle.moveLeft = function() {
+    this.stopMove();
     this.vel = Complex(-paddlevel, 0);
     this.moveUntilWall();
   };
   paddle.moveRight = function() {
+    this.stopMove();
     this.vel = Complex(paddlevel, 0);
     this.moveUntilWall();
   };
@@ -216,11 +225,12 @@ function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleh
       case 39: //right arrow
         paddle.moveRight();
         break;
-      case 32: //space bar
+    }
+  }).keyup(function(event) {
+    switch(event.which) {
+      case 37:
+      case 39:
         paddle.stopMove();
-        break;
-      default:
-        console.log(event.which);
         break;
     }
   });
