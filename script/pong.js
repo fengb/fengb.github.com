@@ -140,19 +140,27 @@ function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleh
         $e.css(this.cssPos(pos));
       },
 
-      actualPos: function() {
+      pos: function() {
         if(!this.moveBeginTime) { return this.posStart; }
 
         var duration = (+new Date() - this.moveBeginTime)/1000;
         return this.posStart.add(this.vel.mult(duration));
       },
 
-      stopMove: function() {
-        clearTimeout(this.moveUntilWallId);
-        this.jumpTo(this.actualPos());
+      posLeftest: function() {
+        return this.pos().real - width/2;
       },
 
-      moveUntilWall: function(onBounce) {
+      posRightest: function() {
+        return this.pos().real + width/2;
+      },
+
+      stopMove: function() {
+        clearTimeout(this.moveUntilWallId);
+        this.jumpTo(this.pos());
+      },
+
+      moveUntilWall: function(onHit) {
         if(this.vel.mag == 0) { return; }
 
         this.moveBeginTime = +new Date();
@@ -164,12 +172,12 @@ function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleh
         var vertDuration = (vertWall - this.posStart.imag) / this.vel.imag;
 
         var duration;
-        var isHorizontal;
+        var whichWall;
         if(horiDuration < vertDuration) {
-          isHorizontal = true;
+          whichWall = horiWall > 0 ? 'R' : 'L';
           duration = horiDuration;
         } else {
-          isHorizontal = false;
+          whichWall = vertWall > 0 ? 'T' : 'B';
           duration = vertDuration;
         }
 
@@ -186,9 +194,8 @@ function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleh
         this.moveUntilWallId = setTimeout(function() {
           self.posStart = posTarget;
           self.moveBeginTime = null;
-          if(onBounce) {
-            onBounce(isHorizontal);
-            self.moveUntilWall(onBounce);
+          if(onHit && onHit(whichWall)) {
+            self.moveUntilWall(onHit);
           }
         }, duration*1000);
       }
@@ -202,10 +209,21 @@ function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleh
     ball.jumpTo(pos);
     ball.vel = vel || Complex.zero();
 
-    function onBounce(isHorizontal) {
-      isHorizontal ? ball.vel.sReflectReal() : ball.vel.sReflectImag();
+    function onHit(whichWall) {
+      console.log(whichWall);
+      if(whichWall == 'B' && (ball.posLeftest() > paddle.posRightest() ||
+                              ball.posRightest() < paddle.posLeftest())) {
+        return false;
+      }
+
+      if(whichWall == 'L' || whichWall == 'R') {
+        ball.vel.sReflectReal();
+      } else {
+        ball.vel.sReflectImag();
+      }
+      return true;
     }
-    setTimeout(function() {ball.moveUntilWall(onBounce)}, 10);
+    setTimeout(function() {ball.moveUntilWall(onHit)}, 10);
   };
 
   var paddle = actor('paddle', paddlewidth, paddleheight);
