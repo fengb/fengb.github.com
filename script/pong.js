@@ -118,25 +118,25 @@ function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleh
                css({width:      width,    height: height,
                     marginLeft: -width/2, marginTop: -height/2});
 
-    var self = {
+    return {
       cssPos: function() {
-        return {left: fieldwidth/2 + self.pos.real, top: fieldheight/2 - self.pos.imag};
+        return {left: fieldwidth/2 + this.pos.real, top: fieldheight/2 - this.pos.imag};
       },
 
       jumpTo: function(c) {
-        self.pos = c;
-        $e.css(self.cssPos());
+        this.pos = c;
+        $e.css(this.cssPos());
         if(cssTransition) { $e.css(cssTransition, 'all linear'); }
       },
 
       moveUntilWall: function(onBounce) {
-        if(self.vel.mag == 0) { return; }
+        if(this.vel.mag == 0) { return; }
 
-        var horiWall = (self.vel.real > 0 ? 1 : -1) * (fieldwidth/2 - width/2);
-        var vertWall = (self.vel.imag > 0 ? 1 : -1) * (fieldheight/2 - height/2);
+        var horiWall = (this.vel.real > 0 ? 1 : -1) * (fieldwidth/2 - width/2);
+        var vertWall = (this.vel.imag > 0 ? 1 : -1) * (fieldheight/2 - height/2);
 
-        var horiDuration = (horiWall - self.pos.real) / self.vel.real;
-        var vertDuration = (vertWall - self.pos.imag) / self.vel.imag;
+        var horiDuration = (horiWall - this.pos.real) / this.vel.real;
+        var vertDuration = (vertWall - this.pos.imag) / this.vel.imag;
 
         var duration;
         var isHorizontal;
@@ -149,23 +149,23 @@ function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleh
         }
 
         var animDuration = duration - 0.01;
-        self.pos.sAdd(self.vel.mult(duration));
+        this.pos.sAdd(this.vel.mult(duration));
         if(cssTransition) {
           $e.css(cssTransition+'-duration', animDuration+'s');
-          $e.css(self.cssPos());
+          $e.css(this.cssPos());
         } else {
-          $e.animate(self.cssPos(), animDuration*1000, 'linear');
+          $e.animate(this.cssPos(), animDuration*1000, 'linear');
         }
 
         if(onBounce) {
-          self.moveUntilWallId = setTimeout(function() {
+          var self = this;
+          this.moveUntilWallId = setTimeout(function() {
             onBounce(isHorizontal);
             self.moveUntilWall(onBounce);
           }, duration*1000);
         }
       }
     };
-    return self;
   }
 
   var ball = actor('ball', ballsize, ballsize);
