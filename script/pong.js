@@ -123,7 +123,7 @@ function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleh
         return {left: fieldwidth/2 + self.pos.real, top: fieldheight/2 - self.pos.imag};
       },
 
-      moveTo: function(c) {
+      jumpTo: function(c) {
         self.pos = c;
         $e.css(self.cssPos());
         if(cssTransition) { $e.css(cssTransition, 'all linear'); }
@@ -172,7 +172,7 @@ function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleh
   ball.reset = function(pos, vel) {
     clearTimeout(ball.moveUntilWallId);
 
-    ball.moveTo(pos);
+    ball.jumpTo(pos);
     ball.vel = vel || Complex.zero();
 
     function onBounce(isHorizontal) {
@@ -182,7 +182,7 @@ function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleh
   };
 
   var paddle = actor('paddle', paddlewidth, paddleheight);
-  paddle.moveTo(Complex.rect(0, -fieldheight/2 - paddleheight/2));
+  paddle.jumpTo(Complex.rect(0, -fieldheight/2 - paddleheight/2));
   paddle.moveLeft = function() {
     this.vel = Complex(-paddlevel, 0);
     this.moveUntilWall();
