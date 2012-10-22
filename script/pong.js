@@ -163,31 +163,26 @@ function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleh
             self.moveUntilWall(onBounce);
           }, duration*1000);
         }
-      },
-
-      startBounce: function() {
-        function onBounce(isHorizontal) {
-          isHorizontal ? self.vel.sReflectReal() : self.vel.sReflectImag();
-        }
-        self.moveUntilWall(onBounce);
-      },
-
-      reset: function(pos, vel) {
-        clearTimeout(self.moveUntilWallId);
-
-        self.moveTo(pos);
-        self.vel = vel || Complex.zero();
-
-        setTimeout(self.startBounce, 10);
       }
     };
     return self;
   }
 
   var ball = actor('ball', ballsize, ballsize);
+  ball.reset = function(pos, vel) {
+    clearTimeout(ball.moveUntilWallId);
+
+    ball.moveTo(pos);
+    ball.vel = vel || Complex.zero();
+
+    function onBounce(isHorizontal) {
+      isHorizontal ? ball.vel.sReflectReal() : ball.vel.sReflectImag();
+    }
+    setTimeout(function() {ball.moveUntilWall(onBounce)}, 10);
+  };
 
   var paddle = actor('paddle', paddlewidth, paddleheight);
-  paddle.reset(Complex.rect(0, -fieldheight/2 - paddleheight/2), Complex.zero());
+  paddle.moveTo(Complex.rect(0, -fieldheight/2 - paddleheight/2));
   paddle.moveLeft = function() {
     this.vel = Complex(-paddlevel, 0);
     this.moveUntilWall();
@@ -215,7 +210,8 @@ function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleh
     ball: ball,
     paddle: paddle,
     start: function() {
-      this.ball.reset(Complex.rect(0, -fieldheight/2 + ballsize/2), Complex.polar(200, TAU * (4/9 - 3/9*Math.random())));
+      this.ball.reset(Complex.rect(0, -fieldheight/2 + ballsize/2),
+                      Complex.polar(200, TAU * (4/9 - 3/9*Math.random())));
     }
   };
 }
