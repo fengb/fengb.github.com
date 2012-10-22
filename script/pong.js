@@ -132,8 +132,12 @@ function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleh
 
         this.posStart = pos;
         this.moveBeginTime = null;
+        if(cssTransition) {
+          $e.css(cssTransition, 'all linear');
+        } else {
+          $e.stop();
+        }
         $e.css(this.cssPos(pos));
-        if(cssTransition) { $e.css(cssTransition, 'all linear'); }
       },
 
       actualPos: function() {
