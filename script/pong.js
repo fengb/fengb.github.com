@@ -94,6 +94,10 @@ $.extend(Complex.prototype, {
     return this.sRecalcPolar();
   },
 
+  add: function(c) {
+    return this.clone().sAdd(c);
+  },
+
   mult: function(c) {
     return this.clone().sMult(c);
   }
@@ -119,19 +123,25 @@ function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleh
                     marginLeft: -width/2, marginTop: -height/2});
 
     return {
-      cssPos: function() {
-        return {left: fieldwidth/2 + this.pos.real, top: fieldheight/2 - this.pos.imag};
+      cssPos: function(pos) {
+        return {left: fieldwidth/2 + pos.real, top: fieldheight/2 - pos.imag};
       },
 
-      jumpTo: function(c) {
-        this.pos = c;
-        $e.css(this.cssPos());
+      jumpTo: function(pos) {
+        if(!pos) { return; }
+
+        this.posStart = pos;
+        $e.css(this.cssPos(pos));
         if(cssTransition) { $e.css(cssTransition, 'all linear'); }
+      },
+
+      actualPos: function() {
+        if(!this.moveBeginTime) { return this.posStart; }
       },
 
       stopMove: function() {
         clearTimeout(this.moveUntilWallId);
-        if(this.pos) { this.jumpTo(this.pos); }
+        this.jumpTo(this.actualPos());
       },
 
       moveUntilWall: function(onBounce) {
@@ -140,8 +150,8 @@ function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleh
         var horiWall = (this.vel.real > 0 ? 1 : -1) * (fieldwidth/2 - width/2);
         var vertWall = (this.vel.imag > 0 ? 1 : -1) * (fieldheight/2 - height/2);
 
-        var horiDuration = (horiWall - this.pos.real) / this.vel.real;
-        var vertDuration = (vertWall - this.pos.imag) / this.vel.imag;
+        var horiDuration = (horiWall - this.posStart.real) / this.vel.real;
+        var vertDuration = (vertWall - this.posStart.imag) / this.vel.imag;
 
         var duration;
         var isHorizontal;
@@ -154,21 +164,22 @@ function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleh
         }
 
         var animDuration = duration - 0.01;
-        this.pos.sAdd(this.vel.mult(duration));
+        var posTarget = this.posStart.add(this.vel.mult(duration));
         if(cssTransition) {
           $e.css(cssTransition+'-duration', animDuration+'s');
-          $e.css(this.cssPos());
+          $e.css(this.cssPos(posTarget));
         } else {
-          $e.animate(this.cssPos(), animDuration*1000, 'linear');
+          $e.animate(this.cssPos(posTarget), animDuration*1000, 'linear');
         }
 
-        if(onBounce) {
-          var self = this;
-          this.moveUntilWallId = setTimeout(function() {
+        var self = this;
+        this.moveUntilWallId = setTimeout(function() {
+          self.posStart = posTarget;
+          if(onBounce) {
             onBounce(isHorizontal);
             self.moveUntilWall(onBounce);
-          }, duration*1000);
-        }
+          }
+        }, duration*1000);
       }
     };
   }
@@ -199,11 +210,14 @@ function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleh
 
   $(document).keydown(function(event) {
     switch(event.which) {
-      case 37:
+      case 37: //left arrow
         paddle.moveLeft();
         break;
-      case 39:
+      case 39: //right arrow
         paddle.moveRight();
+        break;
+      case 32: //space bar
+        paddle.stopMove();
         break;
       default:
         console.log(event.which);
