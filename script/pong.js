@@ -129,7 +129,25 @@ function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleh
         if(cssTransition) { $e.css(cssTransition, 'all linear'); }
       },
 
-      move: function(duration) {
+      moveUntilWall: function(onBounce) {
+        if(self.vel.mag == 0) { return; }
+
+        var horiWall = (self.vel.real > 0 ? 1 : -1) * (fieldwidth/2 - width/2);
+        var vertWall = (self.vel.imag > 0 ? 1 : -1) * (fieldheight/2 - height/2);
+
+        var horiDuration = (horiWall - self.pos.real) / self.vel.real;
+        var vertDuration = (vertWall - self.pos.imag) / self.vel.imag;
+
+        var duration;
+        var isHorizontal;
+        if(horiDuration < vertDuration) {
+          isHorizontal = true;
+          duration = horiDuration;
+        } else {
+          isHorizontal = false;
+          duration = vertDuration;
+        }
+
         var animDuration = duration - 0.01;
         self.pos.sAdd(self.vel.mult(duration));
         if(cssTransition) {
@@ -138,55 +156,45 @@ function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleh
         } else {
           $e.animate(self.cssPos(), animDuration*1000, 'linear');
         }
-      },
 
-      hitData: function() {
-        var horiWall = (self.vel.real > 0 ? 1 : -1) * (fieldwidth/2 - width/2);
-        var vertWall = (self.vel.imag > 0 ? 1 : -1) * (fieldheight/2 - height/2);
-
-        var horiSecTarget = (horiWall - self.pos.real) / self.vel.real;
-        var vertSecTarget = (vertWall - self.pos.imag) / self.vel.imag;
-
-        if(horiSecTarget < vertSecTarget) {
-          return {duration: horiSecTarget,
-                  isHori: true};
-        } else {
-          return {duration: vertSecTarget,
-                  isHori: false};
+        if(onBounce) {
+          self.moveUntilWallId = setTimeout(function() {
+            onBounce(isHorizontal);
+            self.moveUntilWall(onBounce);
+          }, duration*1000);
         }
       },
 
-      projection: function() {
-        if(self.vel.mag == 0) { return; }
-
-        var hitData = self.hitData();
-        self.move(hitData.duration);
-        hitData.isHori ? self.vel.sReflectReal() : self.vel.sReflectImag();
-        self.projectionId = setTimeout(self.projection, hitData.duration*1000);
+      startBounce: function() {
+        function onBounce(isHorizontal) {
+          isHorizontal ? self.vel.sReflectReal() : self.vel.sReflectImag();
+        }
+        self.moveUntilWall(onBounce);
       },
 
       reset: function(pos, vel) {
-        clearTimeout(self.projectionId);
+        clearTimeout(self.moveUntilWallId);
 
         self.moveTo(pos);
         self.vel = vel || Complex.zero();
 
-        self.projectionId = setTimeout(self.projection, 100);
+        setTimeout(self.startBounce, 10);
       }
     };
     return self;
   }
 
   var ball = actor('ball', ballsize, ballsize);
+
   var paddle = actor('paddle', paddlewidth, paddleheight);
   paddle.reset(Complex.rect(0, -fieldheight/2 - paddleheight/2), Complex.zero());
   paddle.moveLeft = function() {
     this.vel = Complex(-paddlevel, 0);
-    this.move(this.hitData().duration);
+    this.moveUntilWall();
   };
   paddle.moveRight = function() {
     this.vel = Complex(paddlevel, 0);
-    this.move(this.hitData().duration);
+    this.moveUntilWall();
   };
 
   $(document).keydown(function(event) {
