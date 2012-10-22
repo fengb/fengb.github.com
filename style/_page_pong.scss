@@ -1,0 +1,13 @@
+body#pong article#main {
+  #field {
+    position: relative;
+    margin: 0 auto;
+    border: 2px solid $dark1;
+    border-bottom: none;
+  }
+
+  .actor {
+    position: absolute;
+    background: $dark1;
+  }
+}

@@ -54,5 +54,8 @@
     {% endif %}
     <script src='/script/mutiny.js'></script>
     <script src='/script/page.js'></script>
+    {% if page.tail %}
+      {{ page.tail }}
+    {% endif %}
   </body>
 </html>
