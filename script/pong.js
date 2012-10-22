@@ -203,14 +203,13 @@ function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleh
   }
 
   var ball = actor('ball', ballsize, ballsize);
-  ball.reset = function(pos, vel) {
+  ball.reset = function() {
     ball.stopMove();
 
-    ball.jumpTo(pos);
-    ball.vel = vel || Complex.zero();
+    ball.jumpTo(Complex.rect(0, -fieldheight/2 + ballsize/2));
+    ball.vel = Complex.polar(200, TAU * (4/9 - 3/9*Math.random()));
 
     function onHit(whichWall) {
-      console.log(whichWall);
       if(whichWall == 'B' && (ball.posLeftest() > paddle.posRightest() ||
                               ball.posRightest() < paddle.posLeftest())) {
         return false;
@@ -261,8 +260,7 @@ function pong(container, fieldwidth, fieldheight, ballsize, paddlewidth, paddleh
     ball: ball,
     paddle: paddle,
     start: function() {
-      this.ball.reset(Complex.rect(0, -fieldheight/2 + ballsize/2),
-                      Complex.polar(200, TAU * (4/9 - 3/9*Math.random())));
+      ball.reset();
     }
   };
 }
