@@ -40,6 +40,7 @@ html {
   min-height: 100%;
   background: $dark1;
   @include background-gradient($dark1, $dark2);
+  color: desaturate($lite8, 50%);
 
   @media (max-width: $width-mobile) { padding: 0; }
 }
@@ -62,6 +63,7 @@ hgroup#branding {
   border: 1px solid $lite0;
   background: $lite6;
   @include background-gradient($lite8, $lite6);
+  color: $dark1;
   @include vendor(box-shadow, 0 0 5px rgba($lite0,0.8));
   @include vendor(border-radius, 16px 16px 0 0);
   @include vendor(text-shadow, 0 1px 1px $lite8);
@@ -83,7 +85,6 @@ hgroup#branding {
   h2 {
     display: inline;
     font-size: 24px;
-    color: $dark1;
 
     @media (max-width: 480px) { display: none; }
 
@@ -194,7 +195,6 @@ article#main {
 footer#legal {
   margin: 0 2px;
   padding: 16px 15px 48px;
-  color: desaturate($lite8, 50%);
   font: 12px Andale Mono, monospace;
   text-align: center;
   @include background-gradient(rgba($lite9, 0.1), rgba($lite9, 0));
