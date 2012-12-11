@@ -89,7 +89,7 @@ hgroup#branding {
     @media (max-width: 480px) { display: none; }
 
     &:before {
-      content: '\2192  ';
+      content: '→ ';
       padding-left: 4px;
       font-family: 'Lucida Grande', sans-serif;
     }
