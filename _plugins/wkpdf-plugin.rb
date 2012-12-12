@@ -1,5 +1,5 @@
 module Jekyll
-  class WkhtmltopdfFile < Jekyll::StaticFile
+  class WkpdfFile < Jekyll::StaticFile
     def initialize(site, base, dir, name)
       super
       @destname = name.gsub(/\.\w*/, '.pdf')
@@ -13,15 +13,15 @@ module Jekyll
       @@mtimes[path] = mtime
 
       FileUtils.mkdir_p(File.dirname(dest_path))
-      system("wkhtmltopdf --print-media-type #{src_path} #{dest_path}")
+      system("wkpdf --stylesheet-media print --margins 20 --source #{src_path} --output #{dest_path}")
     end
   end
 
-  class WkhtmltopdfGenerator < Generator
+  class WkpdfGenerator < Generator
     def generate(site)
       site.pages.each do |page|
         if page.data['pdf']
-          site.static_files << WkhtmltopdfFile.new(site, page.instance_variable_get(:@base), page.dir, page.name)
+          site.static_files << WkpdfFile.new(site, page.instance_variable_get(:@base), page.dir, page.name)
         end
       end
     end
