@@ -3,9 +3,7 @@ body#resume article#main {
     .contact li {
       display: inline-block;
 
-      &:first-child { margin-left: 24px; }
-      &:before { content: '◆ '; }
-      &:first-child:before { content: ''; }
+      &:first-child:after { content: ' ◆'; }
     }
   }
 
