@@ -22,7 +22,7 @@
       <script src='/style/html5shiv-printshiv.js'></script>
     <![endif]-->
   </head>
-  <body {% if page.class %}id='{{ page.class }}'{% elsif page.title %}id='{{ page.title | downcase }}'{% endif %}>
+  <body>
     <hgroup id='branding'>
       <h1><a href='/'>fengb</a></h1>
       {% if page.title %}<h2>{{ page.title }}</h2>{% endif %}
@@ -38,7 +38,7 @@
       </ul>
     </nav>
 
-    <article id='main'>
+    <article id='main' {% if page.class %}class='{{ page.class }}'{% elsif page.title %}class='{{ page.title | downcase }}'{% endif %}>
       {{ content }}
     </article>
 
