@@ -5,6 +5,8 @@ Comment: "Please note that Jekyll will only convert files that also have a YAML 
 
 * { color:#000 !important; text-shadow:none !important; border-color:#000; @include vendor(box-shadow, none !important); }
 
+a { color:#666 !important; text-decoration: underline; }
+
 nav, aside, footer, #branding { display:none; }
 
 html { font-size:14px; padding:0; }

@@ -29,6 +29,9 @@ GEM
     rake (0.9.2.2)
     sass (3.2.1)
     syntax (1.0.0)
+    trollop (2.0)
+    wkpdf (0.6.9)
+      trollop (>= 1.16.2)
 
 PLATFORMS
   ruby
@@ -39,3 +42,4 @@ DEPENDENCIES
   jekyll
   rake
   sass
+  wkpdf
