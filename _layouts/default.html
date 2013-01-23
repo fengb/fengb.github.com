@@ -19,7 +19,7 @@
     <title>fengb{% if page.title %} &rarr; {{ page.title }}{% endif %}</title>
     <script>{% if page.script_inject %}{{ page.script_inject }}{% endif %}document.documentElement.className='js'</script>
     <!--[if lt IE 9]>
-      <script src='/style/html5shiv-printshiv.js'></script>
+      <script src='vendor/html5shiv-printshiv.js'></script>
     <![endif]-->
   </head>
   <body>
@@ -50,9 +50,9 @@
     {% if site.url %}
       <script src='//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js'></script>
     {% else %}
-      <script src='script/jquery.js'></script>
+      <script src='vendor/jquery.js'></script>
     {% endif %}
-    <script src='script/mutiny.js'></script>
+    <script src='vendor/mutiny.js'></script>
     <script src='script/page.js'></script>
     {% if page.tail %}
       {{ page.tail }}
