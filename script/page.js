@@ -1,10 +1,5 @@
 (function($) {
-  var $contact = $('<aside id="contact"/>').insertAfter('article#main');
-  $.get('/contact.html', function(data) {
-      /* FIXME: regex should not parse HTML! */
-      $contact.html(data.replace(/^[\s\S]*?<article[^>]*>\s*([\s\S]*)\s*<\/article>[\s\S]*?$/, '$1'));
-  });
-
+  $('<aside id="contact"/>').insertAfter('article#main').load('contact.ajax.html');
   Mutiny.init();
 
   /* On document.ready to let browsers report load completion */
@@ -14,4 +9,4 @@
       img.src = e.href;
     });
   });
-})(jQuery)
+})(jQuery);
