@@ -1,3 +1,7 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+
+
 require 'prawn'
 require 'date'
 
@@ -23,9 +27,13 @@ module Fengb
     def entry(options)
       text "#{options[:title]} - #{options[:start_date]} to #{options[:end_date]}"
       text "<link href='#{options[:url]}'>#{options[:location]}</link>", :inline_format => true
-      if options[:misc]
-        text options[:misc]
+      if block_given?
+        yield
       end
+    end
+
+    def ul(*values)
+      table values.map{|e| ['•', e]}, :cell_style => {:borders => [], :padding => 0}
     end
   end
 end
@@ -47,25 +55,41 @@ Fengb::Resume.generate('resume.pdf') do
           :location => 'Enova Financial',
           :url => 'http://www.enova.com/',
           :start_date => Date.new(2009, 10, 26),
-          :end_date => 'present')
+          :end_date => 'present') do
+      ul('Engineered customer driven full-stack solutions for websites with millions of yearly transactions',
+         'Hardened security by eliminating potential attack vectors',
+         'Mentored peers and junior developers through pair programming and lightning talks')
+    end
 
     entry(:title => 'Chief Technical Officer',
           :location => 'Crusader Storm (defunct)',
           :url => 'http://web.archive.org/web/20100623115357/http://www.crusaderstorm.com/',
           :start_date => Date.new(2010, 5, 7),
-          :end_date => Date.new(2011, 5, 7))
+          :end_date => Date.new(2011, 5, 7)) do
+      ul('Incubated iPhone app from concept to release',
+         'Designed website using responsive web and graceful degradation techniques',
+         'Produced original artwork for branding and marketing')
+    end
 
     entry(:title => 'Software Engineer',
           :location => 'Business Logic Corporation',
           :url => 'http://businesslogic.com/',
           :start_date => Date.new(2007, 6, 4),
-          :end_date => Date.new(2009, 8, 4))
+          :end_date => Date.new(2009, 8, 4)) do
+      ul('Repurposed existing single-threaded financial advice engine into a scalable aggregator',
+         'Maintained legacy SOAP API layer for a redesigned modern RESTful architecture',
+         'Created testing framework for separating data configuration and verification')
+    end
 
     entry(:title => 'Computer Engineering Intern',
           :location => 'Rose-Hulman Ventures',
           :url => 'http://rhventures.org/',
           :start_date => Date.new(2005, 6, 6),
-          :end_date => Date.new(2007, 3, 16))
+          :end_date => Date.new(2007, 3, 16)) do
+      ul('Coordinated development team to build a website for managing recorded medical audio transcriptions',
+         'Optimized chemical control software for space efficiency',
+         'Enhanced C++ MFC application integrating with embedded circuit boards')
+    end
   end
 
   section 'Education' do
@@ -73,7 +97,8 @@ Fengb::Resume.generate('resume.pdf') do
           :location => 'Rose-Hulman Institute of Technology',
           :url => 'http://www.rose-hulman.edu/',
           :start_date => Date.new(2003, 9, 4),
-          :end_date => Date.new(2007, 5, 26),
-          :misc => 'Minor in Computer Science, Economics')
+          :end_date => Date.new(2007, 5, 26)) do
+      text 'Minor in Computer Science, Economics'
+    end
   end
 end
