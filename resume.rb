@@ -8,6 +8,11 @@ require 'date'
 
 module Fengb
   class Resume < Prawn::Document
+    LINK_COLOR = '435c96'
+    def link(url, text)
+      "<color rgb='#{LINK_COLOR}'><link href='#{url}'>#{text}</link></color>"
+    end
+
     def section(title, body=nil, &block)
       text_box title, :at => [0, cursor], :size => 14
       bounding_box([100, cursor], :width => margin_box.width - 100) do
@@ -25,8 +30,11 @@ module Fengb
     end
 
     def entry(options)
-      text "#{options[:title]} - #{options[:start_date]} to #{options[:end_date]}"
-      text "<link href='#{options[:url]}'>#{options[:location]}</link>", :inline_format => true
+      start_date = options[:start_date].strftime('%b %Y')
+      end_date = options[:end_date] ? options[:end_date].strftime('%b %Y') : 'present'
+
+      text "<b><font size='12'>#{options[:title]}</font></b> — #{start_date} to #{end_date}", :inline_format => true
+      text link(options[:url], options[:location]), :inline_format => true, :style => :bold
       if block_given?
         yield
       end
@@ -39,6 +47,7 @@ module Fengb
 end
 
 Fengb::Resume.generate('resume.pdf') do
+  font_size 10
   text 'Benjamin Feng', :align => :center, :size => 18, :style => :bold
 
   section 'Objective', 'To solve intriguing and intricate problems with emphasis on usability, maintainability, and correctness.'
@@ -54,8 +63,7 @@ Fengb::Resume.generate('resume.pdf') do
     entry(:title => 'Sr. Software Engineer II',
           :location => 'Enova Financial',
           :url => 'http://www.enova.com/',
-          :start_date => Date.new(2009, 10, 26),
-          :end_date => 'present') do
+          :start_date => Date.new(2009, 10, 26)) do
       ul('Engineered customer driven full-stack solutions for websites with millions of yearly transactions',
          'Hardened security by eliminating potential attack vectors',
          'Mentored peers and junior developers through pair programming and lightning talks')
