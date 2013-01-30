@@ -8,25 +8,33 @@ require 'date'
 
 module Fengb
   class Resume < Prawn::Document
+    GUTTER = 8
     LINK_COLOR = '435c96'
+
     def link(url, text)
       "<color rgb='#{LINK_COLOR}'><link href='#{url}'>#{text}</link></color>"
     end
 
     def section(title, body=nil, &block)
-      text_box title, :at => [0, cursor], :size => 14
-      bounding_box([100, cursor], :width => margin_box.width - 100) do
+      move_down GUTTER
+
+      text_box title, :at => [0, cursor], :width => (100 - 2*GUTTER), :align => :right, :size => 14, :style => :bold
+      bounding_box([100, cursor], :width => bounds.width - 100) do
         if body.nil?
           yield
         else
           text body
+        end
+
+        stroke do
+          vertical_line bounds.top+2, bounds.bottom, :at => -GUTTER
         end
       end
     end
 
     def skill(category, values)
       text_box category << ':', :at => [0, cursor]
-      text values, :indent_paragraphs => 80
+      text values, :indent_paragraphs => 62
     end
 
     def entry(options)
@@ -38,6 +46,7 @@ module Fengb
       if block_given?
         yield
       end
+      move_down GUTTER
     end
 
     def ul(*values)
@@ -49,6 +58,8 @@ end
 Fengb::Resume.generate('resume.pdf') do
   font_size 10
   text 'Benjamin Feng', :align => :center, :size => 18, :style => :bold
+  text "#{link('+1-312-725-2842', '(312) 725-2842')} • #{link('mailto:contact@fengb.info', 'contact@fengb.info')}",
+         :inline_format => true, :align => :center
 
   section 'Objective', 'To solve intriguing and intricate problems with emphasis on usability, maintainability, and correctness.'
 
