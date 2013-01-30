@@ -58,7 +58,7 @@ end
 Fengb::Resume.generate('resume.pdf') do
   font_size 10
   text 'Benjamin Feng', :align => :center, :size => 18, :style => :bold
-  text "#{link('+1-312-725-2842', '(312) 725-2842')} • #{link('mailto:contact@fengb.info', 'contact@fengb.info')}",
+  text "#{link('tel:+1-312-725-2842', '(312) 725-2842')} • #{link('mailto:contact@fengb.info', 'contact@fengb.info')}",
          :inline_format => true, :align => :center
 
   section 'Objective', 'To solve intriguing and intricate problems with emphasis on usability, maintainability, and correctness.'
