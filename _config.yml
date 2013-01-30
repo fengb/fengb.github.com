@@ -1,4 +1,4 @@
-exclude: [Gemfile, Gemfile.lock, LICENSE.md, Rakefile, README.md]
+exclude: [Gemfile, Gemfile.lock, LICENSE.md, Rakefile, README.md, resume.rb]
 sass:
   style: :expanded
   load_paths: ['style']
