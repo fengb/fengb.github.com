@@ -1,4 +1,5 @@
 require 'prawn'
+require 'date'
 
 
 module Fengb
@@ -18,6 +19,12 @@ module Fengb
       text_box category << ':', :at => [0, cursor]
       text values, :indent_paragraphs => 80
     end
+
+    def entry(options)
+      text "#{options[:title]} - #{options[:start_date]} to #{options[:end_date]}"
+      text "<link href='#{options[:url]}'>#{options[:location]}</link>", :inline_format => true
+      text options[:misc]
+    end
   end
 end
 
@@ -34,8 +41,11 @@ Fengb::Resume.generate('resume.pdf') do
   end
 
   section 'Education' do
-    text 'B.S. Computer Engineering - Sep 2003 to May 2007'
-    text 'Rose-Hulman Institute of Technology'
-    text 'Minor in Computer Science, Economics'
+    entry(:title => 'B.S. Computer Engineering',
+          :location => 'Rose-Hulman Institute of Technology',
+          :url => 'http://www.rose-hulman.edu/',
+          :start_date => Date.new(2003, 9, 4),
+          :end_date => Date.new(2007, 5, 26),
+          :misc => 'Minor in Computer Science, Economics')
   end
 end
