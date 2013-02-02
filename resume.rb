@@ -32,11 +32,6 @@ module Fengb
       end
     end
 
-    def skill(category, values)
-      text_box category << ':', :at => [0, cursor]
-      text values, :indent_paragraphs => 62
-    end
-
     def entry(options)
       start_date = options[:start_date].strftime('%b %Y')
       end_date = options[:end_date] ? options[:end_date].strftime('%b %Y') : 'present'
@@ -47,6 +42,10 @@ module Fengb
         yield
       end
       move_down GUTTER
+    end
+
+    def dl(options)
+      table options.map{|cat, val| ["#{cat}: ", val]}, :cell_style => {:borders => [], :padding => 0}
     end
 
     def ul(*values)
@@ -64,10 +63,10 @@ Fengb::Resume.generate('resume.pdf') do
   section 'Objective', 'To solve intriguing and intricate problems with emphasis on usability, maintainability, and correctness.'
 
   section 'Skills' do
-    skill 'Languages', 'C, Javascript, Objective-C, Python, Ruby, SQL'
-    skill 'Frameworks', 'Django, jQuery, Ruby on Rails'
-    skill 'Versioning', 'Git, Mercurial, Perforce, Subversion'
-    skill 'Software', 'Adobe Photoshop, Keynote, vi'
+    dl('Languages'  => 'C, Javascript, Objective-C, Python, Ruby, SQL',
+       'Frameworks' => 'Django, jQuery, Ruby on Rails',
+       'Versioning' => 'Git, Mercurial, Perforce, Subversion',
+       'Software' => 'Adobe Photoshop, Keynote, vi')
   end
 
   section 'Employment' do
