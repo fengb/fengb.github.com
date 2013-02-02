@@ -216,6 +216,7 @@ footer#legal {
 
 /*= In page contact */
 
+aside#contact { display: none; }
 .js {
   nav#site {
     ul { margin-right: 44px; }
@@ -255,6 +256,7 @@ footer#legal {
   }
 
   aside#contact {
+    display: block;
     position: absolute;
     top: 54px;
     right: 7px;

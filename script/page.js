@@ -1,5 +1,4 @@
 (function($) {
-  $('<aside id="contact"/>').insertAfter('article#main').load('contact.ajax.html');
   Mutiny.init();
 
   /* On document.ready to let browsers report load completion */
