@@ -1,4 +1,6 @@
-#!/usr/bin/env ruby
+---
+Comment: "Please note that Jekyll will only convert files that also have a YAML header at the top."
+---
 # encoding: utf-8
 
 
@@ -51,10 +53,15 @@ module Fengb
     def ul(*values)
       table values.map{|e| ['•', e]}, :cell_style => {:borders => [], :padding => 0}
     end
+
+    def self.render(options={}, &block)
+      pdf = new(options, &block)
+      pdf.render
+    end
   end
 end
 
-Fengb::Resume.generate('resume.pdf') do
+Fengb::Resume.render do
   font_size 10
   text 'Benjamin Feng', :align => :center, :size => 18, :style => :bold
   text "#{link('tel:+1-312-725-2842', '(312) 725-2842')} • #{link('mailto:contact@fengb.info', 'contact@fengb.info')}",
