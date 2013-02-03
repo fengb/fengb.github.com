@@ -10,75 +10,80 @@ require 'date'
 
 module Fengb
   class Resume < Prawn::Document
-    def gutter
-      8
-    end
+    module Primitives
+      def link(url, text)
+        "<b><color rgb='435c96'><link href='#{url}'>#{text}</link></color></b>"
+      end
 
-    def link(url, text)
-      "<b><color rgb='435c96'><link href='#{url}'>#{text}</link></color></b>"
-    end
+      def nav(links)
+        text links.map{|text, url| link(url, text)}.join('  •  '), :inline_format => true, :align => :center
+      end
 
-    def header(title)
-      text title, :align => :center, :size => 18, :style => :bold
-      yield
-    end
-
-    def nav(links)
-      text links.map{|text, url| link(url, text)}.join('  •  '), :inline_format => true, :align => :center
-    end
-
-    def section(title)
-      move_down 2*gutter
-
-      title_width = 128
-      text_box title.upcase, :at => [0, cursor - 1], :width => (title_width - 2*gutter), :align => :right, :size => 16, :style => :bold
-      bounding_box([title_width, cursor], :width => bounds.width - title_width) do
-        move_down 1
-        yield
-
-        stroke do
-          vertical_line bounds.top+2, bounds.bottom, :at => -gutter
+      def dl(options)
+        table_adjusted options.map{|cat, val| ["#{cat}:", val]}, :cell_style => {:borders => [], :padding => 0} do
+          style column(0), :padding_right => 4
         end
       end
 
-      @entry = 0
+      def ul(*values)
+        table_adjusted values.map{|e| ['•', e]}, :cell_style => {:borders => [], :padding => 0} do
+          style column(0), :padding_left => 1, :width => 10
+        end
+      end
+
+      # Table whitespace is off...
+      def table_adjusted(*args, &block)
+        move_up 2
+        table *args, &block
+        move_down 2
+      end
     end
 
-    def entry(options)
-      if @entry != 0
-        move_down gutter
+    module Sectioning
+      def gutter
+        8
       end
-      @entry += 1
 
-      start_date = Date.parse(options[:dates].first).strftime('%b %Y')
-      end_date = options[:dates].last ? Date.parse(options[:dates].last).strftime('%b %Y') : 'present'
-
-      text "<b><font size='12'>#{options[:title]}</font></b> — #{start_date} to #{end_date}", :inline_format => true
-      text link(options[:url], options[:location]), :inline_format => true
-      if block_given?
+      def header(title)
+        text title, :align => :center, :size => 18, :style => :bold
         yield
       end
-    end
 
-    def dl(options)
-      table_adjusted options.map{|cat, val| ["#{cat}:", val]}, :cell_style => {:borders => [], :padding => 0} do
-        style column(0), :padding_right => 4
+      def section(title)
+        move_down 2*gutter
+
+        title_width = 128
+        text_box title.upcase, :at => [0, cursor - 1], :width => (title_width - 2*gutter), :align => :right, :size => 16, :style => :bold
+        bounding_box([title_width, cursor], :width => bounds.width - title_width) do
+          move_down 1
+          yield
+
+          stroke do
+            vertical_line bounds.top+2, bounds.bottom, :at => -gutter
+          end
+        end
+
+        @entry = 0
+      end
+
+      def entry(options)
+        if @entry != 0
+          move_down gutter
+        end
+        @entry += 1
+
+        start_date = Date.parse(options[:dates].first).strftime('%b %Y')
+        end_date = options[:dates].last ? Date.parse(options[:dates].last).strftime('%b %Y') : 'present'
+
+        text "<b><font size='12'>#{options[:title]}</font></b> — #{start_date} to #{end_date}", :inline_format => true
+        text link(options[:url], options[:location]), :inline_format => true
+        if block_given?
+          yield
+        end
       end
     end
 
-    def ul(*values)
-      table_adjusted values.map{|e| ['•', e]}, :cell_style => {:borders => [], :padding => 0} do
-        style column(0), :padding_left => 1, :width => 10
-      end
-    end
-
-    # Table whitespace is off...
-    def table_adjusted(*args, &block)
-      move_up 2
-      table *args, &block
-      move_down 2
-    end
-
+    include Primitives, Sectioning
     def self.render(options={}, &block)
       pdf = new(options, &block)
       pdf.render
