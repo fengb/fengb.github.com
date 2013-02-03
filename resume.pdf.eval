@@ -20,15 +20,19 @@ module Fengb
       end
 
       def dl(options)
-        table_adjusted options.map{|cat, val| ["#{cat}:", val]}, :cell_style => {:borders => [], :padding => 0} do
+        move_up 1
+        table_adjusted options.map{|cat, val| ["#{cat}:", val]}, :cell_style => {:borders => [], :padding => [1, 0]} do
           style column(0), :padding_right => 4
         end
+        move_up 1
       end
 
       def ul(*values)
-        table_adjusted values.map{|e| ['•', e]}, :cell_style => {:borders => [], :padding => 0} do
+        move_up 1
+        table_adjusted values.map{|e| ['•', e]}, :cell_style => {:borders => [], :padding => [1, 0]} do
           style column(0), :padding_left => 1, :width => 10
         end
+        move_up 1
       end
 
       # Table whitespace is off...
@@ -46,11 +50,14 @@ module Fengb
 
       def header(title)
         text title, :align => :center, :size => 18, :style => :bold
-        yield
+        move_up 1
+        font_size 11 do
+          yield
+        end
       end
 
       def section(title)
-        move_down 2*gutter
+        move_down 1.5*gutter
 
         title_width = 128
         text_box title.upcase, :at => [0, cursor - 1], :width => (title_width - 2*gutter), :align => :right, :size => 16, :style => :bold
@@ -76,7 +83,8 @@ module Fengb
         end_date = options[:dates].last ? Date.parse(options[:dates].last).strftime('%b %Y') : 'present'
 
         text "<b><font size='12'>#{options[:title]}</font></b> — #{start_date} to #{end_date}", :inline_format => true
-        text link(options[:url], options[:location]), :inline_format => true
+        text link(options[:url], options[:location]), :inline_format => true, :size => 11
+        move_down 1
         if block_given?
           yield
         end
