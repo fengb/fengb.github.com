@@ -32,9 +32,16 @@ module Fengb
           vertical_line bounds.top+2, bounds.bottom, :at => -GUTTER
         end
       end
+
+      @entry = 0
     end
 
     def entry(options)
+      if @entry != 0
+        move_down GUTTER
+      end
+      @entry += 1
+
       start_date = options[:start_date].strftime('%b %Y')
       end_date = options[:end_date] ? options[:end_date].strftime('%b %Y') : 'present'
 
@@ -43,15 +50,21 @@ module Fengb
       if block_given?
         yield
       end
-      move_down GUTTER
     end
 
     def dl(options)
-      table options.map{|cat, val| ["#{cat}: ", val]}, :cell_style => {:borders => [], :padding => 0}
+      table_adjusted options.map{|cat, val| ["#{cat}: ", val]}, :cell_style => {:borders => [], :padding => 0}
     end
 
     def ul(*values)
-      table values.map{|e| ['•', e]}, :cell_style => {:borders => [], :padding => 0}
+      table_adjusted values.map{|e| ['•', e]}, :cell_style => {:borders => [], :padding => 0}
+    end
+
+    # Table whitespace is off...
+    def table_adjusted(*args)
+      move_up 2
+      table *args
+      move_down 2
     end
 
     def self.render(options={}, &block)
