@@ -61,17 +61,21 @@ module Fengb
     end
 
     def dl(options)
-      table_adjusted options.map{|cat, val| ["#{cat}: ", val]}, :cell_style => {:borders => [], :padding => 0}
+      table_adjusted options.map{|cat, val| ["#{cat}:", val]}, :cell_style => {:borders => [], :padding => 0} do
+        style column(0), :padding_right => 4
+      end
     end
 
     def ul(*values)
-      table_adjusted values.map{|e| ['•', e]}, :cell_style => {:borders => [], :padding => 0}
+      table_adjusted values.map{|e| ['•', e]}, :cell_style => {:borders => [], :padding => 0} do
+        style column(0), :padding_left => 1, :width => 10
+      end
     end
 
     # Table whitespace is off...
-    def table_adjusted(*args)
+    def table_adjusted(*args, &block)
       move_up 2
-      table *args
+      table *args, &block
       move_down 2
     end
 
