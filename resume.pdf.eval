@@ -15,13 +15,12 @@ module Fengb
     end
 
     def link(url, text)
-      "<color rgb='435c96'><link href='#{url}'>#{text}</link></color>"
+      "<b><color rgb='435c96'><link href='#{url}'>#{text}</link></color></b>"
     end
 
     def header(title)
       text title, :align => :center, :size => 18, :style => :bold
       yield
-      move_down 2*gutter
     end
 
     def nav(links)
@@ -29,10 +28,11 @@ module Fengb
     end
 
     def section(title)
-      move_down gutter
+      move_down 2*gutter
 
-      text_box title, :at => [0, cursor], :width => (100 - 2*gutter), :align => :right, :size => 14, :style => :bold
-      bounding_box([100, cursor], :width => bounds.width - 100) do
+      title_width = 128
+      text_box title.upcase, :at => [0, cursor - 1], :width => (title_width - 2*gutter), :align => :right, :size => 16, :style => :bold
+      bounding_box([title_width, cursor], :width => bounds.width - title_width) do
         move_down 1
         yield
 
@@ -54,7 +54,7 @@ module Fengb
       end_date = options[:dates].last ? Date.parse(options[:dates].last).strftime('%b %Y') : 'present'
 
       text "<b><font size='12'>#{options[:title]}</font></b> — #{start_date} to #{end_date}", :inline_format => true
-      text link(options[:url], options[:location]), :inline_format => true, :style => :bold
+      text link(options[:url], options[:location]), :inline_format => true
       if block_given?
         yield
       end
