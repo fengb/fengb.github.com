@@ -1,0 +1,166 @@
+---
+Comment: "Please note that Jekyll will only convert files that also have a YAML header at the top."
+---
+# encoding: utf-8
+
+
+require 'prawn'
+require 'date'
+
+
+module Fengb
+  class Resume < Prawn::Document
+    module Primitives
+      def link(url, text)
+        "<b><color rgb='435c96'><link href='#{url}'>#{text}</link></color></b>"
+      end
+
+      def nav(links)
+        text links.map{|text, url| link(url, text)}.join('  •  '), :inline_format => true, :align => :center
+      end
+
+      def dl(options)
+        move_up 1
+        table_adjusted options.map{|cat, val| ["#{cat}:", val]}, :cell_style => {:borders => [], :padding => [1, 0]} do
+          style column(0), :padding_right => 4
+        end
+        move_up 1
+      end
+
+      def ul(*values)
+        move_up 1
+        table_adjusted values.map{|e| ['•', e]}, :cell_style => {:borders => [], :padding => [1, 0]} do
+          style column(0), :padding_left => 1, :width => 10
+        end
+        move_up 1
+      end
+
+      # Table whitespace is off...
+      def table_adjusted(*args, &block)
+        move_up 2
+        table *args, &block
+        move_down 2
+      end
+    end
+
+    module Sectioning
+      def gutter
+        8
+      end
+
+      def header(title)
+        text title, :align => :center, :size => 18, :style => :bold
+        move_up 1
+        font_size 11 do
+          yield
+        end
+      end
+
+      def section(title)
+        move_down 1.5*gutter
+
+        title_width = 128
+        text_box title.upcase, :at => [0, cursor - 1], :width => (title_width - 2*gutter), :align => :right, :size => 16, :style => :bold
+        bounding_box([title_width, cursor], :width => bounds.width - title_width) do
+          move_down 1
+          yield
+
+          stroke do
+            vertical_line bounds.top+2, bounds.bottom, :at => -gutter
+          end
+        end
+
+        @entry = 0
+      end
+
+      def entry(options)
+        if @entry != 0
+          move_down gutter
+        end
+        @entry += 1
+
+        start_date = Date.parse(options[:dates].first).strftime('%b %Y')
+        end_date = options[:dates].last ? Date.parse(options[:dates].last).strftime('%b %Y') : 'present'
+
+        text "<b><font size='12'>#{options[:title]}</font></b> — #{start_date} to #{end_date}", :inline_format => true
+        text link(options[:url], options[:location]), :inline_format => true, :size => 11
+        move_down 1
+        if block_given?
+          yield
+        end
+      end
+    end
+
+    include Primitives, Sectioning
+    def self.render(options={}, &block)
+      pdf = new(options, &block)
+      pdf.render
+    end
+  end
+end
+
+Fengb::Resume.render do
+  font_size 10
+  header 'Benjamin Feng' do
+    nav('(312) 725-2842'     => 'tel:+1-312-725-2842',
+        'contact@fengb.info' => 'mailto:contact@fengb.info')
+  end
+
+  section 'Objective' do
+    text 'To solve intriguing and intricate problems with emphasis on usability, maintainability, and correctness.'
+  end
+
+  section 'Skills' do
+    dl('Languages'  => 'C, Javascript, Objective-C, Python, Ruby, SQL',
+       'Frameworks' => 'Django, jQuery, Ruby on Rails',
+       'Versioning' => 'Git, Mercurial, Perforce, Subversion',
+       'Software'   => 'Adobe Photoshop, Keynote, vi')
+  end
+
+  section 'Employment' do
+    entry(:title => 'Sr. Software Engineer II',
+          :location => 'Enova Financial',
+          :url => 'http://www.enova.com/',
+          :dates => ['2009-10-26', nil]) do
+      ul('Engineered customer driven full-stack solutions for websites with millions of yearly transactions',
+         'Hardened security by eliminating potential attack vectors',
+         'Mentored peers and junior developers through pair programming and lightning talks')
+    end
+
+    entry(:title => 'Chief Technical Officer',
+          :location => 'Crusader Storm (defunct)',
+          :url => 'http://web.archive.org/web/20100623115357/http://www.crusaderstorm.com/',
+          :dates => ['2010-05-07', '2011-05-07']) do
+      ul('Incubated iPhone app from concept to release',
+         'Designed website using responsive web and graceful degradation techniques',
+         'Produced original artwork for branding and marketing')
+    end
+
+    entry(:title => 'Software Engineer',
+          :location => 'Business Logic Corporation',
+          :url => 'http://businesslogic.com/',
+          :dates => ['2007-06-04', '2009-08-04']) do
+      ul('Repurposed existing single-threaded financial advice engine into a scalable aggregator',
+         'Maintained legacy SOAP API layer for a redesigned modern RESTful architecture',
+         'Created testing framework for separating data configuration and verification')
+    end
+
+    entry(:title => 'Computer Engineering Intern',
+          :location => 'Rose-Hulman Ventures',
+          :url => 'http://rhventures.org/',
+          :dates => ['2005-06-06', '2007-03-16']) do
+      ul('Coordinated development team to build a website for managing recorded medical audio transcriptions',
+         'Optimized chemical control software for space efficiency',
+         'Enhanced C++ MFC application integrating with embedded circuit boards')
+    end
+  end
+
+  section 'Education' do
+    entry(:title => 'B.S. Computer Engineering',
+          :location => 'Rose-Hulman Institute of Technology',
+          :url => 'http://www.rose-hulman.edu/',
+          :dates => ['2003-09-04', '2007-05-26']) do
+      text 'Minor in Computer Science, Economics'
+    end
+  end
+end
