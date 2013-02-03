@@ -10,26 +10,24 @@ require 'date'
 
 module Fengb
   class Resume < Prawn::Document
-    GUTTER = 8
-    LINK_COLOR = '435c96'
-
-    def link(url, text)
-      "<color rgb='#{LINK_COLOR}'><link href='#{url}'>#{text}</link></color>"
+    def gutter
+      8
     end
 
-    def section(title, body=nil, &block)
-      move_down GUTTER
+    def link(url, text)
+      "<color rgb='435c96'><link href='#{url}'>#{text}</link></color>"
+    end
 
-      text_box title, :at => [0, cursor], :width => (100 - 2*GUTTER), :align => :right, :size => 14, :style => :bold
+    def section(title)
+      move_down gutter
+
+      text_box title, :at => [0, cursor], :width => (100 - 2*gutter), :align => :right, :size => 14, :style => :bold
       bounding_box([100, cursor], :width => bounds.width - 100) do
-        if body.nil?
-          yield
-        else
-          text body
-        end
+        move_down 1
+        yield
 
         stroke do
-          vertical_line bounds.top+2, bounds.bottom, :at => -GUTTER
+          vertical_line bounds.top+2, bounds.bottom, :at => -gutter
         end
       end
 
@@ -38,7 +36,7 @@ module Fengb
 
     def entry(options)
       if @entry != 0
-        move_down GUTTER
+        move_down gutter
       end
       @entry += 1
 
@@ -77,10 +75,13 @@ end
 Fengb::Resume.render do
   font_size 10
   text 'Benjamin Feng', :align => :center, :size => 18, :style => :bold
-  text "#{link('tel:+1-312-725-2842', '(312) 725-2842')} • #{link('mailto:contact@fengb.info', 'contact@fengb.info')}",
+  text "#{link('tel:+1-312-725-2842', '(312) 725-2842')}  •  #{link('mailto:contact@fengb.info', 'contact@fengb.info')}",
          :inline_format => true, :align => :center
+  move_down 2*gutter
 
-  section 'Objective', 'To solve intriguing and intricate problems with emphasis on usability, maintainability, and correctness.'
+  section 'Objective' do
+    text 'To solve intriguing and intricate problems with emphasis on usability, maintainability, and correctness.'
+  end
 
   section 'Skills' do
     dl('Languages'  => 'C, Javascript, Objective-C, Python, Ruby, SQL',
