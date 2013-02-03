@@ -18,6 +18,16 @@ module Fengb
       "<color rgb='435c96'><link href='#{url}'>#{text}</link></color>"
     end
 
+    def header(title)
+      text title, :align => :center, :size => 18, :style => :bold
+      yield
+      move_down 2*gutter
+    end
+
+    def nav(links)
+      text links.map{|text, url| link(url, text)}.join('  •  '), :inline_format => true, :align => :center
+    end
+
     def section(title)
       move_down gutter
 
@@ -40,8 +50,8 @@ module Fengb
       end
       @entry += 1
 
-      start_date = options[:start_date].strftime('%b %Y')
-      end_date = options[:end_date] ? options[:end_date].strftime('%b %Y') : 'present'
+      start_date = Date.parse(options[:dates].first).strftime('%b %Y')
+      end_date = options[:dates].last ? Date.parse(options[:dates].last).strftime('%b %Y') : 'present'
 
       text "<b><font size='12'>#{options[:title]}</font></b> — #{start_date} to #{end_date}", :inline_format => true
       text link(options[:url], options[:location]), :inline_format => true, :style => :bold
@@ -74,10 +84,10 @@ end
 
 Fengb::Resume.render do
   font_size 10
-  text 'Benjamin Feng', :align => :center, :size => 18, :style => :bold
-  text "#{link('tel:+1-312-725-2842', '(312) 725-2842')}  •  #{link('mailto:contact@fengb.info', 'contact@fengb.info')}",
-         :inline_format => true, :align => :center
-  move_down 2*gutter
+  header 'Benjamin Feng' do
+    nav('(312) 725-2842'     => 'tel:+1-312-725-2842',
+        'contact@fengb.info' => 'mailto:contact@fengb.info')
+  end
 
   section 'Objective' do
     text 'To solve intriguing and intricate problems with emphasis on usability, maintainability, and correctness.'
@@ -87,14 +97,14 @@ Fengb::Resume.render do
     dl('Languages'  => 'C, Javascript, Objective-C, Python, Ruby, SQL',
        'Frameworks' => 'Django, jQuery, Ruby on Rails',
        'Versioning' => 'Git, Mercurial, Perforce, Subversion',
-       'Software' => 'Adobe Photoshop, Keynote, vi')
+       'Software'   => 'Adobe Photoshop, Keynote, vi')
   end
 
   section 'Employment' do
     entry(:title => 'Sr. Software Engineer II',
           :location => 'Enova Financial',
           :url => 'http://www.enova.com/',
-          :start_date => Date.new(2009, 10, 26)) do
+          :dates => ['2009-10-26', nil]) do
       ul('Engineered customer driven full-stack solutions for websites with millions of yearly transactions',
          'Hardened security by eliminating potential attack vectors',
          'Mentored peers and junior developers through pair programming and lightning talks')
@@ -103,8 +113,7 @@ Fengb::Resume.render do
     entry(:title => 'Chief Technical Officer',
           :location => 'Crusader Storm (defunct)',
           :url => 'http://web.archive.org/web/20100623115357/http://www.crusaderstorm.com/',
-          :start_date => Date.new(2010, 5, 7),
-          :end_date => Date.new(2011, 5, 7)) do
+          :dates => ['2010-05-07', '2011-05-07']) do
       ul('Incubated iPhone app from concept to release',
          'Designed website using responsive web and graceful degradation techniques',
          'Produced original artwork for branding and marketing')
@@ -113,8 +122,7 @@ Fengb::Resume.render do
     entry(:title => 'Software Engineer',
           :location => 'Business Logic Corporation',
           :url => 'http://businesslogic.com/',
-          :start_date => Date.new(2007, 6, 4),
-          :end_date => Date.new(2009, 8, 4)) do
+          :dates => ['2007-06-04', '2009-08-04']) do
       ul('Repurposed existing single-threaded financial advice engine into a scalable aggregator',
          'Maintained legacy SOAP API layer for a redesigned modern RESTful architecture',
          'Created testing framework for separating data configuration and verification')
@@ -123,8 +131,7 @@ Fengb::Resume.render do
     entry(:title => 'Computer Engineering Intern',
           :location => 'Rose-Hulman Ventures',
           :url => 'http://rhventures.org/',
-          :start_date => Date.new(2005, 6, 6),
-          :end_date => Date.new(2007, 3, 16)) do
+          :dates => ['2005-06-06', '2007-03-16']) do
       ul('Coordinated development team to build a website for managing recorded medical audio transcriptions',
          'Optimized chemical control software for space efficiency',
          'Enhanced C++ MFC application integrating with embedded circuit boards')
@@ -135,8 +142,7 @@ Fengb::Resume.render do
     entry(:title => 'B.S. Computer Engineering',
           :location => 'Rose-Hulman Institute of Technology',
           :url => 'http://www.rose-hulman.edu/',
-          :start_date => Date.new(2003, 9, 4),
-          :end_date => Date.new(2007, 5, 26)) do
+          :dates => ['2003-09-04', '2007-05-26']) do
       text 'Minor in Computer Science, Economics'
     end
   end
