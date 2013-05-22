@@ -4,10 +4,6 @@
 force=$1
 find jekyll/samples -type f -not -name "*thumb*" | while read file; do
   if ! grep -q 'Benjamin Feng' $file || [ -n "$force" ]; then
-    pngcrush -rem gAMA -rem cHRM -rem iCCP -rem sRGB -rem text \
-             -text b 'License' 'http://creativecommons.org/licenses/by-nc-nd/3.0/' \
-             -text b 'Url'     'http://fengb.info' \
-             -text b 'Author'  'Benjamin Feng' \
-             -res 110 -ow "$file"
+    $BAKE crush "$file" 110
   fi
 done

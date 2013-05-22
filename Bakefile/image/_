@@ -1,0 +1,6 @@
+#!/bin/bash
+
+
+shift
+$BAKE image/process $@
+$BAKE image/thumb $@
