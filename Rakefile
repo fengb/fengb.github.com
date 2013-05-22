@@ -28,13 +28,6 @@ task :clean do
 end
 
 namespace :image do
-  require 'rubygems'
-  begin
-    require 'oily_png'
-  rescue LoadError
-    require 'chunky_png'
-  end
-
   desc 'Add metadata and compress images'
   task :process do
     force = ENV['force'] || false
@@ -42,15 +35,12 @@ namespace :image do
     Dir['samples/*.png'].each do |f|
       next if f =~ /thumb.png$/
 
-      img = ChunkyPNG::Image.from_file(f)
-      if img.metadata['Author'] != 'Benjamin Feng' or force
-        img.metadata = {'License' => 'http://creativecommons.org/licenses/by-nc-nd/3.0/',
-                        'Url' => 'http://fengb.github.com/',
-                        'Author' => 'Benjamin Feng'}
-
-        img.save(f)
-        dpi = [DEFAULT_DPI, (DEFAULT_DPI.to_f * img.height / 750).round].max
-        sh "pngcrush -res #{dpi} -ow #{f}"
+      if sh "grep -vq 'Benjamin Feng' #{f}" or force
+        sh "pngcrush -rem text \
+                     -text b 'License' 'http://creativecommons.org/licenses/by-nc-nd/3.0/' \
+                     -text b 'Url'     'http://fengb.info/' \
+                     -text b 'Author'  'Benjamin Feng' \
+                     -res #{DEFAULT_DPI} -ow #{f}"
       end
     end
   end
@@ -64,22 +54,15 @@ namespace :image do
 
       target = f.sub('.png', '-thumb.png')
       if not File.exist?(target) or force
-        img = ChunkyPNG::Image.from_file(f)
-
-        height = 150
-        width = (img.width.to_f / img.height * height).round
-        img.resample_bilinear!(width, height)
-
-        img.save(target)
+        sh "sips --resampleHeightWidthMax #{height} -out #{target}"
         sh "pngquant --force --ext .png #{target}"
 
         # pngquant kills meta
-        img = ChunkyPNG::Image.from_file(target)
-        img.metadata = {'License' => 'http://creativecommons.org/licenses/by-nc-nd/3.0/',
-                        'Url' => 'http://fengb.github.com/',
-                        'Author' => 'Benjamin Feng'}
-        img.save(target)
-        sh "pngcrush -res #{DEFAULT_DPI * 2} -ow #{target}"
+        sh "pngcrush -rem text
+                     -text b 'License' 'http://creativecommons.org/licenses/by-nc-nd/3.0/' \
+                     -text b 'Url'     'http://fengb.github.com/' \
+                     -text b 'Author'  'Benjamin Feng
+                     -res #{DEFAULT_DPI * 2} -ow #{target}"
       end
     end
   end
