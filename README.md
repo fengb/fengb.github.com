@@ -18,5 +18,5 @@ Dev setup
 ```console
 $ bundle install
 $ brewdle install
-$ rake
+$ bake
 ```

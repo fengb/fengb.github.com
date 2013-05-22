@@ -1,0 +1,13 @@
+#!/bin/bash
+
+
+$BAKE compile
+gitorigin=`git remote show -n origin | sed -e '/Fetch URL/!d' -e 's/ *Fetch URL: //'`
+
+cd _site
+git init
+git add .
+git commit -m "AUTO PUBLISH"
+
+git remote add origin $gitorigin
+git push -f origin master
