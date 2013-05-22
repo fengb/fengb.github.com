@@ -21,6 +21,7 @@
 
 WORK = '_site'
 DEFAULT_DPI = 110
+URL = 'http://fengb.info'
 
 desc 'Remove generated files'
 task :clean do
@@ -42,7 +43,7 @@ namespace :image do
       if missing_meta or force
         sh "pngcrush -rem gAMA -rem cHRM -rem iCCP -rem sRGB -rem text \
                      -text b 'License' 'http://creativecommons.org/licenses/by-nc-nd/3.0/' \
-                     -text b 'Url'     'http://fengb.info/' \
+                     -text b 'Url'     '#{URL}' \
                      -text b 'Author'  'Benjamin Feng' \
                      -res #{DEFAULT_DPI} -ow #{f}"
       end
@@ -62,7 +63,7 @@ namespace :image do
         sh "pngquant --force --ext .png #{target}"
         sh "pngcrush -rem gAMA -rem cHRM -rem iCCP -rem sRGB -rem text \
                      -text b 'License' 'http://creativecommons.org/licenses/by-nc-nd/3.0/' \
-                     -text b 'Url'     'http://fengb.github.com/' \
+                     -text b 'Url'     '#{URL}' \
                      -text b 'Author'  'Benjamin Feng' \
                      -res #{DEFAULT_DPI * 2} -ow #{target}"
       end
@@ -73,7 +74,7 @@ task :image => %w[image:process image:thumb]
 
 desc 'Compile all assets for deployment'
 task :compile do
-  sh 'jekyll --url http://fengb.github.com'
+  sh "jekyll --url #{URL}"
 end
 
 desc 'Stage assets to a fresh branch for publication'
