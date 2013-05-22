@@ -35,8 +35,12 @@ namespace :image do
     Dir['samples/*.png'].each do |f|
       next if f =~ /thumb.png$/
 
-      if sh "grep -vq 'Benjamin Feng' #{f}" or force
-        sh "pngcrush -rem text \
+      missing_meta = nil
+      sh "grep -q 'Benjamin Feng' #{f}" do |ok|
+        missing_meta = !ok
+      end
+      if missing_meta or force
+        sh "pngcrush -rem gAMA -rem cHRM -rem iCCP -rem sRGB -rem text \
                      -text b 'License' 'http://creativecommons.org/licenses/by-nc-nd/3.0/' \
                      -text b 'Url'     'http://fengb.info/' \
                      -text b 'Author'  'Benjamin Feng' \
@@ -54,14 +58,12 @@ namespace :image do
 
       target = f.sub('.png', '-thumb.png')
       if not File.exist?(target) or force
-        sh "sips --resampleHeightWidthMax #{height} -out #{target}"
+        sh "convert -resize 'x100' #{f} #{target}"
         sh "pngquant --force --ext .png #{target}"
-
-        # pngquant kills meta
-        sh "pngcrush -rem text
+        sh "pngcrush -rem gAMA -rem cHRM -rem iCCP -rem sRGB -rem text \
                      -text b 'License' 'http://creativecommons.org/licenses/by-nc-nd/3.0/' \
                      -text b 'Url'     'http://fengb.github.com/' \
-                     -text b 'Author'  'Benjamin Feng
+                     -text b 'Author'  'Benjamin Feng' \
                      -res #{DEFAULT_DPI * 2} -ow #{target}"
       end
     end
