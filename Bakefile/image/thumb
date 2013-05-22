@@ -5,8 +5,7 @@ force=$1
 find jekyll/samples -type f -not -name "*thumb*" | while read file; do
   target=`sed -e 's/.png$/-thumb.png/' <<<$file`
   if [ ! -e "$target" ] || [ -n "$force" ]; then
-    convert -resize 'x150' "$file" "$target"
-    pngquant --force --ext .png "$target"
+    convert -resize 'x150' "$file" png8:"$target"
     pngcrush -rem gAMA -rem cHRM -rem iCCP -rem sRGB -rem text \
              -text b 'License' 'http://creativecommons.org/licenses/by-nc-nd/3.0/' \
              -text b 'Url'     'http://fengb.info' \

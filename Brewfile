@@ -1,4 +1,3 @@
 git
 imagemagick
 pngcrush
-pngquant
