@@ -1,4 +1,4 @@
 #!/bin/bash
 
 
-bundle exec jekyll --server --auto
+bundle exec jekyll serve --watch
