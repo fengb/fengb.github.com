@@ -99,4 +99,4 @@ task :server do
   sh 'jekyll --server --auto'
 end
 
-task :default => :compile
+task :default => :server
