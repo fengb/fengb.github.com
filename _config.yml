@@ -1,4 +1,0 @@
-exclude: [Bakefile, Gemfile, Gemfile.lock, LICENSE.md, README.md]
-sass:
-  style: :expanded
-  load_paths: ['style']

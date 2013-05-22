@@ -2,7 +2,7 @@
 
 
 force=$1
-find samples -type f -not -name "*thumb*" | while read file; do
+find jekyll/samples -type f -not -name "*thumb*" | while read file; do
   target=`sed -e 's/.png$/-thumb.png/' <<<$file`
   if [ ! -e "$target" ] || [ -n "$force" ]; then
     convert -resize 'x150' "$file" "$target"

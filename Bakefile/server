@@ -1,4 +1,5 @@
 #!/bin/bash
 
 
-bundle exec jekyll serve --watch
+cd jekyll
+bundle exec jekyll serve --watch --destination ../_site

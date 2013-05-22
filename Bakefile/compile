@@ -1,4 +1,5 @@
 #!/bin/bash
 
 
-bundle exec jekyll build
+cd jekyll
+bundle exec jekyll build --destination ../_site

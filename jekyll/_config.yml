@@ -1,0 +1,3 @@
+sass:
+  style: :expanded
+  load_paths: ['style']
