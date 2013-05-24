@@ -15,21 +15,21 @@ module Fengb
       end
 
       def nav(links)
-        text links.map{|text, url| link(url, text)}.join('  •  '), :inline_format => true, :align => :center
+        text links.map{|text, url| link(url, text)}.join('  •  '), inline_format: true, align: :center
       end
 
       def dl(options)
         move_up 1
-        table_adjusted options.map{|cat, val| ["#{cat}:", val]}, :cell_style => {:borders => [], :padding => [1, 0]} do
-          style column(0), :padding_right => 4
+        table_adjusted options.map{|cat, val| ["#{cat}:", val]}, cell_style: {borders: [], padding: [1, 0]} do
+          style column(0), padding_right: 4
         end
         move_up 1
       end
 
       def ul(*values)
         move_up 1
-        table_adjusted values.map{|e| ['•', e]}, :cell_style => {:borders => [], :padding => [1, 0]} do
-          style column(0), :padding_left => 1, :width => 10
+        table_adjusted values.map{|e| ['•', e]}, cell_style: {borders: [], padding: [1, 0]} do
+          style column(0), padding_left: 1, width: 10
         end
         move_up 1
       end
@@ -48,7 +48,7 @@ module Fengb
       end
 
       def header(title)
-        text title, :align => :center, :size => 18, :style => :bold
+        text title, align: :center, size: 18, style: :bold
         move_up 1
         font_size 11 do
           yield
@@ -59,14 +59,14 @@ module Fengb
         move_down 1.5*gutter
 
         title_width = 128
-        text_box title.upcase, :at => [0, cursor - 1], :width => (title_width - 2*gutter), :align => :right, :size => 16, :style => :bold
-        bounding_box([title_width, cursor], :width => bounds.width - title_width) do
+        text_box title.upcase, at: [0, cursor - 1], width: (title_width - 2*gutter), align: :right, size: 16, style: :bold
+        bounding_box([title_width, cursor], width: bounds.width - title_width) do
           move_down 1
           @locations = 0
           yield
 
           stroke do
-            vertical_line bounds.top+2, bounds.bottom, :at => -gutter
+            vertical_line bounds.top+2, bounds.bottom, at: -gutter
           end
         end
       end
@@ -77,16 +77,16 @@ module Fengb
         end
         @locations += 1
 
-        text link(url, name), :inline_format => true, :size => 12
+        text link(url, name), inline_format: true, size: 12
         @titles = 0
 
         title_width = 10
-        bounding_box([title_width, cursor], :width => bounds.width - title_width) do
+        bounding_box([title_width, cursor], width: bounds.width - title_width) do
           yield
         end
       end
 
-      def title(title, start_date, end_date)
+      def title(title, options)
         if @titles == 0
           move_down gutter/4
         else
@@ -94,9 +94,9 @@ module Fengb
         end
         @titles += 1
 
-        start_date = Date.parse(start_date).strftime('%b %Y')
-        end_date = end_date ? Date.parse(end_date).strftime('%b %Y') : 'present'
-        text "<b><font size='10.5'>#{title}</font></b> — #{start_date} to #{end_date}", :inline_format => true
+        start_date = Date.parse(options[:from]).strftime('%b %Y')
+        end_date = options[:to] ? Date.parse(options[:to]).strftime('%b %Y') : 'present'
+        text "<b><font size='10.5'>#{title}</font></b> — #{start_date} to #{end_date}", inline_format: true
 
         move_down 1
         if block_given?
@@ -133,24 +133,24 @@ Fengb::Resume.render do
 
   section 'Employment' do
     location('Enova International', 'http://www.enova.com') do
-      title('Lead Software Engineer', '2012-04-03', nil) do
+      title('Lead Software Engineer', from: '2012-04-03') do
         ul('Acted as technical team lead for 6 devs and 3 QA',
            'Architected full-stack solutions for freshly-launched product codebase',
            'Proposed and executed lean UX processes for customer driven designs')
       end
 
-      title('Sr. Software Engineer II', '2011-07-01', '2012-04-02') do
+      title('Sr. Software Engineer II', from: '2011-07-01', to: '2012-04-02') do
         ul('Drove high priority projects with aggressive deadlines to completion',
            'Promoted security initiatives to eliminate attack vectors',
            'Onboarded newly hired developers and managers')
       end
 
-      title('Sr. UI Engineer I', '2010-07-01', '2011-06-30') do
+      title('Sr. UI Engineer I', from: '2010-07-01', to: '2011-06-30') do
         ul('Updated the UI to maintain compliance with rapidly changing legal environments',
            'Helped launch mobile web for all existing products')
       end
 
-      title('UI Engineer', '2010-07-01', '2011-06-30') do
+      title('UI Engineer', from: '2010-07-01', to: '2011-06-30') do
         ul('Launched customer facing web solutions for products with millions of dollars worth of transactions per year',
            'Worked with business and creative teams to deliver customer focused designs',
            'Optimized existing frontend for faster load times')
@@ -158,7 +158,7 @@ Fengb::Resume.render do
     end
 
     location('Crusader Storm (defunct)', 'http://web.archive.org/web/20100623115357/http://www.crusaderstorm.com/') do
-      title('Chief Technical Officer', '2010-05-07', '2011-05-06') do
+      title('Chief Technical Officer', from: '2010-05-07', to: '2011-05-06') do
         ul('Incubated iPhone app from concept to release',
            'Designed website using responsive web and graceful degradation techniques',
            'Produced original artwork for branding and marketing')
@@ -166,7 +166,7 @@ Fengb::Resume.render do
     end
 
     location('Business Logic Corporation', 'http://businesslogic.com/') do
-      title('Chief Technical Officer', '2007-06-04', '2009-08-04') do
+      title('Chief Technical Officer', from: '2007-06-04', to: '2009-08-04') do
         ul('Repurposed existing single-threaded financial advice engine into a scalable aggregator',
            'Maintained legacy SOAP API layer for a redesigned modern RESTful architecture',
            'Created testing framework for separating data configuration and verification')
@@ -174,12 +174,12 @@ Fengb::Resume.render do
     end
 
     location('Rose-Hulman Ventures', 'http://rhventures.org/') do
-      title('Computer Engineering Intern', '2006-06-12', '2007-03-16') do
+      title('Computer Engineering Intern', from: '2006-06-12', to: '2007-03-16') do
         ul('Optimized chemical control software for space efficiency',
            'Enhanced C++ MFC application integrating with embedded circuit boards')
       end
 
-      title('Computer Software Intern', '2005-06-06', '2006-06-09') do
+      title('Computer Software Intern', from: '2005-06-06', to: '2006-06-09') do
         ul('Coordinated development team to build a website for managing medical audio transcriptions',
            'Worked closely with business on defining requirements and creating new functionality')
       end
@@ -188,7 +188,7 @@ Fengb::Resume.render do
 
   section 'Education' do
     location('Rose-Hulman Institute of Technology', 'http://www.rose-hulman.edu/') do
-      title('B.S. Computer Engineering', '2003-09-04', '2007-05-26') do
+      title('B.S. Computer Engineering', from: '2003-09-04', to: '2007-05-26') do
         text 'Minors in Computer Science & Economics'
       end
     end
