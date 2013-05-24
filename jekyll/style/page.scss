@@ -8,6 +8,24 @@ $unsat8: #e4e5e6;
 $unsat5: #848586;
 $sat2: #456;
 $sat1: #123;
+$unsat2: #444546;
+$unsat1: #141516;
+
+@mixin centered-height($height) {
+  height: $height;
+  line-height: $height;
+}
+
+@mixin fake-element {
+  display: block;
+  content: '';
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
 body {
   font-family: Helvetica, Arial, FreeSans;
@@ -20,12 +38,7 @@ body {
   margin: 0;
   @include background-gradient($sat2, $sat1);
 
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-  }
+  ul { overflow: hidden; }
   li { float: left; }
   a {
     font-size: 24px;
@@ -33,7 +46,8 @@ body {
     display: block;
     color: $unsat9;
     text-decoration: none;
-    padding: 10px;
+    padding: 0 10px;
+    @include centered-height(44px);
   }
 }
 
@@ -41,8 +55,6 @@ body {
   margin: 10px;
   line-height: 1.4em;
 }
-
-#contact { display: none; }
 
 #legal {
   font-size: 12px;
@@ -55,4 +67,30 @@ body {
   padding: 10px;
 
   a { white-space: nowrap; }
+}
+
+#contact {
+  display: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 150px;
+  background: $unsat8;
+
+  li {
+    padding: 5px 10px;
+  }
+  li:first-child { padding-top: 10px; }
+  li:last-child { padding-bottom: 10px; }
+
+  body.contact & {
+    display: block;
+  }
+
+  &:before {
+    @include fake-element;
+    @include centered-height(44px);
+    @include background-gradient($unsat2, $unsat1);
+  }
 }
