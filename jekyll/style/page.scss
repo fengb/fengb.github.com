@@ -3,11 +3,15 @@ Comment: "Please note that Jekyll will only convert files that also have a YAML 
 ---
 @import 'util';
 
+$prima2: #456;
+$prima1: #123;
+$secon8: #ffe3bc;
+$secon3: #765;
+$secon2: #432;
+$secon1: #321;
 $unsat9: #f4f5f6;
 $unsat8: #e4e5e6;
 $unsat5: #848586;
-$sat2: #456;
-$sat1: #123;
 $unsat2: #444546;
 $unsat1: #141516;
 
@@ -30,13 +34,15 @@ ul {
 body {
   font-family: Helvetica, Arial, FreeSans;
   margin: 0;
+  overflow: hidden;
   background: $unsat9;
-  color: $sat1;
+  color: $prima1;
+  @include vendor(transition, all 0.2s);
 }
 
 #site {
   margin: 0;
-  @include background-gradient($sat2, $sat1);
+  @include background-gradient($prima2, $prima1);
 
   ul { overflow: hidden; }
   li { float: left; }
@@ -48,6 +54,11 @@ body {
     text-decoration: none;
     padding: 0 10px;
     @include centered-height(44px);
+
+  }
+  li.contact a {
+    position: absolute;
+    right: 0;
   }
 }
 
@@ -70,27 +81,26 @@ body {
 }
 
 #contact {
-  display: none;
   position: absolute;
   top: 0;
   bottom: 0;
-  right: 0;
+  left: 100%;
   width: 150px;
-  background: $unsat8;
+  background: $secon8;
+  border-left: 1px solid $secon1;
 
-  li {
-    padding: 5px 10px;
-  }
+  li { padding: 5px 10px; }
   li:first-child { padding-top: 10px; }
   li:last-child { padding-bottom: 10px; }
-
-  body.contact & {
-    display: block;
-  }
 
   &:before {
     @include fake-element;
     @include centered-height(44px);
-    @include background-gradient($unsat2, $unsat1);
+    @include background-gradient($secon3, $secon2);
   }
+}
+
+
+body.contact {
+  @include vendor(transform, translate(-130px, 0));
 }
