@@ -1,3 +1,14 @@
+---
+nav:
+- label: fengb
+  path: 'index.html'
+  url: '/'
+- label: Portfolio
+  path: 'portfolio.html'
+- label: Contact
+  path: 'contact.html'
+  link_attrs: data-mutiny-toggler='{"target":"body", "preventDefault":true, "class":"contact"}'
+---
 <!DOCTYPE HTML>
 <!--[if lt IE 7]>
 <html lang='en' class='no-js' id='ie6'>
@@ -25,10 +36,11 @@
   <body>
     <nav id='site'>
       <ul>
-        {% for item in site.pages %}
-          {% if item.link_attrs %}
-            <li class='{{ item.title | downcase }}'><a {% if item.title == page.title %}class='active'{% endif %} href='{{ item.url }}' {{ item.link_attrs }}>{{ item.title }}</a></li>
-          {% endif %}
+        {% for item in page.nav %}
+          <li class='{{item.label | downcase}}'>
+            <a {% if item.path == page.path %}class='active'{% endif %}
+               href={% if item.url %}'{{item.url}}'{% else %}'/{{item.path}}'{% endif %}
+               {{ item.link_attrs }}>{{item.label}}</a></li>
         {% endfor %}
       </ul>
     </nav>
