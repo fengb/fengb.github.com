@@ -102,5 +102,5 @@ body {
 
 
 body.contact {
-  @include vendor(transform, translate(-130px, 0));
+  @include vendor(transform, translate(-100px, 0));
 }
