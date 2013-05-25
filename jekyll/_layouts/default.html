@@ -40,7 +40,8 @@ nav:
           <li class='{{item.label | downcase}}'>
             <a {% if item.path == page.path %}class='active'{% endif %}
                href={% if item.url %}'{{item.url}}'{% else %}'/{{item.path}}'{% endif %}
-               {{ item.link_attrs }}>{{item.label}}</a></li>
+               {{ item.link_attrs }}>{{item.label}}</a>
+          </li>
         {% endfor %}
       </ul>
     </nav>
