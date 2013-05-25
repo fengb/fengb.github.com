@@ -1,0 +1,43 @@
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('../vendor/fontawesome-webfont.eot');
+  src: url('../vendor/fontawesome-webfont.eot#iefix') format('embedded-opentype'), url('../vendor/fontawesome-webfont.woff') format('woff'), url('../vendor/fontawesome-webfont.ttf') format('truetype'), url('../vendor/fontawesome-webfont.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+%icon {
+  font-family: FontAwesome;
+  font-weight: none !important;
+  font-style: none !important;
+  text-decoration: inherit;
+  display: inline-block;
+  speak: none;
+  padding-right: 0.2em;
+  -webkit-font-smoothing: antialiased;
+}
+
+.icon-before-phone:before {
+  @extend %icon;
+  content: "\f098";
+}
+
+.icon-before-email:before {
+  @extend %icon;
+  content: "\f0e0";
+}
+
+.icon-before-twitch:before {
+  @extend %icon;
+  content: "\f11b";
+}
+
+.icon-before-github:before {
+  @extend %icon;
+  content: "\f092";
+}
+
+.icon-before-linkedin:before {
+  @extend %icon;
+  content: "\f08c";
+}

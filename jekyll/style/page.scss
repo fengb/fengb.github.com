@@ -104,3 +104,5 @@ body {
 body.contact {
   @include vendor(transform, translate(-100px, 0));
 }
+
+@import 'icons';
