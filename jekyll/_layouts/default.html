@@ -6,6 +6,7 @@ nav:
 - label: Portfolio
   path: 'portfolio.html'
 - label: Contact
+  class: 'icon-after-expand'
   path: 'contact.html'
   link_attrs: data-mutiny-toggler='{"target":"body", "preventDefault":true, "class":"contact"}'
 ---
@@ -38,7 +39,7 @@ nav:
       <ul>
         {% for item in page.nav %}
           <li class='{{item.label | downcase}}'>
-            <a {% if item.path == page.path %}class='active'{% endif %}
+            <a {% if item.path == page.path %}class='active'{% endif %} {% if item.class %}class='{{item.class}}'{% endif %}
                href={% if item.url %}'{{item.url}}'{% else %}'/{{item.path}}'{% endif %}
                {{ item.link_attrs }}>{{item.label}}</a>
           </li>

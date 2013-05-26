@@ -8,36 +8,50 @@
 
 %icon {
   font-family: FontAwesome;
-  font-weight: none !important;
+  font-weight: normal !important;
   font-style: none !important;
   text-decoration: inherit;
   display: inline-block;
   speak: none;
-  padding-right: 0.2em;
   -webkit-font-smoothing: antialiased;
 }
 
-.icon-before-phone:before {
+%icon-before {
   @extend %icon;
-  content: "\f098";
+  padding-right: 0.2em;
+}
+
+%icon-after {
+  @extend %icon;
+  padding-left: 0.2em;
+}
+
+.icon-before-phone:before {
+  @extend %icon-before;
+  content: "\f095";
 }
 
 .icon-before-email:before {
-  @extend %icon;
-  content: "\f0e0";
+  @extend %icon-before;
+  content: "\f003";
 }
 
 .icon-before-twitch:before {
-  @extend %icon;
+  @extend %icon-before;
   content: "\f11b";
 }
 
 .icon-before-github:before {
-  @extend %icon;
-  content: "\f092";
+  @extend %icon-before;
+  content: "\f09b";
 }
 
 .icon-before-linkedin:before {
-  @extend %icon;
+  @extend %icon-before;
   content: "\f08c";
+}
+
+.icon-after-expand:after {
+  @extend %icon-after;
+  content: "\f142";
 }

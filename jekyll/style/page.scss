@@ -54,11 +54,15 @@ body {
     text-decoration: none;
     padding: 0 10px;
     @include centered-height(44px);
-
   }
   li.contact a {
     position: absolute;
     right: 0;
+
+    &:after {
+      font-size: 80%;
+      color: $secon8;
+    }
   }
 }
 
