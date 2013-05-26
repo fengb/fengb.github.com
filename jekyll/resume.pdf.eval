@@ -151,7 +151,7 @@ Fengb::Resume.render do
       end
 
       title('UI Engineer', from: '2010-07-01', to: '2011-06-30') do
-        ul('Launched customer facing web solutions for products with millions of dollars worth of transactions per year',
+        ul('Launched customer facing web solutions for products with millions of dollars of yearly transactions',
            'Worked with business and creative teams to deliver customer focused designs',
            'Optimized existing frontend for faster load times')
       end
@@ -179,9 +179,9 @@ Fengb::Resume.render do
            'Enhanced C++ MFC application integrating with embedded circuit boards')
       end
 
-      title('Computer Software Intern', from: '2005-06-06', to: '2006-06-09') do
+      title('Computer Programming Intern', from: '2005-06-06', to: '2006-06-09') do
         ul('Coordinated development team to build a website for managing medical audio transcriptions',
-           'Worked closely with business on defining requirements and creating new functionality')
+           'Worked with business on defining requirements and creating new functionality')
       end
     end
   end
