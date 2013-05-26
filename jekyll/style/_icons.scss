@@ -1,15 +1,18 @@
 @font-face {
-  font-family: 'FontAwesome';
-  src: url('../vendor/fontawesome-webfont.eot');
-  src: url('../vendor/fontawesome-webfont.eot#iefix') format('embedded-opentype'), url('../vendor/fontawesome-webfont.woff') format('woff'), url('../vendor/fontawesome-webfont.ttf') format('truetype'), url('../vendor/fontawesome-webfont.svg') format('svg');
+  font-family: 'Icons';
+  src: url('icons.eot');
+  src: url('icons.eot#iefix') format('embedded-opentype'),
+       url('icons.woff') format('woff'),
+       url('icons.ttf') format('truetype'),
+       url('icons.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 
 %icon {
-  font-family: FontAwesome;
+  font-family: Icons;
   font-weight: normal !important;
-  font-style: none !important;
+  font-style: normal !important;
   text-decoration: inherit;
   display: inline-block;
   speak: none;
@@ -28,35 +31,36 @@
 
 .icon-before-phone:before {
   @extend %icon-before;
-  content: "\f095";
-}
-
-.icon-before-sms:before {
-  @extend %icon-before;
-  content: "\f075";
+  content: "\e000";
 }
 
 .icon-before-email:before {
   @extend %icon-before;
-  content: "\f003";
+  content: "\e001";
+}
+
+.icon-before-sms:before {
+  @extend %icon-before;
+  content: "\e002";
 }
 
 .icon-before-twitch:before {
   @extend %icon-before;
-  content: "\f11b";
+  content: "\e003";
 }
 
 .icon-before-github:before {
   @extend %icon-before;
-  content: "\f09b";
+  content: "\e004";
 }
 
 .icon-before-linkedin:before {
   @extend %icon-before;
-  content: "\f08c";
+  content: "\e005";
 }
 
 .icon-after-expand:after {
   @extend %icon-after;
-  content: "\f142";
+  content: "…";
+  @include vendor(transform, rotate(-90deg));
 }
