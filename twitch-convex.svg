@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
   "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-  <path
-     style="fill:#6441a5;fill-opacity:1"
-     d="M 2 0 L 0 6 L 0 28 L 8 28 L 8 32 L 13 32 L 17 28 L 23 28 L 32 19 L 32 0 L 2 0 z M 5 3 L 29 3 L 29 18 L 24 23 L 16 23 L 12 27 L 12 23 L 5 23 L 5 3 z M 13 8 L 13 17 L 16 17 L 16 8 L 13 8 z M 21 8 L 21 17 L 24 17 L 24 8 L 21 8 z " />
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" version="1.1">
+  <path d="M2,0 32,0 32,3 2,3
+           M29,0 32,0 32,19 29,19
+           M29,18 32,19 23,28 24,23
+           M25,23 23,28 16,28 16,23
+           M16,23 17,28 13,32 12,27
+           M13,27 13,32 8,32 8,27
+           M12,23 12,28 0,28 0,23
+           M2,0 5,0 5,28 0,28 0,6
+           M13,8 16,8 16,17 13,17
+           M21,8 24,8 24,17 21,17
+          "
+        fill="#6441a5"/>
 </svg>
