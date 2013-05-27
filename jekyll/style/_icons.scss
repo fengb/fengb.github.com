@@ -29,36 +29,6 @@
   padding-left: 0.2em;
 }
 
-.icon-before-phone:before {
-  @extend %icon-before;
-  content: "\e000";
-}
-
-.icon-before-email:before {
-  @extend %icon-before;
-  content: "\e001";
-}
-
-.icon-before-sms:before {
-  @extend %icon-before;
-  content: "\e002";
-}
-
-.icon-before-twitch:before {
-  @extend %icon-before;
-  content: "\e003";
-}
-
-.icon-before-github:before {
-  @extend %icon-before;
-  content: "\e004";
-}
-
-.icon-before-linkedin:before {
-  @extend %icon-before;
-  content: "\e005";
-}
-
 .icon-after-expand:after {
   @extend %icon-after;
   content: "…";

@@ -94,44 +94,4 @@ body {
   a { white-space: nowrap; }
 }
 
-#contact {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 100%;
-  width: 150px;
-  background: $secon8;
-  border-left: 1px solid $secon1;
-
-  ul {
-    padding-top: 10px;
-  }
-
-  a {
-    font-size: 20px;
-    color: $secon1;
-    display: block;
-    position: relative;
-    text-decoration: none;
-    padding: 10px 10px 10px 40px;
-
-    &:before {
-      position: absolute;
-      left: 15px;
-    }
-  }
-
-
-  &:before {
-    @include fake-element;
-    @include centered-height(44px);
-    @include background-gradient($secon3, $secon2);
-  }
-}
-
-
-body.contact {
-  @include vendor(transform, translate(-130px, 0));
-}
-
-@import 'icons';
+@import 'contact';
