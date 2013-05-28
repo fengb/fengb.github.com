@@ -20,12 +20,11 @@
     position: relative;
     text-decoration: none;
     padding: 10px 10px 10px 40px;
-    @include vendor(transition, color 0.1s);
 
-    &:hover { color: #46a; }
+    &:hover { color: $prima6; }
     &.twitch:hover { color: #6441a5; }
     &.github:hover { color: #4183c4; }
-    &.linkedin:hover { color: #1389b0; }
+    &.linkedin:hover { color: #0073b2; }
 
     &:before {
       position: absolute;
