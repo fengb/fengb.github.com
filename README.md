@@ -16,7 +16,6 @@ licensing block at the beginning of the file.
 Dev setup
 -----
 ```console
-$ bundle install
-$ brewdle install
+$ bake bootstrap
 $ bake
 ```
