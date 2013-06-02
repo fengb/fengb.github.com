@@ -8,7 +8,7 @@ nav:
 - label: Contact
   class: 'icon-after-expand'
   path: 'contact.html'
-  link_attrs: data-mutiny-toggler='{"target":"body", "preventDefault":true, "class":"contact"}'
+  link_attrs: data-mutiny-toggler='{"target":"#main", "preventDefault":true, "class":"contact"}'
 ---
 <!DOCTYPE HTML>
 <!--[if lt IE 7]>
@@ -35,30 +35,32 @@ nav:
     <![endif]-->
   </head>
   <body>
-    <nav id='site'>
-      <ul>
-        {% for item in page.nav %}
-          <li class='{{item.label | downcase}}'>
-            <a {% if item.path == page.path %}class='active'{% endif %} {% if item.class %}class='{{item.class}}'{% endif %}
-               href={% if item.url %}'{{item.url}}'{% else %}'/{{item.path}}'{% endif %}
-               {{ item.link_attrs }}>{{item.label}}</a>
-          </li>
-        {% endfor %}
-      </ul>
-    </nav>
+    <section id='main'>
+      <nav id='site'>
+        <ul>
+          {% for item in page.nav %}
+            <li class='{{item.label | downcase}}'>
+              <a {% if item.path == page.path %}class='active'{% endif %} {% if item.class %}class='{{item.class}}'{% endif %}
+                 href={% if item.url %}'{{item.url}}'{% else %}'/{{item.path}}'{% endif %}
+                 {{ item.link_attrs }}>{{item.label}}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
 
-    <article id='main' {% if page.class %}class='{{ page.class }}'{% elsif page.title %}class='{{ page.title | downcase }}'{% endif %}>
-      {{ content }}
-    </article>
+      <article id='content' {% if page.class %}class='{{ page.class }}'{% elsif page.title %}class='{{ page.title | downcase }}'{% endif %}>
+        {{ content }}
+      </article>
+
+      <footer id='legal'>
+        <div id='copy'>Copyright &copy; 2012 Benjamin Feng</div>
+        <div id='license'>This website is licensed under the <a rel='license' href='http://creativecommons.org/licenses/by-nc-nd/3.0/' title='Creative Commons Attribution-NonCommercial-NoDerivs 3.0 license'>Creative Commons <abbr>BY-NC-ND</abbr> 3.0 license</a></div>
+      </footer>
+    </section>
 
     <aside id='contact'>
       {% include contact.html %}
     </aside>
-
-    <footer id='legal'>
-      <div id='copy'>Copyright &copy; 2012 Benjamin Feng</div>
-      <div id='license'>This website is licensed under the <a rel='license' href='http://creativecommons.org/licenses/by-nc-nd/3.0/' title='Creative Commons Attribution-NonCommercial-NoDerivs 3.0 license'>Creative Commons <abbr>BY-NC-ND</abbr> 3.0 license</a></div>
-    </footer>
 
     <!--[if gt IE 8]><!-->
       <script src='vendor/jquery.js'></script>

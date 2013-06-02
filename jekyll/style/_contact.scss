@@ -5,10 +5,9 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 100%;
-  width: 150px;
+  right: 0;
+  width: 130px;
   background: $secon8;
-  border-left: 1px solid $secon1;
 
   ul {
     padding-top: 10px;
@@ -69,8 +68,3 @@
     @include background-gradient($secon3, $secon2);
   }
 }
-
-body.contact {
-  @include vendor(transform, translate(-130px, 0));
-}
-
