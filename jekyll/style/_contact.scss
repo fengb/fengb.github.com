@@ -9,8 +9,11 @@
   width: 130px;
   background: $secon8;
 
-  ul {
-    padding-top: 10px;
+  &:before {
+    @include fake-element;
+    @include centered-height(44px);
+    @include background-gradient($secon3, $secon2);
+    margin-bottom: 10px;
   }
 
   a {
@@ -21,50 +24,23 @@
     text-decoration: none;
     padding: 10px 10px 10px 40px;
 
-    &:hover { color: $prima6; }
-    &.twitch:hover { color: #6441a5; }
-    &.github:hover { color: #4183c4; }
+    &:hover          { color: $prima6; }
+    &.twitch:hover   { color: #6441a5; }
+    &.github:hover   { color: #4183c4; }
     &.linkedin:hover { color: #0073b2; }
 
     &:before {
+      @extend %icon;
+      padding-right: 0.2em;
       position: absolute;
       left: 15px;
     }
 
-    &.phone:before {
-      @extend %icon-before;
-      content: "\e000";
-    }
-
-    &.email:before {
-      @extend %icon-before;
-      content: "\e001";
-    }
-
-    &.sms:before {
-      @extend %icon-before;
-      content: "\e002";
-    }
-
-    &.twitch:before {
-      @extend %icon-before;
-      content: "\e003";
-    }
-
-    &.github:before {
-      @extend %icon-before;
-      content: "\e004";
-    }
-
-    &.linkedin:before {
-      @extend %icon-before;
-      content: "\e005";
-    }
-  }
-
-  &:before {
-    @include fake-element;
-    @include centered-height(44px);
-    @include background-gradient($secon3, $secon2);
+    &.phone:before    { content: $icon-phone; }
+    &.email:before    { content: $icon-email; }
+    &.sms:before      { content: $icon-sms; }
+    &.twitch:before   { content: $icon-twitch; }
+    &.github:before   { content: $icon-github; }
+    &.linkedin:before { content: $icon-linkedin; }
   }
 }

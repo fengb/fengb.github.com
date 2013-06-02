@@ -57,13 +57,14 @@ body {
 }
 
 .js #site {
-  li.contact a {
-    position: absolute;
-    right: 0;
-    padding-right: 0;
+  li.contact {
+    float: right;
 
-    &:after {
-      font-size: 80%;
+    a:after {
+      position: absolute;
+      right: 0;
+      content: "\22ee";
+      font-size: 60%;
       color: $secon8;
     }
   }

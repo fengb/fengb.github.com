@@ -9,6 +9,13 @@
   font-style: normal;
 }
 
+$icon-phone:    "\e000";
+$icon-email:    "\e001";
+$icon-sms:      "\e002";
+$icon-twitch:   "\e003";
+$icon-github:   "\e004";
+$icon-linkedin: "\e005";
+
 %icon {
   font-family: Icons;
   font-weight: normal !important;
@@ -17,20 +24,4 @@
   display: inline-block;
   speak: none;
   -webkit-font-smoothing: antialiased;
-}
-
-%icon-before {
-  @extend %icon;
-  padding-right: 0.2em;
-}
-
-%icon-after {
-  @extend %icon;
-  padding-left: 0.2em;
-}
-
-.icon-after-expand:after {
-  @extend %icon-after;
-  content: "…";
-  @include vendor(transform, rotate(-90deg));
 }
