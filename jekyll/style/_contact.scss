@@ -6,23 +6,24 @@
   top: 0;
   bottom: 0;
   right: 0;
-  width: 130px;
+  width: 180px;
   background: $secon8;
 
-  &:before {
-    @include fake-element;
+  h1 {
     @include centered-height(44px);
     @include background-gradient($secon3, $secon2);
-    margin-bottom: 10px;
+    color: $unsat9;
+    margin: 0 0 10px;
+    text-align: center;
   }
 
   a {
-    font-size: 20px;
+    font-size: 16px;
     color: $secon1;
     display: block;
     position: relative;
     text-decoration: none;
-    padding: 10px 10px 10px 40px;
+    padding: 10px 10px 10px 34px;
 
     &:hover          { color: $prima6; }
     &.twitch:hover   { color: #6441a5; }
@@ -33,7 +34,7 @@
       @extend %icon;
       padding-right: 0.2em;
       position: absolute;
-      left: 15px;
+      left: 10px;
     }
 
     &.phone:before    { content: $icon-phone; }
