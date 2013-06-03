@@ -14,6 +14,13 @@ Comment: "Please note that Jekyll will only convert files that also have a YAML 
   content: '';
 }
 
+@mixin abs-center($width) {
+  position: absolute;
+  left: 50%;
+  margin-left: -$width / 2;
+  width: $width;
+}
+
 ul {
   list-style: none;
   margin: 0;
@@ -23,19 +30,21 @@ ul {
 body {
   font-family: Helvetica, Arial, FreeSans;
   margin: 0;
-  min-height: 100%;
+  position: relative;
 }
 
 #main {
   background: $unsat9;
-  height: 100%;
   color: $prima1;
   position: relative;
+  min-height: 220px;
+  padding-bottom: 100px;
   z-index: 1;
   @include vendor(transition, left 0.2s);
 
   &.contact {
     left: -130px;
+    border-right: 1px solid $unsat1;
   }
 }
 
@@ -77,13 +86,13 @@ body {
 
 #legal {
   font-size: 12px;
-  width: 240px;
+  @include abs-center(280px);
+  bottom: 20px;
+  padding: 12px 0;
   background: $unsat8;
   text-align: center;
   @include vendor(border-radius, 8px);
   @include vendor(box-shadow, inset 0 1px 3px $unsat5);
-  margin: 30px auto;
-  padding: 10px;
 
   a { white-space: nowrap; }
 }
