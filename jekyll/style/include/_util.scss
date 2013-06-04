@@ -1,0 +1,21 @@
+@mixin fake-element {
+  content: '';
+  display: block;
+}
+
+@mixin centered-height($height) {
+  height: $height;
+  line-height: $height;
+}
+
+@mixin abs-center($width) {
+  position: absolute;
+  left: 50%;
+  margin-left: -$width / 2;
+  width: $width;
+}
+
+@mixin text-replace {
+  text-indent: 100%;
+  overflow: hidden;
+}

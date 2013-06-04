@@ -36,7 +36,7 @@ nav:
   <body>
     <section id='main'>
       <nav id='site'>
-        <ul>
+        <ul class='menu'>
           {% for item in page.nav %}
             <li class='{{item.label | downcase}}'>
               <a {% if item.path == page.path %}class='active'{% endif %}

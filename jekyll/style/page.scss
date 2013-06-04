@@ -1,36 +1,17 @@
 ---
 Comment: "Please note that Jekyll will only convert files that also have a YAML header at the top."
 ---
-@import 'util';
-@import 'themes';
-@import 'icons';
-
-@mixin centered-height($height) {
-  height: $height;
-  line-height: $height;
-}
-
-@mixin fake-element {
-  display: block;
-  content: '';
-}
-
-@mixin abs-center($width) {
-  position: absolute;
-  left: 50%;
-  margin-left: -$width / 2;
-  width: $width;
-}
-
-@mixin text-replace {
-  text-indent: 100%;
-  overflow: hidden;
-}
+@import 'include/all';
 
 ul {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+ul.menu a {
+  display: block;
+  text-decoration: none;
 }
 
 body {
@@ -63,37 +44,35 @@ body {
   a {
     font-size: 24px;
     font-weight: bold;
-    display: block;
     color: $unsat9;
-    text-decoration: none;
     padding: 0 10px;
     @include centered-height(44px);
   }
-}
 
-.js #site {
-  li.contact {
-    float: right;
+  .js & {
+    li.contact {
+      float: right;
 
-    a {
-      @include text-replace;
-      position: relative;
-      width: 24px;
+      a {
+        @include text-replace;
+        position: relative;
+        width: 24px;
 
-      &:before {
-        @extend %icon;
-        position: absolute;
-        right: 10px;
-        content: $icon-bubble;
-      }
+        &:before {
+          @extend %icon;
+          content: $icon-bubble;
+          position: absolute;
+          right: 10px;
+        }
 
-      &:after {
-        position: absolute;
-        right: 0;
-        top: 0;
-        content: "\22ee";
-        font-size: 60%;
-        color: $secon8;
+        &:after {
+          position: absolute;
+          right: 0;
+          top: 0;
+          content: "\22ee";
+          font-size: 60%;
+          color: $secon8;
+        }
       }
     }
   }
@@ -118,8 +97,6 @@ body {
 }
 
 .tel {
-  vertical-align: center;
-
   .area {
     &:before { content: '('; }
     &:after  { content: ')'; }
@@ -131,4 +108,44 @@ body {
   .subs {}
 }
 
-@import 'contact';
+#contact {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 180px;
+  background: $secon8;
+
+  h1 {
+    @include centered-height(44px);
+    @include background-gradient($secon3, $secon2);
+    color: $unsat9;
+    margin: 0 0 10px;
+    text-align: center;
+  }
+
+  a {
+    font-size: 16px;
+    color: $secon1;
+    position: relative;
+    padding: 10px 10px 10px 34px;
+
+    &:hover          { color: $prima6; }
+    &.twitch:hover   { color: #6441a5; }
+    &.github:hover   { color: #4183c4; }
+    &.linkedin:hover { color: #0073b2; }
+
+    &:before {
+      @extend %icon;
+      padding-right: 0.2em;
+      position: absolute;
+      left: 10px;
+    }
+
+    &.phone:before    { content: $icon-phone; }
+    &.email:before    { content: $icon-email; }
+    &.twitch:before   { content: $icon-twitch; }
+    &.github:before   { content: $icon-github; }
+    &.linkedin:before { content: $icon-linkedin; }
+  }
+}

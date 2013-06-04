@@ -1,7 +1,7 @@
 ---
 Comment: "Please note that Jekyll will only convert files that also have a YAML header at the top."
 ---
-@import 'util';
+@import 'include/all';
 
 * { color:#000 !important; text-shadow:none !important; border-color:#000; @include vendor(box-shadow, none !important); }
 

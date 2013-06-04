@@ -1,5 +1,5 @@
 @font-face {
-  font-family: 'Icons';
+  font-family: Icons;
   src: url('icons.eot');
   src: url('icons.eot#iefix') format('embedded-opentype'),
        url('icons.woff') format('woff'),
@@ -8,13 +8,6 @@
   font-weight: normal;
   font-style: normal;
 }
-
-$icon-phone:    "\e000";
-$icon-email:    "\e001";
-$icon-bubble:   "\e002";
-$icon-twitch:   "\e003";
-$icon-github:   "\e004";
-$icon-linkedin: "\e005";
 
 %icon {
   font-family: Icons;
@@ -25,3 +18,10 @@ $icon-linkedin: "\e005";
   speak: none;
   -webkit-font-smoothing: antialiased;
 }
+
+$icon-phone:    "\e000";
+$icon-email:    "\e001";
+$icon-bubble:   "\e002";
+$icon-twitch:   "\e003";
+$icon-github:   "\e004";
+$icon-linkedin: "\e005";
