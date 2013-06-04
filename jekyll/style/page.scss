@@ -3,6 +3,7 @@ Comment: "Please note that Jekyll will only convert files that also have a YAML 
 ---
 @import 'util';
 @import 'themes';
+@import 'icons';
 
 @mixin centered-height($height) {
   height: $height;
@@ -19,6 +20,11 @@ Comment: "Please note that Jekyll will only convert files that also have a YAML 
   left: 50%;
   margin-left: -$width / 2;
   width: $width;
+}
+
+@mixin text-replace {
+  text-indent: 100%;
+  overflow: hidden;
 }
 
 ul {
@@ -69,12 +75,26 @@ body {
   li.contact {
     float: right;
 
-    a:after {
-      position: absolute;
-      right: 0;
-      content: "\22ee";
-      font-size: 60%;
-      color: $secon8;
+    a {
+      @include text-replace;
+      position: relative;
+      width: 24px;
+
+      &:before {
+        @extend %icon;
+        position: absolute;
+        right: 10px;
+        content: $icon-bubble;
+      }
+
+      &:after {
+        position: absolute;
+        right: 0;
+        top: 0;
+        content: "\22ee";
+        font-size: 60%;
+        color: $secon8;
+      }
     }
   }
 }
