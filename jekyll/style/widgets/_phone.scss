@@ -1,0 +1,11 @@
+.phone {
+  .area {
+    &:before { content: '('; }
+    &:after  { content: ')'; }
+  }
+  .exch {
+    &:before { content: ' '; }
+    &:after  { content: '-'; }
+  }
+  .subs {}
+}
