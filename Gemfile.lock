@@ -3,8 +3,6 @@ GEM
   specs:
     Ascii85 (1.0.2)
     afm (0.2.0)
-    brewdler (0.3.1)
-      commander
     classifier (1.3.3)
       fast-stemmer (>= 1.0.0)
     colorator (0.1)
@@ -53,7 +51,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  brewdler
   html_pretty
   jekyll
   prawn

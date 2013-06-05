@@ -2,4 +2,7 @@
 
 
 bundle install
+if ! command -v brewdler &>/dev/null; then
+  gem install brewdler
+fi
 brewdle install
