@@ -1,6 +1,7 @@
 #!/bin/bash
 
 
+gem install bundler
 bundle install
 if ! command -v brewdler &>/dev/null; then
   gem install brewdler
