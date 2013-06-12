@@ -122,16 +122,13 @@ body {
       left: 10px;
     }
 
-    @mixin contact-icon($icon, $color:'') {
+    @mixin contact-icon($icon, $color) {
       &:before { content: $icon; }
-      @if $color != '' {
-        &:hover { color: $color; }
-      }
+      &:hover { color: $color; }
     }
 
-    &:hover    { color: $prima6; }
-    &.phone    { @include contact-icon($icon-phone); }
-    &.email    { @include contact-icon($icon-email); }
+    &.phone    { @include contact-icon($icon-phone,    $prima6); }
+    &.email    { @include contact-icon($icon-email,    $prima6); }
     &.twitch   { @include contact-icon($icon-twitch,   #6441a5); }
     &.github   { @include contact-icon($icon-github,   #4183c4); }
     &.linkedin { @include contact-icon($icon-linkedin, #0073b2); }
