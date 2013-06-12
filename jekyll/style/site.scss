@@ -34,11 +34,18 @@ body {
     @include text-replace;
     position: relative;
     float: left;
-    font-size: 24px;
-    width: 24px;
     color: $unsat9;
-    padding: 0 10px;
+    font-size: 24px;
+    width: 44px;
     @include centered-height(44px);
+
+    &.active {
+      background: $unsat5;
+    }
+
+    &:hover {
+      color: $unsat8;
+    }
 
     &:before {
       @extend %icon;
