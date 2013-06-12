@@ -27,30 +27,26 @@ body {
 
 #top {
   h1 { display: none; }
+  background: $prima2;
   overflow: hidden;
-  @include background-gradient($prima2, $prima1);
+  color: $unsat8;
+  @include centered-height(44px);
 
   a {
-    @include text-replace;
+    @include text-replace(before, after);
     position: relative;
     float: left;
-    color: $unsat9;
     font-size: 24px;
     width: 44px;
-    @include centered-height(44px);
 
-    &.active {
-      background: $unsat5;
-    }
-
-    &:hover {
-      color: $unsat8;
-    }
+    &:hover { color: $unsat9; }
 
     &:before {
       @extend %icon;
       position: absolute;
+      left: 10px;
       right: 10px;
+      @include vendor(text-shadow, 0 -1px 1px $unsat1, 0 1px $unsat9);
     }
 
     &.about:before     { content: $icon-logo; }
@@ -63,12 +59,13 @@ body {
       &:after {
         position: absolute;
         right: 0;
-        top: 0;
         content: "\22ee";
         font-size: 60%;
         font-weight: bold;
         color: $secon8;
+        @include vendor(text-shadow, 0 -1px 1px $unsat1);
       }
+      &:hover:after { color: inherit; }
     }
   }
 }
@@ -103,9 +100,9 @@ body {
 
   h1 {
     @include centered-height(44px);
-    @include background-gradient($secon3, $secon2);
-    color: $unsat9;
     margin: 0 0 10px;
+    color: $unsat8;
+    background: $secon2;
     text-align: center;
   }
 
@@ -127,7 +124,7 @@ body {
       &:before {
         content: $icon;
         @if $offset != '' {
-          margin-top: 1px;
+          margin-top: $offset;
         }
       }
     }

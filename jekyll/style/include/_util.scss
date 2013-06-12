@@ -15,7 +15,12 @@
   width: $width;
 }
 
-@mixin text-replace {
+@mixin text-replace($pseudos...) {
   text-indent: 100%;
+  white-space: nowrap;
   overflow: hidden;
+
+  @each $pseudo in $pseudos {
+    &:#{$pseudo} { text-indent: 0; }
+  }
 }
