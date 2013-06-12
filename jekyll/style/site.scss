@@ -25,7 +25,8 @@ body {
   }
 }
 
-#site {
+#top {
+  h1 { display: none; }
   overflow: hidden;
   @include background-gradient($prima2, $prima1);
 
@@ -70,6 +71,8 @@ body {
 #content {
   margin: 10px;
   line-height: 1.4em;
+
+  h1 { display: none; }
 }
 
 #legal {

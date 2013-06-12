@@ -1,12 +1,11 @@
 ---
 nav:
-- label: fengb
-  path: 'index.html'
+- title: About
   url: '/'
-- label: Portfolio
-  path: 'portfolio.html'
-- label: Contact
-  path: 'contact.html'
+- title: Portfolio
+  url: '/portfolio.html'
+- title: Contact
+  url: '/contact.html'
   link_attrs: data-mutiny-toggler='{"target":"#main", "preventDefault":true, "class":"contact"}'
 ---
 <!DOCTYPE HTML>
@@ -35,19 +34,23 @@ nav:
   </head>
   <body>
     <section id='main'>
-      <nav id='site'>
-        <ul class='menu'>
-          {% for item in page.nav %}
-            <li class='{{item.label | downcase}}'>
-              <a {% if item.path == page.path %}class='active'{% endif %}
-                 href={% if item.url %}'{{item.url}}'{% else %}'/{{item.path}}'{% endif %}
-                 {{ item.link_attrs }}>{{item.label}}</a>
-            </li>
-          {% endfor %}
-        </ul>
-      </nav>
+      <header id='top'>
+        <h1><a href='/' {% if page.path == 'index.html' %}class='active'{% endif %}>fengb</a></h1>
+        <nav id='site'>
+          <ul class='menu'>
+            {% for item in page.nav %}
+              <li class='{{item.title | downcase}}'>
+                <a href='{{item.url}}'
+                   {% if item.title == page.title %}class='active'{% endif %}
+                   {{ item.link_attrs }}>{{item.title}}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </nav>
+      </header>
 
-      <article id='content' {% if page.class %}class='{{ page.class }}'{% elsif page.title %}class='{{ page.title | downcase }}'{% endif %}>
+      <article id='content' {% if page.class %}class='{{page.class}}'{% else %}class='{{page.title | downcase}}'{% endif %}>
+        <h1>{{ page.title }}</h1>
         {{ content }}
       </article>
 
