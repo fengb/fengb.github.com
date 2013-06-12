@@ -39,13 +39,9 @@ nav:
         <nav id='site'>
           <ul class='menu'>
             {% for item in page.nav %}
-              <li>
-                <a href='{{item.url}}'
-                   class='{{item.title | downcase}}
-                          {% if item.title == page.title %}active{% endif %}
-                         '
-                   {{ item.link_attrs }}>{{item.title}}</a>
-              </li>
+              <li><a href='{{item.url}}' {{item.link_attrs}}
+                     class='{{item.title | downcase}}{% if item.title == page.title %}
+                            active{% endif %}'>{{item.title}}</a></li>
             {% endfor %}
           </ul>
         </nav>
