@@ -30,39 +30,37 @@ body {
   overflow: hidden;
   @include background-gradient($prima2, $prima1);
 
-  li { float: left; }
   a {
+    @include text-replace;
+    position: relative;
+    float: left;
     font-size: 24px;
-    font-weight: bold;
+    width: 24px;
     color: $unsat9;
     padding: 0 10px;
     @include centered-height(44px);
-  }
 
-  .js & {
-    li.contact {
+    &:before {
+      @extend %icon;
+      position: absolute;
+      right: 10px;
+    }
+
+    &.about:before     { content: $icon-logo; }
+    &.portfolio:before { content: $icon-folder; }
+    &.contact:before   { content: $icon-bubble; }
+
+    .js &.contact {
       float: right;
 
-      a {
-        @include text-replace;
-        position: relative;
-        width: 24px;
-
-        &:before {
-          @extend %icon;
-          content: $icon-bubble;
-          position: absolute;
-          right: 10px;
-        }
-
-        &:after {
-          position: absolute;
-          right: 0;
-          top: 0;
-          content: "\22ee";
-          font-size: 60%;
-          color: $secon8;
-        }
+      &:after {
+        position: absolute;
+        right: 0;
+        top: 0;
+        content: "\22ee";
+        font-size: 60%;
+        font-weight: bold;
+        color: $secon8;
       }
     }
   }
