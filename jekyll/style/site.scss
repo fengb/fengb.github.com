@@ -27,7 +27,7 @@ body {
 }
 
 #top {
-  color: $prima4;
+  color: $unsat4;
   @include centered-height(44px);
   float: left;
   width: 100%;
@@ -43,21 +43,26 @@ body {
     font-size: 24px;
     width: 64px;
 
+    &:hover,
+    &.active { color: $unsat5; }
+    &.active:hover { color: $unsat6; }
+
     &.about {
-      margin-left: -12px;
-      margin-top: -8px;
+      margin-left: -11px;
+      margin-top: -12px;
       font-size: 48px;
       width: 76px;
-      @include centered-height(76px);
-      background: $unsat9;
+      height: 76px;
+      line-height: 82px;
+      background: white;
       border: 1px solid $unsat8;
       @include vendor(border-radius, 55px);
+      color: $prima5;
 
       &:before { @include vendor(text-shadow, 0 1px 1px rgba(0, 0, 0, 0.5), 0 2px 1px rgba(0, 0, 0, 0.5)); }
-      &:hover { background: white; }
+      &:hover,
+      &.active { color: $prima6; }
     }
-
-    &:hover { color: $prima5; }
 
     &:before {
       @extend %icon;
@@ -65,7 +70,7 @@ body {
       left: 0;
       right: 0;
       text-align: center;
-      @include vendor(text-shadow, 0 -1px white, 0 1px 1px rgba(0, 0, 0, 0.7));
+      @include vendor(text-shadow, 0 -1px white, 0 1px 1px rgba(0, 0, 0, 0.8));
     }
 
     &.about:before     { content: $icon-logo; }
@@ -94,7 +99,7 @@ body {
 
 #content {
   clear: both;
-  margin: 0 10px;
+  margin: 0 8px;
   line-height: 1.4em;
 
   h1 { display: none; }
