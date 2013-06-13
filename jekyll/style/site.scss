@@ -8,6 +8,7 @@ body {
   font-family: Helvetica, Arial, FreeSans;
   margin: 0;
   position: relative;
+  background: $unsat9;
 }
 
 #main {
@@ -17,7 +18,7 @@ body {
   min-height: 150px;
   padding-bottom: 100px;
   z-index: 1;
-  @include vendor(box-shadow, 1px 0 $unsat1);
+  @include vendor(box-shadow, 1px 0 $unsat7);
   @include vendor(transition, left 0.2s);
 
   &.contact {
@@ -26,12 +27,12 @@ body {
 }
 
 #top {
-  background: $prima2;
-  color: $unsat8;
+  color: $prima4;
   @include centered-height(44px);
   float: left;
   width: 100%;
   margin-bottom: 20px;
+  border-bottom: 1px solid $unsat8;
 
   h1 { display: none; }
 
@@ -40,7 +41,7 @@ body {
     position: relative;
     float: left;
     font-size: 24px;
-    width: 44px;
+    width: 64px;
 
     &.about {
       margin-left: -12px;
@@ -48,11 +49,15 @@ body {
       font-size: 48px;
       width: 76px;
       @include centered-height(76px);
-      background: $prima2;
+      background: $unsat9;
+      border: 1px solid $unsat8;
       @include vendor(border-radius, 55px);
+
+      &:before { @include vendor(text-shadow, 0 1px 1px rgba(0, 0, 0, 0.5), 0 2px 1px rgba(0, 0, 0, 0.5)); }
+      &:hover { background: white; }
     }
 
-    &:hover { color: $unsat9; }
+    &:hover { color: $prima5; }
 
     &:before {
       @extend %icon;
@@ -60,7 +65,7 @@ body {
       left: 0;
       right: 0;
       text-align: center;
-      @include vendor(text-shadow, 0 -1px 1px $unsat1, 0 1px $unsat9);
+      @include vendor(text-shadow, 0 -1px white, 0 1px 1px rgba(0, 0, 0, 0.7));
     }
 
     &.about:before     { content: $icon-logo; }
@@ -70,16 +75,19 @@ body {
     .js &.contact {
       float: right;
 
+      &:before {
+        left: auto;
+        right: 6px;
+      }
       &:after {
         position: absolute;
-        right: 0;
+        right: -1px;
         content: "\22ee";
         font-size: 60%;
         font-weight: bold;
-        color: $secon8;
-        @include vendor(text-shadow, 0 -1px 1px $unsat1);
+        color: $secon3;
       }
-      &:hover:after { color: inherit; }
+      &:hover:after { color: $prima3; }
     }
   }
 }
@@ -116,9 +124,10 @@ body {
   h1 {
     @include centered-height(44px);
     margin: 0 0 10px;
-    color: $unsat8;
-    background: $secon2;
+    color: $secon2;
+    text-shadow: 0 1px white;
     text-align: center;
+    border-bottom: 1px solid $secon7;
   }
 
   a {
@@ -144,8 +153,8 @@ body {
       }
     }
 
-    &.phone    { @include contact-icon($icon-phone,    $prima4); }
-    &.email    { @include contact-icon($icon-email,    $prima4, 1px); }
+    &.phone    { @include contact-icon($icon-phone,    $prima3); }
+    &.email    { @include contact-icon($icon-email,    $prima3, 1px); }
     &.twitch   { @include contact-icon($icon-twitch,   #6441a5); }
     &.github   { @include contact-icon($icon-github,   #4183c4); }
     &.linkedin { @include contact-icon($icon-linkedin, #0073b2); }
