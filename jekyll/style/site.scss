@@ -26,11 +26,14 @@ body {
 }
 
 #top {
-  h1 { display: none; }
   background: $prima2;
-  overflow: hidden;
   color: $unsat8;
   @include centered-height(44px);
+  float: left;
+  width: 100%;
+  margin-bottom: 20px;
+
+  h1 { display: none; }
 
   a {
     @include text-replace(before, after);
@@ -39,13 +42,24 @@ body {
     font-size: 24px;
     width: 44px;
 
+    &.about {
+      margin-left: -12px;
+      margin-top: -8px;
+      font-size: 48px;
+      width: 76px;
+      @include centered-height(76px);
+      background: $prima2;
+      @include vendor(border-radius, 55px);
+    }
+
     &:hover { color: $unsat9; }
 
     &:before {
       @extend %icon;
       position: absolute;
-      left: 10px;
-      right: 10px;
+      left: 0;
+      right: 0;
+      text-align: center;
       @include vendor(text-shadow, 0 -1px 1px $unsat1, 0 1px $unsat9);
     }
 
@@ -71,7 +85,8 @@ body {
 }
 
 #content {
-  margin: 10px;
+  clear: both;
+  margin: 0 10px;
   line-height: 1.4em;
 
   h1 { display: none; }
