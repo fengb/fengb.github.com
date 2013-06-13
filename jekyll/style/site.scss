@@ -17,11 +17,11 @@ body {
   min-height: 150px;
   padding-bottom: 100px;
   z-index: 1;
+  @include vendor(box-shadow, 1px 0 $unsat1);
   @include vendor(transition, left 0.2s);
 
   &.contact {
     left: -180px;
-    border-right: 1px solid $unsat1;
   }
 }
 
