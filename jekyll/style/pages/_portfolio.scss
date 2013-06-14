@@ -1,7 +1,5 @@
 article.p-portfolio {
   ul {
-    margin: 0 -5px;
-
     &:after {
       @include fake-element;
       clear: both;
@@ -12,22 +10,24 @@ article.p-portfolio {
 
   a {
     display: block;
-    padding: 4px 5px;
+    padding: 8px;
 
     img.thumb {
       display: block;
       min-width: 45px;
       height: 75px;
       padding: 3px;
-      border: 2px solid $dark4;
+      background: $unsat9;
+      border: 1px solid $unsat7;
       @include vendor-vals(transition, transform 0.2s, box-shadow 0.2s);
     }
 
     &:hover img.thumb {
       padding: 2px;
-      border: 3px solid $dark3;
-      @include vendor(box-shadow, 0 2px 7px $lite0);
-      @include vendor(transform, scale(1.15));
+      border: 2px solid $unsat6;
+
+      @include vendor(box-shadow, 0 2px 7px $unsat7);
+      @include vendor(transform, scale(1.30));
     }
   }
 }
