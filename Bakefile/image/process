@@ -2,7 +2,7 @@
 
 
 force=$1
-find jekyll/samples -type f -not -name "*thumb*" | while read file; do
+find jekyll/portfolio -type f -not -name "*thumb*" | while read file; do
   if ! grep -q 'Benjamin Feng' $file || [ -n "$force" ]; then
     convert "$file" -background white -flatten "$file"
     $BAKE image/crush "$file" 110
