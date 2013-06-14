@@ -16,16 +16,12 @@ body {
   background: $unsat9;
   color: $prima1;
   position: relative;
-  min-height: 150px;
   overflow: hidden;
-  padding-bottom: 100px;
   z-index: 1;
   @include vendor(box-shadow, 1px 0 $unsat7, -1px 0 $unsat7);
   @include vendor(transition, left 0.2s);
 
-  &.contact {
-    left: -180px;
-  }
+  body.contact & { left: -180px; }
 }
 
 #top {
@@ -102,21 +98,18 @@ body {
 
 #content {
   clear: both;
-  margin: 0 8px;
+  margin: 8px;
   line-height: 1.4em;
+  min-height: 140px;
 
   h1 { display: none; }
 }
 
 #legal {
   font-size: 12px;
-  @include abs-center(280px);
-  bottom: 20px;
-  padding: 12px 0;
-  background: $unsat8;
   text-align: center;
-  @include vendor(border-radius, 8px);
-  @include vendor(box-shadow, inset 0 1px 3px $unsat5);
+  border-top: 1px solid $unsat8;
+  padding-top: 10px;
 
   a { white-space: nowrap; }
 }
@@ -128,6 +121,7 @@ body {
   right: 0;
   width: 180px;
   background: $secon8;
+  @include vendor(box-shadow, 1px 0 $unsat7);
 
   h1 {
     @include centered-height(44px);
