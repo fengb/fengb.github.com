@@ -25,54 +25,67 @@ body {
 }
 
 #top {
-  color: $unsat4;
-  @include centered-height(44px);
-  float: left;
-  width: 100%;
-  margin-bottom: 20px;
   border-bottom: 1px solid $unsat8;
+  margin-bottom: 20px;
 
-  h1 { display: none; }
-}
-
-#site {
   a {
-    @include text-replace(before, after);
-    height: 44px;
-    position: relative;
     float: left;
-    font-size: 24px;
-    width: 52px;
-
-    &:hover,
-    &.active { color: $unsat5; }
-    &.active:hover { color: $unsat6; }
-
-    &.about {
-      margin-left: -15px;
-      margin-top: -15px;
-      font-size: 48px;
-      width: 80px;
-      height: 80px;
-      line-height: 86px;
-      background: white;
-      border: 1px solid $unsat8;
-      @include vendor(border-radius, 55px);
-      color: $prima5;
-
-      &:before { @include vendor(text-shadow, 0 1px 1px rgba(0, 0, 0, 0.5), 0 2px 1px rgba(0, 0, 0, 0.5)); }
-      &:hover,
-      &.active { color: $prima6; }
-    }
+    position: relative;
+    text-align: center;
 
     &:before {
       @extend %icon;
       position: absolute;
-      right: 14px;
-      @include vendor(text-shadow, 0 -1px white, 0 1px 1px rgba(0, 0, 0, 0.8));
+      left: 0;
+      right: 0;
+      top: 0;
+    }
+  }
+
+  h1 a {
+    display: block;
+    margin-left: -15px;
+    margin-top: -15px;
+    font-size: 48px;
+    width: 80px;
+    height: 80px;
+    line-height: 86px;
+    background: white;
+    color: $prima5;
+    border: 1px solid $unsat8;
+    @include vendor(border-radius, 55px);
+    text-decoration: none;
+    @include text-replace(before);
+
+    &:before {
+      content: $icon-logo;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5), 0 2px 1px rgba(0, 0, 0, 0.5);
+    }
+    &:hover { color: $prima6; }
+  }
+}
+
+#site {
+  color: $unsat4;
+  background: $unsat9;
+  height: 60px;
+
+  a {
+    font-size: 16px;
+    width: 90px;
+    padding-top: 38px;
+    color: $unsat4;
+
+    &:hover { color: $unsat6; }
+
+    &:before {
+      text-decoration: none;
+      font-size: 24px;
+      top: 6px;
+      text-shadow: 0 -1px white, 0 1px 1px rgba(0, 0, 0, 0.8);
     }
 
-    &.about:before     { content: $icon-logo; }
+    &.about { display: none }
     &.portfolio:before { content: $icon-folder; }
     &.contact:before   { content: $icon-bubble; }
 
@@ -83,11 +96,13 @@ body {
         left: auto;
         right: 6px;
       }
+
       &:after {
         position: absolute;
+        top: 14px;
         right: -1px;
         content: "\22ee";
-        font-size: 60%;
+        font-size: 14px;
         font-weight: bold;
         color: $secon3;
       }
@@ -132,7 +147,7 @@ body {
   @include vendor(box-shadow, 1px 0 $unsat7);
 
   h1 {
-    @include centered-height(44px);
+    @include centered-height(60px);
     margin: 0 0 10px;
     color: $secon2;
     text-shadow: 0 1px white;
