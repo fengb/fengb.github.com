@@ -21,7 +21,7 @@ body {
   box-shadow: 1px 0 $unsat7, -1px 0 $unsat7;
   @include vendor(transition, left 0.2s);
 
-  body.contact & { left: -180px; }
+  body.contact & { left: -200px; }
 }
 
 #top {
@@ -50,7 +50,7 @@ body {
     width: 80px;
     height: 80px;
     line-height: 86px;
-    background: white;
+    background: $prima9;
     color: $prima5;
     text-decoration: none;
     border: 1px solid $unsat8;
@@ -59,7 +59,7 @@ body {
 
     &:before {
       content: $icon-logo;
-      text-shadow: 0 1px 1px rgba(black, 0.5), 0 2px 1px rgba(black, 0.5);
+      text-shadow: 0 1px 1px rgba($prima1, 0.5), 0 2px 1px rgba($prima1, 0.5);
     }
     &:hover { color: $prima6; }
   }
@@ -82,7 +82,7 @@ body {
       text-decoration: none;
       font-size: 24px;
       top: 6px;
-      text-shadow: 0 -1px rgba(white, 0.8), 0 1px 1px rgba(black, 0.8);
+      text-shadow: 0 -1px rgba($prima9, 0.8), 0 1px 1px rgba($prima1, 0.8);
     }
 
     &.about { display: none }
@@ -117,7 +117,7 @@ body {
   clear: both;
   margin: 8px;
   line-height: 1.4em;
-  min-height: 140px;
+  min-height: 145px;
 
   > h1 { display: none; }
 }
@@ -144,30 +144,29 @@ body {
   top: 0;
   bottom: 0;
   right: 0;
-  width: 180px;
+  width: 200px;
   background: $secon8;
   box-shadow: 1px 0 $unsat7;
 
   h1 {
     @include centered-height(60px);
-    margin: 0 0 10px;
-    color: $secon2;
-    text-shadow: 0 1px white;
+    border-bottom: 1px solid $secon6;
     text-align: center;
-    border-bottom: 1px solid $secon7;
+    background-color: $secon7;
+    color: $secon2;
+    text-shadow: 0 1px $secon8;
   }
 
   a {
     font-size: 16px;
     color: $secon1;
     position: relative;
-    padding: 10px 10px 10px 34px;
+    padding: 10px 0 10px 44px;
 
     &:before {
       @extend %icon;
-      padding-right: 0.2em;
       position: absolute;
-      left: 10px;
+      left: 20px;
     }
 
     @mixin contact-icon($icon, $color, $offset:'') {
@@ -186,6 +185,8 @@ body {
     &.github   { @include contact-icon($icon-github,   #4183c4); }
     &.linkedin { @include contact-icon($icon-linkedin, #0073b2); }
   }
+  li:first-child a { padding-top: 20px; }
+  li:last-child a { padding-bottom: 20px; }
 }
 
 @import 'pages/all';
