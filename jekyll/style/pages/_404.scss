@@ -1,4 +1,4 @@
-article#content.e404 {
+article.p-404 {
   text-align: center;
 
   p {
@@ -34,9 +34,9 @@ article#content.e404 {
         @include vendor(transform, rotate(-20deg));
       }
     }
-
-    &:hover span.arm { top:0; }
-    &:hover span.left.arm { @include vendor(transform, rotate(0)); }
-    &:hover span.right.arm { @include vendor(transform, rotate(0)); }
   }
+
+  &:hover span.arm { top: 0; }
+  &:hover span.left.arm { @include vendor(transform, rotate(0)); }
+  &:hover span.right.arm { @include vendor(transform, rotate(0)); }
 }
