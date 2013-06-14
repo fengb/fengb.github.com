@@ -6,9 +6,10 @@ Comment: "Please note that Jekyll will only convert files that also have a YAML 
 
 body {
   font-family: Helvetica, Arial, FreeSans;
-  margin: 0;
   position: relative;
   background: $unsat9;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 #main {
@@ -16,9 +17,10 @@ body {
   color: $prima1;
   position: relative;
   min-height: 150px;
+  overflow: hidden;
   padding-bottom: 100px;
   z-index: 1;
-  @include vendor(box-shadow, 1px 0 $unsat7);
+  @include vendor(box-shadow, 1px 0 $unsat7, -1px 0 $unsat7);
   @include vendor(transition, left 0.2s);
 
   &.contact {
@@ -35,25 +37,28 @@ body {
   border-bottom: 1px solid $unsat8;
 
   h1 { display: none; }
+}
 
+#site {
   a {
     @include text-replace(before, after);
+    height: 44px;
     position: relative;
     float: left;
     font-size: 24px;
-    width: 64px;
+    width: 52px;
 
     &:hover,
     &.active { color: $unsat5; }
     &.active:hover { color: $unsat6; }
 
     &.about {
-      margin-left: -11px;
-      margin-top: -12px;
+      margin-left: -15px;
+      margin-top: -15px;
       font-size: 48px;
-      width: 76px;
-      height: 76px;
-      line-height: 82px;
+      width: 80px;
+      height: 80px;
+      line-height: 86px;
       background: white;
       border: 1px solid $unsat8;
       @include vendor(border-radius, 55px);
@@ -67,9 +72,7 @@ body {
     &:before {
       @extend %icon;
       position: absolute;
-      left: 0;
-      right: 0;
-      text-align: center;
+      right: 14px;
       @include vendor(text-shadow, 0 -1px white, 0 1px 1px rgba(0, 0, 0, 0.8));
     }
 
