@@ -1,27 +1,22 @@
 @mixin vendor($attr, $vals...) {
-  @each $vendor in webkit, moz, ms, o {
-    -#{$vendor}-#{$attr}:$vals;
+  @each $prefix in -webkit-, -moz-, -ms-, -o-, '' {
+    #{$prefix}#{$attr}: $vals;
   }
-  #{$attr}:$vals;
 }
 
 @mixin vendor-vals($attr, $ovals...) {
-  @each $vendor in webkit, moz, ms, o {
-    $vvals:();
+  @each $prefix in -webkit-, -moz-, -ms-, -o-, '' {
+    $vvals: ();
     @each $oval in $ovals {
-      $vval:unquote('-#{$vendor}-#{$oval}');
-      $vvals:append($vvals,$vval,comma);
+      $vval: unquote('#{$prefix}#{$oval}');
+      $vvals: append($vvals, $vval, comma);
     }
-    -#{$vendor}-#{$attr}:$vvals;
+    #{$prefix}#{$attr}: $vvals;
   }
-  #{$attr}:$ovals;
 }
 
-@mixin background-gradient($from, $to) {
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, $from), color-stop(1, $to));
-
-  @each $vendor in webkit, moz, ms, o {
-    background-image: -#{$vendor}-linear-gradient(top, $from, $to);
+@mixin background-gradient($args...) {
+  @each $prefix in -webkit-, -moz-, -ms-, -o-, '' {
+    background-image: #{$prefix}linear-gradient($args);
   }
-  background-image: linear-gradient(top, bottom, $from, $to);
 }

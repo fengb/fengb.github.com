@@ -44,8 +44,8 @@ body {
 
   h1 a {
     display: block;
-    margin-left: -15px;
-    margin-top: -15px;
+    margin-left: -12px;
+    margin-top: -12px;
     font-size: 48px;
     width: 80px;
     height: 80px;
@@ -59,7 +59,7 @@ body {
 
     &:before {
       content: $icon-logo;
-      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5), 0 2px 1px rgba(0, 0, 0, 0.5);
+      text-shadow: 0 1px 1px rgba(black, 0.5), 0 2px 1px rgba(black, 0.5);
     }
     &:hover { color: $prima6; }
   }
@@ -82,7 +82,7 @@ body {
       text-decoration: none;
       font-size: 24px;
       top: 6px;
-      text-shadow: 0 -1px white, 0 1px 1px rgba(0, 0, 0, 0.8);
+      text-shadow: 0 -1px rgba(white, 0.8), 0 1px 1px rgba(black, 0.8);
     }
 
     &.about { display: none }
@@ -91,22 +91,24 @@ body {
 
     .js &.contact {
       float: right;
+      width: 44px;
+      padding-top: 60px;
+      overflow: hidden;
+      height: 0;
 
       &:before {
+        font-size: 20px;
+        top: 11px;
         left: auto;
-        right: 6px;
+        right: 0;
+        padding: 8px 2px 8px 8px;
+        z-index: 1;
+        @include vendor(border-radius, 8px 0 0 8px);
+        text-shadow: none;
+        background: $unsat8;
+        @include background-gradient(right, $unsat7, $unsat8);
+        @include vendor(box-shadow, 0 1px 2px $unsat6);
       }
-
-      &:after {
-        position: absolute;
-        top: 14px;
-        right: -1px;
-        content: "\22ee";
-        font-size: 14px;
-        font-weight: bold;
-        color: $secon3;
-      }
-      &:hover:after { color: $prima3; }
     }
   }
 }
