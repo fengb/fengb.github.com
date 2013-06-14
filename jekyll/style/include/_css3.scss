@@ -1,11 +1,13 @@
+$vendor-prefixes: (-webkit-, -moz-, -ms-, -o-, '');
+
 @mixin vendor($attr, $vals...) {
-  @each $prefix in -webkit-, -moz-, -ms-, -o-, '' {
+  @each $prefix in $vendor-prefixes {
     #{$prefix}#{$attr}: $vals;
   }
 }
 
 @mixin vendor-vals($attr, $ovals...) {
-  @each $prefix in -webkit-, -moz-, -ms-, -o-, '' {
+  @each $prefix in $vendor-prefixes {
     $vvals: ();
     @each $oval in $ovals {
       $vval: unquote('#{$prefix}#{$oval}');
@@ -16,7 +18,7 @@
 }
 
 @mixin background-gradient($args...) {
-  @each $prefix in -webkit-, -moz-, -ms-, -o-, '' {
+  @each $prefix in $vendor-prefixes {
     background-image: #{$prefix}linear-gradient($args);
   }
 }

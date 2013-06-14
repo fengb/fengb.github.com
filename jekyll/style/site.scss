@@ -18,7 +18,7 @@ body {
   position: relative;
   overflow: hidden;
   z-index: 1;
-  @include vendor(box-shadow, 1px 0 $unsat7, -1px 0 $unsat7);
+  box-shadow: 1px 0 $unsat7, -1px 0 $unsat7;
   @include vendor(transition, left 0.2s);
 
   body.contact & { left: -180px; }
@@ -52,9 +52,9 @@ body {
     line-height: 86px;
     background: white;
     color: $prima5;
-    border: 1px solid $unsat8;
-    @include vendor(border-radius, 55px);
     text-decoration: none;
+    border: 1px solid $unsat8;
+    border-radius: 55px;
     @include text-replace(before);
 
     &:before {
@@ -103,11 +103,11 @@ body {
         right: 0;
         padding: 8px 2px 8px 8px;
         z-index: 1;
-        @include vendor(border-radius, 8px 0 0 8px);
-        text-shadow: none;
         background: $unsat8;
         @include background-gradient(right, $unsat7, $unsat8);
-        @include vendor(box-shadow, 0 1px 2px $unsat6);
+        border-radius: 8px 0 0 8px;
+        text-shadow: none;
+        box-shadow: 0 1px 2px $unsat6;
       }
     }
   }
@@ -146,7 +146,7 @@ body {
   right: 0;
   width: 180px;
   background: $secon8;
-  @include vendor(box-shadow, 1px 0 $unsat7);
+  box-shadow: 1px 0 $unsat7;
 
   h1 {
     @include centered-height(60px);
