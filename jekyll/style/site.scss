@@ -1,0 +1,190 @@
+---
+Comment: "Please note that Jekyll will only convert files that also have a YAML header at the top."
+---
+@import 'include/all';
+@import 'widgets/all';
+
+body {
+  font-family: Helvetica, Arial, FreeSans;
+  position: relative;
+  background: $unsat9;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+#main {
+  background: $unsat9;
+  color: $prima1;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 1px 0 $unsat7, -1px 0 $unsat7, 0 1px $unsat7;
+  @include vendor(transition, left 0.2s);
+
+  body.contact & { left: -200px; }
+}
+
+#top {
+  border-bottom: 1px solid $unsat8;
+
+  a {
+    float: left;
+    position: relative;
+    text-align: center;
+
+    &:before {
+      @extend %icon;
+      position: absolute;
+      text-align: center;
+      left: 0;
+      right: 0;
+      top: 0;
+    }
+  }
+
+  h1 a {
+    display: block;
+    margin-left: -12px;
+    margin-top: -12px;
+    font-size: 48px;
+    width: 80px;
+    height: 80px;
+    line-height: 86px;
+    background: $prima9;
+    color: $prima5;
+    border: 1px solid $unsat8;
+    border-radius: 55px;
+    @include text-replace(before);
+
+    &:before {
+      content: $icon-logo;
+      text-shadow: 0 1px 1px rgba($prima1, 0.5), 0 2px 1px rgba($prima1, 0.5);
+    }
+    &:hover { color: $prima6; }
+  }
+}
+
+#site {
+  color: $unsat4;
+  background: $unsat9;
+  height: 60px;
+
+  a {
+    font-size: 16px;
+    width: 90px;
+    padding-top: 37px;
+    height: 60px - 37px;
+    color: $unsat4;
+
+    &:hover { color: $unsat6; }
+
+    &:before {
+      font-size: 24px;
+      top: 8px;
+      text-shadow: 0 -1px rgba($prima9, 0.8), 0 1px 1px rgba($prima1, 0.8);
+    }
+
+    &.about { display: none }
+    &.portfolio:before { content: $icon-folder; }
+    &.contact:before   { content: $icon-bubble; }
+
+    .js &.contact {
+      float: right;
+      width: 44px;
+      padding-top: 60px;
+      overflow: hidden;
+      height: 0;
+
+      &:before {
+        font-size: 20px;
+        top: 11px;
+        left: auto;
+        right: 0;
+        padding: 8px 2px 8px 8px;
+        z-index: 1;
+        background: $unsat8;
+        @include background-gradient(right, $unsat7, $unsat8);
+        border-radius: 8px 0 0 8px;
+        text-shadow: none;
+        box-shadow: 0 1px 2px $unsat6;
+      }
+    }
+  }
+}
+
+#content {
+  clear: both;
+  margin: 10px;
+  line-height: 1.4em;
+  min-height: 145px;
+
+  > h1 { display: none; }
+}
+
+#legal {
+  font-size: 12px;
+  text-align: center;
+  border-top: 1px solid $unsat8;
+  padding: 10px 0;
+
+  a { text-decoration: underline; }
+  #copy:after { content: '.'; }
+
+  @media only screen and (max-width: 640px) {
+    #copy { display: block; }
+    #copy:after { content: ''; }
+    a { display: block; }
+  }
+}
+
+#contact {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 200px;
+  background: $secon8;
+  box-shadow: 1px 0 $unsat7, 0 1px $unsat7;
+
+  h1 {
+    @include centered-height(60px);
+    border-bottom: 1px solid $secon6;
+    text-align: center;
+    background-color: $secon7;
+    color: $secon2;
+    text-shadow: 0 1px $secon8;
+  }
+
+  a {
+    font-size: 16px;
+    color: $secon1;
+    position: relative;
+    padding: 10px 0 10px 44px;
+
+    &:before {
+      @extend %icon;
+      position: absolute;
+      left: 20px;
+    }
+
+    @mixin contact-icon($icon, $color, $offset:'') {
+      &:hover { color: $color; }
+      &:before {
+        content: $icon;
+        @if $offset != '' {
+          margin-top: $offset;
+        }
+      }
+    }
+
+    &.phone    { @include contact-icon($icon-phone,    $prima3); }
+    &.email    { @include contact-icon($icon-email,    $prima3, 1px); }
+    &.twitch   { @include contact-icon($icon-twitch,   #6441a5); }
+    &.github   { @include contact-icon($icon-github,   #4183c4); }
+    &.linkedin { @include contact-icon($icon-linkedin, #0073b2); }
+  }
+  li:first-child a { padding-top: 20px; }
+  li:last-child a { padding-bottom: 20px; }
+}
+
+@import 'pages/all';

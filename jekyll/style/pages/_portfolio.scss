@@ -1,0 +1,32 @@
+article.p-portfolio {
+  ul {
+    &:after {
+      @include fake-element;
+      clear: both;
+    }
+  }
+
+  li { float: left; }
+
+  a {
+    display: block;
+    padding: 8px;
+
+    img.thumb {
+      display: block;
+      min-width: 45px;
+      height: 75px;
+      padding: 3px;
+      background: $unsat9;
+      border: 1px solid $unsat7;
+      @include vendor-vals(transition, transform 0.2s);
+    }
+
+    &:hover img.thumb {
+      padding: 2px;
+      border: 2px solid $unsat6;
+      box-shadow: 0 2px 7px $unsat6;
+      @include vendor(transform, scale(1.30));
+    }
+  }
+}

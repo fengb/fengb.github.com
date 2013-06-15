@@ -1,3 +1,5 @@
+destination: ../_site
+exclude: [config.ru]
 sass:
   style: :expanded
   load_paths: ['style']

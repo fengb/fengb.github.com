@@ -1,0 +1,26 @@
+@mixin fake-element {
+  content: '';
+  display: block;
+}
+
+@mixin centered-height($height) {
+  height: $height;
+  line-height: $height;
+}
+
+@mixin abs-center($width) {
+  position: absolute;
+  left: 50%;
+  margin-left: -$width / 2;
+  width: $width;
+}
+
+@mixin text-replace($pseudos...) {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+
+  @each $pseudo in $pseudos {
+    &:#{$pseudo} { text-indent: 0; }
+  }
+}
