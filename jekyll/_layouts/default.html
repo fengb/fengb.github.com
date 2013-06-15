@@ -12,8 +12,13 @@ nav:
 <html lang='en' class='no-js'>
   <head>
     <meta charset='utf-8' />
-    <link rel='stylesheet' media='all' href='style/site.css' />
-    <link rel='stylesheet' media='print' href='style/print.css' />
+    <!--[if gte IE 8]><!-->
+      <link rel='stylesheet' media='all' href='style/site.css' />
+      <link rel='stylesheet' media='print' href='style/print.css' />
+    <!--<![endif]-->
+    <!--[if lt IE 8]>
+      <link rel='stylesheet' media='all' href='style/blank.css' />
+    <![endif]-->
     <meta name='viewport' content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no' />
     <title>fengb{% if page.title %} &rarr; {{ page.title }}{% endif %}</title>
     <script>document.documentElement.className='js'</script>
@@ -52,7 +57,7 @@ nav:
       {% include contact.html %}
     </aside>
 
-    <!--[if gt IE 8]><!-->
+    <!--[if gte IE 9]><!-->
       <script src='vendor/jquery.js'></script>
     <!--<![endif]-->
     <!--[if lt IE 9]>
