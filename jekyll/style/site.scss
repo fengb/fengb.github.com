@@ -26,7 +26,6 @@ body {
 
 #top {
   border-bottom: 1px solid $unsat8;
-  margin-bottom: 20px;
 
   a {
     float: left;
@@ -73,14 +72,15 @@ body {
   a {
     font-size: 16px;
     width: 90px;
-    padding-top: 38px;
+    padding-top: 37px;
+    height: 60px - 37px;
     color: $unsat4;
 
     &:hover { color: $unsat6; }
 
     &:before {
       font-size: 24px;
-      top: 6px;
+      top: 8px;
       text-shadow: 0 -1px rgba($prima9, 0.8), 0 1px 1px rgba($prima1, 0.8);
     }
 
@@ -114,7 +114,7 @@ body {
 
 #content {
   clear: both;
-  margin: 8px;
+  margin: 10px;
   line-height: 1.4em;
   min-height: 145px;
 
