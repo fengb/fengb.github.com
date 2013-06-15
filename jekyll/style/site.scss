@@ -52,7 +52,6 @@ body {
     line-height: 86px;
     background: $prima9;
     color: $prima5;
-    text-decoration: none;
     border: 1px solid $unsat8;
     border-radius: 55px;
     @include text-replace(before);
@@ -79,7 +78,6 @@ body {
     &:hover { color: $unsat6; }
 
     &:before {
-      text-decoration: none;
       font-size: 24px;
       top: 6px;
       text-shadow: 0 -1px rgba($prima9, 0.8), 0 1px 1px rgba($prima1, 0.8);
@@ -128,9 +126,8 @@ body {
   border-top: 1px solid $unsat8;
   padding: 10px 0;
 
-  #copy:after {
-    content: '.';
-  }
+  a { text-decoration: underline; }
+  #copy:after { content: '.'; }
 
   @media only screen and (max-width: 640px) {
     #copy { display: block; }
