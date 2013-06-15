@@ -11,7 +11,7 @@ The majority of this project is licensed under the
 A Markdown version of the license is included with the project as LICENSE.md
 
 Files licensed under a different license than **CC BY-NC-ND 3.0** will have a
-licensing block at the beginning of the file.
+licensing block at the beginning of the file or in the residing subdirectory.
 
 Dev setup
 -----
