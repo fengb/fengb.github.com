@@ -6,6 +6,7 @@ Comment: "Please note that Jekyll will only convert files that also have a YAML 
 
 body {
   font-family: Helvetica, Arial, FreeSans;
+  font-size: 16px;
   position: relative;
   background: $unsat9;
   max-width: 960px;
@@ -116,7 +117,7 @@ body {
   clear: both;
   margin: 10px;
   line-height: 1.4em;
-  min-height: 145px;
+  min-height: 175px;
 
   > h1 { display: none; }
 }
@@ -159,32 +160,29 @@ body {
     font-size: 16px;
     color: $secon1;
     position: relative;
-    padding: 10px 0 10px 44px;
+    @include centered-height(44px);
+    padding-left: 44px;
 
     &:before {
       @extend %icon;
       position: absolute;
       left: 20px;
+      bottom: 0;
+      line-height: 44px;
     }
 
-    @mixin contact-icon($icon, $color, $offset:'') {
+    @mixin contact-icon($icon, $color) {
       &:hover { color: $color; }
-      &:before {
-        content: $icon;
-        @if $offset != '' {
-          margin-top: $offset;
-        }
-      }
+      &:before { content: $icon; }
     }
 
     &.phone    { @include contact-icon($icon-phone,    $prima3); }
-    &.email    { @include contact-icon($icon-email,    $prima3, 1px); }
+    &.email    { @include contact-icon($icon-email,    $prima3); }
     &.twitch   { @include contact-icon($icon-twitch,   #6441a5); }
     &.github   { @include contact-icon($icon-github,   #4183c4); }
     &.linkedin { @include contact-icon($icon-linkedin, #0073b2); }
   }
-  li:first-child a { padding-top: 20px; }
-  li:last-child a { padding-bottom: 20px; }
+  li:first-child a { padding-top: 10px; }
 }
 
 @import 'pages/all';
