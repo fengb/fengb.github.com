@@ -1,9 +1,9 @@
 #!/bin/bash
 
 
-gem install bundler
-bundle install
-if ! command -v brewdler &>/dev/null; then
-  gem install brewdler
-fi
-brewdle install
+for program in bundle brewdle; do
+  if ! command -v $program &>/dev/null; then
+    gem install ${program}r
+  fi
+  $program install
+done
