@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
   "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-  <ellipse cx='100' cy='160' rx='88' ry='96' />
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="24" height="32">
+  <ellipse cx='11' cy='21' rx='10' ry='11' />
+  <path d='M 0 4 C 0 23 7 23 8 23
+                 C 13 23 23 11 24 0
+                 C 24 2 13 18 8 18
+                 C 3 18 0 4 0 4
+           Z
+          ' />
 </svg>
