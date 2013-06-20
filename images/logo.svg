@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
   "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="24" height="32">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="32">
   <!--<ellipse cx='8' cy='22' rx='9' ry='10.01' transform='rotate(3)' />-->
-  <path d='M 8.75 10 A 7.4 10.01 5 0 0 7.75 32
+  <path d='M 16.75 10 A 7.4 10.01 5 0 0 7.75 32
                     A 9 10.01 15 0 0 8.75 10
            Z' />
   <path d='M 0 8 C 0 24 6 24 8 24
