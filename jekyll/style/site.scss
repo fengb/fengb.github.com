@@ -49,13 +49,12 @@ body {
 
   h1 a {
     display: block;
-    margin-left: -10px;
-    margin-top: 0px;
+    margin-left: -11px;
     font-size: 60px;
     width: 70px;
     padding-top: 70px;
     height: 0;
-    line-height: 60px;
+    line-height: 58px;
     background: $prima9;
     color: $prima5;
     border: 1px solid $unsat8;
@@ -63,7 +62,7 @@ body {
 
     &:before {
       content: $icon-logo;
-      left: 10px;
+      left: 12px;
       text-shadow: 0 1px rgba($unsat1, 0.2);
     }
     &:hover { color: $prima6; }
@@ -194,8 +193,8 @@ body {
       &:before { content: $icon; }
     }
 
-    &.phone    { @include contact-icon($icon-phone,    $prima3); }
-    &.email    { @include contact-icon($icon-email,    $prima3); }
+    &.phone    { @include contact-icon($icon-phone,    $secon3); }
+    &.email    { @include contact-icon($icon-email,    $secon3); }
     &.twitch   { @include contact-icon($icon-twitch,   #6441a5); }
     &.github   { @include contact-icon($icon-github,   #4183c4); }
     &.linkedin { @include contact-icon($icon-linkedin, #0073b2); }
