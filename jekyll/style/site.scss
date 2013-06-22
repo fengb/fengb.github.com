@@ -30,15 +30,10 @@ body {
   a {
     float: left;
     position: relative;
-    text-align: center;
 
     &:before {
       @extend %icon;
       position: absolute;
-      text-align: center;
-      left: 0;
-      right: 0;
-      top: 0;
     }
   }
 
@@ -50,11 +45,11 @@ body {
   h1 a {
     display: block;
     margin-left: -11px;
+    margin-top: 4px;
     font-size: 60px;
     width: 70px;
     padding-top: 70px;
     height: 0;
-    line-height: 58px;
     background: $prima9;
     color: $prima5;
     border: 1px solid $unsat8;
@@ -62,8 +57,9 @@ body {
 
     &:before {
       content: $icon-logo;
-      left: 12px;
-      text-shadow: 0 1px rgba($unsat1, 0.2);
+      left: 18px;
+      top: -5px;
+      text-shadow: 0 0 1px $unsat2;
     }
     &:hover { color: $prima6; }
   }
@@ -80,12 +76,15 @@ body {
     padding-top: 37px;
     height: 60px - 37px;
     color: $unsat4;
+    text-align: center;
 
     &:hover { color: $unsat6; }
 
     &:before {
       font-size: 24px;
       top: 8px;
+      left: 0;
+      right: 0;
       text-shadow: 0 -1px rgba($prima9, 0.8), 0 1px 1px rgba($unsat1, 0.8);
     }
 
