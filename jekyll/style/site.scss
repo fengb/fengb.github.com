@@ -94,18 +94,18 @@ body {
 
     .js &.contact {
       float: right;
-      width: 70px;
+      width: 50px;
       padding-top: 60px;
       overflow: hidden;
       height: 0;
-      right: -20px;
+      right: 0;
       @include vendor(transition, right 0.2s);
 
       &:before {
         font-size: 20px;
         top: 11px;
         left: auto;
-        right: 20px;
+        right: 0;
         width: 20px;
         padding: 8px 2px 8px 8px;
         z-index: 1;
@@ -114,12 +114,14 @@ body {
         border-radius: 8px 0 0 8px;
         text-shadow: none;
         box-shadow: 0 1px 2px $unsat6;
+        @include vendor(transition, right 0.2s);
       }
 
       &.active {
-        right: -51px;
+        right: -41px;
 
         &:before {
+          right: 10px;
           border-radius: 0 8px 8px 0;
           padding: 8px 6px 8px 4px;
           box-shadow: 0 1px 2px $unsat6, 1px 0 $unsat7;
