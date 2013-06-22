@@ -166,7 +166,7 @@ Fengb::Resume.render do
     end
 
     location('Business Logic Corporation', 'http://businesslogic.com/') do
-      title('Chief Technical Officer', from: '2007-06-04', to: '2009-08-04') do
+      title('Software Engineer', from: '2007-06-04', to: '2009-08-04') do
         ul('Repurposed existing single-threaded financial advice engine into a scalable aggregator',
            'Maintained legacy SOAP API layer for a redesigned modern RESTful architecture',
            'Created testing framework for separating data configuration and verification')
