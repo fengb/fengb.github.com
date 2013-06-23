@@ -1,8 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='80' height='80' fill='#ffbf32'>
-  <rect x='0' y='0' width='80' height='80' fill='#f6f5f4' />
-  <ellipse cx='40' cy='40' rx='39.5' ry='39.5' stroke='#c6c5c4' fill='#ffffff' />
-  <path stroke='#a6a5a4'
+  <ellipse cx='40' cy='40' rx='39.5' ry='39.5' stroke='#a6a5a4' fill='#ffffff' />
+  <path stroke='#868584'
         d='M 70 0 c  -1, 6 -22, 38 -32, 38
                   c -10, 0 -16,-30 -16,-30
                   c   0,36  14, 36  16, 36
