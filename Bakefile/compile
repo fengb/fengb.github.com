@@ -1,4 +1,4 @@
 #!/bin/bash
 
 
-cd jekyll && bundle exec jekyll build
+cd jekyll && bundle exec jekyll build --destination ../dist

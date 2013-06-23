@@ -1,3 +1,4 @@
-_site
 .sass-cache
+dist
+jekyll/_site
 jekyll/tmp

@@ -1,4 +1,3 @@
-destination: ../_site
 exclude: [config.ru]
 sass:
   style: :expanded

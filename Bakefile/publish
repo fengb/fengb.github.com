@@ -4,7 +4,7 @@
 $BAKE compile
 gitorigin=`git remote show -n origin | sed -e '/Fetch URL/!d' -e 's/ *Fetch URL: //'`
 
-cd _site
+cd dist
 git init
 git add .
 git commit -m "AUTO PUBLISH"
