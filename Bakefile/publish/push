@@ -1,7 +1,6 @@
 #!/bin/bash
 
 
-$BAKE compile
 gitorigin=`git remote show -n origin | sed -e '/Fetch URL/!d' -e 's/ *Fetch URL: //'`
 
 cd dist

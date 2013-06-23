@@ -1,0 +1,6 @@
+#!/bin/bash
+
+
+$BAKE clean
+$BAKE build
+$BAKE push
