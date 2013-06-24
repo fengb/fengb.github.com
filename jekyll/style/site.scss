@@ -21,7 +21,7 @@ body {
   box-shadow: 1px 0 $unsat7, -1px 0 $unsat7, 0 1px $unsat7;
   @include vendor(transition, left 0.2s);
 
-  body.contact & { left: -200px; }
+  body.active & { left: -200px; }
 }
 
 #top {
