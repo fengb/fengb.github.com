@@ -1,3 +1,3 @@
-(function($, undefined) {
+(function(undefined) {
   FastClick.attach(document.body);
-})(jQuery);
+})();
