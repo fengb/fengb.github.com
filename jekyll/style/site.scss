@@ -7,21 +7,11 @@ Comment: "Please note that Jekyll will only convert files that also have a YAML 
 body {
   font-family: Helvetica, Arial, FreeSans;
   font-size: 16px;
-  position: relative;
   background: $unsat9;
   max-width: 960px;
-  margin: 0 auto;
-}
-
-#main {
-  background: $unsat9;
   color: $unsat1;
-  position: relative;
-  z-index: 1;
-  box-shadow: 1px 0 $unsat7, -1px 0 $unsat7, 0 1px $unsat7;
-  @include vendor(transition, left 0.2s);
-
-  body.active & { left: -200px; }
+  margin: 0 auto;
+  overflow: hidden;
 }
 
 #top {
@@ -93,8 +83,7 @@ body {
     &.contact:before   { content: $icon-bubble; }
 
     .js &.contact {
-      float: right;
-      width: 50px;
+      position: absolute;
       padding-top: 60px;
       overflow: hidden;
       height: 0;
@@ -117,16 +106,7 @@ body {
         @include vendor(transition, right 0.2s);
       }
 
-      &.active {
-        right: -41px;
-
-        &:before {
-          right: 10px;
-          border-radius: 0 8px 8px 0;
-          padding: 8px 6px 8px 4px;
-          box-shadow: 0 1px 2px $unsat6, 1px 0 $unsat7;
-        }
-      }
+      &.active { right: 200px; }
     }
   }
 }
@@ -159,11 +139,14 @@ body {
 #contact {
   position: absolute;
   top: 0;
-  bottom: 0;
-  right: 0;
+  left: 100%;
   width: 200px;
   background: $secon8;
-  box-shadow: 1px 0 $unsat7, 0 1px $unsat7;
+  border-left: 1px solid $unsat7;
+  border-bottom: 1px solid $unsat7;
+  @include vendor(transition, margin-left 0.2s);
+
+  body.active & { margin-left: -200px; }
 
   h1 {
     @include centered-height(60px);
