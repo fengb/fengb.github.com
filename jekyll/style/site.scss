@@ -21,7 +21,6 @@ body {
   background: $unsat9;
   color: $unsat1;
   margin: 0;
-  overflow-x: hidden;
 }
 
 #main {
@@ -159,20 +158,20 @@ body {
 
 #contact {
   position: absolute;
+  overflow: hidden;
   top: 0;
-  left: 100%;
-  width: 200px;
+  right: 0;
+  width: 0;
   background: $secon8;
-  border-left: 1px solid $unsat7;
-  box-shadow: 0 1px $unsat7;
-  @include vendor(transition, margin-left 0.2s);
+  box-shadow: inset 1px 0 $unsat7, 0 1px $unsat7;
+  @include vendor(transition, width 0.2s);
 
-  body.active & { margin-left: -200px; }
+  body.active & { width: 200px; }
 
   h1 {
     @include centered-height(60px);
     border-bottom: 1px solid $secon6;
-    text-align: center;
+    padding-left: 60px;
     background-color: $secon7;
     color: $secon2;
     text-shadow: 0 1px $secon8;
