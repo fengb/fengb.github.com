@@ -4,18 +4,34 @@ Comment: "Please note that Jekyll will only convert files that also have a YAML 
 @import 'include/all';
 @import 'widgets/all';
 
+@mixin full-width {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+@mixin separator {
+  border-top: 1px solid $prima9;
+  box-shadow: 0 -1px $unsat8;
+}
+
 body {
   font-family: Helvetica, Arial, FreeSans;
   font-size: 16px;
   background: $unsat9;
-  max-width: 960px;
   color: $unsat1;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+#main {
+  max-width: 960px;
   margin: 0 auto;
-  overflow: hidden;
 }
 
 #top {
-  border-bottom: 1px solid $unsat8;
+  color: $unsat4;
+  height: 70px;
 
   a {
     float: left;
@@ -29,16 +45,18 @@ body {
 
   h1 {
     float: left;
+    position: relative;
+    z-index: 1;
+    margin-left: -13px;
+    margin-top: 2px;
     overflow: hidden;
   }
 
   h1 a {
     display: block;
-    margin-left: -11px;
-    margin-top: 4px;
     font-size: 60px;
-    width: 70px;
-    padding-top: 70px;
+    width: 74px;
+    padding-top: 74px;
     height: 0;
     background: $prima9;
     color: $prima5;
@@ -47,24 +65,21 @@ body {
 
     &:before {
       content: $icon-logo;
-      left: 18px;
-      top: -5px;
-      text-shadow: 0 0 1px $unsat2;
+      left: 20px;
+      top: -2px;
+      text-shadow: 0 0 1px $unsat1;
     }
     &:hover { color: $prima6; }
   }
 }
 
 #site {
-  color: $unsat4;
-  background: $unsat9;
-  height: 60px;
-
-  a {
+  .menu a {
+    box-sizing: border-box;
     font-size: 16px;
     width: 90px;
-    padding-top: 37px;
-    height: 60px - 37px;
+    padding-top: 42px;
+    height: 70px;
     color: $unsat4;
     text-align: center;
 
@@ -72,7 +87,7 @@ body {
 
     &:before {
       font-size: 24px;
-      top: 8px;
+      top: 12px;
       left: 0;
       right: 0;
       text-shadow: 0 -1px rgba($prima9, 0.8), 0 1px 1px rgba($unsat1, 0.8);
@@ -112,18 +127,24 @@ body {
 }
 
 #content {
-  clear: both;
-  margin: 10px;
+  padding: 10px;
   line-height: 1.4em;
-  min-height: 175px;
+
+  &:before {
+    @include fake-element;
+    @include full-width;
+    margin-top: -10px;
+    @include separator;
+  }
 
   > h1 { display: none; }
 }
 
 #legal {
+  @include full-width;
   font-size: 12px;
   text-align: center;
-  border-top: 1px solid $unsat8;
+  @include separator;
   padding: 10px 0;
 
   a { text-decoration: underline; }
@@ -143,7 +164,7 @@ body {
   width: 200px;
   background: $secon8;
   border-left: 1px solid $unsat7;
-  border-bottom: 1px solid $unsat7;
+  box-shadow: 0 1px $unsat7;
   @include vendor(transition, margin-left 0.2s);
 
   body.active & { margin-left: -200px; }
