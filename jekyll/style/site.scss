@@ -15,6 +15,7 @@ Comment: "Please note that Jekyll will only convert files that also have a YAML 
   box-shadow: 0 -1px $unsat8;
 }
 
+$content-width: 960px;
 body {
   font-family: Helvetica, Arial, FreeSans;
   font-size: 16px;
@@ -24,7 +25,7 @@ body {
 }
 
 #main {
-  max-width: 960px;
+  max-width: $content-width;
   margin: 0 auto;
 }
 
@@ -95,49 +96,6 @@ body {
     &.about { display: none }
     &.portfolio:before { content: $icon-folder; }
     &.contact:before   { content: $icon-bubble; }
-
-    .js &.contact {
-      position: absolute;
-      padding-top: 60px;
-      overflow: hidden;
-      height: 0;
-      right: 0;
-      @include vendor(transition, right 0.2s);
-
-      &:before {
-        font-size: 20px;
-        top: 11px;
-        left: auto;
-        right: 0;
-        width: 20px;
-        padding: 8px 2px 8px 8px;
-        z-index: 1;
-        background: $unsat8;
-        @include background-gradient(right, $unsat7, $unsat8);
-        border-radius: 8px 0 0 8px;
-        text-shadow: none;
-        box-shadow: 0 1px 2px $unsat6;
-        @include vendor(transition, right 0.2s);
-      }
-
-      &.active { right: 200px; }
-
-      @media only screen and (min-width: 1260px) {
-        right: auto;
-        left: 50%;
-        margin-left: 480px;
-        @include vendor(transition, top 0.2s);
-
-        &:before {
-          top: 0;
-          padding: 2px 8px 8px;
-          @include background-gradient(bottom, $unsat7, $unsat8);
-          border-radius: 0 0 8px 8px;
-        }
-
-        &.active { top: 61px + 5*44px; }
-      }
-    }
   }
 }
 
@@ -172,6 +130,14 @@ body {
   }
 }
 
+$contact-width: 200px;
+$contact-height: 61px + 5*44px;
+$contact-wide: $content-width + 2*$contact-width;
+@mixin left-of-content {
+  right: auto;
+  left: 50%;
+  margin-left: $content-width/2;
+}
 #contact {
   position: absolute;
   overflow: hidden;
@@ -182,17 +148,15 @@ body {
   box-shadow: inset 1px 0 $unsat7, inset -1px 0 $unsat7;
   @include vendor(transition, width 0.2s);
 
-  body.active & { width: 200px; }
+  body.active & { width: $contact-width; }
 
-  @media only screen and (min-width: 1260px) {
+  @media only screen and (min-width: $contact-wide) {
+    @include left-of-content;
     width: 200px;
-    right: auto;
-    left: 50%;
-    margin-left: 480px;
     height: 0;
     @include vendor(transition, height 0.2s);
 
-    body.active & { height: 61px + 5*44px; }
+    body.active & { height: $contact-height; }
   }
 
   > * { margin-left: 1px; }
@@ -233,6 +197,47 @@ body {
     &.twitch   { @include contact-icon($icon-twitch,   #6441a5); }
     &.github   { @include contact-icon($icon-github,   #4183c4); }
     &.linkedin { @include contact-icon($icon-linkedin, #0073b2); }
+  }
+}
+
+.js #site a.contact {
+  position: absolute;
+  padding-top: 60px;
+  overflow: hidden;
+  height: 0;
+  right: 0;
+  @include vendor(transition, right 0.2s);
+
+  &:before {
+    font-size: 20px;
+    top: 11px;
+    left: auto;
+    right: 0;
+    width: 20px;
+    padding: 8px 2px 8px 8px;
+    z-index: 1;
+    background: $unsat8;
+    @include background-gradient(right, $unsat7, $unsat8);
+    border-radius: 8px 0 0 8px;
+    text-shadow: none;
+    box-shadow: 0 1px 2px $unsat6;
+    @include vendor(transition, right 0.2s);
+  }
+
+  &.active { right: $contact-width; }
+
+  @media only screen and (min-width: $contact-wide) {
+    @include left-of-content;
+    @include vendor(transition, top 0.2s);
+
+    &:before {
+      top: 0;
+      padding: 2px 8px 8px;
+      @include background-gradient(bottom, $unsat7, $unsat8);
+      border-radius: 0 0 8px 8px;
+    }
+
+    &.active { top: $contact-height; }
   }
 }
 
