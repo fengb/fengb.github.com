@@ -130,32 +130,33 @@ body {
   }
 }
 
-$contact-width: 200px;
 $contact-height: 51px + 5*44px;
-$contact-wide: $content-width + 2*$contact-width;
-@mixin right-of-content {
-  right: auto;
-  left: 50%;
-  margin-left: $content-width/2;
-}
 #contact {
   position: absolute;
-  overflow: hidden;
   top: -$contact-height;
-  right: 0;
+  z-index: 9;
+  right: 8px;
+  padding-top: 5px;
+  margin-top: -5px;
   background: $secon8;
-  box-shadow: inset 1px 0 $unsat7, inset -1px 0 $unsat7;
-  @include vendor(transition, top 0.2s);
   border-radius: 0 0 12px 12px;
+  opacity: 0.98;
+  @include vendor(transition, all 0.2s);
 
-  body.active & { top: 0; }
+  body.active & {
+    top: 0;
+    box-shadow: 0 3px 10px $unsat1;
+  }
 
-  > * { margin: 0 1px; }
+  h1, a {
+    border-left: 1px solid $unsat7;
+    border-right: 1px solid $unsat7;
+  }
 
   h1 {
     @include centered-height(50px);
     border-bottom: 1px solid $secon6;
-    padding-left: 58px;
+    text-align: center;
     background-color: $secon7;
     color: $secon2;
     text-shadow: 0 1px $secon8;
@@ -189,30 +190,36 @@ $contact-wide: $content-width + 2*$contact-width;
     &.github   { @include contact-icon($icon-github,   #4183c4); }
     &.linkedin { @include contact-icon($icon-linkedin, #0073b2); }
   }
+
+  li:last-child a { border-radius: 0 0 12px 12px; }
 }
 
 .js #site a.contact {
   position: absolute;
+  z-index: 10;
   padding-top: 70px;
   overflow: hidden;
   right: 0;
-  @include vendor(transition, top 0.2s);
+  @include vendor(transition, all 0.2s);
 
   &:before {
     font-size: 20px;
     top: 0;
     left: auto;
+    right: 16px;
     width: 20px;
     padding: 2px 8px 8px;
-    z-index: 1;
     background: $unsat8;
-    @include background-gradient(right, $unsat7, $unsat8);
+    @include background-gradient($unsat8, $unsat7);
     border-radius: 0 0 8px 8px;
     text-shadow: none;
-    box-shadow: 0 1px 2px $unsat6;
+    box-shadow: 0 1px 1px $unsat6;
   }
 
-  &.active { top: $contact-height; }
+  &.active {
+    top: $contact-height;
+    &:before { box-shadow: 0 3px 10px $unsat1; }
+  }
 }
 
 @import 'pages/all';
