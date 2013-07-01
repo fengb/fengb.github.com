@@ -131,9 +131,9 @@ body {
 }
 
 $contact-width: 200px;
-$contact-height: 61px + 5*44px;
+$contact-height: 52px + 5*44px;
 $contact-wide: $content-width + 2*$contact-width;
-@mixin left-of-content {
+@mixin right-of-content {
   right: auto;
   left: 50%;
   margin-left: $content-width/2;
@@ -141,30 +141,33 @@ $contact-wide: $content-width + 2*$contact-width;
 #contact {
   position: absolute;
   overflow: hidden;
-  top: 0;
+  top: 6px;
   right: 0;
   width: 0;
   background: $secon8;
   box-shadow: inset 1px 0 $unsat7, inset -1px 0 $unsat7;
+  border-top: 1px solid $unsat7;
   @include vendor(transition, width 0.2s);
+  border-radius: 12px 0 0 12px;
 
   body.active & { width: $contact-width; }
 
   @media only screen and (min-width: $contact-wide) {
-    @include left-of-content;
+    @include right-of-content;
     width: 200px;
-    height: 0;
-    @include vendor(transition, height 0.2s);
+    top: -$contact-height;
+    @include vendor(transition, top 0.2s);
+    border-radius: 0 0 12px 12px;
 
-    body.active & { height: $contact-height; }
+    body.active & { top: 0; }
   }
 
-  > * { margin-left: 1px; }
+  > * { margin: 0 1px; }
 
   h1 {
-    @include centered-height(60px);
+    @include centered-height(50px);
     border-bottom: 1px solid $secon6;
-    padding-left: 60px;
+    padding-left: 58px;
     background-color: $secon7;
     color: $secon2;
     text-shadow: 0 1px $secon8;
@@ -210,7 +213,7 @@ $contact-wide: $content-width + 2*$contact-width;
 
   &:before {
     font-size: 20px;
-    top: 11px;
+    top: 16px;
     left: auto;
     right: 0;
     width: 20px;
@@ -227,11 +230,13 @@ $contact-wide: $content-width + 2*$contact-width;
   &.active { right: $contact-width; }
 
   @media only screen and (min-width: $contact-wide) {
-    @include left-of-content;
+    @include right-of-content;
     @include vendor(transition, top 0.2s);
+    width: $contact-width;
 
     &:before {
       top: 0;
+      right: $contact-width/2 - 14px;
       padding: 2px 8px 8px;
       @include background-gradient(bottom, $unsat7, $unsat8);
       border-radius: 0 0 8px 8px;
