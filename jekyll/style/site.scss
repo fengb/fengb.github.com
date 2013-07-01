@@ -58,7 +58,7 @@ body {
     padding-top: 74px;
     height: 0;
     background: $prima9;
-    color: $prima5;
+    color: $prima6;
     border: 1px solid $unsat8;
     border-radius: 55px;
 
@@ -68,7 +68,7 @@ body {
       top: -2px;
       text-shadow: 0 0 1px $unsat1;
     }
-    &:hover { color: $prima6; }
+    &:hover { color: $prima7; }
   }
 }
 
@@ -163,8 +163,10 @@ body {
   right: 0;
   width: 0;
   background: $secon8;
-  box-shadow: inset 1px 0 $unsat7, 0 1px $unsat7;
+  box-shadow: inset 1px 0 $unsat7;
   @include vendor(transition, width 0.2s);
+
+  > * { margin-left: 1px; }
 
   body.active & { width: 200px; }
 
@@ -182,8 +184,10 @@ body {
     color: $secon1;
     position: relative;
     @include centered-height(44px);
+    border-bottom: 1px solid $unsat7;
     padding-left: 44px;
 
+    &:hover { background: $secon9; }
     &:before {
       @extend %icon;
       position: absolute;
@@ -203,7 +207,6 @@ body {
     &.github   { @include contact-icon($icon-github,   #4183c4); }
     &.linkedin { @include contact-icon($icon-linkedin, #0073b2); }
   }
-  li:first-child a { padding-top: 10px; }
 }
 
 @import 'pages/all';
