@@ -131,7 +131,7 @@ body {
 }
 
 $contact-width: 200px;
-$contact-height: 52px + 5*44px;
+$contact-height: 51px + 5*44px;
 $contact-wide: $content-width + 2*$contact-width;
 @mixin right-of-content {
   right: auto;
@@ -141,26 +141,14 @@ $contact-wide: $content-width + 2*$contact-width;
 #contact {
   position: absolute;
   overflow: hidden;
-  top: 6px;
+  top: -$contact-height;
   right: 0;
-  width: 0;
   background: $secon8;
   box-shadow: inset 1px 0 $unsat7, inset -1px 0 $unsat7;
-  border-top: 1px solid $unsat7;
-  @include vendor(transition, width 0.2s);
-  border-radius: 12px 0 0 12px;
+  @include vendor(transition, top 0.2s);
+  border-radius: 0 0 12px 12px;
 
-  body.active & { width: $contact-width; }
-
-  @media only screen and (min-width: $contact-wide) {
-    @include right-of-content;
-    width: 200px;
-    top: -$contact-height;
-    @include vendor(transition, top 0.2s);
-    border-radius: 0 0 12px 12px;
-
-    body.active & { top: 0; }
-  }
+  body.active & { top: 0; }
 
   > * { margin: 0 1px; }
 
@@ -179,7 +167,7 @@ $contact-wide: $content-width + 2*$contact-width;
     position: relative;
     @include centered-height(43px);
     border-bottom: 1px solid $unsat7;
-    padding-left: 44px;
+    padding: 0 14px 0 44px;
 
     &:hover { background: $secon9; }
     &:before {
@@ -205,45 +193,26 @@ $contact-wide: $content-width + 2*$contact-width;
 
 .js #site a.contact {
   position: absolute;
-  padding-top: 60px;
+  padding-top: 70px;
   overflow: hidden;
-  height: 0;
   right: 0;
-  @include vendor(transition, right 0.2s);
+  @include vendor(transition, top 0.2s);
 
   &:before {
     font-size: 20px;
-    top: 16px;
+    top: 0;
     left: auto;
-    right: 0;
     width: 20px;
-    padding: 8px 2px 8px 8px;
+    padding: 2px 8px 8px;
     z-index: 1;
     background: $unsat8;
     @include background-gradient(right, $unsat7, $unsat8);
-    border-radius: 8px 0 0 8px;
+    border-radius: 0 0 8px 8px;
     text-shadow: none;
     box-shadow: 0 1px 2px $unsat6;
-    @include vendor(transition, right 0.2s);
   }
 
-  &.active { right: $contact-width; }
-
-  @media only screen and (min-width: $contact-wide) {
-    @include right-of-content;
-    @include vendor(transition, top 0.2s);
-    width: $contact-width;
-
-    &:before {
-      top: 0;
-      right: $contact-width/2 - 14px;
-      padding: 2px 8px 8px;
-      @include background-gradient(bottom, $unsat7, $unsat8);
-      border-radius: 0 0 8px 8px;
-    }
-
-    &.active { top: $contact-height; }
-  }
+  &.active { top: $contact-height; }
 }
 
 @import 'pages/all';
