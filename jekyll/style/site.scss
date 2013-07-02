@@ -141,7 +141,6 @@ $contact-width: 196px;
   margin-top: -5px;
   background: $secon8;
   border-radius: 0 0 12px 12px;
-  opacity: 0.98;
   @include vendor(transition, all 0.2s);
 
   @media only screen and (min-width: $content-width + 2*$contact-width) {
@@ -177,7 +176,7 @@ $contact-width: 196px;
       position: absolute;
       left: 19px;
       bottom: 0;
-      line-height: 44px;
+      line-height: 40px;
     }
 
     @mixin contact-icon($icon, $color) {

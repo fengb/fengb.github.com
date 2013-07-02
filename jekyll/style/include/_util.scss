@@ -5,7 +5,7 @@
 
 @mixin centered-height($height) {
   height: $height;
-  line-height: $height;
+  line-height: $height + 3px;
 }
 
 @mixin abs-center($width) {
