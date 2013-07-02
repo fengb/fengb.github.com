@@ -130,12 +130,13 @@ body {
   }
 }
 
-$contact-height: 51px + 5*44px;
+$contact-width: 196px;
 #contact {
   position: absolute;
-  top: -$contact-height;
+  top: -51px - 5*44px;
   z-index: 9;
-  right: 8px;
+  right: 38px;
+  width: $contact-width;
   padding-top: 5px;
   margin-top: -5px;
   background: $secon8;
@@ -143,14 +144,14 @@ $contact-height: 51px + 5*44px;
   opacity: 0.98;
   @include vendor(transition, all 0.2s);
 
+  @media only screen and (min-width: $content-width + 2*$contact-width) {
+    right: 50%;
+    margin-right: -$content-width/2 - $contact-width;
+  }
+
   body.active & {
     top: 0;
     box-shadow: 0 3px 10px $unsat1;
-  }
-
-  h1, a {
-    border-left: 1px solid $unsat7;
-    border-right: 1px solid $unsat7;
   }
 
   h1 {
@@ -168,7 +169,7 @@ $contact-height: 51px + 5*44px;
     position: relative;
     @include centered-height(43px);
     border-bottom: 1px solid $unsat7;
-    padding: 0 14px 0 44px;
+    padding-left: 44px;
 
     &:hover { background: $secon9; }
     &:before {
@@ -197,7 +198,8 @@ $contact-height: 51px + 5*44px;
 .js #site a.contact {
   position: absolute;
   z-index: 10;
-  padding-top: 70px;
+  padding-top: 50px;
+  height: 0;
   overflow: hidden;
   right: 0;
   @include vendor(transition, all 0.2s);
@@ -206,19 +208,22 @@ $contact-height: 51px + 5*44px;
     font-size: 20px;
     top: 0;
     left: auto;
-    right: 16px;
+    right: 1px;
     width: 20px;
     padding: 2px 8px 8px;
     background: $unsat8;
     @include background-gradient($unsat8, $unsat7);
     border-radius: 0 0 8px 8px;
     text-shadow: none;
-    box-shadow: 0 1px 1px $unsat6;
+    box-shadow: 0 1px 1px $unsat2;
+    @include vendor(transition, all 0.2s);
   }
 
-  &.active {
-    top: $contact-height;
-    &:before { box-shadow: 0 3px 10px $unsat1; }
+  &.active:before { box-shadow: 2px 1px 8px $unsat1, 0 1px 1px $unsat2; }
+
+  @media only screen and (min-width: $content-width + 2*$contact-width) {
+    right: 50%;
+    margin-right: -$content-width/2;
   }
 }
 
