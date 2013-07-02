@@ -75,7 +75,7 @@ body {
 
 #site {
   .menu a {
-    box-sizing: border-box;
+    @include vendor(box-sizing, border-box);
     font-size: 16px;
     width: 90px;
     padding-top: 42px;
@@ -121,12 +121,12 @@ body {
   padding: 10px 0;
 
   a { text-decoration: underline; }
-  #copy:after { content: '.'; }
+  #copy, a { display: block; }
+  #copy { margin-bottom: 4px; }
 
-  @media only screen and (max-width: 640px) {
-    #copy { display: block; }
-    #copy:after { content: ''; }
-    a { display: block; }
+  @media only screen and (min-width: 660px) {
+    #copy, a { display: inline; }
+    #copy:after { content: '.'; }
   }
 }
 
@@ -165,7 +165,6 @@ $contact-width: 196px;
   a {
     font-size: 16px;
     color: $secon1;
-    position: relative;
     @include centered-height(43px);
     border-bottom: 1px solid $unsat7;
     padding-left: 44px;
@@ -175,8 +174,6 @@ $contact-width: 196px;
       @extend %icon;
       position: absolute;
       left: 19px;
-      bottom: 0;
-      line-height: 40px;
     }
 
     @mixin contact-icon($icon, $color) {
