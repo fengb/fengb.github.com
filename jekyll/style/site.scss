@@ -4,28 +4,34 @@ Comment: "Please note that Jekyll will only convert files that also have a YAML 
 @import 'include/all';
 @import 'widgets/all';
 
+@mixin full-width {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+@mixin separator {
+  border-top: 1px solid $prima9;
+  box-shadow: 0 -1px $unsat8;
+}
+
+$content-width: 960px;
 body {
   font-family: Helvetica, Arial, FreeSans;
   font-size: 16px;
-  position: relative;
   background: $unsat9;
-  max-width: 960px;
-  margin: 0 auto;
+  color: $unsat1;
+  margin: 0;
 }
 
 #main {
-  background: $unsat9;
-  color: $unsat1;
-  position: relative;
-  z-index: 1;
-  box-shadow: 1px 0 $unsat7, -1px 0 $unsat7, 0 1px $unsat7;
-  @include vendor(transition, left 0.2s);
-
-  body.active & { left: -200px; }
+  max-width: $content-width;
+  margin: 0 auto;
 }
 
 #top {
-  border-bottom: 1px solid $unsat8;
+  color: $unsat4;
+  height: 70px;
 
   a {
     float: left;
@@ -39,42 +45,41 @@ body {
 
   h1 {
     float: left;
+    position: relative;
+    z-index: 1;
+    margin-left: -13px;
+    margin-top: 2px;
     overflow: hidden;
   }
 
   h1 a {
     display: block;
-    margin-left: -11px;
-    margin-top: 4px;
     font-size: 60px;
-    width: 70px;
-    padding-top: 70px;
+    width: 74px;
+    padding-top: 74px;
     height: 0;
     background: $prima9;
-    color: $prima5;
+    color: $prima6;
     border: 1px solid $unsat8;
     border-radius: 55px;
 
     &:before {
       content: $icon-logo;
-      left: 18px;
-      top: -5px;
-      text-shadow: 0 0 1px $unsat2;
+      left: 20px;
+      top: -2px;
+      text-shadow: 0 0 1px $unsat1;
     }
-    &:hover { color: $prima6; }
+    &:hover { color: $prima7; }
   }
 }
 
 #site {
-  color: $unsat4;
-  background: $unsat9;
-  height: 60px;
-
-  a {
+  .menu a {
+    box-sizing: border-box;
     font-size: 16px;
     width: 90px;
-    padding-top: 37px;
-    height: 60px - 37px;
+    padding-top: 42px;
+    height: 70px;
     color: $unsat4;
     text-align: center;
 
@@ -82,7 +87,7 @@ body {
 
     &:before {
       font-size: 24px;
-      top: 8px;
+      top: 12px;
       left: 0;
       right: 0;
       text-shadow: 0 -1px rgba($prima9, 0.8), 0 1px 1px rgba($unsat1, 0.8);
@@ -91,59 +96,28 @@ body {
     &.about { display: none }
     &.portfolio:before { content: $icon-folder; }
     &.contact:before   { content: $icon-bubble; }
-
-    .js &.contact {
-      float: right;
-      width: 50px;
-      padding-top: 60px;
-      overflow: hidden;
-      height: 0;
-      right: 0;
-      @include vendor(transition, right 0.2s);
-
-      &:before {
-        font-size: 20px;
-        top: 11px;
-        left: auto;
-        right: 0;
-        width: 20px;
-        padding: 8px 2px 8px 8px;
-        z-index: 1;
-        background: $unsat8;
-        @include background-gradient(right, $unsat7, $unsat8);
-        border-radius: 8px 0 0 8px;
-        text-shadow: none;
-        box-shadow: 0 1px 2px $unsat6;
-        @include vendor(transition, right 0.2s);
-      }
-
-      &.active {
-        right: -41px;
-
-        &:before {
-          right: 10px;
-          border-radius: 0 8px 8px 0;
-          padding: 8px 6px 8px 4px;
-          box-shadow: 0 1px 2px $unsat6, 1px 0 $unsat7;
-        }
-      }
-    }
   }
 }
 
 #content {
-  clear: both;
-  margin: 10px;
+  padding: 10px;
   line-height: 1.4em;
-  min-height: 175px;
+
+  &:before {
+    @include fake-element;
+    @include full-width;
+    margin-top: -10px;
+    @include separator;
+  }
 
   > h1 { display: none; }
 }
 
 #legal {
+  @include full-width;
   font-size: 12px;
   text-align: center;
-  border-top: 1px solid $unsat8;
+  @include separator;
   padding: 10px 0;
 
   a { text-decoration: underline; }
@@ -156,17 +130,31 @@ body {
   }
 }
 
+$contact-width: 196px;
 #contact {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  width: 200px;
+  top: -51px - 5*44px;
+  z-index: 9;
+  right: 38px;
+  width: $contact-width;
+  padding-top: 5px;
+  margin-top: -5px;
   background: $secon8;
-  box-shadow: 1px 0 $unsat7, 0 1px $unsat7;
+  border-radius: 0 0 12px 12px;
+  @include vendor(transition, all 0.2s);
+
+  @media only screen and (min-width: $content-width + 2*$contact-width) {
+    right: 50%;
+    margin-right: -$content-width/2 - $contact-width;
+  }
+
+  body.active & {
+    top: 0;
+    box-shadow: 0 3px 10px $unsat1;
+  }
 
   h1 {
-    @include centered-height(60px);
+    @include centered-height(50px);
     border-bottom: 1px solid $secon6;
     text-align: center;
     background-color: $secon7;
@@ -178,15 +166,17 @@ body {
     font-size: 16px;
     color: $secon1;
     position: relative;
-    @include centered-height(44px);
+    @include centered-height(43px);
+    border-bottom: 1px solid $unsat7;
     padding-left: 44px;
 
+    &:hover { background: $secon9; }
     &:before {
       @extend %icon;
       position: absolute;
-      left: 20px;
+      left: 19px;
       bottom: 0;
-      line-height: 44px;
+      line-height: 40px;
     }
 
     @mixin contact-icon($icon, $color) {
@@ -200,7 +190,48 @@ body {
     &.github   { @include contact-icon($icon-github,   #4183c4); }
     &.linkedin { @include contact-icon($icon-linkedin, #0073b2); }
   }
-  li:first-child a { padding-top: 10px; }
+
+  li:last-child a { border-radius: 0 0 12px 12px; }
+}
+
+.js #site a.contact {
+  position: absolute;
+  z-index: 10;
+  padding-top: 50px;
+  height: 0;
+  overflow: hidden;
+  right: 0;
+  @include vendor(transition, all 0.2s);
+
+  &:before {
+    font-size: 20px;
+    top: 0;
+    left: auto;
+    right: 1px;
+    width: 20px;
+    padding: 6px 8px 8px;
+    background: $unsat8;
+    @include background-gradient($unsat8, $unsat7);
+    border-radius: 0 0 8px 8px;
+    text-shadow: none;
+    box-shadow: 0 1px 1px $unsat2;
+    @include vendor(transition, all 0.2s);
+  }
+
+  &.active:before {
+    box-shadow: -2px 2px 8px $unsat1;
+    @include vendor(transform, rotate(-90deg));
+  }
+
+  @media only screen and (min-width: $content-width + 2*$contact-width) {
+    right: 50%;
+    margin-right: -$content-width/2;
+
+    &.active:before {
+      box-shadow: 2px 2px 8px $unsat1;
+      @include vendor(transform, rotate(90deg));
+    }
+  }
 }
 
 @import 'pages/all';
