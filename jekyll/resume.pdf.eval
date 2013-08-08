@@ -10,6 +10,12 @@ require 'date'
 module Fengb
   class Resume < Prawn::Document
     module Primitives
+      def fmt_date(date, default=nil)
+        return Date.parse(date).strftime("%b '%y") if date
+        raise if default.nil?
+        default
+      end
+
       def link(url, text)
         "<b><color rgb='435c96'><link href='#{url}'>#{text}</link></color></b>"
       end
@@ -21,7 +27,7 @@ module Fengb
       def dl(options)
         move_up 1
         table_adjusted options.map{|cat, val| ["#{cat}:", val]}, cell_style: {borders: [], padding: [1, 0]} do
-          style column(0), padding_right: 4
+          column(0).style padding_right: 4
         end
         move_up 1
       end
@@ -29,7 +35,7 @@ module Fengb
       def ul(*values)
         move_up 1
         table_adjusted values.map{|e| ['•', e]}, cell_style: {borders: [], padding: [1, 0]} do
-          style column(0), padding_left: 1, width: 10
+          column(0).style padding_left: 1, width: 10
         end
         move_up 1
       end
@@ -94,9 +100,11 @@ module Fengb
         end
         @role += 1
 
-        start_date = Date.parse(options[:from]).strftime('%b %Y')
-        end_date = options[:to] ? Date.parse(options[:to]).strftime('%b %Y') : 'present'
-        text "<b><font size='10.5'>#{title}</font></b> — #{start_date} to #{end_date}", inline_format: true
+        table_adjusted [[title, fmt_date(options[:from]), '-', fmt_date(options[:to], 'present')]] do
+          cells.style borders: [], padding: [3, 0, 0, 0], align: :right, inline_format: true, size: 8, font: 'Courier', font_style: :bold
+          column(0).style align: :left, size: 10.5, padding: 0, font: 'Helvetica'
+          self.column_widths = [320, 37, 8, 37]
+        end
 
         move_down 1
         if block_given?
@@ -132,8 +140,7 @@ Fengb::Resume.render do
 
   section 'Employment' do
     location('FENGB TECHNOLOGIES LLC', 'http://fengb.info') do
-      role('Independent Consultant', from: '2013-08-05') do
-      end
+      role('Independent Consultant', from: '2013-08-05')
     end
 
     location('Enova International', 'http://www.enova.com') do
