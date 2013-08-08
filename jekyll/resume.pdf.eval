@@ -32,10 +32,10 @@ module Fengb
         move_up 1
       end
 
-      def ul(*values)
+      def ul(values)
         move_up 1
         table_adjusted values.map{|e| ['•', e]}, cell_style: {borders: [], padding: [1, 0]} do
-          column(0).style padding_left: 1, width: 10
+          column(0).style padding_left: 2, width: 10
         end
         move_up 1
       end
@@ -107,8 +107,8 @@ module Fengb
         end
 
         move_down 1
-        if block_given?
-          yield
+        if options[:duties]
+          ul(options[:duties])
         end
       end
     end
@@ -139,69 +139,70 @@ Fengb::Resume.render do
   end
 
   section 'Employment' do
-    location('FENGB TECHNOLOGIES LLC', 'http://fengb.info') do
-      role('Independent Consultant', from: '2013-08-05')
+    location 'FENGB TECHNOLOGIES LLC', 'http://fengb.info' do
+      role 'Independent Consultant',
+        from: '2013-08-05'
     end
 
-    location('Enova International', 'http://www.enova.com') do
-      role('Lead Software Engineer', from: '2012-04-03') do
-        ul('Acted as technical team lead for 6 developers and 3 QA',
-           'Architected full-stack solutions for freshly-launched product codebase',
-           'Proposed and executed lean UX processes for customer driven designs')
-      end
+    location 'Enova International', 'http://www.enova.com' do
+      role 'Lead Software Engineer',
+        from: '2012-04-03',
+        duties: ['Acted as technical team lead for 6 developers and 3 QA',
+                 'Architected full-stack solutions for freshly-launched product codebase',
+                 'Proposed and executed lean UX processes for customer driven designs']
 
-      role('Sr. Software Engineer II', from: '2011-07-01', to: '2012-04-02') do
-        ul('Drove high priority projects with aggressive deadlines to completion',
-           'Promoted security initiatives to eliminate attack vectors',
-           'Onboarded newly hired developers and managers')
-      end
+      role 'Sr. Software Engineer II',
+        from: '2011-07-01', to: '2012-04-02',
+        duties: ['Drove high priority projects with aggressive deadlines to completion',
+                 'Promoted security initiatives to eliminate attack vectors',
+                 'Onboarded newly hired developers and managers']
 
-      role('Sr. UI Engineer', from: '2010-07-01', to: '2011-06-30') do
-        ul('Updated the UI to maintain compliance with rapidly changing legal environments',
-           'Helped launch mobile web for all existing products')
-      end
+      role 'Sr. UI Engineer',
+        from: '2010-07-01', to: '2011-06-30',
+        duties: ['Updated the UI to maintain compliance with rapidly changing legal environments',
+                 'Helped launch mobile web for all existing products']
 
-      role('UI Engineer', from: '2009-10-19', to: '2010-06-30') do
-        ul('Launched web solutions for products with millions of dollars of yearly transactions',
-           'Worked with business and creative teams to deliver customer focused designs',
-           'Optimized existing frontend for faster load times')
-      end
+      role 'UI Engineer',
+        from: '2009-10-19', to: '2010-06-30',
+        duties: ['Launched web solutions for products with millions of dollars of yearly transactions',
+                 'Worked with business and creative teams to deliver customer focused designs',
+                 'Optimized existing frontend for faster load times']
     end
 
-    location('Crusader Storm (defunct)', 'http://web.archive.org/web/20100623115357/http://www.crusaderstorm.com/') do
-      role('Chief Technical Officer', from: '2010-05-07', to: '2011-05-06') do
-        ul('Incubated iPhone app from concept to release',
-           'Designed website using responsive web and graceful degradation techniques',
-           'Produced original artwork for branding and marketing')
-      end
+    location 'Crusader Storm (defunct)', 'http://web.archive.org/web/20100623115357/http://www.crusaderstorm.com/' do
+      role 'Chief Technical Officer',
+        from: '2010-05-07', to: '2011-05-06',
+        duties: ['Incubated iPhone app from concept to release',
+                 'Designed website using responsive web and graceful degradation techniques',
+                 'Produced original artwork for branding and marketing']
     end
 
-    location('Business Logic Corporation', 'http://businesslogic.com/') do
-      role('Software Engineer', from: '2007-06-04', to: '2009-08-04') do
-        ul('Repurposed existing single-threaded engine into a massively scalable aggregator',
-           'Maintained legacy SOAP API layer for a redesigned RESTful architecture',
-           'Created testing framework for separating data configuration and verification')
-      end
+    location 'Business Logic Corporation', 'http://businesslogic.com/' do
+      role 'Software Engineer',
+        from: '2007-06-04', to: '2009-08-04',
+        duties: ['Repurposed existing single-threaded engine into a massively scalable aggregator',
+                 'Maintained legacy SOAP API layer for a redesigned RESTful architecture',
+                 'Created testing framework for separating data configuration and verification']
     end
 
-    location('Rose-Hulman Ventures', 'http://rhventures.org/') do
-      role('Computer Engineering Intern', from: '2006-06-12', to: '2007-03-16') do
-        ul('Optimized chemical control software for space efficiency',
-           'Enhanced C++ MFC application integrating with embedded circuit boards')
-      end
+    location 'Rose-Hulman Ventures', 'http://rhventures.org/' do
+      role 'Computer Engineering Intern',
+        from: '2006-06-12', to: '2007-03-16',
+        duties: ['Optimized chemical control software for space efficiency',
+                 'Enhanced C++ MFC application integrating with embedded circuit boards']
 
-      role('Computer Programming Intern', from: '2005-06-06', to: '2006-06-09') do
-        ul('Coordinated a development team of 5 to build a management website for doctors',
-           'Worked with business on defining requirements and creating new functionality')
-      end
+      role 'Computer Programming Intern',
+        from: '2005-06-06', to: '2006-06-09',
+        duties: ['Coordinated a development team of 5 to build a management website for doctors',
+                 'Worked with business on defining requirements and creating new functionality']
     end
   end
 
   section 'Education' do
-    location('Rose-Hulman Institute of Technology', 'http://www.rose-hulman.edu/') do
-      role('B.S. Computer Engineering', from: '2003-09-04', to: '2007-05-26') do
-        text 'Minors in Computer Science & Economics'
-      end
+    location 'Rose-Hulman Institute of Technology', 'http://www.rose-hulman.edu/' do
+      role 'B.S. Computer Engineering',
+        from: '2003-09-04', to: '2007-05-26',
+        duties: ['Minors in Computer Science & Economics']
     end
   end
 end
