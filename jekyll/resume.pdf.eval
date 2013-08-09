@@ -170,11 +170,10 @@ Fengb::Resume.render do
     end
 
     location 'Crusader Storm (defunct)', 'http://web.archive.org/web/20100623115357/http://www.crusaderstorm.com/' do
-      role 'Chief Technical Officer',
+      role 'Founder',
         from: '2010-05-07', to: '2011-05-06',
         duties: ['Incubated iPhone app from concept to release',
-                 'Designed website using responsive web and graceful degradation techniques',
-                 'Produced original artwork for branding and marketing']
+                 'Designed website using responsive web and graceful degradation techniques']
     end
 
     location 'Business Logic Corporation', 'http://businesslogic.com/' do
@@ -191,7 +190,7 @@ Fengb::Resume.render do
         duties: ['Optimized chemical control software for space efficiency',
                  'Enhanced C++ MFC application integrating with embedded circuit boards']
 
-      role 'Computer Programming Intern',
+      role 'Software Engineering Intern',
         from: '2005-06-06', to: '2006-06-09',
         duties: ['Coordinated a development team of 5 to build a management website for doctors',
                  'Worked with business on defining requirements and creating new functionality']
