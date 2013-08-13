@@ -1,21 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN'
   'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
-<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='48' height='64' fill='#ffbf32'>
-  <!--<ellipse cx='8' cy='22' rx='9' ry='10.01' transform='rotate(3)' />-->
-  <path d='M 16.5 20 a 15,20   0,0,0  0, 44
-                     a 18,20  15,0,0  0,-44
+<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='96' height='128' fill='#ffbf32'>
+  <!--<ellipse cx='32' cy='44' rx='36' ry='40' transform='rotate(3)' />-->
+  <path d='M 33,40 a  30,40   0,0,0  0, 88
+                   a  35,40  10,0,0  0,-88
+           Z
+           M  0,16 c   0,48   32, 50   32, 50
+                   c  28, 0   60,-52   64,-65
+                   c -28,93  -63, 93  -63, 93
+                   c -36, 0  -33,-78  -33,-78
            Z' />
-  <path d='M 0 16 c   0,32   12, 32   16, 32
-                  c  14, 0   30,-26   32,-48
-                  c   0, 4  -22, 32  -31, 32
-                  c -11, 0  -17,-24  -17,-24
-           Z
-          ' fill='#ffffff'/>
-  <path d='M 0 8 c   0,36   14, 36   16, 36
-                 c  10, 0   30,-22   32,-44
-                 c   0, 4  -22, 38  -32, 38
-                 c -10, 0  -16,-30  -16,-30
-           Z
-          '/>
 </svg>
