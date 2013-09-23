@@ -4,7 +4,7 @@
 <svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='160' height='160' fill='#ffbf32'>
   <ellipse cx='80' cy='80' rx='79' ry='79' stroke-width='2' stroke='#a6a5a4' fill='#ffffff'/>
   <path stroke='#868584' stroke-width='2' stroke-linejoin='round'
-        d='M 76,41 a  30,40   0,0,0  0, 88
+        d='M 76,41 a  30,40  -3,0,0  0, 88
                    a  35,40  10,0,0  0,-88
            Z
            M 43,17 c   8,51   32, 50   32, 50
