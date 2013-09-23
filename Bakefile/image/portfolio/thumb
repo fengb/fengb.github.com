@@ -5,7 +5,7 @@ force=$1
 find jekyll/portfolio -type f -not -name "*thumb*" | while read file; do
   target=`sed -e 's/.png$/-thumb.png/' <<<$file`
   if [ ! -e "$target" ] || [ -n "$force" ]; then
-    convert "$file" -resize 'x150' -colors 128 png8:"$target"
-    $BAKE crush "$target" 220
+    convert "$file" -resize 'x150' -colors 128 png8:"$target" && \
+    $BAKE -q crush "$target" 220
   fi
 done
