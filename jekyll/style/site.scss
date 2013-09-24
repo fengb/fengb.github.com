@@ -4,16 +4,21 @@ Comment: "Please note that Jekyll will only convert files that also have a YAML 
 @import 'include/all';
 @import 'widgets/all';
 
-@mixin full-width {
-  position: absolute;
-  left: 0;
-  right: 0;
-}
-
-@mixin separator {
+@mixin separator-top {
   border-top: 1px solid $prima9;
   box-shadow: 0 -1px $unsat8;
 }
+
+@mixin separator-bottom {
+  border-bottom: 1px solid $prima9;
+  box-shadow: inset 0 -1px $unsat8;
+}
+
+@mixin constrained {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
 
 body {
   font-family: Helvetica, Arial, FreeSans;
@@ -23,14 +28,9 @@ body {
   margin: 0;
 }
 
-#main {
-  max-width: 960px;
-  margin: 0 auto;
-}
-
 #top {
-  color: $unsat4;
   height: 70px;
+  @include separator-bottom;
 
   a {
     float: left;
@@ -43,80 +43,76 @@ body {
   }
 
   h1 {
-    float: left;
-    position: relative;
-    z-index: 1;
-    margin-left: -13px;
+    @include constrained;
     margin-top: 2px;
     overflow: hidden;
+
+    a {
+      font-size: 60px;
+      width: 74px;
+      padding-top: 74px;
+      height: 0;
+      background: $prima9;
+      color: $prima6;
+      border: 1px solid $unsat8;
+      border-radius: 55px;
+
+      &:hover { color: $prima7; }
+      &:before {
+        content: $icon-logo;
+        left: 20px;
+        top: -2px;
+        text-shadow: 0 0 1px $unsat2, 0 0 1px $unsat2, 0 0 1px $unsat2;
+      }
+    }
   }
 
-  h1 a {
-    display: block;
-    font-size: 60px;
-    width: 74px;
-    padding-top: 74px;
-    height: 0;
-    background: $prima9;
-    color: $prima6;
-    border: 1px solid $unsat8;
-    border-radius: 55px;
+  #site {
+    @include constrained;
+    margin-top: -76px;
 
-    &:before {
-      content: $icon-logo;
-      left: 20px;
-      top: -2px;
-      text-shadow: 0 0 1px $unsat1;
-    }
-    &:hover { color: $prima7; }
-  }
-}
+    a {
+      font-size: 18px;
+      width: 90px;
+      padding-top: 42px;
+      height: 70px - 42px;
+      color: $unsat4;
+      text-align: center;
 
-#site {
-  .menu a {
-    @include vendor(box-sizing, border-box);
-    font-size: 16px;
-    width: 90px;
-    padding-top: 42px;
-    height: 70px;
-    color: $unsat4;
-    text-align: center;
+      &:hover { color: $unsat6; }
 
-    &:hover { color: $unsat6; }
+      &:before {
+        font-size: 24px;
+        top: 12px;
+        left: 0;
+        right: 0;
+        text-shadow: 0 -1px rgba($prima9, 0.8), 0 1px 1px rgba($unsat1, 0.8);
+      }
 
-    &:before {
-      font-size: 24px;
-      top: 12px;
-      left: 0;
-      right: 0;
-      text-shadow: 0 -1px rgba($prima9, 0.8), 0 1px 1px rgba($unsat1, 0.8);
+      &.portfolio:before { content: $icon-folder; }
+      &.contact:before   { content: $icon-bubble; }
     }
 
-    &.about { display: none }
-    &.portfolio:before { content: $icon-folder; }
-    &.contact:before   { content: $icon-bubble; }
+    li:first-child a {
+      margin-left: 76px;
+      padding-left: 10px;
+      &:before { left: 10px; }
+    }
   }
 }
 
 #content {
+  @include constrained;
   padding: 10px;
   line-height: 1.4em;
-
-  &:before {
-    @include fake-element;
-    @include full-width;
-    margin-top: -10px;
-    @include separator;
-  }
 
   > h1 { display: none; }
 }
 
 #legal {
-  @include full-width;
+  @include separator-top;
   font-size: 12px;
   text-align: center;
-  @include separator;
   padding: 10px 0;
 
   a { text-decoration: underline; }
