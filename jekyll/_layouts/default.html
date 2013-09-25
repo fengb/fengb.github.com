@@ -1,12 +1,9 @@
 ---
 nav:
-- title: About
-  url: '/'
 - title: Portfolio
   url: '/portfolio.html'
 - title: Contact
   url: '/contact.html'
-  link_attrs: data-mutiny-toggler='{"target":"body", "preventDefault":true}'
 ---
 <!DOCTYPE html>
 <html lang='en' class='no-js'>
@@ -31,35 +28,28 @@ nav:
     <![endif]-->
   </head>
   <body>
-    <section id='main'>
-      <header id='top'>
-        <h1><a href='/' {% if page.path == 'index.html' %}class='active'{% endif %}>fengb</a></h1>
-        <nav id='site'>
-          <ul class='menu'>
-            {% for item in page.nav %}
-              <li><a href='{{item.url}}' {{item.link_attrs}}
-                     class='{{item.title | downcase}}{% if item.title == page.title %}
-                            active{% endif %}'>{{item.title}}</a></li>
-            {% endfor %}
-          </ul>
-        </nav>
-      </header>
+    <header id='top'>
+      <h1><a href='/' {% if page.path == 'index.html' %}class='active'{% endif %}>fengb</a></h1>
+      <nav id='site'>
+        <ul class='menu'>
+          {% for item in page.nav %}
+            <li><a href='{{item.url}}' {{item.link_attrs}}
+                   class='{{item.title | downcase}}{% if item.title == page.title %}
+                          active{% endif %}'>{{item.title}}</a></li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </header>
 
-      <article id='content' class='p-{{page.title | downcase}}'>
-        <h1>{{ page.title }}</h1>
-        {{ content }}
-      </article>
+    <main id='content' class='p-{{page.title | downcase}}'>
+      <h1>{{ page.title }}</h1>
+      {{ content }}
+    </main>
 
-      <footer id='legal'>
-        <span id='copy'>Copyright &copy; 2012-{{site.time | date:"%Y"}} Benjamin Feng</span>
-        <span id='license'>This website is licensed under the <a rel='license' href='http://creativecommons.org/licenses/by-nc-nd/3.0/' title='Creative Commons Attribution-NonCommercial-NoDerivs 3.0 license'>Creative Commons <abbr>BY-NC-ND</abbr> 3.0 license</a></span>
-      </footer>
-    </section>
-
-    <aside id='contact'>
-      <h1>Contact</h1>
-      {% include contact.html %}
-    </aside>
+    <footer id='legal'>
+      <span id='copy'>Copyright &copy; 2012-{{site.time | date:"%Y"}} Benjamin Feng</span>
+      <span id='license'>This website is licensed under the <a rel='license' href='http://creativecommons.org/licenses/by-nc-nd/3.0/' title='Creative Commons Attribution-NonCommercial-NoDerivs 3.0 license'>Creative Commons <abbr>BY-NC-ND</abbr> 3.0 license</a></span>
+    </footer>
 
     <!--[if gte IE 9]><!-->
       <script src='/vendor/zepto.js'></script>

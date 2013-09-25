@@ -4,18 +4,24 @@ Comment: "Please note that Jekyll will only convert files that also have a YAML 
 @import 'include/all';
 @import 'widgets/all';
 
-@mixin full-width {
-  position: absolute;
-  left: 0;
-  right: 0;
+@mixin separator-top {
+  border-top: 1px solid $unsat8;
+  box-shadow: inset 0 1px $prima9;
 }
 
-@mixin separator {
-  border-top: 1px solid $prima9;
-  box-shadow: 0 -1px $unsat8;
+@mixin separator-bottom {
+  border-bottom: 1px solid $unsat8;
+  box-shadow: 0 1px $prima9;
 }
 
-$content-width: 960px;
+@mixin constrained {
+  max-width: 960px;
+  margin: 0 auto;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+
 body {
   font-family: Helvetica, Arial, FreeSans;
   font-size: 16px;
@@ -24,14 +30,9 @@ body {
   margin: 0;
 }
 
-#main {
-  max-width: $content-width;
-  margin: 0 auto;
-}
-
 #top {
-  color: $unsat4;
-  height: 70px;
+  height: 74px;
+  @include separator-bottom;
 
   a {
     float: left;
@@ -44,81 +45,83 @@ body {
   }
 
   h1 {
-    float: left;
-    position: relative;
-    z-index: 1;
-    margin-left: -13px;
+    @include constrained;
     margin-top: 2px;
-    overflow: hidden;
+    height: 80px;
+
+    a {
+      margin-left: -22px;
+      font-size: 60px;
+      width: 80px;
+      padding-top: 80px;
+      height: 0;
+      overflow: hidden;
+
+      &:before {
+        content: $icon-logo;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        text-indent: 22px;
+        color: $prima6;
+        background: $prima9;
+        border: 1px solid $unsat7;
+        border-radius: 55px;
+        text-shadow: 0 0 1px $unsat2, 0 0 1px $unsat2, 0 0 1px $unsat2;
+      }
+      &:hover:before { color: $prima7; }
+    }
   }
 
-  h1 a {
-    display: block;
-    font-size: 60px;
-    width: 74px;
-    padding-top: 74px;
-    height: 0;
-    background: $prima9;
-    color: $prima6;
-    border: 1px solid $unsat8;
-    border-radius: 55px;
+  #site {
+    @include constrained;
+    margin-top: -76px;
 
-    &:before {
-      content: $icon-logo;
-      left: 20px;
-      top: -2px;
-      text-shadow: 0 0 1px $unsat1;
-    }
-    &:hover { color: $prima7; }
-  }
-}
+    a {
+      font-size: 18px;
+      width: 90px;
+      padding-top: 40px;
+      height: 70px - 40px;
+      color: $unsat4;
+      text-align: center;
 
-#site {
-  .menu a {
-    @include vendor(box-sizing, border-box);
-    font-size: 16px;
-    width: 90px;
-    padding-top: 42px;
-    height: 70px;
-    color: $unsat4;
-    text-align: center;
+      &:hover { color: $unsat6; }
 
-    &:hover { color: $unsat6; }
+      &:before {
+        font-size: 24px;
+        top: 8px;
+        left: 0;
+        right: 0;
+        text-shadow: 0 -1px rgba($prima9, 0.8), 0 1px 1px rgba($unsat1, 0.8);
+      }
 
-    &:before {
-      font-size: 24px;
-      top: 12px;
-      left: 0;
-      right: 0;
-      text-shadow: 0 -1px rgba($prima9, 0.8), 0 1px 1px rgba($unsat1, 0.8);
+      &.portfolio:before { content: $icon-folder; }
+      &.contact:before   { content: $icon-bubble; }
     }
 
-    &.about { display: none }
-    &.portfolio:before { content: $icon-folder; }
-    &.contact:before   { content: $icon-bubble; }
+    li:first-child a {
+      padding-left: 10px;
+      &:before { left: 10px; }
+    }
   }
 }
 
 #content {
-  padding: 10px;
+  @include constrained;
+  padding: 12px;
+  position: relative;
+  z-index: 1;
   line-height: 1.4em;
-
-  &:before {
-    @include fake-element;
-    @include full-width;
-    margin-top: -10px;
-    @include separator;
-  }
 
   > h1 { display: none; }
 }
 
 #legal {
-  @include full-width;
+  @include separator-top;
+  padding: 12px;
   font-size: 12px;
   text-align: center;
-  @include separator;
-  padding: 10px 0;
 
   a { text-decoration: underline; }
   #copy, a { display: block; }
@@ -127,107 +130,6 @@ body {
   @media only screen and (min-width: 660px) {
     #copy, a { display: inline; }
     #copy:after { content: '.'; }
-  }
-}
-
-$contact-width: 196px;
-#contact {
-  position: absolute;
-  top: -51px - 5*44px;
-  z-index: 9;
-  right: 38px;
-  width: $contact-width;
-  padding-top: 5px;
-  margin-top: -5px;
-  background: $secon8;
-  border-radius: 0 0 12px 12px;
-  @include vendor(transition, all 0.2s);
-
-  @media only screen and (min-width: $content-width + 2*$contact-width) {
-    right: 50%;
-    margin-right: -$content-width/2 - $contact-width;
-  }
-
-  body.active & {
-    top: 0;
-    box-shadow: 0 3px 10px $unsat1;
-  }
-
-  h1 {
-    @include centered-height(50px);
-    border-bottom: 1px solid $secon6;
-    text-align: center;
-    background-color: $secon7;
-    color: $secon2;
-    text-shadow: 0 1px $secon8;
-  }
-
-  a {
-    font-size: 16px;
-    color: $secon1;
-    @include centered-height(43px);
-    border-bottom: 1px solid $unsat7;
-    padding-left: 44px;
-
-    &:hover { background: $secon9; }
-    &:before {
-      @extend %icon;
-      position: absolute;
-      left: 19px;
-    }
-
-    @mixin contact-icon($icon, $color) {
-      &:hover { color: $color; }
-      &:before { content: $icon; }
-    }
-
-    &.phone    { @include contact-icon($icon-phone,    $secon3); }
-    &.email    { @include contact-icon($icon-email,    $secon3); }
-    &.twitch   { @include contact-icon($icon-twitch,   #6441a5); }
-    &.github   { @include contact-icon($icon-github,   #4183c4); }
-    &.linkedin { @include contact-icon($icon-linkedin, #0073b2); }
-  }
-
-  li:last-child a { border-radius: 0 0 12px 12px; }
-}
-
-.js #site a.contact {
-  position: absolute;
-  z-index: 10;
-  padding-top: 50px;
-  height: 0;
-  overflow: hidden;
-  right: 0;
-  @include vendor(transition, all 0.2s);
-
-  &:before {
-    font-size: 20px;
-    top: 0;
-    left: auto;
-    right: 1px;
-    width: 20px;
-    padding: 6px 8px 8px;
-    background: $unsat8;
-    @include background-gradient($unsat8, $unsat7);
-    border-radius: 0 0 8px 8px;
-    text-shadow: none;
-    box-shadow: 0 1px 1px $unsat2;
-    @include vendor(transition, all 0.2s);
-  }
-
-  &.active:before {
-    box-shadow: -2px 2px 8px $unsat1;
-    @include vendor(transform, rotate(-90deg));
-  }
-
-  @media only screen and (min-width: $content-width + 2*$contact-width) {
-    right: 50%;
-    margin-right: -$content-width/2;
-
-    &.active:before {
-      box-shadow: 2px 2px 8px $unsat1;
-      @include vendor(transform, rotate(90deg));
-    }
   }
 }
 
