@@ -5,18 +5,20 @@ Comment: "Please note that Jekyll will only convert files that also have a YAML 
 @import 'widgets/all';
 
 @mixin separator-top {
-  border-top: 1px solid $prima9;
-  box-shadow: 0 -1px $unsat8;
+  border-top: 1px solid $unsat8;
+  box-shadow: inset 0 1px $prima9;
 }
 
 @mixin separator-bottom {
-  border-bottom: 1px solid $prima9;
-  box-shadow: inset 0 -1px $unsat8;
+  border-bottom: 1px solid $unsat8;
+  box-shadow: 0 1px $prima9;
 }
 
 @mixin constrained {
   max-width: 960px;
   margin: 0 auto;
+  padding-left: 12px;
+  padding-right: 12px;
 }
 
 
@@ -29,7 +31,7 @@ body {
 }
 
 #top {
-  height: 70px;
+  height: 74px;
   @include separator-bottom;
 
   a {
@@ -45,25 +47,30 @@ body {
   h1 {
     @include constrained;
     margin-top: 2px;
-    overflow: hidden;
+    height: 80px;
 
     a {
+      margin-left: -22px;
       font-size: 60px;
-      width: 74px;
-      padding-top: 74px;
+      width: 80px;
+      padding-top: 80px;
       height: 0;
-      background: $prima9;
-      color: $prima6;
-      border: 1px solid $unsat8;
-      border-radius: 55px;
+      overflow: hidden;
 
-      &:hover { color: $prima7; }
       &:before {
         content: $icon-logo;
-        left: 20px;
-        top: -2px;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        text-indent: 22px;
+        color: $prima6;
+        background: $prima9;
+        border: 1px solid $unsat7;
+        border-radius: 55px;
         text-shadow: 0 0 1px $unsat2, 0 0 1px $unsat2, 0 0 1px $unsat2;
       }
+      &:hover:before { color: $prima7; }
     }
   }
 
@@ -74,8 +81,8 @@ body {
     a {
       font-size: 18px;
       width: 90px;
-      padding-top: 42px;
-      height: 70px - 42px;
+      padding-top: 40px;
+      height: 70px - 40px;
       color: $unsat4;
       text-align: center;
 
@@ -83,7 +90,7 @@ body {
 
       &:before {
         font-size: 24px;
-        top: 12px;
+        top: 8px;
         left: 0;
         right: 0;
         text-shadow: 0 -1px rgba($prima9, 0.8), 0 1px 1px rgba($unsat1, 0.8);
@@ -94,7 +101,6 @@ body {
     }
 
     li:first-child a {
-      margin-left: 76px;
       padding-left: 10px;
       &:before { left: 10px; }
     }
@@ -103,7 +109,9 @@ body {
 
 #content {
   @include constrained;
-  padding: 10px;
+  padding: 12px;
+  position: relative;
+  z-index: 1;
   line-height: 1.4em;
 
   > h1 { display: none; }
@@ -111,9 +119,9 @@ body {
 
 #legal {
   @include separator-top;
+  padding: 12px;
   font-size: 12px;
   text-align: center;
-  padding: 10px 0;
 
   a { text-decoration: underline; }
   #copy, a { display: block; }
