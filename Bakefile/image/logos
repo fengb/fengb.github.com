@@ -1,9 +1,9 @@
 #!/bin/bash
 
 
-src="jekyll/logo/src.svg"
+src="images/logo/src.svg"
 for size in 16 32 48 64 128 160 200 450 2048; do
-  target="jekyll/logo/$size.png"
+  target="images/logo/$size.png"
   convert -antialias -background transparent -density $size -resize "x$size" "$src" png8:"$target" && \
   $BAKE -q crush "$target"
 done
