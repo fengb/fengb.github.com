@@ -1,4 +1,5 @@
+.DS_Store
 .sass-cache
-dist
-jekyll/_site
-jekyll/tmp
+/dist
+/jekyll/_site
+/jekyll/tmp
