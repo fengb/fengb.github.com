@@ -12,8 +12,7 @@ module Fengb
     module Primitives
       def fmt_date(date, default=nil)
         return Date.parse(date).strftime("%b '%y") if date
-        raise if default.nil?
-        default
+        default || raise
       end
 
       def link(url, text)
@@ -149,24 +148,24 @@ Fengb::Resume.render do
       role 'Lead Software Engineer',
         from: '2012-04-03',
         duties: ['Acted as technical team lead for 6 developers and 3 QA',
-                 'Architected full-stack solutions for newly-launched product',
-                 'Proposed and executed lean UX design processes']
+                 'Converted team / business to lean UX design processes',
+                 'Architected solutions related to accounting and underwriting']
 
       role 'Sr. Software Engineer II',
         from: '2011-07-01', to: '2012-04-02',
-        duties: ['Drove high priority projects with aggressive deadlines',
-                 'Promoted security initiatives to eliminate attack vectors',
+        duties: ['Drove three highly aggressive IPO related projects',
+                 'Integrated with banking systems and credit reporting agencies',
                  'Onboarded newly hired developers and managers']
 
       role 'Sr. UI Engineer',
         from: '2010-07-01', to: '2011-06-30',
-        duties: ['Updated the UI to maintain compliance with rapidly changing legal environments',
-                 'Helped launch mobile web for all existing products']
+        duties: ['Launched mobile web for all existing products',
+                 'Updated the UI to maintain compliance with rapidly changing legal environment']
 
       role 'UI Engineer',
         from: '2009-10-19', to: '2010-06-30',
-        duties: ['Launched web solutions for products with millions of customers',
-                 'Worked with business and creative teams to deliver customer focused designs']
+        duties: ['Launched frontend for new product with over $100 million yearly revenues',
+                 'Recreated legacy UI on top of new platform with hundreds of thousands of existing customers']
     end
 
     location 'Crusader Storm (defunct)', 'http://web.archive.org/web/20100623115357/http://www.crusaderstorm.com/' do
@@ -179,20 +178,20 @@ Fengb::Resume.render do
     location 'Business Logic Corporation', 'http://businesslogic.com/' do
       role 'Software Engineer',
         from: '2007-06-04', to: '2009-08-04',
-        duties: ['Repurposed existing single-threaded engine into a massively scalable aggregator',
-                 'Maintained legacy SOAP translation for a RESTful architecture',
+        duties: ['Repurposed existing single-threaded engine into a scalable aggregator',
+                 'Maintained legacy SOAP to REST translation layer for redesigned backend',
                  'Created testing framework for separating data and verification']
     end
 
     location 'Rose-Hulman Ventures', 'http://rhventures.org/' do
       role 'Computer Engineering Intern',
         from: '2006-06-12', to: '2007-03-16',
-        duties: ['Optimized chemical control software for space efficiency',
-                 'Enhanced C++ MFC application integrating with embedded controls']
+        duties: ['Optimized embedded software for memory efficiency',
+                 'Enhanced C++ MFC application integrating with hardware controls']
 
       role 'Software Engineering Intern',
         from: '2005-06-06', to: '2006-06-09',
-        duties: ['Coordinated a development team of 5 to build a management website for doctors',
+        duties: ['Coordinated a development team of 5',
                  'Worked with business on defining requirements']
     end
   end
