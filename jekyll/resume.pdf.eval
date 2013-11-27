@@ -63,11 +63,16 @@ module Fengb
       def section(title)
         move_down 1.5*gutter
 
-        text title.upcase, size: 16, style: :bold
-        title_width = 10
-        bounding_box([title_width, cursor], width: bounds.width - title_width) do
-          @locations = 0
-          yield
+        text_box title.upcase, at: [gutter, cursor+1], size: 16, style: :bold, rotate: 270
+        indent 3*gutter do
+          bounding_box([0, cursor], width: bounds.width) do
+            @locations = 0
+            yield
+
+            stroke do
+              vertical_line bounds.top+1, bounds.bottom+2, at: -gutter
+            end
+          end
         end
       end
 
@@ -80,16 +85,13 @@ module Fengb
         text link(url, name), inline_format: true, size: 12
         @role = 0
 
-        title_width = 10
-        bounding_box([title_width, cursor], width: bounds.width - title_width) do
+        indent gutter do
           yield
         end
       end
 
       def role(title, options)
-        if @role == 0
-          move_down gutter/4
-        else
+        if @role != 0
           move_down gutter/2
         end
         @role += 1
@@ -101,13 +103,11 @@ module Fengb
 
         if options[:duties]
           move_up 20.2
-          title_width = 148
-          bounding_box([title_width, cursor], width: bounds.width - title_width) do
+          indent 148 do
             options[:duties].each do |line|
               text line
             end
           end
-          move_down 2
         end
       end
     end
@@ -127,15 +127,11 @@ Fengb::Resume.render do
         'contact@fengb.info' => 'mailto:contact@fengb.info')
   end
 
-  section 'Objective' do
-    text 'To solve intricate problems with emphasis on usability and maintainability.'
-    text ' ', size: 3
-  end
-
   section 'Skills' do
     dl(Languages:  'C, Javascript, Objective-C, Python, Ruby, SQL',
        Frameworks: 'Django, jQuery, Ruby on Rails',
-       Versioning: 'Git, Mercurial, Perforce, Subversion')
+       Versioning: 'Git, Mercurial, Perforce, Subversion',
+       Platforms:  'Arch Linux, Mac OS X, AWS, Heroku')
   end
 
   section 'Employment' do
