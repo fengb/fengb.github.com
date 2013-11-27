@@ -26,14 +26,14 @@ module Fengb
       def dl(options)
         move_up 1
         table_adjusted options.map{|cat, val| ["#{cat}:", val]}, cell_style: {borders: [], padding: [1, 0]} do
-          column(0).style padding_right: 4
+          column(0).style padding_right: 4, font_style: :bold
         end
         move_up 1
       end
 
       def ul(values, options={})
         move_up 1
-        table_adjusted values.map{|e| ['•', e]}, cell_style: options.merge(borders: [], padding: [1, 0]) do
+        table_adjusted values.map{|e| ['•', e]}, cell_style: options.merge(borders: [], padding: 0) do
           column(0).style padding_left: 2, width: 10
         end
         move_up 1
@@ -63,16 +63,11 @@ module Fengb
       def section(title)
         move_down 1.5*gutter
 
-        title_width = 128
-        text_box title.upcase, at: [0, cursor - 1], width: (title_width - 2*gutter), align: :right, size: 16, style: :bold
+        text title.upcase, size: 16, style: :bold
+        title_width = 10
         bounding_box([title_width, cursor], width: bounds.width - title_width) do
-          move_down 1
           @locations = 0
           yield
-
-          stroke do
-            vertical_line bounds.top+2, bounds.bottom, at: -gutter
-          end
         end
       end
 
@@ -99,15 +94,20 @@ module Fengb
         end
         @role += 1
 
-        table_adjusted [[title, fmt_date(options[:from]), '-', fmt_date(options[:to], 'present')]] do
-          cells.style borders: [], padding: [3, 0, 0, 0], align: :right, inline_format: true, size: 8, font: 'Courier', font_style: :bold
-          column(0).style align: :left, size: 10.5, padding: 0, font: 'Helvetica'
-          self.column_widths = [320, 37, 8, 37]
+        text title, size: 10, style: :bold
+        font 'Courier' do
+          text '%s - %s' % [fmt_date(options[:from]), fmt_date(options[:to], 'present')], size: 8, style: :bold
         end
 
-        move_down 1
         if options[:duties]
-          ul(options[:duties], width: 300)
+          move_up 20.2
+          title_width = 148
+          bounding_box([title_width, cursor], width: bounds.width - title_width) do
+            options[:duties].each do |line|
+              text line
+            end
+          end
+          move_down 2
         end
       end
     end
@@ -139,7 +139,7 @@ Fengb::Resume.render do
   end
 
   section 'Employment' do
-    location 'FENGB TECHNOLOGIES LLC', 'http://fengb.info' do
+    location 'FENGB TECHNOLOGIES', 'http://fengb.info' do
       role 'Independent Consultant',
         from: '2013-08-05'
     end
@@ -165,21 +165,21 @@ Fengb::Resume.render do
       role 'UI Engineer',
         from: '2009-10-19', to: '2010-06-30',
         duties: ['Launched frontend for new product with over $100 million yearly revenues',
-                 'Recreated legacy UI on top of new platform with hundreds of thousands of existing customers']
+                 'Recreated legacy UI on new platform with hundreds of thousands of customers']
     end
 
-    location 'Crusader Storm (defunct)', 'http://web.archive.org/web/20100623115357/http://www.crusaderstorm.com/' do
+    location 'Crusader Storm', 'http://web.archive.org/web/20100623115357/http://www.crusaderstorm.com/' do
       role 'Founder',
         from: '2010-05-07', to: '2011-05-06',
         duties: ['Incubated iPhone app from concept to release',
                  'Designed responsive website with graceful degradation']
     end
 
-    location 'Business Logic Corporation', 'http://businesslogic.com/' do
+    location 'Business Logic', 'http://businesslogic.com/' do
       role 'Software Engineer',
         from: '2007-06-04', to: '2009-08-04',
         duties: ['Repurposed existing single-threaded engine into a scalable aggregator',
-                 'Maintained legacy SOAP to REST translation layer for redesigned backend',
+                 'Maintained legacy SOAP to REST translation layer',
                  'Created testing framework for separating data and verification']
     end
 
