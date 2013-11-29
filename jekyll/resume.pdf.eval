@@ -16,7 +16,7 @@ module Fengb
       end
 
       def link(url, text)
-        "<b><color rgb='435c96'><link href='#{url}'>#{text}</link></color></b>"
+        "<color rgb='435c96'><link href='#{url}'>#{text}</link></color>"
       end
 
       def nav(links)
@@ -82,10 +82,10 @@ module Fengb
         end
         @locations += 1
 
-        text link(url, name), inline_format: true, size: 12
+        text link(url, name), inline_format: true, size: 12, style: :bold
         @role = 0
 
-        indent gutter do
+        indent 2*gutter do
           yield
         end
       end
@@ -103,10 +103,8 @@ module Fengb
 
         if options[:duties]
           move_up 20.2
-          indent 148 do
-            options[:duties].each do |line|
-              text line
-            end
+          indent 150 do
+            text options[:duties].join("\n")
           end
         end
       end
