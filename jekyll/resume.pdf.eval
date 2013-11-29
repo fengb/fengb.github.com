@@ -10,9 +10,12 @@ require 'date'
 module Fengb
   class Resume < Prawn::Document
     module Primitives
-      def fmt_date(date, default=nil)
-        return Date.parse(date).strftime("%b '%y") if date
-        default || raise
+      def date_range(from, to)
+        "#{date_fmt(from)} - #{date_fmt(to)}"
+      end
+
+      def date_fmt(date)
+        Date.parse(date).strftime("%b '%y") rescue date
       end
 
       def link(url, text)
@@ -21,29 +24,6 @@ module Fengb
 
       def nav(links)
         text links.map{|text, url| link(url, text)}.join('  •  '), inline_format: true, align: :center
-      end
-
-      def dl(options)
-        move_up 1
-        table_adjusted options.map{|cat, val| ["#{cat}:", val]}, cell_style: {borders: [], padding: [1, 0]} do
-          column(0).style padding_right: 4, font_style: :bold
-        end
-        move_up 1
-      end
-
-      def ul(values, options={})
-        move_up 1
-        table_adjusted values.map{|e| ['•', e]}, cell_style: options.merge(borders: [], padding: 0) do
-          column(0).style padding_left: 2, width: 10
-        end
-        move_up 1
-      end
-
-      # Table whitespace is off...
-      def table_adjusted(*args, &block)
-        move_up 2
-        table *args, &block
-        move_down 2
       end
     end
 
@@ -60,13 +40,13 @@ module Fengb
         end
       end
 
-      def section(title)
+      def sec1(title)
         move_down 1.5*gutter
 
         text_box title.upcase, at: [gutter, cursor+1], size: 16, style: :bold, rotate: 270
         indent 3*gutter do
           bounding_box([0, cursor], width: bounds.width) do
-            @locations = 0
+            move_up gutter
             yield
 
             stroke do
@@ -76,35 +56,35 @@ module Fengb
         end
       end
 
-      def location(name, url)
-        if @locations != 0
-          move_down gutter
-        end
-        @locations += 1
+      def sec2(name, url=nil)
+        move_down gutter
 
-        text link(url, name), inline_format: true, size: 12, style: :bold
-        @role = 0
+        text url ? link(url, name) : name, inline_format: true, size: 12, style: :bold
+        move_up gutter/2
 
         indent 2*gutter do
           yield
         end
       end
 
-      def role(title, options)
-        if @role != 0
-          move_down gutter/2
-        end
-        @role += 1
+      def sec3(title, options)
+        move_down gutter/2
 
         text title, size: 10, style: :bold
-        font 'Courier' do
-          text '%s - %s' % [fmt_date(options[:from]), fmt_date(options[:to], 'present')], size: 8, style: :bold
+        if options[:subtitle]
+          font 'Courier' do
+            text options[:subtitle], size: 8, style: :bold
+          end
         end
 
-        if options[:duties]
-          move_up 20.2
+        if options[:description]
+          if options[:subtitle]
+            move_up 20.2
+          else
+            move_up 12
+          end
           indent 150 do
-            text options[:duties].join("\n")
+            text options[:description]
           end
         end
       end
@@ -125,76 +105,78 @@ Fengb::Resume.render do
         'contact@fengb.info' => 'mailto:contact@fengb.info')
   end
 
-  section 'Skills' do
-    dl(Languages:  'C, Javascript, Objective-C, Python, Ruby, SQL',
-       Frameworks: 'Django, jQuery, Ruby on Rails',
-       Versioning: 'Git, Mercurial, Perforce, Subversion',
-       Platforms:  'Arch Linux, Mac OS X, AWS, Heroku')
-  end
-
-  section 'Employment' do
-    location 'FENGB TECHNOLOGIES', 'http://fengb.info' do
-      role 'Independent Consultant',
-        from: '2013-08-05'
-    end
-
-    location 'Enova International', 'http://www.enova.com' do
-      role 'Lead Software Engineer',
-        from: '2012-04-03',
-        duties: ['Acted as technical team lead for 6 developers and 3 QA',
-                 'Converted team / business to lean UX design processes',
-                 'Architected solutions related to accounting and underwriting']
-
-      role 'Sr. Software Engineer II',
-        from: '2011-07-01', to: '2012-04-02',
-        duties: ['Drove three highly aggressive IPO related projects',
-                 'Integrated with banking systems and credit reporting agencies',
-                 'Onboarded newly hired developers and managers']
-
-      role 'Sr. UI Engineer',
-        from: '2010-07-01', to: '2011-06-30',
-        duties: ['Launched mobile web for all existing products',
-                 'Updated the UI to maintain compliance with rapidly changing legal environment']
-
-      role 'UI Engineer',
-        from: '2009-10-19', to: '2010-06-30',
-        duties: ['Launched frontend for new product with over $100 million yearly revenues',
-                 'Recreated legacy UI on new platform with hundreds of thousands of customers']
-    end
-
-    location 'Crusader Storm', 'http://web.archive.org/web/20100623115357/http://www.crusaderstorm.com/' do
-      role 'Founder',
-        from: '2010-05-07', to: '2011-05-06',
-        duties: ['Incubated iPhone app from concept to release',
-                 'Designed responsive website with graceful degradation']
-    end
-
-    location 'Business Logic', 'http://businesslogic.com/' do
-      role 'Software Engineer',
-        from: '2007-06-04', to: '2009-08-04',
-        duties: ['Repurposed existing single-threaded engine into a scalable aggregator',
-                 'Maintained legacy SOAP to REST translation layer',
-                 'Created testing framework for separating data and verification']
-    end
-
-    location 'Rose-Hulman Ventures', 'http://rhventures.org/' do
-      role 'Computer Engineering Intern',
-        from: '2006-06-12', to: '2007-03-16',
-        duties: ['Optimized embedded software for memory efficiency',
-                 'Enhanced C++ MFC application integrating with hardware controls']
-
-      role 'Software Engineering Intern',
-        from: '2005-06-06', to: '2006-06-09',
-        duties: ['Coordinated a development team of 5',
-                 'Worked with business on defining requirements']
+  sec1 'Summ' do
+    sec2 'Skills' do
+      sec3 'Languages',  description: 'C, Javascript, Objective-C, Python, Ruby, SQL'
+      sec3 'Frameworks', description: 'Django, jQuery, Ruby on Rails'
+      sec3 'Versioning', description: 'Git, Mercurial, Perforce, Subversion'
+      sec3 'Platforms',  description: 'Arch Linux, Mac OS X, AWS, Heroku'
     end
   end
 
-  section 'Education' do
-    location 'Rose-Hulman Institute of Technology', 'http://www.rose-hulman.edu/' do
-      role 'B.S. Computer Engineering',
-        from: '2003-09-04', to: '2007-05-26',
-        duties: ['Minors in Computer Science & Economics']
+  sec1 'Employment' do
+    sec2 'FENGB TECHNOLOGIES', 'http://fengb.info' do
+      sec3 'Independent Consultant',
+        subtitle: date_range('2013-08-05', 'present')
+    end
+
+    sec2 'Enova International', 'http://www.enova.com' do
+      sec3 'Lead Software Engineer',
+        subtitle: date_range('2013-04-03', 'present'),
+        description: 'Acted as technical team lead for 6 developers and 3 QA
+                 Converted team / business to lean UX design processes
+                 Architected solutions related to accounting and underwriting'
+
+      sec3 'Sr. Software Engineer II',
+        subtitle: date_range('2011-07-01', '2013-04-02'),
+        description: 'Drove three highly aggressive IPO related projects
+                 Integrated with banking systems and credit reporting agencies
+                 Onboarded newly hired developers and managers'
+
+      sec3 'Sr. UI Engineer',
+        subtitle: date_range('2010-07-01', '2011-06-30'),
+        description: 'Launched mobile web for all existing products
+                 Updated the UI to maintain compliance with rapidly changing legal environment'
+
+      sec3 'UI Engineer',
+        subtitle: date_range('2009-10-19', '2010-06-30'),
+        description: 'Launched frontend for new product with over $100 million yearly revenues
+                 Recreated legacy UI on new platform with hundreds of thousands of customers'
+    end
+
+    sec2 'Crusader Storm', 'http://web.archive.org/web/20100623115357/http://www.crusaderstorm.com/' do
+      sec3 'Founder',
+        subtitle: date_range('2010-05-07', '2011-05-06'),
+        description: 'Incubated iPhone app from concept to release
+                 Designed responsive website with graceful degradation'
+    end
+
+    sec2 'Business Logic', 'http://businesslogic.com/' do
+      sec3 'Software Engineer',
+        subtitle: date_range('2007-06-04', '2009-08-04'),
+        description: 'Repurposed existing single-threaded engine into a scalable aggregator
+                 Maintained legacy SOAP to REST translation layer
+                 Created testing framework for separating data and verification'
+    end
+
+    sec2 'Rose-Hulman Ventures', 'http://rhventures.org/' do
+      sec3 'Computer Engineering Intern',
+        subtitle: date_range('2006-06-12', '2007-03-16'),
+        description: 'Optimized embedded software for memory efficiency
+                 Enhanced C++ MFC application integrating with hardware controls'
+
+      sec3 'Software Engineering Intern',
+        subtitle: date_range('2005-06-06', '2006-06-09'),
+        description: 'Coordinated a development team of 5
+                 Worked with business on defining requirements'
+    end
+  end
+
+  sec1 'Education' do
+    sec2 'Rose-Hulman Institute of Technology', 'http://www.rose-hulman.edu/' do
+      sec3 'B.S. Computer Engineering',
+        subtitle: date_range('2003-09-04', '2007-05-26'),
+        description: 'Minors in Computer Science & Economics'
     end
   end
 end
