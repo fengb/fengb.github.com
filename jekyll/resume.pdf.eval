@@ -83,7 +83,7 @@ module Fengb
           else
             move_up 12
           end
-          indent 150 do
+          indent 140 do
             text options[:description]
           end
         end
@@ -105,12 +105,12 @@ Fengb::Resume.render do
         'contact@fengb.info' => 'mailto:contact@fengb.info')
   end
 
-  sec1 'Summ' do
+  sec1 'Summary' do
     sec2 'Skills' do
-      sec3 'Languages',  description: 'C, Javascript, Objective-C, Python, Ruby, SQL'
-      sec3 'Frameworks', description: 'Django, jQuery, Ruby on Rails'
-      sec3 'Versioning', description: 'Git, Mercurial, Perforce, Subversion'
-      sec3 'Platforms',  description: 'Arch Linux, Mac OS X, AWS, Heroku'
+      sec3 'Languages',       description: 'C, Javascript, Objective-C, Python, Ruby, SQL'
+      sec3 'Frameworks',      description: 'Django, jQuery, Ruby on Rails'
+      sec3 'Version Control', description: 'Git, Mercurial, Perforce, Subversion'
+      sec3 'Platforms',       description: 'Arch Linux, Mac OS X, AWS, Heroku'
     end
   end
 
@@ -160,12 +160,12 @@ Fengb::Resume.render do
     end
 
     sec2 'Rose-Hulman Ventures', 'http://rhventures.org/' do
-      sec3 'Computer Engineering Intern',
+      sec3 'Computer Engineer Intern',
         subtitle: date_range('2006-06-12', '2007-03-16'),
         description: 'Optimized embedded software for memory efficiency
                  Enhanced C++ MFC application integrating with hardware controls'
 
-      sec3 'Software Engineering Intern',
+      sec3 'Software Engineer Intern',
         subtitle: date_range('2005-06-06', '2006-06-09'),
         description: 'Coordinated a development team of 5
                  Worked with business on defining requirements'
