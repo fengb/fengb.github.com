@@ -83,7 +83,7 @@ module Fengb
           else
             move_up 12
           end
-          indent 140 do
+          indent 145 do
             text options[:description]
           end
         end
@@ -129,57 +129,57 @@ Fengb::Resume.render do
       sec3 'Lead Software Engineer',
         subtitle: date_range('2013-04-03', 'present'),
         description: 'Acted as technical team lead for 6 developers and 3 QA
-                 Converted team / business to lean UX design processes
-                 Architected solutions related to accounting and underwriting'
+                      Converted team / business to lean UX design processes
+                      Architected solutions related to accounting and underwriting'
 
       sec3 'Sr. Software Engineer II',
         subtitle: date_range('2011-07-01', '2013-04-02'),
         description: 'Drove three highly aggressive IPO related projects
-                 Integrated with banking systems and credit reporting agencies
-                 Onboarded newly hired developers and managers'
+                      Integrated with banking systems and credit reporting agencies
+                      Onboarded newly hired developers and managers'
 
       sec3 'Sr. UI Engineer',
         subtitle: date_range('2010-07-01', '2011-06-30'),
         description: 'Launched mobile web for all existing products
-                 Updated the UI to maintain compliance with rapidly changing legal environment'
+                      Updated the UI to maintain compliance with rapidly changing legal environment'
 
       sec3 'UI Engineer',
         subtitle: date_range('2009-10-19', '2010-06-30'),
         description: 'Launched frontend for new product with over $100 million yearly revenues
-                 Recreated legacy UI on new platform with hundreds of thousands of customers'
+                      Recreated legacy UI on new platform with hundreds of thousands of customers'
     end
 
     sec2 'Crusader Storm', 'http://web.archive.org/web/20100623115357/http://www.crusaderstorm.com/' do
       sec3 'Founder',
         subtitle: date_range('2010-05-07', '2011-05-06'),
         description: 'Incubated iPhone app from concept to release
-                 Designed responsive website with graceful degradation'
+                      Designed responsive website with graceful degradation'
     end
 
     sec2 'Business Logic', 'http://businesslogic.com/' do
       sec3 'Software Engineer',
         subtitle: date_range('2007-06-04', '2009-08-04'),
         description: 'Repurposed existing single-threaded engine into a scalable aggregator
-                 Maintained legacy SOAP to REST translation layer
-                 Created testing framework for separating data and verification'
+                      Maintained legacy SOAP to REST translation layer
+                      Created testing framework for separating data and verification'
     end
 
     sec2 'Rose-Hulman Ventures', 'http://rhventures.org/' do
       sec3 'Computer Engineer Intern',
         subtitle: date_range('2006-06-12', '2007-03-16'),
         description: 'Optimized embedded software for memory efficiency
-                 Enhanced C++ MFC application integrating with hardware controls'
+                      Enhanced C++ MFC application integrating with hardware controls'
 
       sec3 'Software Engineer Intern',
         subtitle: date_range('2005-06-06', '2006-06-09'),
         description: 'Coordinated a development team of 5
-                 Worked with business on defining requirements'
+                      Worked with business on defining requirements'
     end
   end
 
-  sec1 'Education' do
+  sec1 'Edu' do
     sec2 'Rose-Hulman Institute of Technology', 'http://www.rose-hulman.edu/' do
-      sec3 'B.S. Computer Engineering',
+      sec3 'BS in Computer Engineering',
         subtitle: date_range('2003-09-04', '2007-05-26'),
         description: 'Minors in Computer Science & Economics'
     end
