@@ -115,9 +115,14 @@ Fengb::Resume.render do
   end
 
   sec1 'Employment' do
-    sec2 'FENGB TECHNOLOGIES', 'http://fengb.info' do
+    sec2 'FENGB TECH', 'http://fengb.info' do
       sec3 'Independent Consultant',
         subtitle: date_range('2013-08-05', 'present')
+    end
+
+    sec2 'FENGB NVST', 'https://fengb-investments.com' do
+      sec3 'General Partner',
+        subtitle: date_range('2013-03-11', 'present')
     end
 
     sec2 'Enova International', 'http://www.enova.com' do
