@@ -65,7 +65,7 @@ module Fengb
         end
 
         if block_given?
-          move_up gutter/2
+          move_up gutter/2+1
           indent 2*gutter do
             yield
           end
@@ -106,10 +106,11 @@ end
 Fengb::Resume.render do
   font_size 10
   header 'Benjamin Feng', nav: {'(312) 725-2842'     => 'tel:+1-312-725-2842',
-                                'contact@fengb.info' => 'mailto:contact@fengb.info'}
+                                'contact@fengb.info' => 'mailto:contact@fengb.info',
+                                'github.com/fengb'   => 'https://github.com/fengb'}
 
   sec1 'Summary' do
-    sec2 'Objective',         description: 'To solve complex problems with emphasis on simplicity and elegance.'
+    sec2 'Objective',         description: 'To solve complex problems with emphasis on simplicity and extensibility.'
 
     sec2 'Skills' do
       sec3 'Languages',       description: 'C, Javascript, Objective-C, Python, Ruby, SQL'
@@ -122,36 +123,43 @@ Fengb::Resume.render do
   sec1 'Employment' do
     sec2 link('FENGB TECH', 'http://fengb.info') do
       sec3 'Independent Consultant',
-        subtitle: date_range('2013-08-05', 'present')
+        subtitle: date_range('2013-08-05', 'present'),
+        description: 'Architected MVP for startup
+                      Worked with Experian to provide secure deployment within AWS'
     end
 
     sec2 link('FENGB NVST', 'https://fengb-investments.com') do
       sec3 'General Partner',
-        subtitle: date_range('2013-03-11', 'present')
+        subtitle: date_range('2013-03-11', 'present'),
+        description: 'Investment partnership focused on value investing principles
+                      Adjusted yearly performance: 33.25% (equivalent S&P500: 22.65%)
+                      Programmed software to automate portfolio tracking and tax matters'
     end
 
     sec2 link('Enova International', 'http://www.enova.com') do
       sec3 'Lead Software Engineer',
         subtitle: date_range('2013-04-03', 'present'),
         description: 'Acted as technical team lead for 6 developers and 3 QA
-                      Converted team / business to lean UX design processes
-                      Architected solutions related to accounting and underwriting'
+                      Converted design process to lean UX by example
+                      Enacted updates to accounting and underwriting subsystems
+                      Implemented data aggregation with Adobe SiteCatalyst reporting suite'
 
       sec3 'Sr. Software Engineer II',
         subtitle: date_range('2011-07-01', '2013-04-02'),
-        description: 'Drove three highly aggressive IPO related projects
-                      Integrated with banking systems and credit reporting agencies
+        description: 'Drove several high priority audit related projects
+                      Integrated with Lexis Nexis FlexID and Risk View credit reports
+                      Extended existing ACH structure to communicate with Wells Fargo
                       Onboarded newly hired developers and managers'
 
       sec3 'Sr. UI Engineer',
         subtitle: date_range('2010-07-01', '2011-06-30'),
-        description: 'Launched mobile web for all existing products
+        description: 'Launched mobile web for five existing sites
                       Updated the UI to maintain compliance with rapidly changing legal environment'
 
       sec3 'UI Engineer',
         subtitle: date_range('2009-10-19', '2010-06-30'),
-        description: 'Launched frontend for new product with over $100 million yearly revenues
-                      Recreated legacy UI on new platform with hundreds of thousands of customers'
+        description: 'Launched frontend for new product — currently $100MM yearly revenues
+                      Ported legacy UI to Rails with HTML/CSS best practices'
     end
 
     sec2 link('Crusader Storm', 'http://web.archive.org/web/20100623115357/http://www.crusaderstorm.com/') do
@@ -184,7 +192,7 @@ Fengb::Resume.render do
 
   sec1 'Edu' do
     sec2 link('Rose-Hulman Institute of Technology', 'http://www.rose-hulman.edu/') do
-      sec3 'BS in Computer Engineering',
+      sec3 'B.S. Computer Engineering',
         subtitle: date_range('2003-09-04', '2007-05-26'),
         description: 'Minors in Computer Science & Economics'
     end
