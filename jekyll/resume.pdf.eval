@@ -39,7 +39,7 @@ module Fengb
       def sec1(title)
         move_down 1.5*gutter
 
-        text_box title.upcase, at: [gutter, cursor+1], size: 16, style: :bold, rotate: 270
+        text_box title, at: [gutter, cursor+1], size: 15.2, style: :bold, rotate: 270
         indent 3*gutter do
           bounding_box([0, cursor], width: bounds.width) do
             move_up gutter
@@ -59,37 +59,41 @@ module Fengb
 
         if description
           move_up 12
-          indent 2*gutter + 145 do
+          indent 2*gutter + 140 do
             text description
           end
         end
 
         if block_given?
-          move_up gutter/2+1
+          move_up gutter+2
           indent 2*gutter do
             yield
           end
         end
       end
 
-      def sec3(title, subtitle: nil, description: nil)
-        move_down gutter/2
+      def sec3(title, padding: gutter, subtitle: nil, description: nil)
+        move_down padding
 
         text title, size: 10, style: :bold
         if subtitle
           font 'Courier' do
             text subtitle, size: 8, style: :bold
+            move_down 1
           end
         end
 
         if description
           if subtitle
-            move_up 20.2
+            move_up 21.2
           else
             move_up 12
           end
-          indent 145 do
+          indent 140 do
             text description
+            if description !~ /\n/ and subtitle
+              move_down 10
+            end
           end
         end
       end
@@ -114,9 +118,9 @@ Fengb::Resume.render do
 
     sec2 'Skills' do
       sec3 'Languages',       description: 'C, Javascript, Objective-C, Python, Ruby, SQL'
-      sec3 'Frameworks',      description: 'Django, jQuery, Ruby on Rails'
-      sec3 'Version Control', description: 'Git, Mercurial, Perforce, Subversion'
-      sec3 'Platforms',       description: 'Arch Linux, Mac OS X, AWS, Heroku'
+      sec3 'Frameworks',      description: 'Django, jQuery, Ruby on Rails',        padding: 0
+      sec3 'Version Control', description: 'Git, Mercurial, Perforce, Subversion', padding: 0
+      sec3 'Platforms',       description: 'Arch Linux, Mac OS X, AWS, Heroku',    padding: 0
     end
   end
 
@@ -190,11 +194,16 @@ Fengb::Resume.render do
     end
   end
 
-  sec1 'Edu' do
-    sec2 link('Rose-Hulman Institute of Technology', 'http://www.rose-hulman.edu/') do
+  sec1 'Education' do
+    sec2 link('Rose-Hulman', 'http://www.rose-hulman.edu/') do
       sec3 'B.S. Computer Engineering',
         subtitle: date_range('2003-09-04', '2007-05-26'),
         description: 'Minors in Computer Science & Economics'
+    end
+
+    sec2 link('Naperville Central', 'http://schools.naperville203.org/central/') do
+      sec3 'High School Diploma',
+        subtitle: date_range('1999-08-24', '2003-05-23')
     end
   end
 end
