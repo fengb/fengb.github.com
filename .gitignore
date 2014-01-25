@@ -1,4 +1,4 @@
-.sass-cache
-dist
-jekyll/_site
-jekyll/tmp
+/.bundle
+/dist
+/jekyll/.sass-cache
+/jekyll/_site
