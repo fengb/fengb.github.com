@@ -115,7 +115,7 @@ Fengb::Resume.render do
                                 'github.com/fengb'   => 'https://github.com/fengb'}
 
   sec1 'Summary' do
-    sec2 'Objective',         description: 'To solve complex problems with emphasis on simplicity and extensibility.'
+    sec2 'Objective',         description: 'To solve complex problems with emphasis on simplicity and extensibility'
 
     sec2 'Skills' do
       sec3 'Languages',       description: 'C, Javascript, Objective-C, Python, Ruby, SQL'
@@ -130,11 +130,11 @@ Fengb::Resume.render do
       sec3 'Independent Consultant',
         subtitle: date_range('2013-08-05', 'present'),
         description: 'Architected MVP for startup
-                      Worked with Experian to provide secure deployment within AWS'
+                      Coordinated with Experian to secure AWS deployment'
     end
 
     sec2 link('FENGB NVST', 'https://fengb-investments.com') do
-      sec3 'General Partner',
+      sec3 'Managing Partner',
         subtitle: date_range('2013-03-11', 'present'),
         description: 'Investment partnership focused on value investing principles
                       Adjusted yearly performance: 33.25% (equivalent S&P500: 22.65%)
@@ -144,9 +144,9 @@ Fengb::Resume.render do
     sec2 link('Enova International', 'http://www.enova.com') do
       sec3 'Lead Software Engineer',
         subtitle: date_range('2013-04-03', 'present'),
-        description: 'Acted as technical team lead for 6 developers and 3 QA
+        description: 'Technical team lead for 6 developers and 3 QA
                       Converted design process to lean UX by example
-                      Enacted updates to accounting and underwriting subsystems
+                      Enhanced accounting and underwriting subsystems
                       Implemented data aggregation with Adobe SiteCatalyst reporting suite'
 
       sec3 'Sr. Software Engineer II',
@@ -154,17 +154,18 @@ Fengb::Resume.render do
         description: 'Drove several high priority Sarbanes-Oxley audit related projects
                       Integrated with Lexis Nexis FlexID and Risk View credit reports
                       Extended existing ACH module to communicate with Wells Fargo
-                      Onboarded newly hired developers and managers'
+                      Trained newly hired developers and managers'
 
       sec3 'Sr. UI Engineer',
         subtitle: date_range('2010-07-01', '2011-06-30'),
-        description: 'Launched mobile web for five existing sites
-                      Updated the UI to maintain compliance with rapidly changing legal environment'
+        description: 'Primary UI developer for three product websites
+                      Realigned marketing and business to focus on customer experience
+                      Launched mobile web for all existing products'
 
       sec3 'UI Engineer',
         subtitle: date_range('2009-10-19', '2010-06-30'),
-        description: 'Launched frontend for new product — currently $100MM yearly revenues
-                      Ported legacy UI to Rails with HTML/CSS best practices'
+        description: 'Launched frontend for new product
+                      Ported legacy UI to Rails with modern, semantic HTML/CSS'
     end
 
     sec2 link('Crusader Storm', 'http://web.archive.org/web/20100623115357/http://www.crusaderstorm.com/') do
@@ -177,27 +178,27 @@ Fengb::Resume.render do
     sec2 link('Business Logic', 'http://businesslogic.com/') do
       sec3 'Software Engineer',
         subtitle: date_range('2007-06-04', '2009-08-04'),
-        description: 'Repurposed existing single-threaded engine into a scalable aggregator
-                      Maintained legacy SOAP to REST translation layer
-                      Created testing framework for separating data and verification'
+        description: 'Converted individual forecasting engine to aggregate company performance
+                      Maintained SOAP to REST translation layer for reverse-engineered Java app
+                      Created functional testing framework for separating data and verification'
     end
 
     sec2 link('Rose-Hulman Ventures', 'http://rhventures.org/') do
       sec3 'Computer Engineer Intern',
         subtitle: date_range('2006-06-12', '2007-03-16'),
         description: 'Optimized embedded software for memory efficiency
-                      Enhanced C++ MFC application integrating with hardware controls'
+                      Improved C++ MFC application integrating with hardware controls'
 
       sec3 'Software Engineer Intern',
         subtitle: date_range('2005-06-06', '2006-06-09'),
-        description: 'Coordinated a development team of 5
+        description: 'Coordinated small development team to improve medical transcription efficiency
                       Worked with business on defining requirements'
     end
   end
 
   sec1 'Education' do
     sec2 link('Rose-Hulman', 'http://www.rose-hulman.edu/') do
-      sec3 'B.S. Computer Engineering',
+      sec3 'BS Computer Engineering',
         subtitle: date_range('2003-09-04', '2007-05-26'),
         description: 'Minors in Computer Science & Economics'
     end
