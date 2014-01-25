@@ -39,7 +39,8 @@ module Fengb
       def sec1(title)
         move_down 1.5*gutter
 
-        text_box title, at: [gutter, cursor+1], size: 15.2, style: :bold, rotate: 270
+        title = title.upcase
+        text_box "<font size='16'>#{title[0]}</font>#{title[1..-1]}", at: [gutter, cursor+1], size: 13, style: :bold, rotate: 270, inline_format: true
         indent 3*gutter do
           bounding_box([0, cursor], width: bounds.width) do
             move_up gutter
@@ -55,17 +56,17 @@ module Fengb
       def sec2(name, description: nil)
         move_down gutter
 
-        text name, inline_format: true, size: 12, style: :bold
+        text name, inline_format: true, size: 13, style: :bold
 
         if description
-          move_up 12
+          move_up 13.3
           indent 2*gutter + 140 do
             text description
           end
         end
 
         if block_given?
-          move_up gutter+2
+          move_up gutter+1
           indent 2*gutter do
             yield
           end
@@ -78,16 +79,16 @@ module Fengb
         text title, size: 10, style: :bold
         if subtitle
           font 'Courier' do
-            text subtitle, size: 8, style: :bold
+            text subtitle, size: 9, style: :italic
             move_down 1
           end
         end
 
         if description
           if subtitle
-            move_up 21.2
+            move_up 22.4
           else
-            move_up 12
+            move_up 11.9
           end
           indent 140 do
             text description
@@ -118,9 +119,9 @@ Fengb::Resume.render do
 
     sec2 'Skills' do
       sec3 'Languages',       description: 'C, Javascript, Objective-C, Python, Ruby, SQL'
-      sec3 'Frameworks',      description: 'Django, jQuery, Ruby on Rails',        padding: 0
-      sec3 'Version Control', description: 'Git, Mercurial, Perforce, Subversion', padding: 0
-      sec3 'Platforms',       description: 'Arch Linux, Mac OS X, AWS, Heroku',    padding: 0
+      sec3 'Frameworks',      description: 'Django, jQuery, Ruby on Rails',        padding: 2
+      sec3 'Version Control', description: 'Git, Mercurial, Perforce, Subversion', padding: 2
+      sec3 'Platforms',       description: 'Arch Linux, Mac OS X, AWS, Heroku',    padding: 2
     end
   end
 
@@ -150,9 +151,9 @@ Fengb::Resume.render do
 
       sec3 'Sr. Software Engineer II',
         subtitle: date_range('2011-07-01', '2013-04-02'),
-        description: 'Drove several high priority audit related projects
+        description: 'Drove several high priority Sarbanes-Oxley audit related projects
                       Integrated with Lexis Nexis FlexID and Risk View credit reports
-                      Extended existing ACH structure to communicate with Wells Fargo
+                      Extended existing ACH module to communicate with Wells Fargo
                       Onboarded newly hired developers and managers'
 
       sec3 'Sr. UI Engineer',
@@ -203,7 +204,8 @@ Fengb::Resume.render do
 
     sec2 link('Naperville Central', 'http://schools.naperville203.org/central/') do
       sec3 'High School Diploma',
-        subtitle: date_range('1999-08-24', '2003-05-23')
+        subtitle: date_range('1999-08-24', '2003-05-23'),
+        description: 'BPA C++ Programming — national finalist'
     end
   end
 end
