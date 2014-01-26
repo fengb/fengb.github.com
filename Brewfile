@@ -1,3 +1,3 @@
-git
-imagemagick
-pngcrush
+install git
+install imagemagick
+install pngcrush
