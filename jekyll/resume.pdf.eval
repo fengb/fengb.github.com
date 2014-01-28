@@ -25,7 +25,7 @@ module Fengb
 
     module Sectioning
       def gutter
-        8
+        7
       end
 
       def header(title, nav: {})
@@ -59,9 +59,11 @@ module Fengb
         text name, inline_format: true, size: 13, style: :bold
 
         if description
-          move_up 13.3
+          move_up 13.7
           indent 2*gutter + 140 do
-            text description
+            font 'Times-Roman' do
+              text description
+            end
           end
         end
 
@@ -79,19 +81,21 @@ module Fengb
         text title, size: 10, style: :bold
         if subtitle
           font 'Courier' do
-            text subtitle, size: 9, style: :italic
+            text subtitle, size: 10, style: :italic
             move_down 1
           end
         end
 
         if description
           if subtitle
-            move_up 22.4
+            move_up 23.8
           else
-            move_up 11.9
+            move_up 12.3
           end
           indent 140 do
-            text description
+            font 'Times-Roman' do
+              text description
+            end
             if description !~ /\n/ and subtitle
               move_down 10
             end
@@ -109,7 +113,7 @@ module Fengb
 end
 
 Fengb::Resume.render do
-  font_size 10
+  font_size 11
   header 'Benjamin Feng', nav: {'(312) 725-2842'     => 'tel:+1-312-725-2842',
                                 'contact@fengb.info' => 'mailto:contact@fengb.info',
                                 'github.com/fengb'   => 'https://github.com/fengb'}
@@ -198,7 +202,7 @@ Fengb::Resume.render do
 
   sec1 'Education' do
     sec2 link('Rose-Hulman', 'http://www.rose-hulman.edu/') do
-      sec3 'BS Computer Engineering',
+      sec3 'B.S. Computer Engineering',
         subtitle: date_range('2003-09-04', '2007-05-26'),
         description: 'Minors in Computer Science & Economics'
     end
