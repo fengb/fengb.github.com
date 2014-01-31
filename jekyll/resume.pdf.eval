@@ -10,105 +10,96 @@ require 'date'
 module Fengb
   class Resume < Prawn::Document
     module Primitives
-      def fmt_date(date, default=nil)
-        return Date.parse(date).strftime("%b '%y") if date
-        raise if default.nil?
-        default
+      def date_range(from, to)
+        "#{date_fmt(from)} - #{date_fmt(to)}"
       end
 
-      def link(url, text)
-        "<b><color rgb='435c96'><link href='#{url}'>#{text}</link></color></b>"
+      def date_fmt(date)
+        Date.parse(date).strftime("%b '%y") rescue date
       end
 
-      def nav(links)
-        text links.map{|text, url| link(url, text)}.join('  •  '), inline_format: true, align: :center
-      end
-
-      def dl(options)
-        move_up 1
-        table_adjusted options.map{|cat, val| ["#{cat}:", val]}, cell_style: {borders: [], padding: [1, 0]} do
-          column(0).style padding_right: 4
-        end
-        move_up 1
-      end
-
-      def ul(values, options={})
-        move_up 1
-        table_adjusted values.map{|e| ['•', e]}, cell_style: options.merge(borders: [], padding: [1, 0]) do
-          column(0).style padding_left: 2, width: 10
-        end
-        move_up 1
-      end
-
-      # Table whitespace is off...
-      def table_adjusted(*args, &block)
-        move_up 2
-        table *args, &block
-        move_down 2
+      def link(text, url)
+        "<color rgb='435c96'><link href='#{url}'>#{text}</link></color>"
       end
     end
 
     module Sectioning
       def gutter
-        8
+        7
       end
 
-      def header(title)
+      def header(title, nav: {})
         text title, align: :center, size: 18, style: :bold
         move_up 1
         font_size 11 do
-          yield
+          text nav.map{|text, url| link(text, url)}.join('  •  '), inline_format: true, align: :center
         end
       end
 
-      def section(title)
+      def sec1(title)
         move_down 1.5*gutter
 
-        title_width = 128
-        text_box title.upcase, at: [0, cursor - 1], width: (title_width - 2*gutter), align: :right, size: 16, style: :bold
-        bounding_box([title_width, cursor], width: bounds.width - title_width) do
-          move_down 1
-          @locations = 0
-          yield
+        title = title.upcase
+        text_box "<font size='16'>#{title[0]}</font>#{title[1..-1]}", at: [gutter, cursor+1], size: 13, style: :bold, rotate: 270, inline_format: true
+        indent 3*gutter do
+          bounding_box([0, cursor], width: bounds.width) do
+            move_up gutter
+            yield
 
-          stroke do
-            vertical_line bounds.top+2, bounds.bottom, at: -gutter
+            stroke do
+              vertical_line bounds.top+1, bounds.bottom+2, at: -gutter
+            end
           end
         end
       end
 
-      def location(name, url)
-        if @locations != 0
-          move_down gutter
+      def sec2(name, description: nil)
+        move_down gutter
+
+        text name, inline_format: true, size: 13, style: :bold
+
+        if description
+          move_up 13.7
+          indent 2*gutter + 140 do
+            font 'Times-Roman' do
+              text description
+            end
+          end
         end
-        @locations += 1
 
-        text link(url, name), inline_format: true, size: 12
-        @role = 0
-
-        title_width = 10
-        bounding_box([title_width, cursor], width: bounds.width - title_width) do
-          yield
+        if block_given?
+          move_up gutter+1
+          indent 2*gutter do
+            yield
+          end
         end
       end
 
-      def role(title, options)
-        if @role == 0
-          move_down gutter/4
-        else
-          move_down gutter/2
-        end
-        @role += 1
+      def sec3(title, padding: gutter, subtitle: nil, description: nil)
+        move_down padding
 
-        table_adjusted [[title, fmt_date(options[:from]), '-', fmt_date(options[:to], 'present')]] do
-          cells.style borders: [], padding: [3, 0, 0, 0], align: :right, inline_format: true, size: 8, font: 'Courier', font_style: :bold
-          column(0).style align: :left, size: 10.5, padding: 0, font: 'Helvetica'
-          self.column_widths = [320, 37, 8, 37]
+        text title, size: 10, style: :bold
+        if subtitle
+          font 'Courier' do
+            text subtitle, size: 10, style: :italic
+            move_down 1
+          end
         end
 
-        move_down 1
-        if options[:duties]
-          ul(options[:duties], width: 300)
+        if description
+          if subtitle
+            move_up 23.8
+          else
+            move_up 12.3
+          end
+          indent 140 do
+            font 'Times-Roman' do
+              text description
+            end
+            if description !~ /\n/ and subtitle
+              move_down 10
+            end
+          end
         end
       end
     end
@@ -122,86 +113,104 @@ module Fengb
 end
 
 Fengb::Resume.render do
-  font_size 10
-  header 'Benjamin Feng' do
-    nav('(312) 725-2842'     => 'tel:+1-312-725-2842',
-        'contact@fengb.info' => 'mailto:contact@fengb.info')
-  end
+  font_size 11
+  header 'Benjamin Feng', nav: {'(312) 725-2842'     => 'tel:+1-312-725-2842',
+                                'contact@fengb.info' => 'mailto:contact@fengb.info',
+                                'github.com/fengb'   => 'https://github.com/fengb'}
 
-  section 'Objective' do
-    text 'To solve intricate problems with emphasis on usability and maintainability.'
-    text ' ', size: 3
-  end
+  sec1 'Summary' do
+    sec2 'Objective',         description: 'To solve complex problems with emphasis on simplicity and extensibility'
 
-  section 'Skills' do
-    dl(Languages:  'C, Javascript, Objective-C, Python, Ruby, SQL',
-       Frameworks: 'Django, jQuery, Ruby on Rails',
-       Versioning: 'Git, Mercurial, Perforce, Subversion')
-  end
-
-  section 'Employment' do
-    location 'FENGB TECHNOLOGIES LLC', 'http://fengb.info' do
-      role 'Independent Consultant',
-        from: '2013-08-05'
-    end
-
-    location 'Enova International', 'http://www.enova.com' do
-      role 'Lead Software Engineer',
-        from: '2012-04-03',
-        duties: ['Acted as technical team lead for 6 developers and 3 QA',
-                 'Architected full-stack solutions for newly-launched product',
-                 'Proposed and executed lean UX design processes']
-
-      role 'Sr. Software Engineer II',
-        from: '2011-07-01', to: '2012-04-02',
-        duties: ['Drove high priority projects with aggressive deadlines',
-                 'Promoted security initiatives to eliminate attack vectors',
-                 'Onboarded newly hired developers and managers']
-
-      role 'Sr. UI Engineer',
-        from: '2010-07-01', to: '2011-06-30',
-        duties: ['Updated the UI to maintain compliance with rapidly changing legal environments',
-                 'Helped launch mobile web for all existing products']
-
-      role 'UI Engineer',
-        from: '2009-10-19', to: '2010-06-30',
-        duties: ['Launched web solutions for products with millions of customers',
-                 'Worked with business and creative teams to deliver customer focused designs']
-    end
-
-    location 'Crusader Storm (defunct)', 'http://web.archive.org/web/20100623115357/http://www.crusaderstorm.com/' do
-      role 'Founder',
-        from: '2010-05-07', to: '2011-05-06',
-        duties: ['Incubated iPhone app from concept to release',
-                 'Designed responsive website with graceful degradation']
-    end
-
-    location 'Business Logic Corporation', 'http://businesslogic.com/' do
-      role 'Software Engineer',
-        from: '2007-06-04', to: '2009-08-04',
-        duties: ['Repurposed existing single-threaded engine into a massively scalable aggregator',
-                 'Maintained legacy SOAP translation for a RESTful architecture',
-                 'Created testing framework for separating data and verification']
-    end
-
-    location 'Rose-Hulman Ventures', 'http://rhventures.org/' do
-      role 'Computer Engineering Intern',
-        from: '2006-06-12', to: '2007-03-16',
-        duties: ['Optimized chemical control software for space efficiency',
-                 'Enhanced C++ MFC application integrating with embedded controls']
-
-      role 'Software Engineering Intern',
-        from: '2005-06-06', to: '2006-06-09',
-        duties: ['Coordinated a development team of 5 to build a management website for doctors',
-                 'Worked with business on defining requirements']
+    sec2 'Skills' do
+      sec3 'Languages',       description: 'C, Javascript, Objective-C, Python, Ruby, SQL'
+      sec3 'Frameworks',      description: 'Django, jQuery, Ruby on Rails',        padding: 2
+      sec3 'Version Control', description: 'Git, Mercurial, Perforce, Subversion', padding: 2
+      sec3 'Platforms',       description: 'Arch Linux, Mac OS X, AWS, Heroku',    padding: 2
     end
   end
 
-  section 'Education' do
-    location 'Rose-Hulman Institute of Technology', 'http://www.rose-hulman.edu/' do
-      role 'B.S. Computer Engineering',
-        from: '2003-09-04', to: '2007-05-26',
-        duties: ['Minors in Computer Science & Economics']
+  sec1 'Employment' do
+    sec2 link('FENGB TECH', 'http://fengb.info') do
+      sec3 'Independent Consultant',
+        subtitle: date_range('2013-08-05', 'present'),
+        description: 'Architected MVP for startup
+                      Coordinated with Experian to secure AWS deployment'
+    end
+
+    sec2 link('FENGB NVST', 'https://fengb-investments.com') do
+      sec3 'Managing Partner',
+        subtitle: date_range('2013-03-11', 'present'),
+        description: 'Investment partnership focused on value investing principles
+                      Adjusted yearly performance: 33.25% (equivalent S&P500: 22.65%)
+                      Programmed software to automate portfolio tracking and tax matters'
+    end
+
+    sec2 link('Enova International', 'http://www.enova.com') do
+      sec3 'Lead Software Engineer',
+        subtitle: date_range('2013-04-03', 'present'),
+        description: 'Technical team lead for 6 developers and 3 QA
+                      Converted design process to lean UX by example
+                      Enhanced accounting and underwriting subsystems
+                      Implemented data aggregation with Adobe SiteCatalyst reporting suite'
+
+      sec3 'Sr. Software Engineer II',
+        subtitle: date_range('2011-07-01', '2013-04-02'),
+        description: 'Drove several high priority Sarbanes-Oxley audit related projects
+                      Integrated with Lexis Nexis FlexID and Risk View credit reports
+                      Extended existing ACH module to communicate with Wells Fargo
+                      Trained newly hired developers and managers'
+
+      sec3 'Sr. UI Engineer',
+        subtitle: date_range('2010-07-01', '2011-06-30'),
+        description: 'Primary UI developer for three product websites
+                      Realigned marketing and business to focus on customer experience
+                      Launched mobile web for all existing products'
+
+      sec3 'UI Engineer',
+        subtitle: date_range('2009-10-19', '2010-06-30'),
+        description: 'Launched frontend for new product
+                      Ported legacy UI to Rails with modern, semantic HTML/CSS'
+    end
+
+    sec2 link('Crusader Storm', 'http://web.archive.org/web/20100623115357/http://www.crusaderstorm.com/') do
+      sec3 'Founder',
+        subtitle: date_range('2010-05-07', '2011-05-06'),
+        description: 'Incubated iPhone app from concept to release
+                      Designed responsive website with graceful degradation'
+    end
+
+    sec2 link('Business Logic', 'http://businesslogic.com/') do
+      sec3 'Software Engineer',
+        subtitle: date_range('2007-06-04', '2009-08-04'),
+        description: 'Converted individual forecasting engine to aggregate company performance
+                      Maintained SOAP to REST translation layer for reverse-engineered Java app
+                      Created functional testing framework for separating data and verification'
+    end
+
+    sec2 link('Rose-Hulman Ventures', 'http://rhventures.org/') do
+      sec3 'Computer Engineer Intern',
+        subtitle: date_range('2006-06-12', '2007-03-16'),
+        description: 'Optimized embedded software for memory efficiency
+                      Improved C++ MFC application integrating with hardware controls'
+
+      sec3 'Software Engineer Intern',
+        subtitle: date_range('2005-06-06', '2006-06-09'),
+        description: 'Coordinated small development team to improve medical transcription efficiency
+                      Worked with business on defining requirements'
+    end
+  end
+
+  sec1 'Education' do
+    sec2 link('Rose-Hulman', 'http://www.rose-hulman.edu/') do
+      sec3 'B.S. Computer Engineering',
+        subtitle: date_range('2003-09-04', '2007-05-26'),
+        description: 'Minors in Computer Science & Economics'
+    end
+
+    sec2 link('Naperville Central', 'http://schools.naperville203.org/central/') do
+      sec3 'High School Diploma',
+        subtitle: date_range('1999-08-24', '2003-05-23'),
+        description: 'BPA C++ Programming — national finalist'
     end
   end
 end

@@ -24,3 +24,11 @@
     &:#{$pseudo} { text-indent: 0; }
   }
 }
+
+@mixin text-outline($color) {
+  $shadow: 0 0 1px $color;
+  @for $i from 1 through 4 {
+    $shadow: $shadow, $shadow;
+  }
+  text-shadow: $shadow;
+}
