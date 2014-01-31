@@ -1,0 +1,4 @@
+#!/bin/bash
+
+
+cat images/logo/src.svg | tr '\n' ' ' | sed -e 's/  */ /g' -e 's/> </></g' -e 's; />;/>;g' | base64
