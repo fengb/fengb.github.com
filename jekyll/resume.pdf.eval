@@ -131,7 +131,7 @@ Fengb::Resume.render do
 
   sec1 'Employment' do
     sec2 link('FENGB TECH', 'http://fengb.info') do
-      sec3 'Independent Consultant',
+      sec3 'Technology Consultant',
         subtitle: date_range('2013-08-05', 'present'),
         description: 'Architected MVP for startup
                       Coordinated with Experian to secure AWS deployment'
