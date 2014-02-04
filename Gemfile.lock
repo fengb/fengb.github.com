@@ -9,6 +9,7 @@ GEM
     colorator (0.1)
     commander (4.1.5)
       highline (~> 1.6.11)
+    directory_watcher (1.4.1)
     fast-stemmer (1.0.2)
     ffi (1.9.3)
     hashery (2.1.1)
@@ -69,6 +70,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  directory_watcher (~> 1.4.1)
   html_pretty
   jekyll
   prawn
