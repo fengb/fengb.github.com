@@ -40,7 +40,7 @@ module Fengb
         move_down 1.5*gutter
 
         title = title.upcase
-        text_box "<font size='16'>#{title[0]}</font>#{title[1..-1]}", at: [gutter, cursor+1], size: 13, style: :bold, rotate: 270, inline_format: true
+        text_box title, at: [gutter, cursor+1], size: 16.7, style: :bold, rotate: 270, inline_format: true
         indent 3*gutter do
           bounding_box([0, cursor], width: bounds.width) do
             move_up gutter
@@ -118,7 +118,7 @@ Fengb::Resume.render do
                                 'contact@fengb.info' => 'mailto:contact@fengb.info',
                                 'github.com/fengb'   => 'https://github.com/fengb'}
 
-  sec1 'Summary' do
+  sec1 'info' do
     sec2 'Objective',         description: 'To solve complex problems with emphasis on simplicity and extensibility'
 
     sec2 'Skills' do
@@ -129,7 +129,7 @@ Fengb::Resume.render do
     end
   end
 
-  sec1 'Employment' do
+  sec1 'jobs' do
     sec2 link('FENGB TECH', 'http://fengb.info') do
       sec3 'Technology Consultant',
         subtitle: date_range('2013-08-05', 'present'),
@@ -200,17 +200,11 @@ Fengb::Resume.render do
     end
   end
 
-  sec1 'Education' do
+  sec1 'edu' do
     sec2 link('Rose-Hulman', 'http://www.rose-hulman.edu/') do
       sec3 'B.S. Computer Engineering',
         subtitle: date_range('2003-09-04', '2007-05-26'),
         description: 'Minors in Computer Science & Economics'
-    end
-
-    sec2 link('Naperville Central', 'http://schools.naperville203.org/central/') do
-      sec3 'High School Diploma',
-        subtitle: date_range('1999-08-24', '2003-05-23'),
-        description: 'BPA C++ Programming — national finalist'
     end
   end
 end
