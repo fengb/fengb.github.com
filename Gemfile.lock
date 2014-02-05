@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/fengb/rack-jekyll.git
+  revision: 14343b5dfdfd4799d3d3f9b974616315a880a939
+  branch: listen
+  specs:
+    rack-jekyll (0.4.1)
+      jekyll (~> 1.3)
+      rack (~> 1.5.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -9,7 +18,6 @@ GEM
     colorator (0.1)
     commander (4.1.5)
       highline (~> 1.6.11)
-    directory_watcher (1.4.1)
     fast-stemmer (1.0.2)
     ffi (1.9.3)
     hashery (2.1.1)
@@ -49,9 +57,6 @@ GEM
       posix-spawn (~> 0.3.6)
       yajl-ruby (~> 1.1.0)
     rack (1.5.2)
-    rack-jekyll (0.4.1)
-      jekyll (>= 0.12.0, < 2.0)
-      rack (~> 1.5.0)
     rb-fsevent (0.9.4)
     rb-inotify (0.9.3)
       ffi (>= 0.5.0)
@@ -70,9 +75,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  directory_watcher (~> 1.4.1)
   html_pretty
   jekyll
   prawn
-  rack-jekyll
+  rack-jekyll!
   sass
