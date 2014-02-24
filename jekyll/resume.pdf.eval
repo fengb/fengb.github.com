@@ -75,10 +75,10 @@ module Fengb
         end
       end
 
-      def sec3(title, padding: gutter, subtitle: nil, description: nil)
+      def sec3(*titles, padding: gutter, subtitle: nil, description: nil)
         move_down padding
 
-        text title, size: 10, style: :bold
+        text titles.join('<br>'), size: 10, style: :bold, inline_format: true
         if subtitle
           font 'Courier' do
             text subtitle, size: 10, style: :italic
@@ -132,7 +132,10 @@ Fengb::Resume.render do
   sec1 'jobs' do
     sec2 link('FENGB TECH', 'http://fengb.info') do
       sec3 'Technology Consultant',
-        subtitle: date_range('2013-08-05', 'present'),
+        subtitle: date_range('2013-07-22', 'present')
+
+      sec3 link('Gozent', 'http://www.gozent.com'), 'Lead Developer',
+        subtitle: date_range('2013-07-27', 'present'),
         description: 'Architected MVP for startup
                       Coordinated with Experian to secure AWS deployment'
     end
