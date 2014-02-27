@@ -21,7 +21,11 @@ nav:
     <link rel='icon' href='/logo/64.png' sizes='64x64' />
     <link rel='icon' href='/logo/128.png' sizes='128x128' />
     <meta name='viewport' content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <title>fengb{% if page.title %} &rarr; {{ page.title }}{% endif %}</title>
+    {% if page.id %}
+      <title>fengb &rarr; Blog &rarr; {{page.title}}</title>
+    {% else %}
+      <title>fengb &rarr; {{page.title}}</title>
+    {% endif %}
     <script>document.documentElement.className='js'</script>
     <!--[if lt IE 9]>
       <script src='/vendor/html5shiv-printshiv.js'></script>
@@ -44,6 +48,9 @@ nav:
     <main id='content' class='p-{{page.title | downcase}}'>
       <header>
         <h1>fengb</h1>
+        {% if page.id %}
+          <h2>Blog</h2>
+        {% endif %}
         <h2>{{page.title}}</h2>
       </header>
       {{content}}
@@ -56,7 +63,7 @@ nav:
 
     <script src='/vendor/fasterclick.js'></script>
     {% if page.tail %}
-      {{ page.tail }}
+      {{page.tail}}
     {% endif %}
   </body>
 </html>
