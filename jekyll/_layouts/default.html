@@ -38,8 +38,12 @@ nav:
         <ul class='menu'>
           {% for item in page.nav %}
             <li><a href='{{item.url}}' {{item.link_attrs}}
-                   class='{{item.title | downcase}}{% if item.title == page.title %}
-                          active{% endif %}'>{{item.title}}</a></li>
+                   {% if item.title == page.title %}
+                     class='{{item.title | downcase}} active'
+                   {% else %}
+                     class='{{item.title | downcase}}'
+                   {% endif %}
+                   >{{item.title}}</a></li>
           {% endfor %}
         </ul>
       </nav>
@@ -48,7 +52,7 @@ nav:
     <main id='content' class='p-{{page.title | downcase}}'>
       <header>
         <h1>fengb</h1>
-        {% if page.id %}
+        {% if page.date %}
           <h2>Blog</h2>
         {% endif %}
         <h2>{{page.title}}</h2>
