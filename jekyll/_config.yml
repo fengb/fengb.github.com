@@ -1,3 +1,4 @@
+permalink: '/blog/:year/:month/:day/:title.html'
 exclude: [config.ru]
 sass:
   style: :expanded
