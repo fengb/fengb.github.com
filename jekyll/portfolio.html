@@ -10,7 +10,7 @@ portfolios:
 ---
 {% for portfolio in page.portfolios %}
   <section id='{{portfolio.title | downcase}}'>
-    <h1>{{portfolio.title}}</h1>
+    <h2>{{portfolio.title}}</h2>
     <ul>
       {% for image in portfolio.images %}
         <li><a href='/portfolio/{{image}}.png'><img class='thumb' src='/portfolio/{{image}}-thumb.png' alt='{{image}}' /></a></li>
