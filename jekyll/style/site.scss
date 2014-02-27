@@ -23,7 +23,7 @@ Comment: "Please note that Jekyll will only convert files that also have a YAML 
 
 
 body {
-  font-family: Helvetica, Arial, FreeSans;
+  font-family: Helvetica, Arial, FreeSans, sans-serif;
   font-size: 16px;
   background: $unsat9;
   color: $unsat2;
@@ -100,8 +100,7 @@ body {
   z-index: 1;
   line-height: 1.3em;
 
-  > h1 { display: none; }
-
+  h1 { margin: 20px 0; }
   h2 { margin: 16px 0; }
   p { margin: 8px 0; }
   a { text-decoration: underline; }
