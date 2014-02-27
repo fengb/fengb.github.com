@@ -100,13 +100,16 @@ body {
 
 #content {
   @include constrained;
-  padding: 6px 12px;
+  margin: 6px auto 12px;
+  padding: 0 12px;
   position: relative;
   z-index: 1;
   line-height: 1.3em;
 
   > header {
     padding-bottom: 4px;
+    margin-bottom: 12px;
+
     * {
       display: inline-block;
       font-size: 16px;
@@ -121,6 +124,7 @@ body {
 
 #legal {
   @include separator-top;
+  margin-top: 12px;
   padding: 12px;
   font-size: 12px;
   text-align: center;
