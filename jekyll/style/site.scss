@@ -33,6 +33,11 @@ body {
 #top {
   height: 74px;
   @include separator-bottom;
+  &:after {
+    @include fake-element;
+    height: 100px;
+    @include separator-bottom;
+  }
 
   a {
     float: left;
@@ -95,13 +100,21 @@ body {
 
 #content {
   @include constrained;
-  padding: 6px 12px 12px;
+  padding: 6px 12px;
   position: relative;
   z-index: 1;
   line-height: 1.3em;
 
-  h1 { margin: 20px 0; }
-  h2 { margin: 16px 0; }
+  > header {
+    padding-bottom: 4px;
+    * {
+      display: inline-block;
+      font-size: 16px;
+    }
+    h2:before { content: '→ '; }
+  }
+
+  > h2 { margin: 16px 0; }
   p { margin: 8px 0; }
   a { text-decoration: underline; }
 }
