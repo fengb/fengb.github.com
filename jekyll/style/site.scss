@@ -87,8 +87,8 @@ body {
         text-shadow: 0 -1px rgba($prima9, 0.8), 0 1px 1px rgba($unsat1, 0.8);
       }
 
-      &.portfolio:before { content: $icon-folder; }
-      &.contact:before   { content: $icon-bubble; }
+      &.blog:before    { content: $icon-bookmarks; }
+      &.contact:before { content: $icon-bubble; }
     }
 
     li:first-child a {
