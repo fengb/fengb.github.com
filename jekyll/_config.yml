@@ -1,3 +1,6 @@
+name:      'fengb'
+url:       'http://fengb.info'
+author:    'Benjamin Feng'
 permalink: '/blog/:year/:month/:day/:title.html'
 exclude: [config.ru]
 sass:
