@@ -2,7 +2,7 @@ name:      'fengb'
 url:       'http://fengb.info'
 author:    'Benjamin Feng'
 permalink: '/blog/:year/:month/:day/:title.html'
-exclude: [config.ru]
+exclude:   [config.ru, tmp]
 sass:
-  style: :expanded
+  style:      :expanded
   load_paths: ['style']
