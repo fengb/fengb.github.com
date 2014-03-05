@@ -10,8 +10,8 @@ nav:
   <head>
     <meta charset='utf-8' />
     <!--[if gte IE 8]><!-->
-      <link rel='stylesheet' media='all' href='/style/site.css' />
-      <link rel='stylesheet' media='print' href='/style/print.css' />
+      <link rel='stylesheet' href='/style/site.css' media='all' />
+      <link rel='stylesheet' href='/style/print.css' media='print' />
     <!--<![endif]-->
     <!--[if lt IE 8]>
       <link rel='stylesheet' media='all' href='/style/blank.css' />
@@ -20,6 +20,7 @@ nav:
     <link rel='icon' href='/logo/48.png' sizes='48x48' />
     <link rel='icon' href='/logo/64.png' sizes='64x64' />
     <link rel='icon' href='/logo/128.png' sizes='128x128' />
+    <link rel='alternate' href='/rss.xml' type='application/rss+xml' title='RSS' />
     <meta name='viewport' content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no' />
     {% if page.id %}
       <title>fengb &rarr; Blog &rarr; {{page.title}}</title>
