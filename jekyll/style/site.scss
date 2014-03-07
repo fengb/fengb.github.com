@@ -66,7 +66,8 @@ body {
     a {
       font-size: 18px;
       padding: 40px 10px 0;
-      height: 70px - 40px;
+      box-sizing: border-box;
+      height: 70px;
       color: $unsat4;
       text-align: center;
 
@@ -115,10 +116,15 @@ body {
     h2:before { content: '→ '; }
   }
 
+  a { text-decoration: underline; }
   > h2 { margin: 16px 0; }
   dl { margin: 12px 0; }
   p { margin: 8px 0; }
-  a { text-decoration: underline; }
+  li { margin: 6px 0; }
+  ul {
+    list-style: disc;
+    margin-left: 20px;
+  }
 }
 
 #legal {
