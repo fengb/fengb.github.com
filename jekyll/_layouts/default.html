@@ -5,6 +5,12 @@ nav:
 - title: Contact
   url: '/contact.html'
 ---
+{% capture title %}
+  fengb
+  {% if page.date %} &rarr; Blog {% endif %}
+  {% if page.title %} &rarr; {{page.title}} {% endif %}
+{% endcapture %}
+
 <!DOCTYPE html>
 <html lang='en' class='no-js'>
   <head>
@@ -22,11 +28,7 @@ nav:
     <link rel='icon' href='/logo/128.png' sizes='128x128' />
     <link rel='alternate' href='/rss.xml' type='application/rss+xml' title='RSS' />
     <meta name='viewport' content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no' />
-    {% if page.id %}
-      <title>fengb &rarr; Blog &rarr; {{page.title}}</title>
-    {% else %}
-      <title>fengb &rarr; {{page.title}}</title>
-    {% endif %}
+    <title>{{title | strip_newlines}}</title>
     <script>document.documentElement.className='js'</script>
     <!--[if lt IE 9]>
       <script src='/vendor/html5shiv-printshiv.js'></script>
@@ -48,13 +50,7 @@ nav:
           {% endfor %}
         </ul>
       </nav>
-      <hgroup>
-        <h1>fengb</h1>
-        {% if page.date %}
-          <h2>Blog</h2>
-        {% endif %}
-        <h2>{{page.title}}</h2>
-      </hgroup>
+      <h1>{{title | strip_newlines}}</h1>
     </header>
 
     <main id='content' class='p-{{page.title | downcase}}'>
