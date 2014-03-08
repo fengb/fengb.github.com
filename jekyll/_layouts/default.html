@@ -34,8 +34,8 @@ nav:
   </head>
   <body>
     <header id='top'>
-      <h1><a href='/' class='icon-logo'>fengb</a></h1>
-      <nav id='site'>
+      <nav>
+        <a href='/' class='icon-logo'>fengb</a>
         <ul class='menu'>
           {% for item in page.nav %}
             <li><a href='{{item.url}}' {{item.link_attrs}}
@@ -48,16 +48,16 @@ nav:
           {% endfor %}
         </ul>
       </nav>
-    </header>
-
-    <main id='content' class='p-{{page.title | downcase}}'>
-      <header>
+      <hgroup>
         <h1>fengb</h1>
         {% if page.date %}
           <h2>Blog</h2>
         {% endif %}
         <h2>{{page.title}}</h2>
-      </header>
+      </hgroup>
+    </header>
+
+    <main id='content' class='p-{{page.title | downcase}}'>
       {{content}}
     </main>
 

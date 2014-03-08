@@ -16,7 +16,8 @@ Comment: "Please note that Jekyll will only convert files that also have a YAML 
 
 @mixin constrained {
   max-width: 960px;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
   padding-left: 12px;
   padding-right: 12px;
 }
@@ -31,69 +32,90 @@ body {
 }
 
 #top {
-  height: 74px;
   @include separator-bottom;
-  &:after {
-    @include fake-element;
-    height: 100px;
-    @include separator-bottom;
-  }
+  position: relative;
 
-  a {
-    float: left;
-    position: relative;
-  }
-
-  h1 {
+  nav {
     @include constrained;
-    margin-top: 2px;
-    height: 80px;
 
-    a {
+    a.icon-logo {
       @include text-replace;
+      float: left;
+      color: $unsat9;
       width: 80px;
       height: 80px;
       margin-left: -22px;
+      margin-bottom: -10px;
       background-size: 100%;
       background-image: $image-logo;
     }
-  }
 
-  #site {
-    @include constrained;
-    margin-top: -76px;
+    ul {
+      overflow: hidden;
 
-    a {
-      font-size: 18px;
-      padding: 40px 10px 0;
-      box-sizing: border-box;
-      height: 70px;
-      color: $unsat4;
-      text-align: center;
+      a {
+        font-size: 18px;
+        padding: 40px 10px 0;
+        height: 70px;
+        float: left;
+        position: relative;
+        box-sizing: border-box;
+        color: $unsat4;
+        text-align: center;
 
-      &:hover { color: $unsat6; }
+        &:hover { color: $unsat6; }
 
-      &:before {
-        @extend %icon;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
+        &:before {
+          @extend %icon;
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
 
-        font-size: 24px;
-        top: 8px;
-        text-shadow: 0 -1px rgba($prima9, 0.8), 0 1px 1px rgba($unsat1, 0.8);
+          font-size: 24px;
+          top: 8px;
+          text-shadow: 0 -1px rgba($prima9, 0.8), 0 1px 1px rgba($unsat1, 0.8);
+        }
+
+        &.blog:before    { content: $icon-bookmarks; }
+        &.contact:before { content: $icon-bubble; }
       }
 
-      &.blog:before    { content: $icon-bookmarks; }
-      &.contact:before { content: $icon-bubble; }
+      li:first-child a {
+        padding-left: 20px;
+        &:before { left: 10px; }
+      }
     }
+  }
 
-    li:first-child a {
-      padding-left: 20px;
-      &:before { left: 10px; }
+  hgroup {
+    @include constrained;
+
+    * {
+      display: inline-block;
+      font-size: 16px;
+      padding-bottom: 3px;
+      padding-top: 8px;
     }
+    h2 {
+      margin-left: 1px;
+      &:before {
+        content: '→ ';
+        position: relative;
+        top: -1px;
+      }
+    }
+  }
+
+  &:after {
+    @include fake-element;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 24px;
+    z-index: -1;
+    @include separator-top;
   }
 }
 
@@ -101,23 +123,13 @@ body {
   @include constrained;
   margin: 6px auto 12px;
   padding: 0 12px;
-  position: relative;
-  z-index: 1;
   line-height: 1.3em;
 
-  > header {
-    padding-bottom: 4px;
-    margin-bottom: 12px;
-
-    * {
-      display: inline-block;
-      font-size: 16px;
-    }
-    h2:before { content: '→ '; }
+  a {
+    text-decoration: underline;
+    &:hover { color: $unsat4; }
   }
-
-  a { text-decoration: underline; }
-  > h2 { margin: 16px 0; }
+  h2 { margin: 16px 0; }
   dl { margin: 12px 0; }
   p { margin: 8px 0; }
   li { margin: 6px 0; }
