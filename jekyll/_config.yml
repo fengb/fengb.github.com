@@ -5,4 +5,3 @@ permalink: '/blog/:year/:month/:day/:title.html'
 exclude:   [config.ru, tmp]
 sass:
   style:      :expanded
-  load_paths: ['style']

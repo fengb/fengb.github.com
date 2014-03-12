@@ -1,6 +1,9 @@
----
-Comment: "Please note that Jekyll will only convert files that also have a YAML header at the top."
----
+//= depend_on_asset 'icons.eot'
+//= depend_on_asset 'icons.svg'
+//= depend_on_asset 'icons.ttf'
+//= depend_on_asset 'icons.woff'
+
+
 @import 'include/all';
 @import 'widgets/all';
 
