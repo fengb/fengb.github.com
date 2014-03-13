@@ -21,10 +21,10 @@ nav:
     <!--[if lt IE 8]>
       {% stylesheet blank %}
     <![endif]-->
-    <link rel='icon' href='/logo/32.png' sizes='32x32' />
-    <link rel='icon' href='/logo/48.png' sizes='48x48' />
-    <link rel='icon' href='/logo/64.png' sizes='64x64' />
-    <link rel='icon' href='/logo/128.png' sizes='128x128' />
+    <link rel='icon' href='{% asset_path logo/32.png %}' sizes='32x32' />
+    <link rel='icon' href='{% asset_path logo/48.png %}' sizes='48x48' />
+    <link rel='icon' href='{% asset_path logo/64.png %}' sizes='64x64' />
+    <link rel='icon' href='{% asset_path logo/128.png %}' sizes='128x128' />
     <link rel='alternate' href='/rss.xml' type='application/rss+xml' title='RSS' />
     <meta name='viewport' content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no' />
     <title>{{title | strip_newlines}}</title>

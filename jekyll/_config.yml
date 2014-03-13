@@ -5,3 +5,9 @@ permalink: '/blog/:year/:month/:day/:title.html'
 exclude:   [config.ru, tmp]
 sass:
   style:      :expanded
+assets:
+  sources:
+    - _assets/javascripts
+    - _assets/stylesheets
+    - _assets/images
+    - _assets/fonts
