@@ -1,4 +1,4 @@
-!function(window, document, scriptTagName){
+!function(window, document){
   var insertScript = function(src, newTag, loadedTag){
     newTag = document.createElement('script')
     newTag.async = 1
@@ -13,4 +13,4 @@
     q: [['create', 'UA-34997099-2', 'fengb.info'], ['send', 'pageview']]
   }
   insertScript('//www.google-analytics.com/analytics.js')
-}(window, document);
+}(window, document)

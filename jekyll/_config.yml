@@ -3,9 +3,8 @@ url:       'http://fengb.info'
 author:    'Benjamin Feng'
 permalink: '/blog/:year/:month/:day/:title.html'
 exclude:   [config.ru, tmp]
-sass:
-  style:      :expanded
 assets:
+  js_compressor: uglifier
   sources:
     - _assets/javascripts
     - _assets/stylesheets
