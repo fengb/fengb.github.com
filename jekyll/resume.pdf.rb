@@ -134,10 +134,11 @@ Fengb::Resume.render do
       sec3 'Technology Consultant',
         subtitle: date_range('2013-07-22', 'present')
 
-      sec3 link('Gozent', 'http://www.gozent.com'), 'Lead Developer',
+      sec3 link('Gozent', 'http://www.gozent.com'),
         subtitle: date_range('2013-07-27', 'present'),
         description: 'Architected MVP for startup
-                      Coordinated with Experian to secure AWS deployment'
+                      Built and automated Amazon Web Services deployment cluster
+                      Coordinated with Experian to audit infrastructure'
     end
 
     sec2 link('FENGB NVST', 'https://fengb-investments.com') do
@@ -172,7 +173,7 @@ Fengb::Resume.render do
       sec3 'UI Engineer',
         subtitle: date_range('2009-10-19', '2010-06-30'),
         description: 'Launched frontend for new product
-                      Ported legacy UI to Rails with modern, semantic HTML/CSS'
+                      Ported legacy UI to Rails with modern semantic HTML/CSS'
     end
 
     sec2 link('Crusader Storm', 'http://web.archive.org/web/20100623115357/http://www.crusaderstorm.com/') do
