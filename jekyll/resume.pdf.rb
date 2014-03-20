@@ -58,11 +58,8 @@ module Fengb
         text name, inline_format: true, size: 13, style: :bold
 
         if description
-          move_up 13.7
-          indent 2*gutter + 140 do
-            font 'Times-Roman' do
-              text description
-            end
+          font 'Times-Roman' do
+            text_box description, at: [2*gutter + 140, cursor + 13.7], inline_format: :true
           end
         end
 
@@ -80,14 +77,14 @@ module Fengb
         text titles.join('<br>'), size: 10, style: :bold, inline_format: true
         if subtitle
           font 'Courier' do
+            move_down 1.3
             text subtitle, size: 10, style: :italic
-            move_down 1
           end
         end
 
         if description
           if subtitle
-            move_up 23.8
+            move_up 24.1
           else
             move_up 12.3
           end
@@ -130,8 +127,7 @@ Fengb::Resume.render do
 
   sec1 '.jobs' do
     sec2 link('FENGB TECH', 'http://fengb.info') do
-      sec3 'Technology Consultant',
-        subtitle: date_range('2013-07-22', 'present')
+      sec3 '<b><i>Technology Consultant</i></b>'
 
       sec3 link('Gozent', 'http://www.gozent.com'),
         subtitle: date_range('2013-07-27', 'present'),
