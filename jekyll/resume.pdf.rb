@@ -39,8 +39,7 @@ module Fengb
       def sec1(title)
         move_down 1.5*gutter
 
-        title = title.upcase
-        text_box title, at: [gutter, cursor+1], size: 16.7, style: :bold, rotate: 270, inline_format: true
+        text_box title, at: [gutter, cursor+1], size: 17.3, style: :bold, rotate: 270
         indent 3*gutter do
           bounding_box([0, cursor], width: bounds.width) do
             move_up gutter
@@ -118,7 +117,7 @@ Fengb::Resume.render do
                                 'contact@fengb.info' => 'mailto:contact@fengb.info',
                                 'github.com/fengb'   => 'https://github.com/fengb'}
 
-  sec1 'info' do
+  sec1 '.info' do
     sec2 'Objective',         description: 'To solve complex problems with emphasis on simplicity and extensibility'
 
     sec2 'Skills' do
@@ -129,7 +128,7 @@ Fengb::Resume.render do
     end
   end
 
-  sec1 'jobs' do
+  sec1 '.jobs' do
     sec2 link('FENGB TECH', 'http://fengb.info') do
       sec3 'Technology Consultant',
         subtitle: date_range('2013-07-22', 'present')
@@ -204,7 +203,7 @@ Fengb::Resume.render do
     end
   end
 
-  sec1 'edu' do
+  sec1 '.edu' do
     sec2 link('Rose-Hulman', 'http://www.rose-hulman.edu/') do
       sec3 'B.S. Computer Engineering',
         subtitle: date_range('2003-09-04', '2007-05-26'),
