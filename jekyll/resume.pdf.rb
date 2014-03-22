@@ -39,8 +39,7 @@ module Fengb
       def sec1(title)
         move_down 1.5*gutter
 
-        title = title.upcase
-        text_box "<font size='16'>#{title[0]}</font>#{title[1..-1]}", at: [gutter, cursor+1], size: 13, style: :bold, rotate: 270, inline_format: true
+        text_box title, at: [gutter, cursor+1], size: 17.3, style: :bold, rotate: 270
         indent 3*gutter do
           bounding_box([0, cursor], width: bounds.width) do
             move_up gutter
@@ -59,11 +58,8 @@ module Fengb
         text name, inline_format: true, size: 13, style: :bold
 
         if description
-          move_up 13.7
-          indent 2*gutter + 140 do
-            font 'Times-Roman' do
-              text description
-            end
+          font 'Times-Roman' do
+            text_box description, at: [2*gutter + 140, cursor + 13.7], inline_format: :true
           end
         end
 
@@ -75,20 +71,20 @@ module Fengb
         end
       end
 
-      def sec3(title, padding: gutter, subtitle: nil, description: nil)
+      def sec3(*titles, padding: gutter, subtitle: nil, description: nil)
         move_down padding
 
-        text title, size: 10, style: :bold
+        text titles.join('<br>'), size: 10, style: :bold, inline_format: true
         if subtitle
           font 'Courier' do
+            move_down 1.3
             text subtitle, size: 10, style: :italic
-            move_down 1
           end
         end
 
         if description
           if subtitle
-            move_up 23.8
+            move_up 24.1
           else
             move_up 12.3
           end
@@ -118,7 +114,7 @@ Fengb::Resume.render do
                                 'contact@fengb.info' => 'mailto:contact@fengb.info',
                                 'github.com/fengb'   => 'https://github.com/fengb'}
 
-  sec1 'Summary' do
+  sec1 '.info' do
     sec2 'Objective',         description: 'To solve complex problems with emphasis on simplicity and extensibility'
 
     sec2 'Skills' do
@@ -129,12 +125,15 @@ Fengb::Resume.render do
     end
   end
 
-  sec1 'Employment' do
+  sec1 '.jobs' do
     sec2 link('FENGB TECH', 'http://fengb.info') do
-      sec3 'Technology Consultant',
-        subtitle: date_range('2013-08-05', 'present'),
+      sec3 '<b><i>Technology Consultant</i></b>'
+
+      sec3 link('Gozent', 'http://www.gozent.com'),
+        subtitle: date_range('2013-07-27', 'present'),
         description: 'Architected MVP for startup
-                      Coordinated with Experian to secure AWS deployment'
+                      Built and automated Amazon Web Services deployment cluster
+                      Coordinated with Experian to audit infrastructure'
     end
 
     sec2 link('FENGB NVST', 'https://fengb-investments.com') do
@@ -169,7 +168,7 @@ Fengb::Resume.render do
       sec3 'UI Engineer',
         subtitle: date_range('2009-10-19', '2010-06-30'),
         description: 'Launched frontend for new product
-                      Ported legacy UI to Rails with modern, semantic HTML/CSS'
+                      Ported legacy UI to Rails with modern semantic HTML/CSS'
     end
 
     sec2 link('Crusader Storm', 'http://web.archive.org/web/20100623115357/http://www.crusaderstorm.com/') do
@@ -200,17 +199,11 @@ Fengb::Resume.render do
     end
   end
 
-  sec1 'Education' do
+  sec1 '.edu' do
     sec2 link('Rose-Hulman', 'http://www.rose-hulman.edu/') do
       sec3 'B.S. Computer Engineering',
         subtitle: date_range('2003-09-04', '2007-05-26'),
         description: 'Minors in Computer Science & Economics'
-    end
-
-    sec2 link('Naperville Central', 'http://schools.naperville203.org/central/') do
-      sec3 'High School Diploma',
-        subtitle: date_range('1999-08-24', '2003-05-23'),
-        description: 'BPA C++ Programming — national finalist'
     end
   end
 end

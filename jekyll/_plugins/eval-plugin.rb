@@ -4,11 +4,11 @@ module Jekyll
     priority :high
 
     def matches(ext)
-      ext =~ /.eval$/i
+      ext =~ /.rb$/i
     end
 
     def output_ext(ext)
-      ext.gsub /.eval$/i, ''
+      ext.gsub /.rb$/i, ''
     end
 
     def convert(content)
