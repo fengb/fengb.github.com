@@ -4,6 +4,8 @@ author:    'Benjamin Feng'
 permalink: '/blog/:year/:month/:day/:title.html'
 exclude:   [config.ru, tmp]
 assets:
+  debug:         true
+  cachebust:     none
   js_compressor: uglifier
   sources:
     - _assets/javascripts
