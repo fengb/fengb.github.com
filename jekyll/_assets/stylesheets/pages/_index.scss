@@ -1,0 +1,26 @@
+.p-index {
+  .contact {
+    a {
+      @include centered-height(30px);
+
+      &:before {
+        @extend %icon;
+        padding-right: 8px;
+        font-size: 18px;
+        position: relative;
+        top: 2px;
+      }
+
+      @mixin contact-icon($icon, $color) {
+        &:hover { color: $color; }
+        &:before { content: $icon; }
+      }
+
+      &.phone    { @include contact-icon($icon-phone,    #40a540); }
+      &.email    { @include contact-icon($icon-email,    #ad4b39); }
+      &.twitch   { @include contact-icon($icon-twitch,   #6441a5); }
+      &.github   { @include contact-icon($icon-github,   #4183c4); }
+      &.linkedin { @include contact-icon($icon-linkedin, #0073b2); }
+    }
+  }
+}

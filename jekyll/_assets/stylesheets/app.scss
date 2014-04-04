@@ -109,11 +109,12 @@ body {
   }
 }
 
-#content {
+main {
   @include constrained;
   margin: 16px auto 12px;
   padding: 0 9px;
   line-height: 1.3em;
+  overflow: hidden;
 
   a {
     text-decoration: underline;

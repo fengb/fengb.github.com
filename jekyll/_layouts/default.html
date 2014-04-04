@@ -2,8 +2,6 @@
 nav:
 - title: Blog
   url: '/blog.html'
-- title: Contact
-  url: '/contact.html'
 ---
 {% capture title %}
   fengb
@@ -52,7 +50,13 @@ nav:
       <h1>{{title | strip_newlines}}</h1>
     </header>
 
-    <main id='content' class='p-{{page.title | downcase}}'>
+    <main id='content'
+          {% if page.class %}
+            class='p-{{page.class}}'
+          {% else %}
+            class='p-{{page.title | downcase}}'
+          {% endif %}
+          >
       {{content}}
     </main>
 
