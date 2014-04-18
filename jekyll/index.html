@@ -2,33 +2,46 @@
 layout: default
 class: index
 ---
-<section class='about'>
+<section id='blog'>
+  {% for post in site.posts %}
+    <section>
+      <h2><a href='{{post.url}}'>{{post.title}}</a></h2>
+      <h3>{{post.date | date: '%Y-%m-%d'}}</h3>
+      <p>{{post.excerpt | strip_html}}</p>
+    </section>
+  {% endfor %}
+</section>
+
+<aside id='about'>
   <h2>About</h2>
   <p>My name is Benjamin Feng.  I am a technology consultant with experience in
      the entire software stack, from database architecture to infrastructure
      deployment to UX design.</p>
-</section>
+</aside>
 
-<section class='projects'>
+<aside id='projects'>
   <h2>Projects</h2>
   <dl>
+    <dt><a href='http://www.fengb.info'>fengb.info</a></dt>
+    <dd>Personal website <em class='tools'>Jekyll</em></dd>
+
     <dt><a href='https://fengb-nvst.com'>NVST</a></dt>
-    <dd>Investment portfolio tracker</dd>
+    <dd>Investment portfolio tracker <em class='tools'>Rails</em></dd>
 
     <dt><a href='https://www.gozent.com'>Gozent</a></dt>
-    <dd>Rental leasing management</dd>
+    <dd>Rental leasing management <em class='tools'>Rails</em></dd>
 
-    <dt><a href='http://www.fengb.info/image-html'>Image-HTML</a></dt>
-    <dd>Convert images into raw HTML/CSS</dd>
+    <dt><a href='http://www.fengb.info/image-html'>Image&rarr;HTML</a></dt>
+    <dd>Convert images into raw HTML/CSS <em class='tools'>Javascript</em></dd>
   </dl>
-</section>
+</aside>
 
-<section class='contact'>
+<aside id='contact'>
   <h2>Contact</h2>
   <ul class='menu'>
-    <li><a class='phone tel' href='tel:+1-312-725-2842'><span class='area'>312</span><span class='exch'>725</span><span class='subs'>2842</span></a></li>
-    <li><a class='email' href='mailto:contact@fengb.info'><span class='user'>contact</span><span class='at'>@</span><span class='domain'>fengb.info</span></a></li>
+    <li><a class='phone tel' href='tel:+1-312-725-2842'>(312) 725-2842</a></li>
+    <li><a class='email' href='mailto:contact@fengb.info'>contact@fengb.info</a></li>
     <li><a class='github' href='https://github.com/fengb'>github.com/fengb</a></li>
     <li><a class='linkedin' href='https://linkedin.com/in/fengb'>linkedin.com/in/fengb</a></li>
   </ul>
-</section>
+</aside>
