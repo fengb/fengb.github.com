@@ -1,7 +1,34 @@
 .p-index {
+  > section,
+  > aside { display: table-cell; }
+  aside {
+    width: 260px;
+    padding-left: 20px;
+  }
+
+  #projects {
+    dt {
+      float: left;
+      font-weight: bold;
+    }
+    dd.tools {
+      float: right;
+      font-style: italic;
+    }
+    dd.blurb {
+      clear: both;
+      margin-bottom: 10px;
+    }
+  }
+
   #contact {
+    ul {
+      list-style: none;
+      margin: 0;
+    }
+    li { margin: 0; }
     a {
-      @include centered-height(30px);
+      height: 30px;
 
       &:before {
         @extend %icon;
