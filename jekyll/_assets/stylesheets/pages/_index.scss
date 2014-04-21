@@ -1,23 +1,19 @@
 .p-index {
-  > section,
-  > aside { display: table-cell; }
-  aside {
-    width: 260px;
-    padding-left: 20px;
+  @media only screen and (max-width: 599px) {
+    aside > section {
+      display: table-cell;
+      width: 50%;
+      &:nth-child(2n)   { padding-left: 10px; }
+      &:nth-child(2n+1) { padding-right: 10px; }
+    }
   }
 
-  #projects {
-    dt {
-      float: left;
-      font-weight: bold;
-    }
-    dd.tools {
-      float: right;
-      font-style: italic;
-    }
-    dd.blurb {
-      clear: both;
-      margin-bottom: 10px;
+  @media only screen and (min-width: 600px) {
+    > section,
+    > aside { display: table-cell; }
+    aside {
+      width: 260px;
+      padding-left: 20px;
     }
   }
 
@@ -32,6 +28,7 @@
 
       &:before {
         @extend %icon;
+        width: 18px;
         padding-right: 8px;
         font-size: 18px;
         position: relative;
