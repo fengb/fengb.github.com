@@ -1,11 +1,7 @@
 ---
-nav:
-- title: Blog
-  url: '/blog.html'
 ---
 {% capture title %}
-  fengb
-  {% if page.date %} &rarr; Blog {% endif %}
+  fengb.info
   {% if page.title %} &rarr; {{page.title}} {% endif %}
 {% endcapture %}
 
@@ -33,20 +29,7 @@ nav:
   </head>
   <body>
     <header id='top'>
-      <nav>
-        <a href='/' class='icon-logo'>fengb</a>
-        <ul class='menu'>
-          {% for item in page.nav %}
-            <li><a href='{{item.url}}' {{item.link_attrs}}
-                   {% if item.title == page.title %}
-                     class='{{item.title | downcase}} active'
-                   {% else %}
-                     class='{{item.title | downcase}}'
-                   {% endif %}
-                   >{{item.title}}</a></li>
-          {% endfor %}
-        </ul>
-      </nav>
+      <nav><a href='/' class='icon-logo'>fengb</a></nav>
       <h1>{{title | strip_newlines}}</h1>
     </header>
 
