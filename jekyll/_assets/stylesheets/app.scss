@@ -17,14 +17,18 @@
   box-shadow: 0 1px $prima9;
 }
 
+$constrained-padding: 10px;
 @mixin constrained {
   max-width: 960px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: $constrained-padding;
+  padding-right: $constrained-padding;
 }
 
+html {
+  background: $unsat8;
+}
 
 body {
   font-family: Helvetica, Arial, FreeSans, sans-serif;
@@ -35,9 +39,7 @@ body {
 }
 
 #top {
-  @include separator-bottom;
-  position: relative;
-
+  background: $unsat8;
   nav {
     @include constrained;
 
@@ -63,7 +65,7 @@ body {
 
 main {
   @include constrained;
-  margin: 16px auto 12px;
+  background: $unsat9;
   padding: 0 9px;
   line-height: 1.3em;
   overflow: hidden;
@@ -83,8 +85,7 @@ main {
 }
 
 #legal {
-  @include separator-top;
-  margin-top: 12px;
+  background: $unsat8;
   padding: 12px;
   font-size: 12px;
   text-align: center;
