@@ -1,27 +1,31 @@
 .p-index {
   @media only screen and (max-width: 599px) {
     aside {
-      margin-left: -$constrained-padding;
-      margin-right: -$constrained-padding;
+      margin: 0 (-$gutter);
+      border-spacing: $gutter;
+
       > section {
+        @include panel;
         display: table-cell;
-        width: 50%;
-        padding: 0 10px;
+        &#contact { width: 178px; }
       }
     }
   }
 
   @media only screen and (min-width: 600px) {
+    max-width: 960px + 2*$gutter;
+    border-spacing: $gutter;
+    padding: 0;
+
     > section,
     > aside { display: table-cell; }
     aside {
+      @include panel;
       width: 260px;
-      padding-left: 20px;
     }
   }
 
   aside {
-    background: $unsat8;
     h2 { font-size: 1.3em; }
   }
 
@@ -37,7 +41,7 @@
       &:before {
         @extend %icon;
         width: 18px;
-        padding-right: 8px;
+        padding-right: 6px;
         font-size: 18px;
         position: relative;
         top: 2px;
