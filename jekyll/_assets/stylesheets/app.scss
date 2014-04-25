@@ -21,6 +21,7 @@
   background: $unsat9;
   border: 1px solid $unsat7;
   padding: 12px;
+  box-sizing: border-box;
 }
 
 @mixin constrained {
@@ -71,6 +72,7 @@ body {
 
 main {
   @include constrained;
+  position: relative;
   line-height: 1.3em;
   padding-top: 9px;
 
@@ -89,22 +91,6 @@ main {
   ul {
     list-style: disc;
     margin-left: 20px;
-  }
-}
-
-#legal {
-  padding: 12px;
-  font-size: 12px;
-  color: $unsat6;
-  text-align: center;
-
-  a { text-decoration: underline; }
-  #copy, a { display: block; }
-  #copy { margin-bottom: 4px; }
-
-  @media only screen and (min-width: 660px) {
-    #copy, a { display: inline; }
-    #copy:after { content: '.'; }
   }
 }
 

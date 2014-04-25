@@ -7,26 +7,50 @@
       > section {
         @include panel;
         display: table-cell;
-        &#contact { width: 178px; }
+        &#contact { width: 200px; }
       }
     }
   }
 
   @media only screen and (min-width: 600px) {
-    max-width: 960px + 2*$gutter;
-    border-spacing: $gutter;
-    padding: 0;
+    #blog {
+      margin-right: 210px + $gutter;
+    }
 
-    > section,
-    > aside { display: table-cell; }
     aside {
       @include panel;
-      width: 260px;
+      position: absolute;
+      top: $gutter;
+      right: $gutter;
+      width: 210px;
     }
   }
 
   aside {
     h2 { font-size: 1.3em; }
+
+    #legal {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      margin-bottom: $gutter;
+      width: 100%;
+      font-size: 11px;
+      line-height: 120%;
+      color: $unsat6;
+      text-align: center;
+
+      #copy {
+        display: block;
+        margin: 8px 0 4px;
+      }
+      #license a {
+        white-space: nowrap;
+        text-decoration: underline;
+      }
+
+    }
+
   }
 
   #contact {
@@ -37,6 +61,7 @@
     li { margin: 0; }
     a {
       height: 30px;
+      white-space: nowrap;
 
       &:before {
         @extend %icon;
