@@ -92,6 +92,27 @@ main {
     list-style: disc;
     margin-left: 20px;
   }
+
+  #legal {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-bottom: $gutter;
+    font-size: 11px;
+    line-height: 120%;
+    color: $unsat6;
+    text-align: center;
+
+    #copy {
+      display: block;
+      margin: 4px 0;
+    }
+    #license a {
+      white-space: nowrap;
+      text-decoration: underline;
+    }
+  }
 }
 
 @import 'pages/all';

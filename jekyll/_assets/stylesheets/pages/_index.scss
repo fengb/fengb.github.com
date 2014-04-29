@@ -1,7 +1,7 @@
 .p-index {
   @media only screen and (max-width: 599px) {
     aside {
-      margin: 0 (-$gutter);
+      margin: 0 (-$gutter) (-$gutter);
       border-spacing: $gutter;
 
       > section {
@@ -13,9 +13,8 @@
   }
 
   @media only screen and (min-width: 600px) {
-    #blog {
-      margin-right: 210px + $gutter;
-    }
+    #blog { margin-right: 210px + $gutter; }
+    #legal { right: 210px + $gutter; }
 
     aside {
       @include panel;
@@ -26,32 +25,7 @@
     }
   }
 
-  aside {
-    h2 { font-size: 1.3em; }
-
-    #legal {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      margin-bottom: $gutter;
-      width: 100%;
-      font-size: 11px;
-      line-height: 120%;
-      color: $unsat6;
-      text-align: center;
-
-      #copy {
-        display: block;
-        margin: 8px 0 4px;
-      }
-      #license a {
-        white-space: nowrap;
-        text-decoration: underline;
-      }
-
-    }
-
-  }
+  aside h2 { font-size: 1.3em; }
 
   #contact {
     ul {
