@@ -74,7 +74,7 @@ main {
   @include constrained;
   position: relative;
   line-height: 1.3em;
-  padding-top: 9px;
+  padding: $gutter;
 
   > section {
     @include panel;
