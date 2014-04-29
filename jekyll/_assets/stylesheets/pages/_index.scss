@@ -7,10 +7,30 @@
       > section {
         @include panel;
         display: table-cell;
-        &#contact { width: 200px; }
       }
     }
   }
+
+  @media only screen and (max-width: 450px) {
+    #contact {
+      width: 110px;
+      a {
+        position: relative;
+        font-size: 0px;
+        &:after {
+          position: absolute;
+          left: 24px;
+          top: 3px;
+          font-size: 16px;
+        }
+        &.phone:after { content: 'Phone' }
+        &.email:after { content: 'Email' }
+        &.github:after { content: 'Github' }
+        &.linkedin:after { content: 'Linkedin' }
+      }
+    }
+  }
+
 
   @media only screen and (min-width: 610px) {
     #blog { margin-right: 210px + $gutter; }
