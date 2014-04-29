@@ -104,13 +104,20 @@ main {
     color: $unsat6;
     text-align: center;
 
-    #copy {
-      display: block;
-      margin: 4px 0;
+    #license a { text-decoration: underline; }
+
+    @media only screen and (max-width: 399px) {
+      #copy {
+        display: block;
+        margin-bottom: 4px;
+      }
     }
-    #license a {
-      white-space: nowrap;
-      text-decoration: underline;
+
+    @media only screen and (min-width: 400px) {
+      #copy:after {
+        content: ' •';
+        padding: 0 2px;
+      }
     }
   }
 }
