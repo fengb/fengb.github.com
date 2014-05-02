@@ -4,10 +4,7 @@
       margin: 0 (-$gutter) (-$gutter);
       border-spacing: $gutter;
 
-      > section {
-        @include panel;
-        display: table-cell;
-      }
+      > section { display: table-cell; }
     }
   }
 
@@ -33,19 +30,28 @@
 
 
   @media only screen and (min-width: 610px) {
-    #blog { margin-right: 210px + $gutter; }
+    .article { margin-right: 210px + $gutter; }
     #legal { right: 210px + $gutter; }
 
     aside {
-      @include panel;
       position: absolute;
-      top: $gutter;
+      top: 0;
       right: $gutter;
       width: 210px;
+
+      > section { margin-top: $gutter; }
     }
   }
 
-  aside h2 { font-size: 1.3em; }
+  .article {
+    margin-bottom: $gutter;
+    &:last-child { margin-bottom: 0; }
+  }
+  aside {
+    h2 { font-size: 1.3em; }
+
+    > section { @include panel; }
+  }
 
   #contact {
     ul {

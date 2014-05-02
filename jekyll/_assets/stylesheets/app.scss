@@ -68,9 +68,7 @@ main {
   line-height: 1.3em;
   padding: $gutter;
 
-  > section {
-    @include panel;
-  }
+  > section { @include panel; }
 
   a {
     text-decoration: underline;
