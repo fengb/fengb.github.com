@@ -30,7 +30,7 @@
 
 
   @media only screen and (min-width: 610px) {
-    .article { margin-right: 210px + $gutter; }
+    #blog { margin-right: 210px + $gutter; }
     #legal { right: 210px + $gutter; }
 
     aside {
@@ -43,15 +43,11 @@
     }
   }
 
-  .article {
+  #blog > section {
     margin-bottom: $gutter;
     &:last-child { margin-bottom: 0; }
   }
-  aside {
-    h2 { font-size: 1.3em; }
-
-    > section { @include panel; }
-  }
+  aside h2 { font-size: 1.3em; }
 
   #contact {
     ul {

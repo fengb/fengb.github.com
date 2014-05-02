@@ -7,13 +7,6 @@
 @import 'include/all';
 @import 'widgets/all';
 
-@mixin panel {
-  background: $unsat9;
-  border: 1px solid $unsat7;
-  padding: 12px;
-  box-sizing: border-box;
-}
-
 @mixin constrained {
   max-width: 960px;
   margin-left: auto;
@@ -67,8 +60,6 @@ main {
   position: relative;
   line-height: 1.3em;
   padding: $gutter;
-
-  > section { @include panel; }
 
   a {
     text-decoration: underline;
