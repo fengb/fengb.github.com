@@ -136,7 +136,7 @@ Fengb::Resume.render do
                       Coordinated with Experian to audit infrastructure'
     end
 
-    sec2 link('FENGB NVST', 'https://fengb-investments.com') do
+    sec2 link('FENGB NVST', 'https://fengb-nvst.com') do
       sec3 'Managing Partner',
         subtitle: date_range('2013-03-11', 'present'),
         description: 'Investment partnership focused on value investing principles
@@ -144,9 +144,14 @@ Fengb::Resume.render do
                       Programmed software to automate portfolio tracking and tax matters'
     end
 
+    sec2 link('dough, Inc.', 'http://dough.com') do
+      sec3 'Sr. Developer',
+        subtitle: date_range('2014-05-05', 'present')
+    end
+
     sec2 link('Enova International', 'http://www.enova.com') do
       sec3 'Lead Software Engineer',
-        subtitle: date_range('2013-04-03', 'present'),
+        subtitle: date_range('2013-04-03', '2014-05-02'),
         description: 'Technical team lead for 6 developers and 3 QA
                       Converted design process to lean UX by example
                       Enhanced accounting and underwriting subsystems
@@ -175,7 +180,7 @@ Fengb::Resume.render do
       sec3 'Founder',
         subtitle: date_range('2010-05-07', '2011-05-06'),
         description: 'Incubated iPhone app from concept to release
-                      Designed responsive website with graceful degradation'
+                      Developed responsive website with graceful degradation'
     end
 
     sec2 link('Business Logic', 'http://businesslogic.com/') do
@@ -184,18 +189,6 @@ Fengb::Resume.render do
         description: 'Converted individual forecasting engine to aggregate company performance
                       Maintained SOAP to REST translation layer for reverse-engineered Java app
                       Created functional testing framework for separating data and verification'
-    end
-
-    sec2 link('Rose-Hulman Ventures', 'http://rhventures.org/') do
-      sec3 'Computer Engineer Intern',
-        subtitle: date_range('2006-06-12', '2007-03-16'),
-        description: 'Optimized embedded software for memory efficiency
-                      Improved C++ MFC application integrating with hardware controls'
-
-      sec3 'Software Engineer Intern',
-        subtitle: date_range('2005-06-06', '2006-06-09'),
-        description: 'Coordinated small development team to improve medical transcription efficiency
-                      Worked with business on defining requirements'
     end
   end
 
