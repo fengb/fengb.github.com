@@ -1,6 +1,9 @@
 .panel {
   background: $unsat9;
   border: 1px solid $unsat7;
-  padding: 12px;
+  padding: 18px 12px;
   box-sizing: border-box;
+
+  > *:first-child { margin-top: 0; }
+  > *:last-child { margin-bottom: 0; }
 }
