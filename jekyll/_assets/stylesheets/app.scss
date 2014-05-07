@@ -58,7 +58,7 @@ body {
 main {
   @include constrained;
   position: relative;
-  line-height: 1.3em;
+  line-height: 120%;
   padding: $gutter;
 
   a {
