@@ -1,19 +1,18 @@
----
----
-{% capture title %}
-  fengb.info
-  {% if page.title %} &rarr; {{page.title}} {% endif %}
-{% endcapture %}
+<% if current_page.data.title %>
+  <% title = "fengb.info &nbsp; #{current_page.data.title}" %>
+<% else %>
+  <% title = 'fengb.info' %>
+<% end %>
 
 <!DOCTYPE html>
 <html lang='en' class='no-js'>
   <head>
     <meta charset='utf-8' />
     <!--[if gte IE 8]><!-->
-      {% stylesheet app %}
+      <%= stylesheet_link_tag 'all' %>
     <!--<![endif]-->
     <!--[if lt IE 8]>
-      {% stylesheet blank %}
+      <%= stylesheet_link_tag 'normalize' %>
     <![endif]-->
     <link rel='icon' href='{% asset_path logo/32.png %}' sizes='32x32' />
     <link rel='icon' href='{% asset_path logo/48.png %}' sizes='48x48' />
@@ -21,7 +20,7 @@
     <link rel='icon' href='{% asset_path logo/128.png %}' sizes='128x128' />
     <link rel='alternate' href='/rss.xml' type='application/rss+xml' title='RSS' />
     <meta name='viewport' content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <title>{{title | strip_newlines}}</title>
+    <title><%= title %></title>
     <script>document.documentElement.className='js'</script>
     <!--[if lt IE 9]>
       {% javascript vendor/html5shiv-printshiv %}
@@ -35,19 +34,16 @@
 
     <main id='content' class='p-blog'>
       <section class='panel'>
-        <h2>{{page.title}}</h2>
-        {{content}}
+        <h2><%= current_page.data.title %></h2>
+        <%= yield %>
       </section>
 
       <footer id='legal'>
-        <span id='copy'>Benjamin Feng &copy; {{site.time | date:"%Y"}}</span>
+      <span id='copy'>Benjamin Feng &copy; <%= Date.today.year %></span>
         <span id='license'>This website is licensed under <a rel='license' href='http://creativecommons.org/licenses/by-nc-nd/3.0/' title='Creative Commons Attribution-NonCommercial-NoDerivs 3.0 license'>CC <abbr>BY-NC-ND</abbr> 3.0</a></span>
       </footer>
     </main>
 
-    {% javascript app %}
-    {% if page.tail %}
-      {{page.tail}}
-    {% endif %}
+    <%= javascript_include_tag 'all' %>
   </body>
 </html>
