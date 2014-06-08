@@ -40,12 +40,20 @@
 #   activate :livereload
 # end
 
-# Methods defined in the helpers block are available in templates
-# helpers do
-#   def some_helper
-#     "Helping"
-#   end
-# end
+helpers do
+  def title
+    segments = ['fengb.info', current_page.data[:title]]
+    segments.compact.join(' &rarr; ')
+  end
+
+  def main_class
+    if current_page.data[:class]
+      "p-#{current_page.data[:class]}"
+    else
+      "p-#{current_page.data[:title].dasherize.downcase}"
+    end
+  end
+end
 
 set :css_dir,    'stylesheets'
 set :js_dir,     'javascripts'
