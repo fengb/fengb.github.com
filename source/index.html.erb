@@ -2,15 +2,13 @@
 class: index
 ---
 <section id='blog'>
-  <!--
-  {% for post in site.posts %}
+  <% blog.articles.each do |article| %>
     <section class='panel'>
-      <h2><a href='{{post.url}}'>{{post.title}}</a></h2>
-      <h3>{{post.date | date: '%Y-%m-%d'}}</h3>
-      <p>{{post.excerpt | strip_html}}</p>
+      <h2><a href='<%= article.url %>'><%= article.title %></a></h2>
+      <h3><%= article.date.strftime('%Y-%m-%d') %></h3>
+      <p><%= article.summary %></p>
     </section>
-  {% endfor %}
-  -->
+  <% end %>
 </section>
 
 <aside>
