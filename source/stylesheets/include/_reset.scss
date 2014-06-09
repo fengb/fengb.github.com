@@ -7,12 +7,11 @@ a {
   text-decoration: none;
 }
 
-h1, h2, p, dd { margin: 0; }
-
-ul {
-  list-style: none;
+h1, h2, p, dd, ul, ol, blockquote {
   margin: 0;
   padding: 0;
 }
+
+ul { list-style: none; }
 
 * { -webkit-tap-highlight-color: rgba(0,0,0,0); }

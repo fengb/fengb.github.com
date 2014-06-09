@@ -69,9 +69,13 @@ main {
   dl { margin: 12px 0; }
   p { margin: 8px 0; }
   li { margin: 6px 0; }
-  ul {
-    list-style: disc;
-    margin-left: 20px;
+  ul { list-style: disc; }
+  ul, ol { margin-left: 20px; }
+  blockquote {
+    margin-left: 2px;
+    padding-left: 10px;
+    border-left: 1px solid $unsat7;
+    color: $unsat6;
   }
 
   #legal {
