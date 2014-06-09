@@ -1,4 +1,4 @@
 #!/bin/bash
 
 
-cd jekyll && bundle exec jekyll build --config _config.yml,_config.publish.yml --destination ../dist
+bundle exec middleman build
