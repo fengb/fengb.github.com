@@ -1,5 +1,4 @@
 ---
-layout: blog
 title: I Love Dividends
 ---
 I am a huge fan of dividend paying stocks.  While not the most efficient return
