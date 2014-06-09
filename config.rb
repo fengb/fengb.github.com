@@ -1,4 +1,11 @@
+Slim::Engine.default_options[:pretty] = true
+
 activate :blog, layout: 'blog', prefix: 'blog', summary_separator: /\n\n/
+
+set :css_dir,    'stylesheets'
+set :js_dir,     'javascripts'
+set :images_dir, 'images'
+set :fonts_dir,  'fonts'
 
 helpers do
   def title
@@ -14,11 +21,6 @@ helpers do
     end
   end
 end
-
-set :css_dir,    'stylesheets'
-set :js_dir,     'javascripts'
-set :images_dir, 'images'
-set :fonts_dir,  'fonts'
 
 # Build-specific configuration
 configure :build do
