@@ -1,5 +1,3 @@
-Slim::Engine.default_options[:pretty] = true
-
 activate :blog, layout: 'blog', prefix: 'blog', summary_separator: /\n\n/
 
 set :css_dir,    'stylesheets'
