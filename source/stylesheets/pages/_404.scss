@@ -34,11 +34,11 @@
         @include vendor(transform, rotate(-20deg));
       }
     }
-  }
 
-  &:hover span.left.arm,
-  &:hover span.right.arm {
-    top: 0;
-    @include vendor(transform, rotate(0));
+    &:hover span.left.arm,
+    &:hover span.right.arm {
+      top: 0;
+      @include vendor(transform, rotate(0));
+    }
   }
 }

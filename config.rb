@@ -16,7 +16,7 @@ helpers do
     if current_page.data[:class]
       "p-#{current_page.data[:class]}"
     else
-      "p-#{current_page.data[:title].dasherize.downcase}"
+      "p-#{current_page.data[:title].to_s.dasherize.downcase}"
     end
   end
 end
