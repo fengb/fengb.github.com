@@ -1,6 +1,4 @@
 .DS_Store
 /.bundle
-/dist
-/jekyll/.sass-cache
-/jekyll/_site
-/jekyll/tmp
+/build
+/tmp
