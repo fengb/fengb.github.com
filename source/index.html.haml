@@ -6,7 +6,7 @@ class: index
     %section.panel
       %h2= link_to article.title, article.url
       %h3= article.date.strftime('%Y-%m-%d')
-      %p= article.summary
+      %p= article.summary.gsub(/\<.*?\>/, '')
 
 %aside
   %section#about.panel
