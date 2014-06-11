@@ -16,18 +16,18 @@
       document.documentElement.className='js'
     /[if lt IE 9]
       = javascript_include_tag 'vendor/html5shiv-printshiv'
-  %body
+  %body{class: main_class}
     %header#top
       %nav= link_to 'fengb.info', '/', class: 'icon-logo'
       %h1= title
 
-    %main#content{class: main_class}
+    %main#content
       ~ yield
 
-      %footer#legal
-        %span#copy Benjamin Feng &copy; #{Date.today.year}
-        %span#license
-          This website is licensed under
-          = link_to 'CC BY-NC-ND 3.0', 'http://creativecommons.org/licenses/by-nc-nd/3.0/', rel: 'license', title: 'Creative Commons Attribution-NonCommercial-NoDerivs 3.0 license'
+    %footer#legal
+      %span#copy Benjamin Feng &copy; #{Date.today.year}
+      %span#license
+        This website is licensed under
+        = link_to 'CC BY-NC-ND 3.0', 'http://creativecommons.org/licenses/by-nc-nd/3.0/', rel: 'license', title: 'Creative Commons Attribution-NonCommercial-NoDerivs 3.0 license'
 
     = javascript_include_tag 'app'

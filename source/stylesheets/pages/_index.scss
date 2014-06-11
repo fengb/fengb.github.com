@@ -31,7 +31,10 @@
 
   @media only screen and (min-width: 610px) {
     #blog { margin-right: 210px + $gutter; }
-    #legal { right: 210px + $gutter; }
+    #legal {
+      position: relative;
+      right: 105px;
+    }
 
     aside {
       position: absolute;

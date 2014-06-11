@@ -75,32 +75,30 @@ main {
     border-left: 1px solid $unsat7;
     color: $unsat6;
   }
+}
 
-  #legal {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    padding: $gutter 0;
-    font-size: 11px;
-    line-height: 120%;
-    color: $unsat6;
-    text-align: center;
+#legal {
+  @include constrained;
+  margin-top: $gutter;
+  margin-bottom: $gutter;
+  font-size: 11px;
+  line-height: 120%;
+  color: $unsat6;
+  text-align: center;
 
-    #license a { text-decoration: underline; }
+  a { text-decoration: underline; }
 
-    @media only screen and (max-width: 399px) {
-      #copy {
-        display: block;
-        margin-bottom: 4px;
-      }
+  @media only screen and (max-width: 399px) {
+    #copy {
+      display: block;
+      margin-bottom: 4px;
     }
+  }
 
-    @media only screen and (min-width: 400px) {
-      #copy:after {
-        content: ' •';
-        padding: 0 2px;
-      }
+  @media only screen and (min-width: 400px) {
+    #copy:after {
+      content: ' •';
+      padding: 0 2px;
     }
   }
 }
