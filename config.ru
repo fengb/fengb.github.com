@@ -1,16 +1,17 @@
-require "middleman-core"
-require "middleman-core/load_paths"
 require "middleman-core/preview_server"
 
-Middleman.setup_load_paths
-
 module Middleman::PreviewServer
-  def self.preview_in_rack
-    @options = { latency: 0.25 }
+  def self.to_rack_app(opts = {})
+    @options = opts
+    @options[:latency] ||= 0.25
+
+    require "middleman-core/load_paths"
+    Middleman.setup_load_paths
+
     @app = new_app
     start_file_watcher
+    @app.class.to_rack_app
   end
 end
 
-Middleman::PreviewServer.preview_in_rack
-run Middleman::PreviewServer.app.class.to_rack_app
+run Middleman::PreviewServer.to_rack_app
