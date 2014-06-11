@@ -1,0 +1,11 @@
+- link ||= false
+%header
+  - if link
+    %h2.title= link_to entry.title, entry.url
+  - else
+    %h2.title= entry.title
+
+  %h3.date= entry.date.strftime('%Y-%m-%d')
+  %ul.menu.tags
+    - entry.tags.each do |tag|
+      %li= link_to tag, tag_path(tag)

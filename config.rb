@@ -1,4 +1,4 @@
-activate :blog, layout: 'blog',
+activate :blog, layout: 'blog_entry',
                 prefix: 'blog',
                 summary_separator: /\n\n/,
                 tag_template: 'includes/tag.html'

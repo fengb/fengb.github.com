@@ -1,0 +1,4 @@
+- entries.each do |entry|
+  %section.panel.entry
+    = partial 'entry_header', locals: {entry: entry, link: true}
+    %p= entry.summary.gsub(/\<.*?\>/, '')

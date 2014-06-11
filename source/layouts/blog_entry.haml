@@ -22,8 +22,8 @@
       %h1 fengb.info &rarr; Blog
 
     %main#content.p-blog
-      %section.panel
-        %h2= yield_content(:title) || current_page.data.title
+      %section.panel.entry
+        = partial 'entry_header', locals: {entry: current_page, link: false}
         ~ yield
 
       %footer#legal

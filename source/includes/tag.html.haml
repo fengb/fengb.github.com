@@ -14,4 +14,4 @@ per_page: 12
     - if next_page
       %p= link_to 'Next page', next_page
 
-= partial 'articles_list', locals: {articles: page_articles}
+= partial 'entries_list', locals: {entries: page_articles}

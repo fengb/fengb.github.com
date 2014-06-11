@@ -1,8 +1,0 @@
-- articles.each do |article|
-  %section.panel.entry
-    %h2.title= link_to article.title, article.url
-    %h3.date= article.date.strftime('%Y-%m-%d')
-    %ul.menu.tags
-      - article.tags.each do |tag|
-        %li= link_to tag, tag_path(tag)
-    %p= article.summary.gsub(/\<.*?\>/, '')
