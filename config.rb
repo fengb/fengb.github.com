@@ -24,6 +24,10 @@ helpers do
       "p-#{current_page.data[:title].to_s.dasherize.downcase}"
     end
   end
+
+  def strip_tags(str)
+    str.gsub(/\<.*?\>/, '')
+  end
 end
 
 configure :build do
