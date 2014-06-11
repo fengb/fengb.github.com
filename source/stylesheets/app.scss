@@ -31,7 +31,6 @@ body {
   background: $unsat7;
   color: $unsat1;
   box-shadow: 0 1px 2px $unsat6;
-  margin-bottom: 2px;
   nav {
     @include constrained;
 
@@ -59,7 +58,6 @@ main {
   @include constrained;
   position: relative;
   line-height: 120%;
-  padding: $gutter;
 
   a {
     text-decoration: underline;
@@ -83,7 +81,7 @@ main {
     top: 100%;
     left: 0;
     right: 0;
-    padding-bottom: $gutter;
+    padding: $gutter 0;
     font-size: 11px;
     line-height: 120%;
     color: $unsat6;

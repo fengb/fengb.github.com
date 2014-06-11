@@ -2,8 +2,7 @@
 class: index
 ---
 %section#blog
-  - blog.articles.each do |article|
-    = partial 'article_snippet', locals: {article: article}
+  = partial 'articles_list', locals: {articles: blog.articles}
 
 %aside
   %section#about.panel

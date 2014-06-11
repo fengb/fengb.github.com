@@ -35,18 +35,12 @@
 
     aside {
       position: absolute;
-      top: 0;
+      top: -$gutter;
       right: $gutter;
       width: 210px;
-
-      > section { margin-top: $gutter; }
     }
   }
 
-  #blog > section {
-    margin-bottom: $gutter;
-    &:last-child { margin-bottom: 0; }
-  }
   aside h2 { font-size: 1.3em; }
 
   #contact {

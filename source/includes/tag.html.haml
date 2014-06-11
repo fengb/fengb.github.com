@@ -1,21 +1,17 @@
 ---
 pageable: true
 per_page: 12
-layout: blog
 ---
 - content_for :title do
-  Articles tagged '#{tagname}'
+  Blog [#{tagname}]
 
 - if paginate && num_pages > 1
-  %p Page #{page_number} of #{num_pages}
+  %section.panel
+    %p Page #{page_number} of #{num_pages}
 
-  - if prev_page
-    %p= link_to 'Previous page', prev_page
-  - if next_page
-    %p= link_to 'Next page', next_page
+    - if prev_page
+      %p= link_to 'Previous page', prev_page
+    - if next_page
+      %p= link_to 'Next page', next_page
 
-%ul
-  - page_articles.each do |article|
-    %li
-      = link_to article.title, article
-      %span= article.date.strftime('%Y-%m-%d')
+= partial 'articles_list', locals: {articles: page_articles}
