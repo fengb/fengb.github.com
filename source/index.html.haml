@@ -3,10 +3,7 @@ class: index
 ---
 %section#blog
   - blog.articles.each do |article|
-    %section.panel
-      %h2= link_to article.title, article.url
-      %h3= article.date.strftime('%Y-%m-%d')
-      %p= article.summary.gsub(/\<.*?\>/, '')
+    = partial 'article_snippet', locals: {article: article}
 
 %aside
   %section#about.panel

@@ -1,5 +1,6 @@
 ---
 title: I Dislike Splits... Usually
+tags: investment
 ---
 Stock splits have been recently in the limelight due in no small part to the
 high profile Google and Apple.  I am usually against splits for a big reason:

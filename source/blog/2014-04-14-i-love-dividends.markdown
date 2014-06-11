@@ -1,5 +1,6 @@
 ---
 title: I Love Dividends
+tags: investment
 ---
 I am a huge fan of dividend paying stocks.  While not the most efficient return
 in shareholder value, dividends provides some qualities that are better than
