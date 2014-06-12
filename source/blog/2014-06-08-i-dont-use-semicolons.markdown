@@ -1,6 +1,6 @@
 ---
 title: I Don't Use Semicolons
-tags: development
+tags: development, javascript
 ---
 There is a strong stigma against using automatic semicolon insertion (ASI).  I
 used to be dogmatically against ASI until my colleague gave me some doubt.  I

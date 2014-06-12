@@ -1,18 +1,24 @@
 .entry {
   .date {
-    float: left;
-    margin: 0;
+    display: inline-block;
+    margin: 0 4px 0 0;
   }
+
   .tags {
-    list-style: none;
-    margin: -1px 0 0 110px;
+    display: inline-block;
+    vertical-align: top;
+    white-space: nowrap;
+    min-width: 200px;
+    margin: 0 0 4px;
     li {
       display: inline-block;
-      margin: 0;
+      margin: 0 0 0 4px;
+
+      &:first-child { margin: 0; }
 
       a {
         text-decoration: none;
-        padding: 1px 3px 0;
+        padding: 1px 6px 0;
         border: 1px solid $unsat7;
         background: $unsat8;
 
