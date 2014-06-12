@@ -1,5 +1,8 @@
 ul.menu {
-  a {
+  margin: 0;
+
+  li, a {
     display: block;
+    margin: 0;
   }
 }
