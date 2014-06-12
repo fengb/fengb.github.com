@@ -11,8 +11,6 @@
   max-width: 960px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: $gutter;
-  padding-right: $gutter;
 }
 
 html {
@@ -25,6 +23,7 @@ html {
 
 body {
   margin: 0;
+  min-width: 240px;
 }
 
 #top {
@@ -33,6 +32,8 @@ body {
   box-shadow: 0 1px 2px $unsat6;
   nav {
     @include constrained;
+    padding: 0 $gutter;
+    box-sizing: border-box;
 
     a.icon-logo {
       @include text-replace;
@@ -57,7 +58,6 @@ body {
 main {
   @include constrained;
   position: relative;
-  line-height: 120%;
 
   a {
     text-decoration: underline;
@@ -79,7 +79,6 @@ main {
 
 #legal {
   @include constrained;
-  margin-top: $gutter;
   margin-bottom: $gutter;
   font-size: 11px;
   line-height: 120%;

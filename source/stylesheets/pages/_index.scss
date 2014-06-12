@@ -6,7 +6,7 @@
 
       #contact {
         @include flex(0 0 auto);
-        margin-left: $gutter;
+        margin-left: 0;
       }
     }
   }
@@ -36,8 +36,8 @@
       @include display-flex;
 
       aside {
-        @include flex(0 0 210px);
-        margin-left: $gutter;
+        @include flex(0 0 230px);
+        margin-left: -$gutter;
       }
     }
 
