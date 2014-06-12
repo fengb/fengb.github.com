@@ -1,16 +1,18 @@
 .p-index {
   @media only screen and (max-width: 609px) {
     aside {
-      margin: 0 (-$gutter) (-$gutter);
-      border-spacing: $gutter;
+      margin-top: -$gutter;
+      @include display-flex;
 
-      > section { display: table-cell; }
+      #contact {
+        @include flex(0 0 auto);
+        margin-left: $gutter;
+      }
     }
   }
 
   @media only screen and (max-width: 450px) {
     #contact {
-      width: 110px;
       a {
         position: relative;
         font-size: 0px;
@@ -30,17 +32,18 @@
 
 
   @media only screen and (min-width: 610px) {
-    #blog { margin-right: 210px + $gutter; }
+    #content {
+      @include display-flex;
+
+      aside {
+        @include flex(0 0 210px);
+        margin-left: $gutter;
+      }
+    }
+
     #legal {
       position: relative;
       right: 105px;
-    }
-
-    aside {
-      position: absolute;
-      top: -$gutter;
-      right: $gutter;
-      width: 210px;
     }
   }
 

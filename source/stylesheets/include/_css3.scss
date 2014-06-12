@@ -22,3 +22,19 @@ $vendor-prefixes: (-webkit-, -moz-, -ms-, -o-, '');
     background-image: #{$prefix}linear-gradient($args);
   }
 }
+
+@mixin display-flex {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin flex($val) {
+  -webkit-box-flex: $val;
+  -moz-box-flex: $val;
+  -webkit-flex: $val;
+  -ms-flex: $val;
+  flex: $val;
+}
