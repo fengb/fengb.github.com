@@ -5,28 +5,8 @@
   }
 
   .tags {
-    display: inline-block;
     vertical-align: top;
-    white-space: nowrap;
     min-width: 200px;
     margin: 0 0 4px;
-    li {
-      display: inline-block;
-      margin: 0 0 0 4px;
-
-      &:first-child { margin: 0; }
-
-      a {
-        text-decoration: none;
-        padding: 1px 6px 0;
-        border: 1px solid $unsat7;
-        background: $unsat8;
-
-        &:hover {
-          color: inherit;
-          border-color: $unsat6;
-        }
-      }
-    }
   }
 }

@@ -1,0 +1,17 @@
+.tags {
+  display: inline-block;
+  white-space: nowrap;
+
+  a {
+    text-decoration: none;
+    margin: 0 0 0 4px;
+    padding: 1px 6px 0;
+    border: 1px solid $unsat7;
+    background: $unsat8;
+
+    &:hover {
+      color: inherit;
+      border-color: $unsat6;
+    }
+  }
+}
