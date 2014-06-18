@@ -5,13 +5,34 @@ class: index
   = partial 'entries_list', locals: {entries: blog.articles}
 
 %aside
+  %section.panel#about
+    %h2 About
+    %p
+      Benjamin Feng is a technology consultant with experience in the entire
+      software stack from database architecture to infrastructure deployment to
+      UX design.
+
   %div.group
-    %section.panel#about
-      %h2 About
-      %p
-        Benjamin Feng is a technology consultant with experience in the entire
-        software stack from database architecture to infrastructure deployment to
-        UX design.
+    %section.panel#projects
+      %h2 Projects
+      %dl
+        %dt <a>GRU</a>
+        %dd.tech.tags
+          = link_to 'Node', 'http://nodejs.org'
+
+        %dt= link_to 'NVST', 'https://fengb-nvst.com'
+        %dd.tech.tags
+          = link_to 'Rails', 'http://rubyonrails.org'
+          = link_to 'D3', 'http://d3js.org'
+
+        %dt= link_to 'fengb.info', 'http://www.fengb.info'
+        %dd.tech.tags
+          = link_to 'Middleman', 'http://middlemanapp.com'
+
+        %dt= link_to 'Dough', 'http://dough.com'
+        %dd.tech.tags
+          = link_to 'Ember', 'http://emberjs.com'
+          = link_to 'iOS', 'https://developer.apple.com/technologies/ios/'
 
     %section.panel#contact
       %h2 Contact
@@ -20,25 +41,3 @@ class: index
         %li= mail_to 'contact@fengb.info', 'contact@fengb.info', class: 'email'
         %li= link_to 'github.com/fengb', 'https://github.com/fengb', class: 'github'
         %li= link_to 'linkedin.com/in/fengb', 'https://linkedin.com/in/fengb', class: 'linkedin'
-
-  %section.panel#projects
-    %h2 Projects
-    %dl
-      %dt <a>GRU</a>
-      %dd.tech.tags
-        = link_to 'Node', 'http://nodejs.org'
-
-      %dt= link_to 'NVST', 'https://fengb-nvst.com'
-      %dd.tech.tags
-        = link_to 'Rails', 'http://rubyonrails.org'
-        = link_to 'D3', 'http://d3js.org'
-
-      %dt= link_to 'fengb.info', 'http://www.fengb.info'
-      %dd.tech.tags
-        = link_to 'Middleman', 'http://middlemanapp.com'
-
-      %dt= link_to 'Dough', 'http://dough.com'
-      %dd.tech.tags
-        = link_to 'Rails', 'http://rubyonrails.org'
-        = link_to 'Ember', 'http://emberjs.com'
-        = link_to 'iOS', 'https://developer.apple.com/technologies/ios/'
