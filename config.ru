@@ -1,3 +1,7 @@
+require 'rubygems'
+require 'bundler'
+Bundler.setup
+
 require "middleman-core/preview_server"
 
 module Middleman::PreviewServer
