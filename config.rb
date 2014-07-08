@@ -1,3 +1,5 @@
+require 'tilt-prawn'
+
 activate :blog, layout: 'blog_entry',
                 prefix: 'blog',
                 summary_separator: /\n\n/,

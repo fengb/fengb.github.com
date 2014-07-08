@@ -6,3 +6,5 @@ gem 'middleman-deploy'
 gem 'nokogiri'
 gem 'prawn'
 gem 'pry'
+
+gem 'tilt-prawn'

@@ -119,6 +119,9 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
+    tilt-prawn (0.0.1)
+      prawn (~> 1.0)
+      tilt (~> 1.4)
     ttfunk (1.1.1)
     tzinfo (1.2.1)
       thread_safe (~> 0.1)
@@ -137,3 +140,4 @@ DEPENDENCIES
   nokogiri
   prawn
   pry
+  tilt-prawn
