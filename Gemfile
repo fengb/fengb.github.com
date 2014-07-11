@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'middleman'
 gem 'middleman-blog'
 gem 'middleman-deploy'
-gem 'nokogiri'
+gem 'builder'
 gem 'prawn'
 gem 'pry'
 
