@@ -58,7 +58,7 @@ class << pdf
     end
 
     if block_given?
-      move_up gutter+1
+      move_up gutter
       indent 2*gutter do
         yield
       end
@@ -97,17 +97,16 @@ end
 pdf.instance_eval do
   font_size 11
   header 'Benjamin Feng', nav: {'(312) 725-2842'     => 'tel:+1-312-725-2842',
-                                  'contact@fengb.info' => 'mailto:contact@fengb.info',
-                                  'github.com/fengb'   => 'https://github.com/fengb'}
+                                'contact@fengb.info' => 'mailto:contact@fengb.info',
+                                'github.com/fengb'   => 'https://github.com/fengb'}
 
   sec1 '.info' do
-    sec2 'Objective',         description: 'To solve complex problems with emphasis on simplicity and extensibility'
+    sec2 'Objective',    description: 'To solve complex problems with emphasis on simplicity and extensibility'
 
     sec2 'Skills' do
-      sec3 'Languages',       description: 'C, Javascript, Objective-C, Python, Ruby, SQL'
-      sec3 'Frameworks',      description: 'Django, jQuery, Ruby on Rails',        padding: 2
-      sec3 'Version Control', description: 'Git, Mercurial, Perforce, Subversion', padding: 2
-      sec3 'Platforms',       description: 'Arch Linux, Mac OS X, AWS, Heroku',    padding: 2
+      sec3 'Languages',  description: 'C, Javascript/Coffeescript, Objective-C, Python, Ruby, SQL'
+      sec3 'Frameworks', description: 'Ember.js, jQuery, node.js, Ruby on Rails',     padding: 2
+      sec3 'Platforms',  description: 'Linux - Arch / Ubuntu, Mac OS X, Heroku, AWS', padding: 2
     end
   end
 
@@ -116,13 +115,16 @@ pdf.instance_eval do
       sec3 '<b><i>Technology Consultant</i></b>'
 
       sec3 link('Gozent', 'http://www.gozent.com'),
-        subtitle: date_range('2013-07-27', 'present'),
+        subtitle: date_range('2013-07-27', '2014-05-29'),
         description: 'Architected MVP for startup
                       Built and automated Amazon Web Services deployment cluster
                       Coordinated with Experian to audit infrastructure'
+
+      sec3 'Bitvain',
+        subtitle: date_range('2014-10-18', 'present')
     end
 
-    sec2 link('FENGB NVST', 'https://fengb-nvst.com') do
+    sec2 link('FENGB NVST', 'http://fengb-nvst.com') do
       sec3 'Managing Partner',
         subtitle: date_range('2013-03-11', 'present'),
         description: 'Investment partnership focused on value investing principles
