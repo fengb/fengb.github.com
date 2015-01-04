@@ -1,4 +1,5 @@
-require 'tilt-prawn'
+require 'bundler'
+Bundler.require
 
 activate :blog, layout: 'blog_entry',
                 prefix: 'blog',
