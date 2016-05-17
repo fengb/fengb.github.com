@@ -114,14 +114,16 @@ pdf.instance_eval do
     sec2 link('FENGB TECH', 'http://fengb.info') do
       sec3 '<b><i>Technology Consultant</i></b>'
 
-      sec3 link('Gozent', 'http://www.gozent.com'),
+      sec3 link('Bitvain', 'https://web.archive.org/web/20141227142047/http://www.bitvain.com/'),
+        subtitle: date_range('2014-10-18', '2015-01-31'),
+        description: 'Designed independently scalable subsystems
+                      Wrote Ruby-C extension to increase performance by 100x'
+
+      sec3 link('Gozent', 'https://web.archive.org/web/20141228062135/https://www.gozent.com/'),
         subtitle: date_range('2013-07-27', '2014-05-29'),
         description: 'Architected MVP for startup
                       Built and automated Amazon Web Services deployment cluster
                       Coordinated with Experian to audit infrastructure'
-
-      sec3 'Bitvain',
-        subtitle: date_range('2014-10-18', 'present')
     end
 
     sec2 link('FENGB NVST', 'http://fengb-nvst.com') do
@@ -134,7 +136,10 @@ pdf.instance_eval do
 
     sec2 link('dough, Inc.', 'http://dough.com') do
       sec3 'Sr. Developer',
-        subtitle: date_range('2014-05-05', 'present')
+        subtitle: date_range('2014-05-05', 'present'),
+        description: 'Lead programmer for new frontend stack
+                      Promoted various knowledge sharing initiatives such as tech talks
+                      Mentored fresh developer graduates'
     end
 
     sec2 link('Enova International', 'http://www.enova.com') do
@@ -142,8 +147,7 @@ pdf.instance_eval do
         subtitle: date_range('2013-04-03', '2014-05-02'),
         description: 'Technical team lead for 6 developers and 3 QA
                       Converted design process to lean UX by example
-                      Enhanced accounting and underwriting subsystems
-                      Implemented data aggregation with Adobe SiteCatalyst reporting suite'
+                      Improved accounting and underwriting subsystems'
 
       sec3 'Sr. Software Engineer II',
         subtitle: date_range('2011-07-01', '2013-04-02'),
