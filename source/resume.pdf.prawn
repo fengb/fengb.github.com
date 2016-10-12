@@ -104,26 +104,26 @@ pdf.instance_eval do
     sec2 'Objective',    description: 'To solve complex problems with emphasis on simplicity and extensibility'
 
     sec2 'Skills' do
-      sec3 'Languages',  description: 'C, Javascript/Coffeescript, Objective-C, Python, Ruby, SQL'
-      sec3 'Frameworks', description: 'Ember.js, jQuery, node.js, Ruby on Rails',     padding: 2
-      sec3 'Platforms',  description: 'Linux - Arch / Ubuntu, Mac OS X, Heroku, AWS', padding: 2
+      sec3 'Languages',  description: 'C, Javascript, Objective-C, Python, Ruby, SQL'
+      sec3 'Frameworks', description: 'Cocoa, Ember.js, koa.js, React, Ruby on Rails', padding: 2
+      sec3 'Platforms',  description: 'Linux - Arch / Ubuntu, macOS, iOS, Heroku, AWS', padding: 2
     end
   end
 
   sec1 '.jobs' do
     sec2 link('FENGB TECH', 'http://fengb.info') do
-      sec3 '<b><i>Technology Consultant</i></b>'
+      sec3 '<i>Technology Consultant</i>'
 
       sec3 link('Bitvain', 'https://web.archive.org/web/20141227142047/http://www.bitvain.com/'),
         subtitle: date_range('2014-10-18', '2015-01-31'),
         description: 'Designed independently scalable subsystems
-                      Wrote Ruby-C extension to increase performance by 100x'
+                      Integrated Ruby with C extensions to increase performance 100x'
 
       sec3 link('Gozent', 'https://web.archive.org/web/20141228062135/https://www.gozent.com/'),
         subtitle: date_range('2013-07-27', '2014-05-29'),
         description: 'Architected MVP for startup
-                      Built and automated Amazon Web Services deployment cluster
-                      Coordinated with Experian to audit infrastructure'
+                      Automated Amazon EC2 deployment cluster
+                      Coordinated Experian infrastructure audit'
     end
 
     sec2 link('FENGB NVST', 'http://fengb-nvst.com') do
@@ -134,33 +134,34 @@ pdf.instance_eval do
                       Programmed software to automate portfolio tracking and tax matters'
     end
 
-    sec2 link('dough, Inc.', 'http://dough.com') do
+    sec2 link('dough', 'http://dough.com') do
       sec3 'Sr. Developer',
         subtitle: date_range('2014-05-05', 'present'),
-        description: 'Lead programmer for new frontend stack
+        description: 'Lead development for fresh Ember.js project
+                      Optimized database response times via Arel and PostgreSQL queries
                       Promoted various knowledge sharing initiatives such as tech talks
                       Mentored fresh developer graduates'
     end
 
-    sec2 link('Enova International', 'http://www.enova.com') do
+    sec2 link('Enova', 'http://www.enova.com') do
       sec3 'Lead Software Engineer',
         subtitle: date_range('2013-04-03', '2014-05-02'),
         description: 'Technical team lead for 6 developers and 3 QA
-                      Converted design process to lean UX by example
-                      Improved accounting and underwriting subsystems'
+                      Initiated lean UX design principles
+                      Improved accounting and underwriting subsystems
+                      Onboarded newly hired developers and managers'
 
       sec3 'Sr. Software Engineer II',
         subtitle: date_range('2011-07-01', '2013-04-02'),
         description: 'Drove several high priority Sarbanes-Oxley audit related projects
-                      Integrated with Lexis Nexis FlexID and Risk View credit reports
-                      Extended existing ACH module to communicate with Wells Fargo
-                      Trained newly hired developers and managers'
+                      Strengthened risk checks by integrating to Lexis Nexis credit reports
+                      Integrated with Wells Fargo ACH deposits'
 
       sec3 'Sr. UI Engineer',
         subtitle: date_range('2010-07-01', '2011-06-30'),
         description: 'Primary UI developer for three product websites
-                      Realigned marketing and business to focus on customer experience
-                      Launched mobile web for all existing products'
+                      Unified marketing needs with customer experience
+                      Launched mobile web for existing products'
 
       sec3 'UI Engineer',
         subtitle: date_range('2009-10-19', '2010-06-30'),
@@ -178,8 +179,8 @@ pdf.instance_eval do
     sec2 link('Business Logic', 'http://businesslogic.com/') do
       sec3 'Software Engineer',
         subtitle: date_range('2007-06-04', '2009-08-04'),
-        description: 'Converted individual forecasting engine to aggregate company performance
-                      Maintained SOAP to REST translation layer for reverse-engineered Java app
+        description: 'Converted individual forecasting engine to aggregate performance
+                      Maintained SOAP to REST translation for legacy API compatibility
                       Created functional testing framework for separating data and verification'
     end
   end
