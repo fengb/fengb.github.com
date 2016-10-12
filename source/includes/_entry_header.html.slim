@@ -4,7 +4,7 @@ header
     - if link
       a[href=entry.url] = entry.title
     - else
-      | entry.title
+      = entry.title
 
   h3.date = entry.date.strftime('%Y-%m-%d')
   div.tags
