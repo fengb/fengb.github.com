@@ -13,6 +13,14 @@ class << pdf
     Date.parse(date).strftime("%b '%y") rescue date
   end
 
+  def bold(text)
+    "<b>#{text}</b>"
+  end
+
+  def italic(text)
+    "<i>#{text}</i>"
+  end
+
   def link(text, url)
     "<color rgb='435c96'><link href='#{url}'>#{text}</link></color>"
   end
@@ -22,73 +30,32 @@ class << pdf
   end
 
   # Definitions
-  def header(title, nav: {})
-    text title, align: :center, size: 18, style: :bold
-    move_up 1
-    font_size 11 do
-      text nav.map{|text, url| link(text, url)}.join('  •  '), inline_format: true, align: :center
-    end
+
+  def sec(title)
+    text title, size: 1.7 * font_size, style: :bold
+    yield
+    move_down 2*gutter
   end
 
-  def sec1(title)
-    move_down 1.5*gutter
-
-    text_box title, at: [gutter, cursor+1], size: 17.3, style: :bold, rotate: 270
-    indent 3*gutter do
-      bounding_box([0, cursor], width: bounds.width) do
-        move_up gutter
-        yield
-
-        stroke do
-          vertical_line bounds.top+1, bounds.bottom+2, at: -gutter
-        end
-      end
-    end
-  end
-
-  def sec2(name, description: nil)
+  def blurb(title, role: nil, date: nil, description:)
     move_down gutter
 
-    text name, inline_format: true, size: 13, style: :bold
-
-    if description
-      font 'Times-Roman' do
-        text_box description, at: [2*gutter + 140, cursor + 13.7], inline_format: :true
-      end
-    end
-
-    if block_given?
-      move_up gutter
-      indent 2*gutter do
-        yield
-      end
-    end
-  end
-
-  def sec3(*titles, padding: gutter, subtitle: nil, description: nil)
-    move_down padding
-
-    text titles.join('<br>'), size: 10, style: :bold, inline_format: true
-    if subtitle
+    if date
       font 'Courier' do
-        move_down 1.3
-        text subtitle, size: 10, style: :italic
+        text_box date, size: 0.9 * font_size, at: [0, cursor - 1], align: :right
       end
     end
 
-    if description
-      if subtitle
-        move_up 24.1
-      else
-        move_up 12.3
-      end
-      indent 140 do
-        font 'Times-Roman' do
-          text description
-        end
-        if description !~ /\n/ and subtitle
-          move_down 10
-        end
+    title = bold(title)
+    if role
+      title += " — #{role}"
+    end
+
+    text title, inline_format: true
+
+    font 'Times-Roman' do
+      indent 2*gutter do
+        text description
       end
     end
   end
@@ -96,100 +63,116 @@ end
 
 pdf.instance_eval do
   font_size 11
-  header 'Benjamin Feng', nav: {'(312) 725-2842'     => 'tel:+1-312-725-2842',
-                                'contact@fengb.info' => 'mailto:contact@fengb.info',
-                                'github.com/fengb'   => 'https://github.com/fengb'}
 
-  sec1 '.info' do
-    sec2 'Objective',    description: 'To solve complex problems with emphasis on simplicity and extensibility'
+  bounding_box [0, bounds.height], width: 410 do
+    text 'Benjamin Feng', size: 20, style: :italic
 
-    sec2 'Skills' do
-      sec3 'Languages',  description: 'C, Javascript, Objective-C, Python, Ruby, SQL'
-      sec3 'Frameworks', description: 'Cocoa, Ember.js, koa.js, React, Ruby on Rails', padding: 2
-      sec3 'Platforms',  description: 'Linux - Arch / Ubuntu, macOS, iOS, Heroku, AWS', padding: 2
+    move_down 2*gutter
+
+    sec 'Objective' do
+      move_down gutter
+      text 'To solve complex problems with emphasis on simplicity and extensibility'
     end
-  end
 
-  sec1 '.jobs' do
-    sec2 link('FENGB TECH', 'http://fengb.info') do
-      sec3 '<i>Technology Consultant</i>'
+    sec 'Experience' do
+      blurb italic(link('Dough', 'http://dough.com')),
+        role: 'Sr. Developer',
+        date: date_range('2014-05-05', 'present'),
+        description: 'Lead development for fresh Ember.js project
+                      Optimized database response times via Arel and PostgreSQL queries
+                      Promoted various knowledge sharing initiatives such as tech talks
+                      Mentored fresh developer graduates'
 
-      sec3 link('Bitvain', 'https://web.archive.org/web/20141227142047/http://www.bitvain.com/'),
-        subtitle: date_range('2014-10-18', '2015-01-31'),
+      blurb italic(link('Enova', 'http://www.enova.com')),
+        role: 'Lead Software Engineer',
+        date: date_range('2013-04-03', '2014-05-02'),
+        description: 'Technical team lead for 6 developers and 3 QA
+                      Initiated lean UX design principles
+                      Improved accounting and underwriting subsystems
+                      Onboarded newly hired developers and managers
+                      Drove several high priority Sarbanes-Oxley audit related projects
+                      Strengthened risk checks by integrating to Lexis Nexis credit reports
+                      Integrated with Wells Fargo ACH deposits
+                      Primary UI developer for three product websites
+                      Unified marketing needs with customer experience
+                      Launched mobile web for existing products
+                      Launched frontend for new product
+                      Ported legacy UI to Rails with modern semantic HTML/CSS'
+
+      blurb italic(link('Business Logic', 'http://businesslogic.com/')),
+        role: 'Software Engineer',
+        date: date_range('2007-06-04', '2009-08-04'),
+        description: 'Converted individual forecasting engine to aggregate performance
+                      Maintained SOAP to REST translation for legacy API compatibility
+                      Created functional testing framework for separating data and verification'
+    end
+
+    sec 'Self Employment' do
+      blurb italic(link('FENGB NVST', 'http://fengb-nvst.com')),
+        date: date_range('2013-03-11', 'present'),
+        description: 'Investment partnership focused on value investing principles
+                      Adjusted yearly performance: 33.25% (equivalent S&P500: 22.65%)
+                      Programmed software to automate portfolio tracking and tax matters'
+
+      blurb italic(link('Bitvain', 'https://web.archive.org/web/20141227142047/http://www.bitvain.com/')),
+        date: date_range('2014-10-18', '2015-01-31'),
         description: 'Designed independently scalable subsystems
                       Integrated Ruby with C extensions to increase performance 100x'
 
-      sec3 link('Gozent', 'https://web.archive.org/web/20141228062135/https://www.gozent.com/'),
-        subtitle: date_range('2013-07-27', '2014-05-29'),
+      blurb italic(link('Gozent', 'https://web.archive.org/web/20141228062135/https://www.gozent.com/')),
+        date: date_range('2013-07-27', '2014-05-29'),
         description: 'Architected MVP for startup
                       Automated Amazon EC2 deployment cluster
                       Coordinated Experian infrastructure audit'
     end
 
-    sec2 link('FENGB NVST', 'http://fengb-nvst.com') do
-      sec3 'Managing Partner',
-        subtitle: date_range('2013-03-11', 'present'),
-        description: 'Investment partnership focused on value investing principles
-                      Adjusted yearly performance: 33.25% (equivalent S&P500: 22.65%)
-                      Programmed software to automate portfolio tracking and tax matters'
-    end
-
-    sec2 link('dough', 'http://dough.com') do
-      sec3 'Sr. Developer',
-        subtitle: date_range('2014-05-05', 'present'),
-        description: 'Lead development for fresh Ember.js project
-                      Optimized database response times via Arel and PostgreSQL queries
-                      Promoted various knowledge sharing initiatives such as tech talks
-                      Mentored fresh developer graduates'
-    end
-
-    sec2 link('Enova', 'http://www.enova.com') do
-      sec3 'Lead Software Engineer',
-        subtitle: date_range('2013-04-03', '2014-05-02'),
-        description: 'Technical team lead for 6 developers and 3 QA
-                      Initiated lean UX design principles
-                      Improved accounting and underwriting subsystems
-                      Onboarded newly hired developers and managers'
-
-      sec3 'Sr. Software Engineer II',
-        subtitle: date_range('2011-07-01', '2013-04-02'),
-        description: 'Drove several high priority Sarbanes-Oxley audit related projects
-                      Strengthened risk checks by integrating to Lexis Nexis credit reports
-                      Integrated with Wells Fargo ACH deposits'
-
-      sec3 'Sr. UI Engineer',
-        subtitle: date_range('2010-07-01', '2011-06-30'),
-        description: 'Primary UI developer for three product websites
-                      Unified marketing needs with customer experience
-                      Launched mobile web for existing products'
-
-      sec3 'UI Engineer',
-        subtitle: date_range('2009-10-19', '2010-06-30'),
-        description: 'Launched frontend for new product
-                      Ported legacy UI to Rails with modern semantic HTML/CSS'
-    end
-
-    sec2 link('Crusader Storm', 'http://web.archive.org/web/20100623115357/http://www.crusaderstorm.com/') do
-      sec3 'Founder',
-        subtitle: date_range('2010-05-07', '2011-05-06'),
-        description: 'Incubated iPhone app from concept to release
-                      Developed responsive website with graceful degradation'
-    end
-
-    sec2 link('Business Logic', 'http://businesslogic.com/') do
-      sec3 'Software Engineer',
-        subtitle: date_range('2007-06-04', '2009-08-04'),
-        description: 'Converted individual forecasting engine to aggregate performance
-                      Maintained SOAP to REST translation for legacy API compatibility
-                      Created functional testing framework for separating data and verification'
+    stroke do
+      vertical_line bounds.top + 2, bounds.bottom + 15, at: bounds.right + 20
     end
   end
 
-  sec1 '.edu' do
-    sec2 link('Rose-Hulman', 'http://www.rose-hulman.edu/') do
-      sec3 'B.S. Computer Engineering',
-        subtitle: date_range('2003-09-04', '2007-05-26'),
-        description: 'Minors in Computer Science & Economics'
+  bounding_box [440, bounds.height], width: bounds.width - 400 do
+    text link('(312) 725-2842', 'tel:+1-312-725-2842'), inline_format: true
+    text link('contact@fengb.info', 'mailto:contact@fengb.info'), inline_format: true
+    text link('github.com/fengb', 'https://github.com/fengb'), inline_format: true
+
+    font_size 10
+
+    move_down 2*gutter
+
+    sec 'Skills' do
+      blurb 'Languages',
+        description: 'C
+                      Javascript
+                      Objective-C
+                      Python
+                      Ruby
+                      SQL'
+
+      blurb 'Frameworks',
+        description: 'Cocoa
+                      Ember.js
+                      koa.js
+                      React
+                      Ruby on Rails'
+
+      blurb 'Platforms',
+        description: 'Linux - Arch / Ubuntu
+                      macOS
+                      iOS
+                      Heroku
+                      AWS'
+    end
+
+    sec 'Education' do
+      move_down gutter
+      text link('Rose-Hulman', 'http://www.rose-hulman.edu/'), style: :bold_italic, inline_format: true
+      font_size 9 do
+        text 'B.S. Computer Engineering', inline_format: true
+        font 'Courier' do
+          text date_range('2003-09-04', '2007-05-26'), inline_format: true
+        end
+      end
     end
   end
 end
