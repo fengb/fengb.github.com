@@ -42,7 +42,7 @@ class << pdf
 
     if date
       font 'Courier' do
-        text_box date, size: 0.9 * font_size, at: [0, cursor - 1], align: :right
+        text_box date, size: 0.9 * font_size, at: [0, cursor - 0.8], align: :right
       end
     end
 
@@ -54,8 +54,8 @@ class << pdf
     text title, inline_format: true
 
     font 'Times-Roman' do
-      indent 2*gutter do
-        text description
+      indent gutter do
+        text description, inline_format: true
       end
     end
   end
@@ -85,7 +85,7 @@ pdf.instance_eval do
 
       blurb italic(link('Enova', 'http://www.enova.com')),
         role: 'Lead Software Engineer',
-        date: date_range('2013-04-03', '2014-05-02'),
+        date: date_range('2009-10-19', '2014-05-02'),
         description: 'Technical team lead for 6 developers and 3 QA
                       Initiated lean UX design principles
                       Improved accounting and underwriting subsystems
@@ -131,7 +131,7 @@ pdf.instance_eval do
     end
   end
 
-  bounding_box [440, bounds.height], width: bounds.width - 400 do
+  bounding_box [440, bounds.height], width: 120 do
     text link('(312) 725-2842', 'tel:+1-312-725-2842'), inline_format: true
     text link('contact@fengb.info', 'mailto:contact@fengb.info'), inline_format: true
     text link('github.com/fengb', 'https://github.com/fengb'), inline_format: true
@@ -141,38 +141,62 @@ pdf.instance_eval do
     move_down 2*gutter
 
     sec 'Skills' do
-      blurb 'Languages',
-        description: 'C
-                      Javascript
-                      Objective-C
-                      Python
-                      Ruby
-                      SQL'
+      blurb 'Javascript',
+        description: <<-LIST
+          #{link 'node.js', 'https://nodejs.org'}
+          #{link 'Koa', 'http://koajs.com'}
+          #{link 'Bookshelf', 'http://bookshelfjs.org'}
+          #{link 'Webpack', 'https://webpack.github.io'}
+          #{link 'Mocha', 'http://mochajs.org'} / #{link 'Chai', 'http://chaijs.com'}
+          #{link 'React', 'https://facebook.github.io/react/'}
+          #{link 'Riot', 'http://riotjs.com'}
+          #{link 'Ember', 'http://emberjs.com'}
+          #{link 'jQuery', 'http://jquery.com'}
+        LIST
 
-      blurb 'Frameworks',
-        description: 'Cocoa
-                      Ember.js
-                      koa.js
-                      React
-                      Ruby on Rails'
+      blurb 'Ruby',
+        description: <<-LIST
+          #{link 'Ruby on Rails', 'http://rubyonrails.org'}
+          #{link 'Middleman', 'https://middlemanapp.com'}
+          #{link 'Arel', 'https://github.com/rails/arel'}
+          #{link 'Resque', 'http://resque.github.io'}
+          #{link 'Prawn', 'http://prawnpdf.org'}
+          #{link 'RSpec', 'http://rspec.info'}
+          #{link 'Cucumber', 'https://cucumber.io'}
+          #{link 'Capybara', 'http://jnicklas.com/capybara/'}
+        LIST
 
-      blurb 'Platforms',
-        description: 'Linux - Arch / Ubuntu
-                      macOS
-                      iOS
-                      Heroku
-                      AWS'
+      blurb 'iOS',
+        description: <<-LIST
+          #{link 'Objective-C', 'https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html'}
+          #{link 'Cocoa', 'https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/Cocoa.html'}
+          #{link 'AFNetworking', 'http://afnetworking.com'}
+          #{link 'PhoneGap', 'http://phonegap.com'}
+          #{link 'Cocoapods', 'https://cocoapods.org'}
+          #{link 'RubyMotion', 'http://www.rubymotion.com'}
+        LIST
+
+      blurb 'Data',
+        description: <<-LIST
+          #{link 'PostgreSQL', 'https://www.postgresql.org'}
+          #{link 'SQLite', 'https://sqlite.org'}
+          #{link 'Redis', 'http://redis.io'}
+          #{link 'ActiveMQ', 'http://activemq.apache.org'}
+          #{link 'RabbitMQ', 'https://www.rabbitmq.com'}
+        LIST
+
+      blurb 'Intermediate',
+        description: <<-LIST
+          #{link 'C', 'http://www.open-std.org/jtc1/sc22/wg14/'}
+          #{link 'Python', 'https://www.python.org'} – #{link 'Django', 'https://www.djangoproject.com'}
+          #{link 'Java', 'https://www.java.com'} – #{link 'Android', 'https://developer.android.com'}
+        LIST
     end
 
     sec 'Education' do
-      move_down gutter
-      text link('Rose-Hulman', 'http://www.rose-hulman.edu/'), style: :bold_italic, inline_format: true
-      font_size 9 do
-        text 'B.S. Computer Engineering', inline_format: true
-        font 'Courier' do
-          text date_range('2003-09-04', '2007-05-26'), inline_format: true
-        end
-      end
+      blurb italic(link('Rose-Hulman', 'http://www.rose-hulman.edu')),
+        date: date_fmt('2007-05-26'),
+        description: 'B.S. Computer Engineering'
     end
   end
 end
