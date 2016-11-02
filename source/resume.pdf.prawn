@@ -4,6 +4,18 @@ layout: false
 require 'date'
 
 class << pdf
+  ICONS = {
+    bookmarks: "\ue000",
+    phone:     "\ue001",
+    email:     "\ue002",
+    bubble:    "\ue003",
+    twitch:    "\ue004",
+    github:    "\ue005",
+    linkedin:  "\ue006",
+    folder:    "\ue007",
+    bitcoin:   "\ue008"
+  }
+
   # Primitives
   def date_range(from, to)
     "#{date_fmt(from)} - #{date_fmt(to)}"
@@ -23,6 +35,18 @@ class << pdf
 
   def link(text, url)
     "<color rgb='435c96'><link href='#{url}'>#{text}</link></color>"
+  end
+
+  def icon(name, attributes = {})
+    tag(:font, name: 'icon', **attributes) { ICONS[name] }
+  end
+
+  def tag(t, **attributes)
+    contents = yield if block_given?
+    attr_str = attributes
+               .map { |key, value| "#{key}='#{value}'" }
+               .join(' ')
+    "<#{t} #{attr_str}>#{contents}</#{t}>"
   end
 
   def gutter
@@ -59,9 +83,26 @@ class << pdf
       end
     end
   end
+
+  def contact(sources)
+    cursors = []
+    indent 14 do
+      sources.each_value do |content|
+        cursors << cursor
+        text content, inline_format: true
+      end
+    end
+    sources.keys.zip(cursors).each do |(name, cursor_value)|
+      text_box icon(name), at: [0, cursor_value + 1.5], inline_format: true
+    end
+  end
 end
 
 pdf.instance_eval do
+  font_families.update(
+    'icon' => { normal: 'source/fonts/icons.ttf' }
+  )
+
   font_size 11
 
   bounding_box [0, bounds.height], width: 410 do
@@ -127,18 +168,20 @@ pdf.instance_eval do
     end
 
     stroke do
-      vertical_line bounds.top + 2, bounds.bottom + 15, at: bounds.right + 20
+      vertical_line bounds.top - 2, bounds.bottom + 15, at: bounds.right + 20
     end
   end
 
-  bounding_box [440, bounds.height], width: 120 do
-    text link('(312) 725-2842', 'tel:+1-312-725-2842'), inline_format: true
-    text link('contact@fengb.info', 'mailto:contact@fengb.info'), inline_format: true
-    text link('github.com/fengb', 'https://github.com/fengb'), inline_format: true
-
+  bounding_box [440, bounds.height], width: 120, height: bounds.height do
     font_size 10
 
-    move_down 2*gutter
+    sec 'Contact' do
+      contact(
+        phone: link('(312) 725-2842', 'tel:+13127252842'),
+        email: link('contact@fengb.info', 'mailto:contact@fengb.info'),
+        github: link('github.com/fengb', 'https://github.com/fengb')
+      )
+    end
 
     sec 'Skills' do
       blurb 'Javascript',
