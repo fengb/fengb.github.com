@@ -25,6 +25,10 @@ class << pdf
     Date.parse(date).strftime("%b '%y") rescue date
   end
 
+  def u(text)
+    tag(:u) { text }
+  end
+
   def bold(text)
     tag(:b) { text }
   end
@@ -56,13 +60,13 @@ class << pdf
   end
 
   def gutter
-    7
+    7.0
   end
 
   # Definitions
 
   def sec(title, options = {})
-    text title, size: 1.7 * font_size, style: :bold
+    text title, size: 1.7 * font_size, style: :bold, inline_format: true
     indent 1.5 do
       yield
     end
@@ -72,7 +76,7 @@ class << pdf
   def sub(title, date: nil)
     if date
       font 'Courier' do
-        text_box date, size: 0.9 * font_size, at: [0, cursor - 0.8], align: :right, inline_format: true
+        text_box date, size: 0.9 * font_size, at: [0, cursor - 0.9], align: :right, inline_format: true
       end
     end
 
@@ -84,37 +88,35 @@ class << pdf
       end
     end
 
-    move_down gutter
+    move_down gutter/2
   end
 
-  def blurb(title: nil, date: nil, description: nil)
-    move_down gutter/2
-
+  def blurb(title, date: nil, description: nil)
     if date
       font 'Courier' do
-        text_box date, size: 0.9 * font_size, at: [0, cursor - 0.8], align: :right, inline_format: true
+        text_box date, size: 0.9 * font_size, at: [0, cursor - 0.7], align: :right, inline_format: true
       end
     end
 
-    text italic(title), inline_format: true if title
+    text italic(title), inline_format: true
+
+    move_down 1
 
     if description
       indent gutter do
         text description, inline_format: true
       end
     end
+
+    move_down gutter/2
   end
 
   def contact(sources)
-    cursors = []
     indent 14 do
-      sources.each_value do |content|
-        cursors << cursor
+      sources.each do |icon_name, content|
+        text_box icon(icon_name), at: [-14, cursor + 1.5], inline_format: true
         text content, inline_format: true
       end
-    end
-    sources.keys.zip(cursors).each do |(name, cursor_value)|
-      text_box icon(name), at: [0, cursor_value + 1.5], inline_format: true
     end
   end
 end
@@ -129,76 +131,75 @@ pdf.instance_eval do
   bounding_box [0, bounds.height], width: 410 do
     sec 'Benjamin Feng' do
       font 'Times-Roman' do
-        text 'Lead software engineer with 10 years of experience. Wide range of technology experience from database architecture to UX design. Diverse soft skills project management and mentorship.', size: 12
+        text 'Lead software engineer with 10 years of experience in major web technologies like Ruby on Rails, node.js, React, and PostgreSQL. Diverse soft skills include project management and mentorship.', size: 12
       end
     end
 
     sec 'Experience' do
       sub link('Dough', 'http://dough.com') do
-        blurb title: 'Sr. Software Developer',
-          date: date_range('2014-05-05', 'present'),
-          description: 'Architected fresh Ember.js project
-                        Optimized database response times via Arel and PostgreSQL queries
-                        Promoted various knowledge sharing initiatives such as tech talks
-                        Mentored fresh developer graduates'
+        blurb 'Sr. Software Developer',
+          date: date_range('2014-05-05', '2016-10-28'),
+          description: 'Lead developer of Ember.js projects
+                        Resident DB expert with focus on data import and query response times
+                        Architected critical subsystems for Android implementation
+                        Instituted mentorship program for junior developers
+                        Promoted knowledge sharing via tech talks and code reviews'
       end
 
       sub link('Enova', 'http://www.enova.com') do
-        blurb title: 'Lead Software Engineer',
+        blurb 'Lead Software Engineer',
           date: date_range('2013-04-03', '2014-05-02'),
-          description: 'Technical team lead for 6 developers and 3 QA
-                        Initiated lean UX design principles
-                        Improved accounting and underwriting subsystems'
+          description: 'Technical team lead for Rails microservice product
+                        Initiated lean UX design principles using wireframes and user studies
+                        Encouraged collaboration between backend, DB, UI and QA'
 
-        blurb title: 'Sr. Software Engineer II',
+        blurb 'Sr. Software Engineer II',
           date: date_range('2011-07-01', '2013-04-02'),
-          description: 'Onboarded newly hired developers and managers
-                        Drove several high priority Sarbanes-Oxley audit related projects
-                        Strengthened risk checks by integrating to Lexis Nexis credit reports
-                        Integrated with Wells Fargo ACH deposits'
+          description: 'Main developer for critical projects — e.g. security and bank integration
+                        Collaborated with business stakeholders managers to manage priorities and estimates
+                        Onboarded newly hired developers and managers'
 
-        blurb title: 'Sr. UI Engineer',
+        blurb 'Sr. UI Engineer',
           date: date_range('2010-07-01', '2011-06-30'),
-          description: 'Primary UI developer for three product websites
-                        Unified marketing needs with customer experience
-                        Launched mobile web for existing products'
+          description: 'Primary UI developer of three products
+                        Spearheaded efforts to unify customer experience and marketing needs
+                        Launched mobile version of all existing websites'
 
-        blurb title: 'UI Engineer',
+        blurb 'UI Engineer',
           date: date_range('2009-10-19', '2010-06-30'),
           description: 'Launched frontend for new product
                         Ported legacy UI to Rails with modern semantic HTML/CSS'
       end
 
       sub link('Business Logic', 'http://businesslogic.com/') do
-        blurb title: 'Software Engineer',
+        blurb 'Software Engineer',
           date: date_range('2007-06-04', '2009-08-04'),
-          description: 'Converted individual forecasting engine to aggregate performance
-                        Maintained SOAP to REST translation for legacy API compatibility
-                        Created functional testing framework for separating data and verification'
+          description: 'Created functional testing framework for separating data and verification
+                        Converted individual forecasting engine to aggregate performance
+                        Maintained SOAP to REST translation for legacy API compatibility'
+      end
+
+      sub 'Self Employment' do
+        blurb link('FENGB NVST', 'http://fengb-nvst.com'),
+          date: date_range('2013-03-11', 'present'),
+          description: 'Investment partnership focused on value investing principles
+                        Adjusted yearly performance: 33.25% (equivalent S&P500: 22.65%)
+                        Pioneered strategy to normalize gains and dividends against contributions'
+
+        blurb link('Bitvain', 'https://web.archive.org/web/20141227142047/http://www.bitvain.com/'),
+          date: date_range('2014-10-18', '2015-01-31'),
+          description: 'Integrated Rails with C extensions to increase performance 1000x
+                        Extensive Unix programming via forks, signals, named pipes, and blocking IO'
+
+        blurb link('Gozent', 'https://web.archive.org/web/20141228062135/https://www.gozent.com/'),
+          date: date_range('2013-07-27', '2014-05-29'),
+          description: 'Architected product website with integrations against Stripe and Experian
+                        Automated Amazon EC2 deployment cluster'
       end
     end
 
-    sub 'Self Employment' do
-      blurb title: link('FENGB NVST', 'http://fengb-nvst.com'),
-        date: date_range('2013-03-11', 'present'),
-        description: 'Investment partnership focused on value investing principles
-                      Adjusted yearly performance: 33.25% (equivalent S&P500: 22.65%)
-                      Programmed software to automate portfolio tracking and tax matters'
-
-      blurb title: link('Bitvain', 'https://web.archive.org/web/20141227142047/http://www.bitvain.com/'),
-        date: date_range('2014-10-18', '2015-01-31'),
-        description: 'Designed independently scalable subsystems
-                      Integrated Ruby with C extensions to increase performance 100x'
-
-      blurb title: link('Gozent', 'https://web.archive.org/web/20141228062135/https://www.gozent.com/'),
-        date: date_range('2013-07-27', '2014-05-29'),
-        description: 'Architected MVP for startup
-                      Automated Amazon EC2 deployment cluster
-                      Coordinated Experian infrastructure audit'
-    end
-
     stroke do
-      vertical_line bounds.top + 2, bounds.bottom + 15, at: bounds.right + 20
+      vertical_line bounds.top + 2, bounds.bottom + 25, at: bounds.right + 20
     end
   end
 
@@ -230,7 +231,7 @@ pdf.instance_eval do
 
       sub 'Ruby' do
         text <<-LIST, inline_format: true
-          #{link 'Ruby on Rails', 'http://rubyonrails.org'}
+          #{link 'Rails', 'http://rubyonrails.org'}
           #{link 'Middleman', 'https://middlemanapp.com'}
           #{link 'Arel', 'https://github.com/rails/arel'}
           #{link 'Resque', 'http://resque.github.io'}
@@ -257,8 +258,6 @@ pdf.instance_eval do
           #{link 'PostgreSQL', 'https://www.postgresql.org'}
           #{link 'SQLite', 'https://sqlite.org'}
           #{link 'Redis', 'http://redis.io'}
-          #{link 'ActiveMQ', 'http://activemq.apache.org'}
-          #{link 'RabbitMQ', 'https://www.rabbitmq.com'}
         LIST
       end
 
@@ -267,6 +266,8 @@ pdf.instance_eval do
           #{link 'C', 'http://www.open-std.org/jtc1/sc22/wg14/'}
           #{link 'Python', 'https://www.python.org'} – #{link 'Django', 'https://www.djangoproject.com'}
           #{link 'Java', 'https://www.java.com'} – #{link 'Android', 'https://developer.android.com'}
+          #{link 'ActiveMQ', 'http://activemq.apache.org'}
+          #{link 'RabbitMQ', 'https://www.rabbitmq.com'}
         LIST
       end
     end
