@@ -66,11 +66,11 @@ class << pdf
   # Definitions
 
   def sec(title, options = {})
-    text title, size: 1.7 * font_size, style: :bold, inline_format: true
-    indent 1.5 do
+    text title, size: 1.5 * font_size, style: :bold, inline_format: true
+    indent 1 do
       yield
     end
-    move_down 2*gutter
+    move_down gutter
   end
 
   def sub(title, date: nil)
@@ -98,11 +98,12 @@ class << pdf
       end
     end
 
-    text italic(title), inline_format: true
-
-    move_down 1
+    if title
+      text italic(title), inline_format: true
+    end
 
     if description
+      move_down 1
       indent gutter do
         text description, inline_format: true
       end
@@ -111,28 +112,39 @@ class << pdf
     move_down gutter/2
   end
 
-  def contact(sources)
-    indent 14 do
-      sources.each do |icon_name, content|
-        text_box icon(icon_name), at: [-14, cursor + 1.5], inline_format: true
-        text content, inline_format: true
-      end
-    end
+  def header(title, sources)
+    text title, align: :center, size: 20, style: :bold
+    move_up 1
+    text sources.values.join('  •  '), inline_format: true, align: :center
   end
 end
 
 pdf.instance_eval do
-  font_families.update(
-    'icon' => { normal: 'source/fonts/icons.ttf' }
-  )
+  #font_families.update(
+  #  'icon' => { normal: 'source/fonts/icons.ttf' }
+  #)
 
   font_size 11
 
-  bounding_box [0, bounds.height], width: 410 do
-    sec 'Benjamin Feng' do
+  header 'Benjamin Feng',
+    phone: link('(312) 725-2842', 'tel:+13127252842'),
+    email: link('contact@fengb.info', 'mailto:contact@fengb.info'),
+    github: link('github.com/fengb', 'https://github.com/fengb')
+
+  topset = bounds.height - 45
+  split = 410
+
+  stroke do
+    vertical_line topset, bounds.bottom + 30, at: split
+    horizontal_line -gutter, bounds.width + gutter, at: topset
+  end
+
+  bounding_box [0, topset - 2*gutter], width: split - 3*gutter do
+    sec 'Summary' do
       font 'Times-Roman' do
-        text 'Lead software engineer with 10 years of experience in major web technologies like Ruby on Rails, node.js, React, and PostgreSQL. Diverse soft skills include project management and mentorship.', size: 12
+        text 'Lead software engineer with 10 years of experience specializing in Ruby on Rails, Node.js, React, and PostgreSQL. Proven ability to deliver projects with quality and timeliness. Experience and enthusiasism in mentorship and team development.'
       end
+      move_down gutter
     end
 
     sec 'Experience' do
@@ -143,7 +155,8 @@ pdf.instance_eval do
                         Resident DB expert with focus on data import and query response times
                         Architected critical subsystems for Android implementation
                         Instituted mentorship program for junior developers
-                        Promoted knowledge sharing via tech talks and code reviews'
+                        Promoted knowledge sharing via tech talks and code reviews
+                        Assisted project management with requirements gathering'
       end
 
       sub link('Enova', 'http://www.enova.com') do
@@ -156,7 +169,7 @@ pdf.instance_eval do
         blurb 'Sr. Software Engineer II',
           date: date_range('2011-07-01', '2013-04-02'),
           description: 'Main developer for critical projects — e.g. security and bank integration
-                        Collaborated with business stakeholders managers to manage priorities and estimates
+                        Collaborated with business stakeholders to manage priorities and estimates
                         Onboarded newly hired developers and managers'
 
         blurb 'Sr. UI Engineer',
@@ -197,27 +210,15 @@ pdf.instance_eval do
                         Automated Amazon EC2 deployment cluster'
       end
     end
-
-    stroke do
-      vertical_line bounds.top + 2, bounds.bottom + 25, at: bounds.right + 20
-    end
   end
 
-  bounding_box [440, bounds.height], width: 120, height: bounds.height do
+  bounding_box [split + 2*gutter, topset - 2*gutter], width: 120 do
     font_size 10
-
-    sec 'Contact' do
-      contact(
-        phone: link('(312) 725-2842', 'tel:+13127252842'),
-        email: link('contact@fengb.info', 'mailto:contact@fengb.info'),
-        github: link('github.com/fengb', 'https://github.com/fengb')
-      )
-    end
 
     sec 'Skills' do
       sub 'Javascript' do
         text <<-LIST, inline_format: true
-          #{link 'node.js', 'https://nodejs.org'}
+          #{link 'Node.js', 'https://nodejs.org'}
           #{link 'Koa', 'http://koajs.com'}
           #{link 'Bookshelf', 'http://bookshelfjs.org'}
           #{link 'Webpack', 'https://webpack.github.io'}
