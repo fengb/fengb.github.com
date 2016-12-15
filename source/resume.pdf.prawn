@@ -142,7 +142,7 @@ pdf.instance_eval do
   bounding_box [0, topset - 2*gutter], width: split - 3*gutter do
     sec 'Summary' do
       font 'Times-Roman' do
-        text 'Lead software engineer with 10 years of experience specializing in Ruby on Rails, Node.js, React, and PostgreSQL. Proven ability to deliver projects with quality and timeliness. Experience and enthusiasism in mentorship and team development.'
+        text 'Lead software engineer with 10 years of experience specializing in Ruby on Rails, Node.js, React, and PostgreSQL. Proven ability to deliver projects with quality and timeliness. Experience and enthusiasism in team development and mentorship.'
       end
       move_down gutter
     end
@@ -163,8 +163,8 @@ pdf.instance_eval do
         blurb 'Lead Software Engineer',
           date: date_range('2013-04-03', '2014-05-02'),
           description: 'Technical team lead for Rails microservice product
-                        Initiated lean UX design principles using wireframes and user studies
-                        Encouraged collaboration between backend, DB, UI and QA'
+                        Initiated lean UX design principles with wireframes and user studies
+                        Increased collaboration between backend, DB, UI and QA developers'
 
         blurb 'Sr. Software Engineer II',
           date: date_range('2011-07-01', '2013-04-02'),
