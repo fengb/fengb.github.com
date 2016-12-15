@@ -3,9 +3,9 @@ layout: false
 ---
 xml.rss version: '2.0' do
   xml.channel do
-    xml.title 'fengb.info'
+    xml.title 'fengb.me'
     xml.link settings.site_url
-    xml.description 'RSS feed for fengb.info'
+    xml.description 'RSS feed for fengb.me'
     xml.link href: "#{settings.site_url}/rss.xml", rel: 'self', type: 'application/rss+xml', xmlns: 'http://www.w3.org/2005/Atom'
 
     blog.articles.each do |article|

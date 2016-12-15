@@ -128,7 +128,7 @@ pdf.instance_eval do
 
   header 'Benjamin Feng',
     phone: link('(312) 725-2842', 'tel:+13127252842'),
-    email: link('contact@fengb.info', 'mailto:contact@fengb.info'),
+    email: link('contact@fengb.me', 'mailto:contact@fengb.me'),
     github: link('github.com/fengb', 'https://github.com/fengb')
 
   topset = bounds.height - 45

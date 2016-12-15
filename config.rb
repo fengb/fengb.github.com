@@ -12,11 +12,11 @@ set :images_dir,   'images'
 set :fonts_dir,    'fonts'
 set :partials_dir, 'includes'
 
-set :site_url,     'http://www.fengb.info'
+set :site_url,     'http://www.fengb.me'
 
 helpers do
   def title
-    segments = ['fengb.info', yield_content(:title), current_page.data[:title]]
+    segments = ['fengb.me', yield_content(:title), current_page.data[:title]]
     segments.compact.join(' &rarr; ')
   end
 

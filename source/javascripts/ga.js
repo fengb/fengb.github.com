@@ -2,7 +2,7 @@
   window.GoogleAnalyticsObject = 'ga'
   window.ga = {
     l: +new Date(),
-    q: [['create', 'UA-34997099-2', 'fengb.info'], ['send', 'pageview']]
+    q: [['create', 'UA-34997099-2', 'fengb.me'], ['send', 'pageview']]
   }
 
   var newTag = document.createElement('script')

@@ -5,6 +5,6 @@ file=${1:?}
 dpi=${2:-72}
 pngcrush -rem gAMA -rem cHRM -rem iCCP -rem sRGB -rem text \
          -text b 'License' 'http://creativecommons.org/licenses/by-nc-nd/3.0/' \
-         -text b 'Url'     'http://fengb.info' \
+         -text b 'Url'     'http://fengb.me' \
          -text b 'Author'  'Benjamin Feng' \
          -res $dpi -q -ow "$file"
