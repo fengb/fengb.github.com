@@ -153,7 +153,8 @@ pdf.instance_eval do
           date: date_range('2014-05-05', '2016-10-28'),
           description: 'Lead developer of Ember.js projects
                         Resident DB expert with focus on data import and query response times
-                        Architected critical subsystems for Android implementation
+                        Migrated critical components from RubyMotion to Objective-C
+                        Architected business logic subsystems for Android implementation
                         Instituted mentorship program for junior developers
                         Promoted knowledge sharing via tech talks and code reviews
                         Assisted project management with requirements gathering'
@@ -161,13 +162,13 @@ pdf.instance_eval do
 
       sub link('Enova', 'http://www.enova.com') do
         blurb 'Lead Software Engineer',
-          date: date_range('2013-04-03', '2014-05-02'),
+          date: date_range('2013-04-01', '2014-05-02'),
           description: 'Technical team lead for Rails microservice product
                         Initiated lean UX design principles with wireframes and user studies
                         Increased collaboration between backend, DB, UI and QA developers'
 
         blurb 'Sr. Software Engineer II',
-          date: date_range('2011-07-01', '2013-04-02'),
+          date: date_range('2011-07-01', '2013-03-31'),
           description: 'Main developer for critical projects — e.g. security and bank integration
                         Collaborated with business stakeholders to manage priorities and estimates
                         Onboarded newly hired developers and managers'
