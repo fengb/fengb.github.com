@@ -142,7 +142,7 @@ pdf.instance_eval do
   bounding_box [0, topset - 2*gutter], width: split - 3*gutter do
     sec 'Summary' do
       font 'Times-Roman' do
-        text 'Lead software engineer with 10 years of experience specializing in Ruby on Rails, Node.js, React, and PostgreSQL. Proven ability to deliver projects with quality and timeliness. Experience and enthusiasism in team development and mentorship.'
+        text 'Lead software engineer with 10 years of experience specializing in Ruby on Rails, Node.js, React, and PostgreSQL. Proven ability to deliver projects with quality and timeliness. Experienced and passionate with team development and mentorship.'
       end
       move_down gutter
     end
