@@ -135,7 +135,7 @@ pdf.instance_eval do
   split = 410
 
   stroke do
-    vertical_line topset, bounds.bottom + 30, at: split
+    vertical_line topset, bounds.bottom + 20, at: split
     horizontal_line -gutter, bounds.width + gutter, at: topset
   end
 
@@ -148,7 +148,13 @@ pdf.instance_eval do
     end
 
     sec 'Experience' do
-      sub link('Dough', 'http://dough.com') do
+      sub link('eSpark', 'https://esparklearning.com') do
+        blurb 'Sr. Software Engineer',
+          date: date_range('2017-01-30', 'present'),
+          description: ''
+      end
+
+      sub link('Dough', 'https://dough.com') do
         blurb 'Sr. Software Developer',
           date: date_range('2014-05-05', '2016-10-28'),
           description: 'Lead developer of Ember.js projects
@@ -169,23 +175,19 @@ pdf.instance_eval do
 
         blurb 'Sr. Software Engineer II',
           date: date_range('2011-07-01', '2013-03-31'),
-          description: 'Main developer for critical projects — e.g. security and bank integration
+          description: 'Main developer for critical projects: security and bank integration
                         Collaborated with business stakeholders to manage priorities and estimates
                         Onboarded newly hired developers and managers'
 
         blurb 'Sr. UI Engineer',
-          date: date_range('2010-07-01', '2011-06-30'),
+          date: date_range('2009-10-19', '2011-06-30'),
           description: 'Primary UI developer of three products
                         Spearheaded efforts to unify customer experience and marketing needs
-                        Launched mobile version of all existing websites'
-
-        blurb 'UI Engineer',
-          date: date_range('2009-10-19', '2010-06-30'),
-          description: 'Launched frontend for new product
+                        Launched mobile version of all existing websites
                         Ported legacy UI to Rails with modern semantic HTML/CSS'
       end
 
-      sub link('Business Logic', 'http://businesslogic.com/') do
+      sub link('Business Logic', 'http://businesslogic.com') do
         blurb 'Software Engineer',
           date: date_range('2007-06-04', '2009-08-04'),
           description: 'Created functional testing framework for separating data and verification
@@ -202,8 +204,8 @@ pdf.instance_eval do
 
         blurb link('Bitvain', 'https://web.archive.org/web/20141227142047/http://www.bitvain.com/'),
           date: date_range('2014-10-18', '2015-01-31'),
-          description: 'Integrated Rails with C extensions to increase performance 1000x
-                        Extensive Unix programming via forks, signals, named pipes, and blocking IO'
+          description: 'Leveraged Ruby-C extensions to increase performance 1000x
+                        Emulated CSP using raw Unix programming — forks, signals, and named pipes'
 
         blurb link('Gozent', 'https://web.archive.org/web/20141228062135/https://www.gozent.com/'),
           date: date_range('2013-07-27', '2014-05-29'),
@@ -219,13 +221,12 @@ pdf.instance_eval do
     sec 'Skills' do
       sub 'Javascript' do
         text <<-LIST, inline_format: true
+          #{link 'Typescript', 'https://www.typescriptlang.org'}
           #{link 'Node.js', 'https://nodejs.org'}
           #{link 'Koa', 'http://koajs.com'}
-          #{link 'Bookshelf', 'http://bookshelfjs.org'}
           #{link 'Webpack', 'https://webpack.github.io'}
           #{link 'Mocha', 'http://mochajs.org'} / #{link 'Chai', 'http://chaijs.com'}
           #{link 'React', 'https://facebook.github.io/react/'}
-          #{link 'Riot', 'http://riotjs.com'}
           #{link 'Ember', 'http://emberjs.com'}
           #{link 'jQuery', 'http://jquery.com'}
         LIST
@@ -266,6 +267,8 @@ pdf.instance_eval do
       sub 'Intermediate' do
         text <<-LIST, inline_format: true
           #{link 'C', 'http://www.open-std.org/jtc1/sc22/wg14/'}
+          #{link 'Perl', 'https://www.perl.org/'}
+          #{link 'Elixir', 'https://elixir-lang.org/'}
           #{link 'Python', 'https://www.python.org'} – #{link 'Django', 'https://www.djangoproject.com'}
           #{link 'Java', 'https://www.java.com'} – #{link 'Android', 'https://developer.android.com'}
           #{link 'ActiveMQ', 'http://activemq.apache.org'}
